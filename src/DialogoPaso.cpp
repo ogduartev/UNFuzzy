@@ -160,7 +160,7 @@ void DialogoPaso::pintarEntrada()
 	int numEntrada=choiceEntradas->GetSelection();
 
 	Variable* var=SLD->entradas->variable(numEntrada);
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasVarEntrada->GetRect();
 
 	Graficador Grafica(&dc,canvas);
@@ -174,7 +174,7 @@ void DialogoPaso::pintarRegla(int reglaInd)
 	int numSalida =choiceSalidas->GetSelection();
 
 	Variable* var=SLD->salidas->variable(numSalida);
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasVarRegla->GetRect();
 
 	float mnx, mxx, mny, mxy;
@@ -201,7 +201,7 @@ void DialogoPaso::pintarSalida()
 	int numSalida =choiceSalidas->GetSelection();
 
 	Variable* var=SLD->salidas->variable(numSalida);
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasVarSalida->GetRect();
 
 	float mnx, mxx, mny, mxy;

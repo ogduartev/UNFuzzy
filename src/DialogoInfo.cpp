@@ -22,7 +22,7 @@ DialogoInfo::DialogoInfo(SistemaLogicaDifusa *sld, wxWindow *parent)
 
   staticNombre     = new wxStaticText(this,wxID_ANY, _T("Nombre:"));
   staticDescribe   = new wxStaticText(this,wxID_ANY, _T("Descripción:"));
-  editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , SLD->nombre     , wxDefaultPosition, wxSize(200,25), wxHSCROLL);
+  editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , SLD->nombre     , wxDefaultPosition, wxSize(200,25));
   editDescribe     = new wxTextCtrl(this,DLG_INFO_DESCRIBE, SLD->descripcion, wxDefaultPosition, wxSize(200,100), wxTE_MULTILINE);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));

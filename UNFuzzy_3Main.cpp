@@ -90,37 +90,43 @@ UNFuzzy_3Dialog::UNFuzzy_3Dialog(wxDialog *dlg, const wxString &title)
     buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , wxT("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
     buttonAcerca          = new wxButton(this, DLG_FRONTAL_ACERCA     , wxT("&Acerca")     , wxDefaultPosition, wxDefaultSize, 0);
 
-    buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxBitmap("bmp/Entradas.bmp"));
-    buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxBitmap("bmp/Salidas.bmp"));
-    buttonReglas          = new wxBitmapButton(this, DLG_FRONTAL_REGLAS     , wxBitmap("bmp/Reglas.bmp"));
-    buttonInferencia      = new wxBitmapButton(this, DLG_FRONTAL_INFERENCIA , wxBitmap("bmp/Motor.bmp"));
+    buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxBitmap("bmp/Entradas.bmp",wxBITMAP_TYPE_BMP));
+    buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxBitmap("bmp/Salidas.bmp",wxBITMAP_TYPE_BMP));
+    buttonReglas          = new wxBitmapButton(this, DLG_FRONTAL_REGLAS     , wxBitmap("bmp/Reglas.bmp",wxBITMAP_TYPE_BMP));
+    buttonInferencia      = new wxBitmapButton(this, DLG_FRONTAL_INFERENCIA , wxBitmap("bmp/Motor.bmp",wxBITMAP_TYPE_BMP));
 
-    buttonNuevo           = new wxBitmapButton(this, DLG_FRONTAL_NUEVO      , wxBitmap("bmp/Nuevo.bmp")    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonLeer            = new wxBitmapButton(this, DLG_FRONTAL_LEER       , wxBitmap("bmp/Leer.bmp")     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonGuardar         = new wxBitmapButton(this, DLG_FRONTAL_GUARDAR    , wxBitmap("bmp/Guardar.bmp")  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTAL_DESCRIPCION, wxBitmap("bmp/Describe.bmp") ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonEntrenar        = new wxBitmapButton(this, DLG_FRONTAL_ENTRENAR   , wxBitmap("bmp/Entrenar.bmp") ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonFuncion         = new wxBitmapButton(this, DLG_FRONTAL_FUNCION    , wxBitmap("bmp/Funcion.bmp")  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonCalcular        = new wxBitmapButton(this, DLG_FRONTAL_CALCULAR   , wxBitmap("bmp/Calcular.bmp") ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonPasoAPaso       = new wxBitmapButton(this, DLG_FRONTAL_PASOAPASO  , wxBitmap("bmp/Paso.bmp")     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonCodigo          = new wxBitmapButton(this, DLG_FRONTAL_CODIGO     , wxBitmap("bmp/Codigo.bmp")   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonTabla           = new wxBitmapButton(this, DLG_FRONTAL_TABLA      , wxBitmap("bmp/Tabla.bmp")    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonAbout           = new wxBitmapButton(this, DLG_FRONTAL_ABOUT      , wxBitmap("bmp/Acerca.bmp")    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonNuevo           = new wxBitmapButton(this, DLG_FRONTAL_NUEVO      , wxBitmap("bmp/Nuevo.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonLeer            = new wxBitmapButton(this, DLG_FRONTAL_LEER       , wxBitmap("bmp/Leer.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonGuardar         = new wxBitmapButton(this, DLG_FRONTAL_GUARDAR    , wxBitmap("bmp/Guardar.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTAL_DESCRIPCION, wxBitmap("bmp/Describe.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonEntrenar        = new wxBitmapButton(this, DLG_FRONTAL_ENTRENAR   , wxBitmap("bmp/Entrenar.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonFuncion         = new wxBitmapButton(this, DLG_FRONTAL_FUNCION    , wxBitmap("bmp/Funcion.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonCalcular        = new wxBitmapButton(this, DLG_FRONTAL_CALCULAR   , wxBitmap("bmp/Calcular.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonPasoAPaso       = new wxBitmapButton(this, DLG_FRONTAL_PASOAPASO  , wxBitmap("bmp/Paso.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonCodigo          = new wxBitmapButton(this, DLG_FRONTAL_CODIGO     , wxBitmap("bmp/Codigo.bmp",wxBITMAP_TYPE_BMP)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonTabla           = new wxBitmapButton(this, DLG_FRONTAL_TABLA      , wxBitmap("bmp/Tabla.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonAbout           = new wxBitmapButton(this, DLG_FRONTAL_ABOUT      , wxBitmap("bmp/Acerca.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
 
     staticTextDescripcion->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT , wxNORMAL, wxNORMAL));
     llenarTexto();
 
-    sizerIconos->Add(buttonNuevo      , 0, wxALL, -3);
-    sizerIconos->Add(buttonLeer       , 0, wxALL, -3);
-    sizerIconos->Add(buttonGuardar    , 0, wxALL, -3);
-    sizerIconos->Add(buttonDescripcion, 0, wxALL, -3);
-    sizerIconos->Add(buttonEntrenar   , 0, wxALL, -3);
-    sizerIconos->Add(buttonFuncion    , 0, wxALL, -3);
-    sizerIconos->Add(buttonCalcular   , 0, wxALL, -3);
-    sizerIconos->Add(buttonPasoAPaso  , 0, wxALL, -3);
-    sizerIconos->Add(buttonCodigo     , 0, wxALL, -3);
-    sizerIconos->Add(buttonTabla      , 0, wxALL, -3);
-    sizerIconos->Add(buttonAbout      , 0, wxALL, -3);
+    int sepIcon=1;
+#ifdef __WXGTK__
+ 		sepIcon=-3;
+#endif
+
+
+    sizerIconos->Add(buttonNuevo      , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonLeer       , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonGuardar    , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonDescripcion, 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonEntrenar   , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonFuncion    , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonCalcular   , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonPasoAPaso  , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonCodigo     , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonTabla      , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonAbout      , 0, wxALL, sepIcon);
 
     sizerSLD->Add(buttonEntradas  ,wxGBPosition(1,0), wxDefaultSpan, wxALL,0);
     sizerSLD->Add(buttonSalidas   ,wxGBPosition(1,2), wxDefaultSpan, wxALL,0);

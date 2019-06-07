@@ -47,7 +47,6 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
   wxFlexGridSizer*  sizerImgVariable;
   wxFlexGridSizer*  sizerOKCancel;
 
-  wxStaticBoxSizer* sizerStaticVariable;
   wxStaticBoxSizer* sizerStaticVariables;
   wxStaticBoxSizer* sizerStaticConjuntos;
   wxStaticBoxSizer* sizerStaticDifConc;
@@ -62,7 +61,6 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	sizerBotonesDifConc    = new wxFlexGridSizer(2,3,0);
 	sizerFlexiVariable     = new wxFlexGridSizer(1,2,0);
 	sizerImgVariable       = new wxFlexGridSizer(2,2,0);
-	sizerStaticVariable    = new wxStaticBoxSizer(wxVERTICAL,this,_T("Variable"));
 	sizerStaticVariables   = new wxStaticBoxSizer(wxVERTICAL,this,_T("Variables"));
 	sizerStaticConjuntos   = new wxStaticBoxSizer(wxVERTICAL,this,_T("Conjuntos"));
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
@@ -70,7 +68,6 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	listaVariables    = new wxListBox(this,DLG_VARIABLE_LISTAVAR,wxDefaultPosition,wxSize(150,150));
 	listaConjuntos    = new wxListBox(this,DLG_VARIABLE_LISTACON,wxDefaultPosition,wxSize(150,150));
   canvasVar         = new wxSizerItem(600,200);
-//  staticNombreVar   = new wxStaticText(this,wxID_ANY,U->nombreVariable(NumVar));
   staticLabelVar    = new wxStaticText(this,wxID_ANY,_T("Variable Lingüística"));
 
   if(flagDifusor)
@@ -175,16 +172,13 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
   sizerImgVariable->Add(canvasVar);
   sizerImgVariable->Add(canvasDif);
 
-//  sizerFlexiVariable->Add(staticNombreVar         , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
   sizerFlexiVariable->Add(sizerImgVariable        , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-
-  sizerStaticVariable->Add(sizerFlexiVariable        , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
 
 	sizerOKCancel->Add(buttonOK, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerOKCancel->Add(buttonCancel, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
   sizerTotal->Add(sizerControles          , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-  sizerTotal->Add(sizerStaticVariable     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+  sizerTotal->Add(sizerFlexiVariable        , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
 	sizerTotal->Add(sizerOKCancel, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
   this->SetSizer(sizerTotal);
@@ -217,10 +211,10 @@ void DialogoVariable::pintarVariable(int numVar,int conj)
 	Variable *Var;
   Var=U->variable(NumVar);
 
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasVar->GetRect();
 	Graficador Grafica(&dc,canvas);
-	Grafica.pintarVariable(Var,conj);
+	Grafica.pintarVariable(Var,NumCon);
 	Grafica.pintarTitle(Var->nombreVariable());
 
 	numeroPuntosArrastre=Grafica.numeroPuntosArrastre;
@@ -242,7 +236,7 @@ void DialogoVariable::pintarDifusor(int numVar,int conj)
 	Variable *Var;
   Var=U->variable(NumVar);
 
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasDif->GetRect();
 	Graficador Grafica(&dc,canvas);
 	Grafica.pintarDifusor(Var);

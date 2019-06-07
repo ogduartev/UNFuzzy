@@ -1668,7 +1668,7 @@
 1522244266 /usr/include/wx-3.0/wx/gtk/statline.h
 	"wx/defs.h"
 
-1559906743 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzy_3Main.cpp
+1559916938 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzy_3Main.cpp
 	"wx_pch.h"
 	"UNFuzzy_3Main.h"
 
@@ -1786,7 +1786,7 @@
 	<DialogoEditarVariable.h>
 	<DialogoAutodefinirVariable.h>
 
-1559424578 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoVariable.cpp
+1559916297 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoVariable.cpp
 	"DialogoVariable.h"
 
 1559907051 /home/ogduartev/Proyectos/UNFuzzy-3/include/Graficador.h
@@ -2177,7 +2177,7 @@
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1559691905 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
+1559915559 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
 	"DialogoInfo.h"
 
 1559767162 /home/ogduartev/Proyectos/UNFuzzy-3/include/Archivador.h
@@ -2203,7 +2203,7 @@
 	<SistemaLogicaDifusa.h>
 	<Graficador.h>
 
-1559853706 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
+1559913347 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
 	"DialogoFuncion.h"
 
 1522244266 /usr/include/wx-3.0/wx/colourdata.h
@@ -2236,6 +2236,6 @@
 	<SistemaLogicaDifusa.h>
 	<Graficador.h>
 
-1559907382 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoPaso.cpp
+1559914376 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoPaso.cpp
 	"DialogoPaso.h"
 

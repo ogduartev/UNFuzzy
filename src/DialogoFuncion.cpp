@@ -138,7 +138,7 @@ void DialogoFuncion::pintar(wxCommandEvent&   event)
 
 void DialogoFuncion::pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale)
 {
-	wxPaintDC dc(this);
+	wxClientDC dc(this);
 	wxRect canvas=canvasFuncion->GetRect();
 	Grafica = new Graficador(&dc,canvas);
 

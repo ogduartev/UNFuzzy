@@ -22,9 +22,9 @@ IMPLEMENT_APP(UNFuzzy_3App);
 
 bool UNFuzzy_3App::OnInit()
 {
-    
-    UNFuzzy_3Dialog* dlg = new UNFuzzy_3Dialog(0L, _("wxWidgets Application Template"));
-    
+
+    UNFuzzy_3Dialog* dlg = new UNFuzzy_3Dialog(0L, _("UNFuzzy 3.0"));
+
     dlg->Show();
     return true;
 }
