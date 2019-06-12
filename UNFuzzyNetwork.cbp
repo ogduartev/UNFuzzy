@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="UNFuzzyNetwork" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/UNFuzzyNetwork" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/UNFuzzyNetwork" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`wx-config --cflags`" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+		</Linker>
+		<Unit filename="../UNFuzzy-3/include/Archivador.h" />
+		<Unit filename="../UNFuzzy-3/include/Arreglo.h" />
+		<Unit filename="../UNFuzzy-3/include/BloqueConcrecion.h" />
+		<Unit filename="../UNFuzzy-3/include/Concresor.h" />
+		<Unit filename="../UNFuzzy-3/include/ConjuntoDifuso.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoAutodefinirVariable.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoCalcular.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoDifusor.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoEditarVariable.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoEntrenamiento.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoFuncion.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoInfo.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoMotor.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoPaso.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoReglas.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoSLD.h" />
+		<Unit filename="../UNFuzzy-3/include/DialogoVariable.h" />
+		<Unit filename="../UNFuzzy-3/include/Difusor.h" />
+		<Unit filename="../UNFuzzy-3/include/Espanol.h" />
+		<Unit filename="../UNFuzzy-3/include/Graficador.h" />
+		<Unit filename="../UNFuzzy-3/include/Idiomas.h" />
+		<Unit filename="../UNFuzzy-3/include/Implicacion.h" />
+		<Unit filename="../UNFuzzy-3/include/MaquinaInferencia.h" />
+		<Unit filename="../UNFuzzy-3/include/Norma.h" />
+		<Unit filename="../UNFuzzy-3/include/Regla.h" />
+		<Unit filename="../UNFuzzy-3/include/SistemaLogicaDifusa.h" />
+		<Unit filename="../UNFuzzy-3/include/Universo.h" />
+		<Unit filename="../UNFuzzy-3/include/Variable.h" />
+		<Unit filename="../UNFuzzy-3/src/Archivador.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Arreglo.cpp" />
+		<Unit filename="../UNFuzzy-3/src/BloqueConcrecion.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Concresor.cpp" />
+		<Unit filename="../UNFuzzy-3/src/ConjuntoDifuso.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoAutodefinirVariable.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoCalcular.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoDifusor.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoEditarVariable.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoEntrenamiento.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoFuncion.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoInfo.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoMotor.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoPaso.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoReglas.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoSLD.cpp" />
+		<Unit filename="../UNFuzzy-3/src/DialogoVariable.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Difusor.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Graficador.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Implicacion.cpp" />
+		<Unit filename="../UNFuzzy-3/src/MaquinaInferencia.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Norma.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Regla.cpp" />
+		<Unit filename="../UNFuzzy-3/src/SistemaLogicaDifusa.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Universo.cpp" />
+		<Unit filename="../UNFuzzy-3/src/Variable.cpp" />
+		<Unit filename="UNFuzzyNetworkApp.cpp" />
+		<Unit filename="UNFuzzyNetworkApp.h" />
+		<Unit filename="UNFuzzyNetworkMain.cpp" />
+		<Unit filename="UNFuzzyNetworkMain.h" />
+		<Unit filename="include/archivadorRed.h" />
+		<Unit filename="include/capa.h" />
+		<Unit filename="include/graficadorRed.h" />
+		<Unit filename="include/nodo.h" />
+		<Unit filename="include/pin.h" />
+		<Unit filename="include/red.h" />
+		<Unit filename="src/archivadorRed.cpp" />
+		<Unit filename="src/capa.cpp" />
+		<Unit filename="src/graficadorRed.cpp" />
+		<Unit filename="src/nodo.cpp" />
+		<Unit filename="src/pin.cpp" />
+		<Unit filename="src/red.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
