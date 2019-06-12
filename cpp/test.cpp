@@ -9,7 +9,7 @@
 // ni para la Universidad Nacional de Colombia.
 // 
 // para compilar el archivo xxx.cpp:
-//   g++ xxx.cpp fuzzycpp
+//   g++ xxx.cpp fuzzy.cpp
 
 #ifndef __IOSTREAM_H
 #include <iostream>

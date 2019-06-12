@@ -123,10 +123,10 @@ public:
 	{
 		return Centro;
 	}
-    float centroAltura()
-    {
-        return 0.0;
-    }
+	float centroAltura()
+  {
+      return 0.0;
+  }
 	virtual void puntosClaves(float* x)=0;
 	virtual int numeroPuntosClaves()=0;
 	void nuevoPuntoClave(int, float ){}

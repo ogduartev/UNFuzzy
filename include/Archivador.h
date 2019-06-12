@@ -13,6 +13,7 @@ class Archivador
 		virtual ~Archivador();
 
 		void guardar(wxString fileName);
+		void guardarSLD        (wxXmlNode* parent);
 		void guardarEntradas   (wxXmlNode* parent);
 		void guardarSalidas    (wxXmlNode* parent);
 		void guardarVariable   (wxXmlNode* parent, Variable *var, bool flagDifusor);
@@ -29,6 +30,7 @@ class Archivador
 		void guardarConcresor  (wxXmlNode* parent, Concresor *conc, int numVar);
 
 		void leer(wxString fileName);
+		void leerSLD                   (wxXmlNode* parent);
 		void leerEntradas              (wxXmlNode* parent);
 		void leerSalidas               (wxXmlNode* parent);
 		void leerVariable              (wxXmlNode* parent, Variable *var, bool flagDifusor);

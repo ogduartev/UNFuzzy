@@ -178,7 +178,7 @@ void SistemaLogicaDifusa::crearArchivoTabla(wxString nombreArchivo)
 
 }
 
-void SistemaLogicaDifusa::generarCodigo(wxString nombreArchivo)
+void SistemaLogicaDifusa::generarCodigo(wxString nombreArchivo,wxString nombreClase)
 {
 	wxFileName fn(nombreArchivo);
 	wxString ext=fn.GetExt().Lower();
@@ -190,11 +190,11 @@ void SistemaLogicaDifusa::generarCodigo(wxString nombreArchivo)
 		{
 			if(wxMessageBox(_T("El archivo fuzzy.cpp es necesario para compilar ¿desea sobreescribirlo?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT)==wxID_OK)
 			{
-				generarCodigoCPP(nombreArchivo);
+				generarCodigoCPP(nombreArchivo,nombreClase);
 			}
 		}else
 		{
-			generarCodigoCPP(nombreArchivo);
+			generarCodigoCPP(nombreArchivo,nombreClase);
 		}
 	}else if(ext=="c")
 	{
@@ -202,201 +202,14 @@ void SistemaLogicaDifusa::generarCodigo(wxString nombreArchivo)
 	}
 }
 
-void SistemaLogicaDifusa::generarCodigoCPP(wxString nombreArchivo)
+void SistemaLogicaDifusa::generarCodigoCPP(wxString nombreArchivo,wxString nombreClase)
 {
 	wxTextFile codigoFile(nombreArchivo);
 	codigoFile.Clear();
 
-	wxString Codigo=_T("");
-	wxString nombreClase=_T("miSLD");
-	char cad[200];
-	Codigo=_T("// Código C++ del Sistema de Lógica Difusa\n");codigoFile.AddLine(Codigo);
-	Codigo=_T("// Generado automáticamente por UNFUZZY V 3.0");codigoFile.AddLine(Codigo);
-	Codigo=_T("// Autor: Oscar Duarte (ogduartev@unal.edu.co)");codigoFile.AddLine(Codigo);
-	Codigo=_T("// Universidad Nacional de Colombia");codigoFile.AddLine(Codigo);
-	Codigo=_T("// Descargo de responsabilidad: ");codigoFile.AddLine(Codigo);
-	Codigo=_T("// El código generado se usa bajo responsabilidad del usuario.");codigoFile.AddLine(Codigo);
-	Codigo=_T("// En ninguna forma genera responsabilidad para el autor de UNFUZZY");codigoFile.AddLine(Codigo);
-	Codigo=_T("// ni para la Universidad Nacional de Colombia.");codigoFile.AddLine(Codigo);
-	Codigo=_T("// ");codigoFile.AddLine(Codigo);
-	Codigo=_T("// para compilar el archivo xxx.cpp:");codigoFile.AddLine(Codigo);
-	Codigo=_T("//   g++ xxx.cpp fuzzycpp");codigoFile.AddLine(Codigo);
-	Codigo=_T("");codigoFile.AddLine(Codigo);
-	Codigo=_T("#ifndef __IOSTREAM_H");codigoFile.AddLine(Codigo);
-	Codigo=_T("#include <iostream>");codigoFile.AddLine(Codigo);
-	Codigo=_T("#endif");codigoFile.AddLine(Codigo);
-	Codigo=_T("");codigoFile.AddLine(Codigo);
-	Codigo=_T("using namespace std;");codigoFile.AddLine(Codigo);
-	Codigo=_T("	");codigoFile.AddLine(Codigo);
-	Codigo=_T("#ifndef __FUZZY_H");codigoFile.AddLine(Codigo);
-	Codigo=_T("#include \"fuzzy.h\"");codigoFile.AddLine(Codigo);
-	Codigo=_T("#endif\r\n");codigoFile.AddLine(Codigo);
-	Codigo=_T("class ");
-	Codigo << nombreClase << _T(":public SistemaLogicaDifusa");codigoFile.AddLine(Codigo);
-	Codigo=_T("{");codigoFile.AddLine(Codigo);
-	Codigo=_T("public:");codigoFile.AddLine(Codigo);
-	Codigo=_T("    ");
-	Codigo << nombreClase << _T("();");codigoFile.AddLine(Codigo);
-	Codigo=_T("    ~");
-	Codigo << nombreClase << _T("();");codigoFile.AddLine(Codigo);
-	Codigo=_T("protected:");codigoFile.AddLine(Codigo);
-	Codigo=_T("};\r\n");codigoFile.AddLine(Codigo);
-	Codigo=nombreClase;
-	Codigo << _T("::") << nombreClase << _T("()");codigoFile.AddLine(Codigo);
-	Codigo=_T("{");codigoFile.AddLine(Codigo);
-	Codigo=_T("    ConjuntoDifuso *cd;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Difusor *dif;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Variable *var;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Norma *And;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Norma *Composicion;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Norma *Conjuncion;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Implicacion *Implica;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Concresor *conc;\r\n");codigoFile.AddLine(Codigo);
-	Codigo=_T("    entradas=new Universo(");
-	Codigo << concreto->motor()->entradas()->numeroVariables() << _T(");");codigoFile.AddLine(Codigo);
-	Codigo=_T("    salidas=new Universo(");
-	Codigo << concreto->motor()->salidas()->numeroVariables() << _T(");");codigoFile.AddLine(Codigo);
-	int i;
-	for(i=0;i<concreto->motor()->entradas()->numeroVariables();i++)
-	{
-		Codigo =_("    var=new Variable(");
-		Codigo << concreto->motor()->entradas()->numeroConjuntosEnVariable(i) << _T(");");codigoFile.AddLine(Codigo);
-		Codigo=_T("    var->rangoMinimo(");
-								Codigo << concreto->motor()->entradas()->rangoMinimoVariable(i) << _T(");");codigoFile.AddLine(Codigo);
-		Codigo=_T("    var->rangoMaximo(");
-		Codigo << concreto->motor()->entradas()->rangoMaximoVariable(i) << _T(");");codigoFile.AddLine(Codigo);
-		int j;
-		for(j=0;j<concreto->motor()->entradas()->numeroConjuntosEnVariable(i);j++)
-		{
-			strcpy(cad,concreto->motor()->entradas()->conjuntoEnVariable(i,j)->codigoCPP());
-			Codigo=cad;codigoFile.AddLine(Codigo);
-			Codigo=_T("    var->adicionarConjuntos(cd);");codigoFile.AddLine(Codigo);
-		}
-		strcpy(cad,concreto->motor()->entradas()->difusor(i)->codigo_CPP());
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		Codigo=_T("    dif->numeroPuntos(");
-		Codigo << concreto->motor()->entradas()->numeroPuntosDifusor(i) << _T(");");codigoFile.AddLine(Codigo);
-		Codigo=_T("    var->difusorEntrada(dif);");codigoFile.AddLine(Codigo);
-		Codigo=_T("    var->nombreVariable(\"");
-		Codigo << concreto->motor()->entradas()->nombreVariable(i) <<_T("\");");codigoFile.AddLine(Codigo);
-		Codigo =_T("    var->numeroIntervalos(");
-		Codigo << concreto->motor()->entradas()->numeroIntervalosEnVariable(i) << _T(");");codigoFile.AddLine(Codigo);
-		Codigo=_T("    entradas->adicionarVariable(var);");codigoFile.AddLine(Codigo);
-	}
-	//////////////////////////////////////
-	for(i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
-	{
-		sprintf(cad,"    var=new Variable(%d);",concreto->motor()->salidas()->numeroConjuntosEnVariable(i));
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		sprintf(cad,"    var->rangoMinimo(%f);",concreto->motor()->salidas()->rangoMinimoVariable(i));
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		sprintf(cad,"    var->rangoMaximo(%f);",concreto->motor()->salidas()->rangoMaximoVariable(i));
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		int j;
-		for(j=0;j<concreto->motor()->salidas()->numeroConjuntosEnVariable(i);j++)
-		{
-			strcpy(cad,concreto->motor()->salidas()->conjuntoEnVariable(i,j)->codigoCPP());
-			Codigo=cad;codigoFile.AddLine(Codigo);
-			Codigo=_T("    var->adicionarConjuntos(cd);");codigoFile.AddLine(Codigo);
-		}
-		Codigo=_T("    var->nombreVariable(\"");
-		Codigo << concreto->motor()->salidas()->nombreVariable(i) <<_T("\");");codigoFile.AddLine(Codigo);
-		sprintf(cad,"    var->numeroIntervalos(%d);",concreto->motor()->salidas()->numeroIntervalosEnVariable(i));
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		Codigo=_T("    salidas->adicionarVariable(var);");codigoFile.AddLine(Codigo);
-	}
-
-	sprintf(cad,"    motor=new MaquinaInferencia(entradas,salidas,%d);",concreto->motor()->numeroReglas());
-	Codigo=cad;codigoFile.AddLine(Codigo);
-	Codigo=_T("    And=new ");
-	strcpy(cad,concreto->motor()->and_()->codigoCPP());
-	Codigo << cad;codigoFile.AddLine(Codigo);
-	Codigo=_T("    Composicion=new ");
-	strcpy(cad,concreto->motor()->composicion()->codigoCPP());
-	Codigo << cad;codigoFile.AddLine(Codigo);
-//////////////
-	Codigo=_T("    Implica=new ");
-	strcpy(cad,concreto->motor()->implicacion()->codigoCPP());
-	Codigo << cad;codigoFile.AddLine(Codigo);
-	Codigo=_T("    motor->and_(And);");codigoFile.AddLine(Codigo);
-	Codigo=_T("    motor->composicion(Composicion);");codigoFile.AddLine(Codigo);
-	Codigo=_T("    motor->implicacion(Implica);");codigoFile.AddLine(Codigo);
-	for(i=0;i<concreto->motor()->numeroReglas();i++)
-	{
-		int j;
-		for(j=0;j<concreto->motor()->entradas()->numeroVariables();j++)
-		{
-			sprintf(cad,"    motor->conjuntoEntrada(%d,%d,%d);",i,j,concreto->motor()->numConjuntoEntrada(i,j));
-			Codigo=cad;codigoFile.AddLine(Codigo);
-		}
-		for(j=0;j<concreto->motor()->salidas()->numeroVariables();j++)
-		{
-			sprintf(cad,"    motor->conjuntoSalida(%d,%d,%d);",i,j,concreto->motor()->numConjuntoSalida(i,j));
-			Codigo=cad;codigoFile.AddLine(Codigo);
-		}
-	}
-	for(i=0;i<concreto->motor()->numeroReglas();i++)
-	{
-		int j;
-		for(j=0;j<concreto->motor()->entradas()->numeroVariables();j++)
-		{
-			sprintf(cad,"    motor->modificador(%d,%d,%f);",i,j,concreto->motor()->modificador(i,j));
-			Codigo=cad;codigoFile.AddLine(Codigo);
-		}
-	}
-	Codigo=_T("    concreto=new BloqueConcrecion(motor);");codigoFile.AddLine(Codigo);
-	Codigo=_T("    Conjuncion=new ");
-	strcpy(cad,concreto->conjuncion()->codigoCPP());
-	Codigo << cad;codigoFile.AddLine(Codigo);
-	for(i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
-	{
-		strcpy(cad,concreto->concresor(i)->codigoCPP());
-		Codigo=cad;codigoFile.AddLine(Codigo);
-		Codigo=_T("    concreto->adicionarConcresor(conc);");codigoFile.AddLine(Codigo);
-	}
-	Codigo=_T("    concreto->motor(motor);");codigoFile.AddLine(Codigo);
-	Codigo=_T("    concreto->conjuncion(Conjuncion);");codigoFile.AddLine(Codigo);
-	Codigo=_T("}\r\n");codigoFile.AddLine(Codigo);
-	Codigo=nombreClase;
-	Codigo << _T("::~") << nombreClase << _T("()");codigoFile.AddLine(Codigo);
-	Codigo=_T("{");codigoFile.AddLine(Codigo);
-	Codigo=_T("}\r\n");codigoFile.AddLine(Codigo);
-	Codigo=_T("int main()");codigoFile.AddLine(Codigo);
-	Codigo=_T("{");codigoFile.AddLine(Codigo);
-	Codigo=_T("    float *entra;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    float *sale;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    ");
-	Codigo << nombreClase << _T(" *sistema;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    int NumeroEntradas;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    int NumeroSalidas;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    sistema=new ");
-	Codigo << nombreClase << _T("();");codigoFile.AddLine(Codigo);
-	Codigo=_T("    NumeroEntradas=sistema->numeroEntradas();");codigoFile.AddLine(Codigo);
-	Codigo=_T("    NumeroSalidas=sistema->numeroSalidas();");codigoFile.AddLine(Codigo);
-	Codigo=_T("    entra=new float[NumeroEntradas];");codigoFile.AddLine(Codigo);
-	Codigo=_T("    sale=new float[NumeroSalidas];");codigoFile.AddLine(Codigo);
-	Codigo=_T("    int i;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    char q='s';");codigoFile.AddLine(Codigo);
-	Codigo=_T("    while(q=='s')");codigoFile.AddLine(Codigo);
-	Codigo=_T("    {");codigoFile.AddLine(Codigo);
-	Codigo=_T("        for(i=0;i<NumeroEntradas;i++)");codigoFile.AddLine(Codigo);
-	Codigo=_T("        {");codigoFile.AddLine(Codigo);
-	Codigo=_T("            cout << sistema->nombreVariableEntrada(i) << \" : \";");codigoFile.AddLine(Codigo);
-	Codigo=_T("            cin >> entra[i];");codigoFile.AddLine(Codigo);
-	Codigo=_T("        }");codigoFile.AddLine(Codigo);
-	Codigo=_T("        sistema->calcular(entra,sale);");codigoFile.AddLine(Codigo);
-	Codigo=_T("        for(i=0;i<NumeroSalidas;i++)");codigoFile.AddLine(Codigo);
-	Codigo=_T("        {");codigoFile.AddLine(Codigo);
-	Codigo=_T("            cout << sistema->nombreVariableSalida(i) << \" : \";");codigoFile.AddLine(Codigo);
-	Codigo=_T("            cout << sale[i] << \"\\n\";");codigoFile.AddLine(Codigo);
-	Codigo=_T("        }");codigoFile.AddLine(Codigo);
-	Codigo=_T("        cout << \"Desea otro cálculo ?(s/n)\";");codigoFile.AddLine(Codigo);
-	Codigo=_T("        cin >> q;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    }");codigoFile.AddLine(Codigo);
-	Codigo=_T("    delete[] entra;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    delete[] sale;");codigoFile.AddLine(Codigo);
-	Codigo=_T("    return 0;");codigoFile.AddLine(Codigo);
-	Codigo=_T("}\r\n");codigoFile.AddLine(Codigo);
+	generarCodigoCPPEncabezado(&codigoFile);
+	generarCodigoCPPClase(&codigoFile, nombreClase);
+	generarCodigoCPPMain(&codigoFile, nombreClase);
 
 	if(codigoFile.Write())
 	{
@@ -405,7 +218,214 @@ void SistemaLogicaDifusa::generarCodigoCPP(wxString nombreArchivo)
 	{
 		wxMessageBox(_T("No se pudo abrir el archivo"),_T("¡Atención!"));
 	}
+}
 
+void SistemaLogicaDifusa::generarCodigoCPPEncabezado(wxTextFile* codigoFile)
+{
+	wxString Codigo=_T("");
+	char cad[200];
+
+	Codigo=_T("// Código C++ del Sistema de Lógica Difusa\n");codigoFile->AddLine(Codigo);
+	Codigo=_T("// Generado automáticamente por UNFUZZY V 3.0");codigoFile->AddLine(Codigo);
+	Codigo=_T("// Autor: Oscar Duarte (ogduartev@unal.edu.co)");codigoFile->AddLine(Codigo);
+	Codigo=_T("// Universidad Nacional de Colombia");codigoFile->AddLine(Codigo);
+	Codigo=_T("// Descargo de responsabilidad: ");codigoFile->AddLine(Codigo);
+	Codigo=_T("// El código generado se usa bajo responsabilidad del usuario.");codigoFile->AddLine(Codigo);
+	Codigo=_T("// En ninguna forma genera responsabilidad para el autor de UNFUZZY");codigoFile->AddLine(Codigo);
+	Codigo=_T("// ni para la Universidad Nacional de Colombia.");codigoFile->AddLine(Codigo);
+	Codigo=_T("// ");codigoFile->AddLine(Codigo);
+	Codigo=_T("// para compilar el archivo xxx.cpp:");codigoFile->AddLine(Codigo);
+	Codigo=_T("//   g++ xxx.cpp fuzzy.cpp");codigoFile->AddLine(Codigo);
+	Codigo=_T("");codigoFile->AddLine(Codigo);
+	Codigo=_T("#ifndef __IOSTREAM_H");codigoFile->AddLine(Codigo);
+	Codigo=_T("#include <iostream>");codigoFile->AddLine(Codigo);
+	Codigo=_T("#endif");codigoFile->AddLine(Codigo);
+	Codigo=_T("");codigoFile->AddLine(Codigo);
+	Codigo=_T("using namespace std;");codigoFile->AddLine(Codigo);
+	Codigo=_T("	");codigoFile->AddLine(Codigo);
+	Codigo=_T("#ifndef __FUZZY_H");codigoFile->AddLine(Codigo);
+	Codigo=_T("#include \"fuzzy.h\"");codigoFile->AddLine(Codigo);
+	Codigo=_T("#endif\r\n");codigoFile->AddLine(Codigo);
+}
+
+void SistemaLogicaDifusa::generarCodigoCPPClase(wxTextFile* codigoFile,wxString nombreClase)
+{
+	wxString Codigo=_T("");
+	char cad[200];
+
+	Codigo=_T("class ");
+	Codigo << nombreClase << _T(":public SistemaLogicaDifusa");codigoFile->AddLine(Codigo);
+	Codigo=_T("{");codigoFile->AddLine(Codigo);
+	Codigo=_T("public:");codigoFile->AddLine(Codigo);
+	Codigo=_T("    ");
+	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
+	Codigo=_T("    ~");
+	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
+	Codigo=_T("protected:");codigoFile->AddLine(Codigo);
+	Codigo=_T("};\r\n");codigoFile->AddLine(Codigo);
+	Codigo=nombreClase;
+	Codigo << _T("::") << nombreClase << _T("()");codigoFile->AddLine(Codigo);
+	Codigo=_T("{");codigoFile->AddLine(Codigo);
+	Codigo=_T("    ConjuntoDifuso *cd;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Difusor *dif;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Variable *var;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Norma *And;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Norma *Composicion;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Norma *Conjuncion;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Implicacion *Implica;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Concresor *conc;\r\n");codigoFile->AddLine(Codigo);
+	Codigo=_T("    entradas=new Universo(");
+	Codigo << concreto->motor()->entradas()->numeroVariables() << _T(");");codigoFile->AddLine(Codigo);
+	Codigo=_T("    salidas=new Universo(");
+	Codigo << concreto->motor()->salidas()->numeroVariables() << _T(");");codigoFile->AddLine(Codigo);
+	int i;
+	for(i=0;i<concreto->motor()->entradas()->numeroVariables();i++)
+	{
+		Codigo =_("    var=new Variable(");
+		Codigo << concreto->motor()->entradas()->numeroConjuntosEnVariable(i) << _T(");");codigoFile->AddLine(Codigo);
+		Codigo=_T("    var->rangoMinimo(");
+								Codigo << concreto->motor()->entradas()->rangoMinimoVariable(i) << _T(");");codigoFile->AddLine(Codigo);
+		Codigo=_T("    var->rangoMaximo(");
+		Codigo << concreto->motor()->entradas()->rangoMaximoVariable(i) << _T(");");codigoFile->AddLine(Codigo);
+		int j;
+		for(j=0;j<concreto->motor()->entradas()->numeroConjuntosEnVariable(i);j++)
+		{
+			strcpy(cad,concreto->motor()->entradas()->conjuntoEnVariable(i,j)->codigoCPP());
+			Codigo=cad;codigoFile->AddLine(Codigo);
+			Codigo=_T("    var->adicionarConjuntos(cd);");codigoFile->AddLine(Codigo);
+		}
+		strcpy(cad,concreto->motor()->entradas()->difusor(i)->codigo_CPP());
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		Codigo=_T("    dif->numeroPuntos(");
+		Codigo << concreto->motor()->entradas()->numeroPuntosDifusor(i) << _T(");");codigoFile->AddLine(Codigo);
+		Codigo=_T("    var->difusorEntrada(dif);");codigoFile->AddLine(Codigo);
+		Codigo=_T("    var->nombreVariable(\"");
+		Codigo << concreto->motor()->entradas()->nombreVariable(i) <<_T("\");");codigoFile->AddLine(Codigo);
+		Codigo =_T("    var->numeroIntervalos(");
+		Codigo << concreto->motor()->entradas()->numeroIntervalosEnVariable(i) << _T(");");codigoFile->AddLine(Codigo);
+		Codigo=_T("    entradas->adicionarVariable(var);");codigoFile->AddLine(Codigo);
+	}
+	//////////////////////////////////////
+	for(i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
+	{
+		sprintf(cad,"    var=new Variable(%d);",concreto->motor()->salidas()->numeroConjuntosEnVariable(i));
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		sprintf(cad,"    var->rangoMinimo(%f);",concreto->motor()->salidas()->rangoMinimoVariable(i));
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		sprintf(cad,"    var->rangoMaximo(%f);",concreto->motor()->salidas()->rangoMaximoVariable(i));
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		int j;
+		for(j=0;j<concreto->motor()->salidas()->numeroConjuntosEnVariable(i);j++)
+		{
+			strcpy(cad,concreto->motor()->salidas()->conjuntoEnVariable(i,j)->codigoCPP());
+			Codigo=cad;codigoFile->AddLine(Codigo);
+			Codigo=_T("    var->adicionarConjuntos(cd);");codigoFile->AddLine(Codigo);
+		}
+		Codigo=_T("    var->nombreVariable(\"");
+		Codigo << concreto->motor()->salidas()->nombreVariable(i) <<_T("\");");codigoFile->AddLine(Codigo);
+		sprintf(cad,"    var->numeroIntervalos(%d);",concreto->motor()->salidas()->numeroIntervalosEnVariable(i));
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		Codigo=_T("    salidas->adicionarVariable(var);");codigoFile->AddLine(Codigo);
+	}
+
+	sprintf(cad,"    motor=new MaquinaInferencia(entradas,salidas,%d);",concreto->motor()->numeroReglas());
+	Codigo=cad;codigoFile->AddLine(Codigo);
+	Codigo=_T("    And=new ");
+	strcpy(cad,concreto->motor()->and_()->codigoCPP());
+	Codigo << cad;codigoFile->AddLine(Codigo);
+	Codigo=_T("    Composicion=new ");
+	strcpy(cad,concreto->motor()->composicion()->codigoCPP());
+	Codigo << cad;codigoFile->AddLine(Codigo);
+//////////////
+	Codigo=_T("    Implica=new ");
+	strcpy(cad,concreto->motor()->implicacion()->codigoCPP());
+	Codigo << cad;codigoFile->AddLine(Codigo);
+	Codigo=_T("    motor->and_(And);");codigoFile->AddLine(Codigo);
+	Codigo=_T("    motor->composicion(Composicion);");codigoFile->AddLine(Codigo);
+	Codigo=_T("    motor->implicacion(Implica);");codigoFile->AddLine(Codigo);
+	for(i=0;i<concreto->motor()->numeroReglas();i++)
+	{
+		int j;
+		for(j=0;j<concreto->motor()->entradas()->numeroVariables();j++)
+		{
+			sprintf(cad,"    motor->conjuntoEntrada(%d,%d,%d);",i,j,concreto->motor()->numConjuntoEntrada(i,j));
+			Codigo=cad;codigoFile->AddLine(Codigo);
+		}
+		for(j=0;j<concreto->motor()->salidas()->numeroVariables();j++)
+		{
+			sprintf(cad,"    motor->conjuntoSalida(%d,%d,%d);",i,j,concreto->motor()->numConjuntoSalida(i,j));
+			Codigo=cad;codigoFile->AddLine(Codigo);
+		}
+	}
+	for(i=0;i<concreto->motor()->numeroReglas();i++)
+	{
+		int j;
+		for(j=0;j<concreto->motor()->entradas()->numeroVariables();j++)
+		{
+			sprintf(cad,"    motor->modificador(%d,%d,%f);",i,j,concreto->motor()->modificador(i,j));
+			Codigo=cad;codigoFile->AddLine(Codigo);
+		}
+	}
+	Codigo=_T("    concreto=new BloqueConcrecion(motor);");codigoFile->AddLine(Codigo);
+	Codigo=_T("    Conjuncion=new ");
+	strcpy(cad,concreto->conjuncion()->codigoCPP());
+	Codigo << cad;codigoFile->AddLine(Codigo);
+	for(i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
+	{
+		strcpy(cad,concreto->concresor(i)->codigoCPP());
+		Codigo=cad;codigoFile->AddLine(Codigo);
+		Codigo=_T("    concreto->adicionarConcresor(conc);");codigoFile->AddLine(Codigo);
+	}
+	Codigo=_T("    concreto->motor(motor);");codigoFile->AddLine(Codigo);
+	Codigo=_T("    concreto->conjuncion(Conjuncion);");codigoFile->AddLine(Codigo);
+	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
+	Codigo=nombreClase;
+	Codigo << _T("::~") << nombreClase << _T("()");codigoFile->AddLine(Codigo);
+	Codigo=_T("{");codigoFile->AddLine(Codigo);
+	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
+}
+
+void SistemaLogicaDifusa::generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase)
+{
+	wxString Codigo=_T("");
+	char cad[200];
+
+	Codigo=_T("int main()");codigoFile->AddLine(Codigo);
+	Codigo=_T("{");codigoFile->AddLine(Codigo);
+	Codigo=_T("    float *entra;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    float *sale;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    ");
+	Codigo << nombreClase << _T(" *sistema;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    int NumeroEntradas;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    int NumeroSalidas;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    sistema=new ");
+	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
+	Codigo=_T("    NumeroEntradas=sistema->numeroEntradas();");codigoFile->AddLine(Codigo);
+	Codigo=_T("    NumeroSalidas=sistema->numeroSalidas();");codigoFile->AddLine(Codigo);
+	Codigo=_T("    entra=new float[NumeroEntradas];");codigoFile->AddLine(Codigo);
+	Codigo=_T("    sale=new float[NumeroSalidas];");codigoFile->AddLine(Codigo);
+	Codigo=_T("    int i;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    char q='s';");codigoFile->AddLine(Codigo);
+	Codigo=_T("    while(q=='s')");codigoFile->AddLine(Codigo);
+	Codigo=_T("    {");codigoFile->AddLine(Codigo);
+	Codigo=_T("        for(i=0;i<NumeroEntradas;i++)");codigoFile->AddLine(Codigo);
+	Codigo=_T("        {");codigoFile->AddLine(Codigo);
+	Codigo=_T("            cout << sistema->nombreVariableEntrada(i) << \" : \";");codigoFile->AddLine(Codigo);
+	Codigo=_T("            cin >> entra[i];");codigoFile->AddLine(Codigo);
+	Codigo=_T("        }");codigoFile->AddLine(Codigo);
+	Codigo=_T("        sistema->calcular(entra,sale);");codigoFile->AddLine(Codigo);
+	Codigo=_T("        for(i=0;i<NumeroSalidas;i++)");codigoFile->AddLine(Codigo);
+	Codigo=_T("        {");codigoFile->AddLine(Codigo);
+	Codigo=_T("            cout << sistema->nombreVariableSalida(i) << \" : \";");codigoFile->AddLine(Codigo);
+	Codigo=_T("            cout << sale[i] << \"\\n\";");codigoFile->AddLine(Codigo);
+	Codigo=_T("        }");codigoFile->AddLine(Codigo);
+	Codigo=_T("        cout << \"Desea otro cálculo ?(s/n)\";");codigoFile->AddLine(Codigo);
+	Codigo=_T("        cin >> q;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    }");codigoFile->AddLine(Codigo);
+	Codigo=_T("    delete[] entra;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    delete[] sale;");codigoFile->AddLine(Codigo);
+	Codigo=_T("    return 0;");codigoFile->AddLine(Codigo);
+	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
 }
 
 void SistemaLogicaDifusa::generarCodigoC(wxString nombreArchivo)
@@ -951,8 +971,6 @@ void SistemaLogicaDifusa::generarCodigoC(wxString nombreArchivo)
 	Codigo=cad;codigoFile.AddLine(cad);
 	Codigo="    return z;";codigoFile.AddLine(Codigo);
 	Codigo="}\r\n";codigoFile.AddLine(Codigo);
-	 ////////////////////////////////////////////////
-
 
 	if(codigoFile.Write())
 	{

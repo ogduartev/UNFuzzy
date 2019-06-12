@@ -40,7 +40,7 @@ public:
 		CodigoC=0;
 		CodigoCPP=0;
 	}
-	~Implicacion()
+	virtual ~Implicacion()
 	{
 		delete[] Tipo;
 		delete[] CodigoC;

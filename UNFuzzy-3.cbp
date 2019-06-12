@@ -42,8 +42,6 @@
 		</Linker>
 		<Unit filename="UNFuzzy_3App.cpp" />
 		<Unit filename="UNFuzzy_3App.h" />
-		<Unit filename="UNFuzzy_3Main.cpp" />
-		<Unit filename="UNFuzzy_3Main.h" />
 		<Unit filename="include/Archivador.h" />
 		<Unit filename="include/Arreglo.h" />
 		<Unit filename="include/BloqueConcrecion.h" />
@@ -58,6 +56,7 @@
 		<Unit filename="include/DialogoMotor.h" />
 		<Unit filename="include/DialogoPaso.h" />
 		<Unit filename="include/DialogoReglas.h" />
+		<Unit filename="include/DialogoSLD.h" />
 		<Unit filename="include/DialogoVariable.h" />
 		<Unit filename="include/Difusor.h" />
 		<Unit filename="include/Espanol.h" />
@@ -84,6 +83,7 @@
 		<Unit filename="src/DialogoMotor.cpp" />
 		<Unit filename="src/DialogoPaso.cpp" />
 		<Unit filename="src/DialogoReglas.cpp" />
+		<Unit filename="src/DialogoSLD.cpp" />
 		<Unit filename="src/DialogoVariable.cpp" />
 		<Unit filename="src/Difusor.cpp" />
 		<Unit filename="src/Graficador.cpp" />

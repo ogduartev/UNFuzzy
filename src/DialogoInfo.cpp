@@ -6,11 +6,11 @@ BEGIN_EVENT_TABLE(DialogoInfo, wxDialog)
 END_EVENT_TABLE()
 
 
-DialogoInfo::DialogoInfo(SistemaLogicaDifusa *sld, wxWindow *parent)
+DialogoInfo::DialogoInfo(wxString *N, wxString *D, wxWindow *parent)
 :wxDialog(parent,wxID_ANY,wxString(wxT("Base de reglas")))
 {
-	SLD=sld;
-
+	Nombre=N;
+	Descripcion=D;
 
   wxFlexGridSizer* sizerTotal;
   wxFlexGridSizer* sizerControles;
@@ -22,8 +22,8 @@ DialogoInfo::DialogoInfo(SistemaLogicaDifusa *sld, wxWindow *parent)
 
   staticNombre     = new wxStaticText(this,wxID_ANY, _T("Nombre:"));
   staticDescribe   = new wxStaticText(this,wxID_ANY, _T("Descripción:"));
-  editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , SLD->nombre     , wxDefaultPosition, wxSize(200,25));
-  editDescribe     = new wxTextCtrl(this,DLG_INFO_DESCRIBE, SLD->descripcion, wxDefaultPosition, wxSize(200,100), wxTE_MULTILINE);
+  editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , *Nombre     , wxDefaultPosition, wxSize(200,25));
+  editDescribe     = new wxTextCtrl(this,DLG_INFO_DESCRIBE, *Descripcion, wxDefaultPosition, wxSize(200,100), wxTE_MULTILINE);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 
@@ -57,8 +57,8 @@ void DialogoInfo::OnClose       (wxCloseEvent&   event)
 
 void DialogoInfo::OnOK          (wxCommandEvent&   event)
 {
-	SLD->nombre      = editNombre->GetValue();
-	SLD->descripcion = editDescribe->GetValue();
+	*Nombre      = editNombre->GetValue();
+	*Descripcion = editDescribe->GetValue();
 
 	EndModal(wxID_OK);
 }

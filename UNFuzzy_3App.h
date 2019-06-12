@@ -11,11 +11,15 @@
 #define UNFUZZY_3APP_H
 
 #include <wx/app.h>
+#include "SistemaLogicaDifusa.h"
+
 
 class UNFuzzy_3App : public wxApp
 {
     public:
         virtual bool OnInit();
+ 	    	SistemaLogicaDifusa SLD;
+
 };
 
 #endif // UNFUZZY_3APP_H

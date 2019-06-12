@@ -23,8 +23,8 @@ BEGIN_EVENT_TABLE(DialogoSLD, wxDialog)
     EVT_BUTTON(DLG_FRONTAL_ABOUT      , DialogoSLD::OnAbout)
 END_EVENT_TABLE()
 
-DialogoSLD::DialogoSLD(wxDialog *dlg, SistemaLogicaDifusa* sld, const wxString &title)
-    : wxDialog(dlg, -1, title)
+DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxString &title)
+    : wxDialog(parent, -1, title)
 {
 	SLD=sld;
     this->SetSizeHints(wxDefaultSize, wxDefaultSize);
@@ -172,8 +172,6 @@ void DialogoSLD::OnInferencia(wxCommandEvent &event)
 
 void DialogoSLD::OnNuevo      (wxCommandEvent& event)
 {
-//	*(SLD->salidas)=*(SLD->entradas);
-//		return;
 	wxMessageDialog* dial;
   dial = new wxMessageDialog(this,_T("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
@@ -227,7 +225,7 @@ void DialogoSLD::OnGuardar    (wxCommandEvent& event)
 void DialogoSLD::OnDescripcion(wxCommandEvent& event)
 {
 	DialogoInfo *dlg;
-	dlg=new DialogoInfo(SLD, this);
+	dlg=new DialogoInfo(&(SLD->nombre),&(SLD->descripcion), this);
 	if(dlg->ShowModal() == wxID_OK)
 	{
 		llenarTexto();
@@ -286,7 +284,8 @@ void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
-		SLD->generarCodigo(dial.GetPath());
+		wxString nombreClase=_T("miSLD");  // solo se usa en cpp
+		SLD->generarCodigo(dial.GetPath(),nombreClase);
 	}
 }
 
@@ -312,7 +311,8 @@ void DialogoSLD::OnAbout(wxCommandEvent& event)
   info.SetVersion(_T("3.0.0. Beta"));
   info.SetDescription(_T("Programa de diseño de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
   info.SetCopyright(_T("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
-  wxAboutBox(info);}
+  wxAboutBox(info);
+}
 
 void DialogoSLD::llenarTexto()
 {

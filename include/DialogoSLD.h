@@ -23,7 +23,7 @@
 class DialogoSLD: public wxDialog
 {
     public:
-        DialogoSLD(wxDialog *dlg, SistemaLogicaDifusa* sld, const wxString& title);
+        DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxString& title);
         ~DialogoSLD();
 
     protected:

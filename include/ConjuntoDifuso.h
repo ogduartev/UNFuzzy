@@ -77,7 +77,7 @@ public:
 		delete[] CodigoC;
 		delete[] CodigoCPP;
 	}
-	char* nombre()
+	char* nombre() const
 	{
 		return Nombre;
 	}

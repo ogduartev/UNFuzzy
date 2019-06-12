@@ -21,11 +21,13 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
   wxFlexGridSizer* sizerControles;
   wxFlexGridSizer* sizerBotones;
   wxFlexGridSizer* sizerOKCancel;
+  wxStaticBoxSizer* sizerReglas;
 
   sizerTotal       = new wxFlexGridSizer(1,2,0);
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerBotones     = new wxFlexGridSizer(1,8,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
+  sizerReglas      = new wxStaticBoxSizer(wxHORIZONTAL,this,_T("Base de reglas"));
 
 	int cols,rows;
 	rows = Motor->numeroReglas();
@@ -33,6 +35,7 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
 
 	gridTabla = new wxGrid(this,DLG_REGLAS_TABLA, wxDefaultPosition, wxSize(600,400), wxFULL_REPAINT_ON_RESIZE);
 	gridTabla->CreateGrid(rows,cols);
+	gridTabla->SetDefaultCellBackgroundColour(GetBackgroundColour());
 
 	llenarTabla();
 
@@ -54,7 +57,9 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
 	sizerBotones->Add(buttonRapida     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerBotones->Add(buttonDesocupar  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
-	sizerControles->Add(gridTabla, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerReglas->Add(gridTabla, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+
+	sizerControles->Add(sizerReglas, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(sizerBotones, 1, wxALIGN_CENTRE_HORIZONTAL|wxALIGN_CENTRE_VERTICAL|wxALL, 5);
 
 	sizerOKCancel->Add(buttonOK, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
@@ -76,11 +81,13 @@ DialogoReglas::~DialogoReglas()
 
 void DialogoReglas::OnClose       (wxCloseEvent&   event)
 {
+	actualizarBase();
 	EndModal(wxID_OK);
 }
 
 void DialogoReglas::OnOK(wxCommandEvent&   event)
 {
+	actualizarBase();
 	EndModal(wxID_OK);
 }
 
@@ -202,6 +209,7 @@ void DialogoReglas::OnEliminar    (wxCommandEvent&   event)
 
 void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 {
+	actualizarBase();
   int NumCambios=0;
   wxTextEntryDialog *dial;
   wxString valor=_T("1.000");
@@ -428,4 +436,63 @@ void DialogoReglas::OnDesocupar    (wxCommandEvent&   event)
 		gridTabla->ClearSelection();
 	}
 	delete dial;
+}
+
+void DialogoReglas::actualizarBase()
+{
+	wxString celda="";
+	int offsetX=Motor->entradas()->numeroVariables();
+
+	wxArrayString etiquetasEntrada[Motor->numeroEntradas()];
+	for(int e=0;e<Motor->numeroEntradas();e++)
+	{
+		wxArrayString etiquetas;
+		for(int et=0;et<Motor->entradas()->variable(e)->numeroConjuntos();et++)
+		{
+			etiquetas.Add(Motor->entradas()->variable(e)->conjunto(et)->nombre());
+		}
+		etiquetasEntrada[e]=etiquetas;
+	}
+
+	wxArrayString etiquetasSalida[Motor->numeroSalidas()];
+	for(int e=0;e<Motor->numeroSalidas();e++)
+	{
+		wxArrayString etiquetas;
+		for(int et=0;et<Motor->salidas()->variable(e)->numeroConjuntos();et++)
+		{
+			etiquetas.Add(Motor->salidas()->variable(e)->conjunto(et)->nombre());
+		}
+		etiquetasSalida[e]=etiquetas;
+	}
+
+	for(int regla=0;regla<gridTabla->GetNumberRows();regla++)
+	{
+		for(int e=0;e<Motor->numeroEntradas();e++)
+		{
+			celda = gridTabla->GetCellValue(regla,e);
+			if(Motor->modificador(regla,e)!=1.0)
+			{
+			  celda << _T("(") << Motor->modificador(regla,e) << _T(")");
+			}
+			for(int j=0;j<etiquetasEntrada[e].GetCount();j++)
+			{
+				if(celda==etiquetasEntrada[e][j])
+				{
+					Motor->conjuntoEntrada(regla, e, j);
+				}
+			}
+
+		}
+		for(int s=0;s<Motor->numeroSalidas();s++)
+		{
+			celda = gridTabla->GetCellValue(regla,s+offsetX);
+			for(int j=0;j<etiquetasSalida[s].GetCount();j++)
+			{
+				if(celda==etiquetasSalida[s][j])
+				{
+					Motor->conjuntoSalida(regla, s, j);
+				}
+			}
+		}
+	}
 }

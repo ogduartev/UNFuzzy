@@ -17,8 +17,10 @@ class DialogoPaso : public wxDialog
 		void OnClose(wxCloseEvent &event);
 		void OnOK(wxCommandEvent&   event);
 		void OnPaint(wxPaintEvent& event);
-		void OnCalcular(wxCommandEvent&   event);
 		void OnRegla(wxGridEvent& event);
+		void OnCambioEntra(wxCommandEvent&   event);
+		void OnCambioSale(wxCommandEvent&   event);
+		void OnCambioSpinEntra(wxSpinDoubleEvent&   event);
 
 		void calcular();
 		void pintar();
@@ -33,7 +35,6 @@ class DialogoPaso : public wxDialog
 		float* sale;
 		wxArrayInt reglasActivas;
 
-//	  wxStaticText* staticEntradas;
 	  wxStaticText* staticSalida;
 		wxSizerItem* canvasVarEntrada;
 		wxSizerItem* canvasVarRegla;
@@ -42,7 +43,6 @@ class DialogoPaso : public wxDialog
 	  wxChoice* choiceEntradas;
 	  wxChoice* choiceSalidas;
 	  wxSpinCtrlDouble** valoresEntradas;
-		wxButton* buttonCalcular;
 
 		wxButton* buttonOK;
 		wxButton* buttonCancel;
@@ -56,7 +56,7 @@ enum
 	DLG_PASO_TABLA=1,
 	DLG_PASO_CHOICEENTRA,
 	DLG_PASO_CHOICESALE,
-	DLG_PASO_BTNCALCULAR
+	DLG_PASO_SPINENTRA_BASE
 };
 
 #endif // DIALOGOPASO_H

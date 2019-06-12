@@ -20,6 +20,8 @@ class DialogoReglas : public wxDialog
 		void OnRapida      (wxCommandEvent&   event);
 		void OnDesocupar   (wxCommandEvent&   event);
 
+		void actualizarBase();
+
 		void llenarTabla();
 
 	protected:
@@ -51,7 +53,8 @@ enum
 	DLG_REGLAS_BTNCERTEZA,
 	DLG_REGLAS_BTNLLENAR,
 	DLG_REGLAS_BTNRAPIDA,
-	DLG_REGLAS_BTNDESOCUPAR
+	DLG_REGLAS_BTNDESOCUPAR,
 };
+
 
 #endif // DIALOGOREGLAS_H

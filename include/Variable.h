@@ -13,7 +13,6 @@ public:
 	{
 		Conjuntos = new ListaConjuntos(num);
 		DifusorEntrada= new DifusorSinglenton(0.5,0.01);
-//		DifusorEntrada= new DifusorTriangulo(0.5,0.2,0.2);
 		NombreVariable=0;
 	  char str[40];sprintf(str,"Sin nombre");
 	  nombreVariable(str);
@@ -22,7 +21,7 @@ public:
 	  autodefinirConjuntosRectos(num);
 	}
 	~Variable();
-	Difusor *difusorEntrada()
+	Difusor* difusorEntrada() const
 	{
 		return DifusorEntrada;
 	}
@@ -73,7 +72,7 @@ public:
 		Conjuntos->AddAt(cd,num);
 	}
 
-	ConjuntoDifuso* conjunto(int conj);
+	ConjuntoDifuso* conjunto(int conj) const;
 	float pertenencia(ConjuntoDifuso*, float);
 	float pertenencia(int, float);
 	float pertenenciaDifusor(float);
@@ -92,11 +91,13 @@ public:
 		( DifusorEntrada == other.DifusorEntrada)&
 		( Conjuntos == other.Conjuntos) );
 	}
+	void operator=(const Variable& other);
 protected:
 	typedef Arreglo<ConjuntoDifuso> ListaConjuntos;
 
 	ListaConjuntos *Conjuntos;
 	Difusor *DifusorEntrada;
+
 	float RangoMinimo;
 	float RangoMaximo;
 	int NumeroIntervalos;

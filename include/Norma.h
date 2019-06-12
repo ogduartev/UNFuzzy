@@ -39,7 +39,7 @@ public:
 		CodigoCPP=0;
 		Tipo=0;
 	}
-	~Norma()
+	virtual ~Norma()
 	{
 		delete[] Tipo;
 		delete[] CodigoC;

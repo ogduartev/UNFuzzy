@@ -19,11 +19,11 @@ public:
 	{
 		Variables->Destroy(var);
 	}
-	int numeroVariables()
+	int numeroVariables() const
 	{
 		return Variables->GetItemsInContainer();
 	}
-	Variable *variable(int numVar);
+	Variable *variable(int numVar) const;
 	void limpiarListaVariables();
 	Difusor *difusor(int num);
 	float intervaloDifusor(int numVar)
@@ -159,6 +159,8 @@ public:
 		x=difusor(numVar)->centro();;
 		return x;
 	}
+
+	void operator=(const Universo& other);
 
 protected:
 	typedef Arreglo<Variable> ListaVariables;

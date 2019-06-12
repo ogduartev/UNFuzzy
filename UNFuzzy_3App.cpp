@@ -16,14 +16,15 @@
 #endif //__BORLANDC__
 
 #include "UNFuzzy_3App.h"
-#include "UNFuzzy_3Main.h"
+#include "DialogoSLD.h"
 
 IMPLEMENT_APP(UNFuzzy_3App);
 
 bool UNFuzzy_3App::OnInit()
 {
+  	SLD.crearMinimoSLD(3,2);
 
-    UNFuzzy_3Dialog* dlg = new UNFuzzy_3Dialog(0L, _("UNFuzzy 3.0"));
+    DialogoSLD* dlg = new DialogoSLD(0L, &SLD, _("UNFuzzy 3.0"));
 
     dlg->Show();
     return true;

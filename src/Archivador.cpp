@@ -16,16 +16,22 @@ void Archivador::guardar(wxString fileName)
 
 	wxXmlNode* Node;
 	Node=new wxXmlNode(NULL,wxXML_ELEMENT_NODE,_T("SLD"));
-	Node->AddAttribute(_T("Nombre")      , SLD->nombre);
-	Node->AddAttribute(_T("Descripción") , SLD->descripcion);
 	doc.SetRoot(Node);
 
-	guardarConcrecion(Node);
-	guardarMaquina(Node);
-	guardarSalidas(Node);
-	guardarEntradas(Node);
+	guardarSLD(Node);
 
 	doc.Save(fileName);
+}
+
+void Archivador::guardarSLD(wxXmlNode* parent)
+{
+	parent->AddAttribute(_T("Nombre")      , SLD->nombre);
+	parent->AddAttribute(_T("Descripción") , SLD->descripcion);
+
+	guardarConcrecion(parent);
+	guardarMaquina   (parent);
+	guardarSalidas   (parent);
+	guardarEntradas  (parent);
 }
 
 void Archivador::guardarEntradas(wxXmlNode* parent)
@@ -210,14 +216,18 @@ void Archivador::leer(wxString fileName)
 	{
 		wxMessageBox(_T("No se pudo cargar el archivo"),_T("¡Atención!"));
 	}
-
-	SLD->crearMinimoSLD(1,1);
-
 	wxXmlNode *Node=doc.GetRoot();
-	SLD->nombre=Node->GetAttribute(_T("Nombre"));
-	SLD->descripcion=Node->GetAttribute(_T("Descripción"));
 
-	wxXmlNode *NodeA=Node->GetChildren();
+	leerSLD(Node);
+}
+
+void Archivador::leerSLD   (wxXmlNode* parent)
+{
+	SLD->crearMinimoSLD(1,1);
+	SLD->nombre=parent->GetAttribute(_T("Nombre"));
+	SLD->descripcion=parent->GetAttribute(_T("Descripción"));
+
+	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
 		if(NodeA->GetName()==_T("ENTRADAS"))
@@ -235,7 +245,6 @@ void Archivador::leer(wxString fileName)
 		}
 		NodeA=NodeA->GetNext();
 	}
-
 }
 
 void Archivador::leerEntradas   (wxXmlNode* parent)

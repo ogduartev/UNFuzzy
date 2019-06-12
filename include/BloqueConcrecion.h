@@ -12,6 +12,7 @@ public:
 		int numSal;
 		numSal=Motor->numeroSalidas()+1;
 		Concresores=new ListaConcresores(numSal);
+
 	}
 	~BloqueConcrecion()
 	{
@@ -58,6 +59,7 @@ protected:
 
 	ListaConcresores *Concresores;
 	MaquinaInferencia *Motor;
+
 };
 
 #endif // BLOQUECONCRECION_H

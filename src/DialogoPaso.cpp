@@ -3,8 +3,8 @@
 BEGIN_EVENT_TABLE(DialogoPaso, wxDialog)
     EVT_PAINT(DialogoPaso::OnPaint)
     EVT_CLOSE(DialogoPaso::OnClose)
-    EVT_BUTTON(wxID_OK                      , DialogoPaso::OnOK)
-    EVT_BUTTON(DLG_PASO_BTNCALCULAR         , DialogoPaso::OnCalcular)
+    EVT_CHOICE(DLG_PASO_CHOICEENTRA         , DialogoPaso::OnCambioEntra)
+    EVT_CHOICE(DLG_PASO_CHOICESALE          , DialogoPaso::OnCambioSale)
     EVT_GRID_LABEL_LEFT_CLICK( DialogoPaso::OnRegla)
 END_EVENT_TABLE()
 
@@ -29,8 +29,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	sizerBloqueB     = new wxFlexGridSizer(4,1,0);
 	sizerBloqueC     = new wxFlexGridSizer(4,1,0);
 	sizerControles   = new wxFlexGridSizer(1,4,0);
-	sizerChoices     = new wxFlexGridSizer(2,2,0);
-//	sizerBotones     = new wxFlexGridSizer(2,1,0);
+	sizerChoices     = new wxFlexGridSizer(1,2,0);
 	sizerValores     = new wxFlexGridSizer(2,10,0);
   sizerOKCancel    = new wxFlexGridSizer(3,1,0);
 
@@ -51,7 +50,6 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	rows = 0;
 	cols = SLD->motor->numeroEntradas() + SLD->motor->numeroSalidas();
 
-//	staticEntradas   = new wxStaticText(this,wxID_ANY,_T("Entradas"));
 	staticSalida     = new wxStaticText(this,wxID_ANY,_T("                 "));
 	choiceEntradas   = new wxChoice(this,DLG_PASO_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_PASO_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
@@ -65,24 +63,26 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 		maxi=SLD->entradas->variable(i)->rangoMaximo();
 		medi=0.5*(mini+maxi);
 		incr=0.01*(maxi-mini);
-		valoresEntradas[i]=new wxSpinCtrlDouble(this,wxID_ANY,_T("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
+		valoresEntradas[i]=new wxSpinCtrlDouble(this,DLG_PASO_SPINENTRA_BASE+i,_T("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
+		Bind(wxEVT_SPINCTRLDOUBLE, &DialogoPaso::OnCambioSpinEntra, this, DLG_PASO_SPINENTRA_BASE+i);
 
 		wxStaticText *stText;
 		stText= new wxStaticText(this,wxID_ANY, SLD->entradas->variable(i)->nombreVariable());
-		sizerValores ->Add(stText             , 1, wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
-		sizerValores ->Add(valoresEntradas[i] , 1, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
+		sizerValores ->Add(stText             , 0, wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL|wxALL, 1);
+		sizerValores ->Add(valoresEntradas[i] , 0, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 1);
 	}
 
-  buttonCalcular         = new wxButton(this,DLG_PASO_BTNCALCULAR,_("Calcular"));
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 
   choiceEntradas->SetSelection(0);
   choiceSalidas->SetSelection(0);
 
-	sizerBloqueA->Add(sizerValores     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-	sizerBloqueA->Add(choiceEntradas      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+ 	sizerChoices->Add(choiceEntradas      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+
+	sizerBloqueA->Add(sizerValores      , 1, wxALIGN_CENTRE_HORIZONTAL| wxALIGN_CENTRE_VERTICAL|wxALL, 5);
 	sizerBloqueA->Add(canvasVarEntrada);
+	sizerBloqueA->Add(sizerChoices      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
 	sizerBloqueB->Add(gridTabla    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
@@ -93,7 +93,6 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	sizerBloqueC->Add(canvasVarSalida);
 	sizerBloqueC->Add(sizerControles);
 
-	sizerOKCancel->Add(buttonCalcular, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerOKCancel->Add(buttonOK      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerOKCancel->Add(buttonCancel  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
@@ -130,10 +129,22 @@ void DialogoPaso::OnPaint(wxPaintEvent& event)
 	pintar();
 }
 
-void DialogoPaso::OnCalcular(wxCommandEvent&   event)
+void DialogoPaso::OnCambioEntra(wxCommandEvent&   event)
+{
+	pintarEntrada();
+}
+
+void DialogoPaso::OnCambioSale(wxCommandEvent&   event)
+{
+	pintarSalida();
+	llenarSalida();
+}
+
+void DialogoPaso::OnCambioSpinEntra(wxSpinDoubleEvent&   event)
 {
 	calcular();
-	pintar();
+	pintarEntrada();
+	pintarSalida();
 }
 
 void DialogoPaso::calcular()
@@ -144,8 +155,23 @@ void DialogoPaso::calcular()
 		entra[i]=valoresEntradas[i]->GetValue();
 	}
 	SLD->calcular(entra,sale);
+
+	wxArrayInt selectedRows=gridTabla->GetSelectedRows();
+	int selectedRow=-1;
+	if(selectedRows.Count()>0)
+	{
+		selectedRow=reglasActivas[selectedRows[0]];
+	}
+
 	llenarTabla();
 	llenarSalida();
+
+	int r=reglasActivas.Index(selectedRow);
+	if(r!=wxNOT_FOUND)
+	{
+		gridTabla->SelectRow(r);
+		pintarRegla(r);
+	}
 }
 
 void DialogoPaso::pintar()
@@ -189,11 +215,13 @@ void DialogoPaso::pintarRegla(int reglaInd)
 	Grafica.pintarTicks(mnx,mxx,mny,mxy);
 
 	int regla;
-	if(reglaInd<0){reglaInd=0;}
-	gridTabla->ClearSelection();
-	gridTabla->SelectRow(reglaInd);
-  regla=reglasActivas[reglaInd];
-	Grafica.pintarComposicion(SLD,numSalida,regla);
+	if(reglaInd>=0)
+	{
+		gridTabla->ClearSelection();
+		gridTabla->SelectRow(reglaInd);
+		regla=reglasActivas[reglaInd];
+		Grafica.pintarComposicion(SLD,numSalida,regla);
+	}
 }
 
 void DialogoPaso::pintarSalida()

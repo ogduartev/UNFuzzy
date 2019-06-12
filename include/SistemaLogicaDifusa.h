@@ -34,6 +34,15 @@ public:
 		}
 	  return Var;
 	}
+	Variable *variableSalida(int num)
+	{
+	  Variable* Var=NULL;
+	  if(num< numeroSalidas())
+		{
+		  Var=salidas->variable(num);
+		}
+	  return Var;
+	}
 	int numeroEntradas()
 	{
 		return entradas->numeroVariables();
@@ -65,8 +74,11 @@ public:
 	}
 	void crearMinimoSLD(int numEnt,int numSal);
 	void crearArchivoTabla(wxString nombreArchivo);
-	void generarCodigo(wxString nombreArchivo);
-	void generarCodigoCPP(wxString nombreArchivo);
+	void generarCodigo(wxString nombreArchivo,wxString nombreClase);
+	void generarCodigoCPP(wxString nombreArchivo,wxString nombreClase);
+	void generarCodigoCPPEncabezado(wxTextFile* codigoFile);
+	void generarCodigoCPPClase(wxTextFile* codigoFile,wxString nombreClase);
+	void generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase);
 	void generarCodigoC(wxString nombreArchivo);
 
 //protected:
