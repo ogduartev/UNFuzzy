@@ -275,7 +275,7 @@ int red::numeroEntradas()
 	int numCapa=0;
 	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
 	{
-		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer();
+		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->sld()->entradas->numeroVariables();
 	}
 	return num;
 }
@@ -286,7 +286,7 @@ int red::numeroSalidas()
 	int numCapa=capas()->GetItemsInContainer()-1;
 	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
 	{
-		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->salidas()->GetItemsInContainer();
+		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->sld()->salidas->numeroVariables();
 	}
 	return num;
 }

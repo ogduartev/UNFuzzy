@@ -21,6 +21,7 @@
 #include "archivadorRed.h"
 
 #include "DialogoSLD.h"
+#include "DialogoCalculoRed.h"
 
 class UNFuzzyNetworkFrame: public wxFrame
 {
@@ -96,6 +97,9 @@ class UNFuzzyNetworkFrame: public wxFrame
     wxButton* buttonCodigo;
     wxButton* buttonAbout;
     wxStaticText* staticNombre;
+
+		wxFlexGridSizer*  sizerTotal;
+		wxFlexGridSizer*  sizerCanvas;
 
 			DECLARE_EVENT_TABLE()
 };

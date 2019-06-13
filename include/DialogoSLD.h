@@ -11,7 +11,7 @@
 #include <wx/gbsizer.h>
 #include <wx/aboutdlg.h>
 
-#include "DialogoCalcular.h"
+#include "DialogoCalculoSld.h"
 #include "DialogoVariable.h"
 #include "DialogoMotor.h"
 #include "DialogoReglas.h"
@@ -105,7 +105,8 @@ enum
   DLG_FRONTAL_PASOAPASO,
   DLG_FRONTAL_CODIGO,
   DLG_FRONTAL_TABLA,
-  DLG_FRONTAL_ABOUT
+  DLG_FRONTAL_ABOUT,
+  DLG_FRONTAL_DESCRIBE
 };
 
 

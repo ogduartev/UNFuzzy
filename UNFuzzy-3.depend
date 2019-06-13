@@ -1748,7 +1748,7 @@
 1560012340 /home/ogduartev/Proyectos/UNFuzzy-3/include/BloqueConcrecion.h
 	"Concresor.h"
 
-1560306625 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/SistemaLogicaDifusa.cpp
+1560307075 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/SistemaLogicaDifusa.cpp
 	"SistemaLogicaDifusa.h"
 
 1560306993 /home/ogduartev/Proyectos/UNFuzzy-3/include/SistemaLogicaDifusa.h
@@ -1872,7 +1872,7 @@
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1560085793 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
+1560367418 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
 	"DialogoReglas.h"
 
 1560083268 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoReglas.h
@@ -2260,10 +2260,10 @@
 	"DialogoFuncion.h"
 	"DialogoPaso.h"
 
-1560307063 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
+1560393419 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
 	"DialogoSLD.h"
 
-1560125921 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
+1560392608 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 	"Archivador.h"
@@ -2271,7 +2271,7 @@
 	<wx/statline.h>
 	<wx/gbsizer.h>
 	<wx/aboutdlg.h>
-	"DialogoCalcular.h"
+	"DialogoCalculoSld.h"
 	"DialogoVariable.h"
 	"DialogoMotor.h"
 	"DialogoReglas.h"
@@ -2505,4 +2505,20 @@
 1560119871 /home/ogduartev/Proyectos/UNF/UNFuzzy_3App.h
 	<wx/app.h>
 	"SistemaLogicaDifusa.h"
+
+1560392257 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculoSld.h
+	<DialogoCalculo.h>
+	"SistemaLogicaDifusa.h"
+
+1560391980 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculo.h
+	<wx/wx.h>
+	<wx/grid.h>
+	<wx/spinctrl.h>
+	"Arreglo.h"
+
+1560392941 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoSld.cpp
+	"DialogoCalculoSld.h"
+
+1560392968 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculo.cpp
+	"DialogoCalculo.h"
 

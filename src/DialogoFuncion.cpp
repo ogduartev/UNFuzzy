@@ -16,6 +16,11 @@ DialogoFuncion::DialogoFuncion(SistemaLogicaDifusa *sld, wxWindow *parent)
 :wxDialog(parent,wxID_ANY,wxString(wxT("Función de entrada-salida")))
 {
 	SLD=sld;
+	iniciar();
+}
+
+void DialogoFuncion::iniciar()
+{
 	colorData.SetChooseFull(true);
 	colorData.SetColour(*wxBLUE);
 
@@ -38,31 +43,31 @@ DialogoFuncion::DialogoFuncion(SistemaLogicaDifusa *sld, wxWindow *parent)
   canvasFuncion    = new wxSizerItem(600,400);
 
   wxArrayString strEntra,strSale;
-  for(int i=0;i<SLD->entradas->numeroVariables();i++)
+  for(int i=0;i<numeroEntradas();i++)
 	{
-		strEntra.Add(SLD->entradas->variable(i)->nombreVariable());
+		strEntra.Add(nombreEntrada(i));
 	}
-  for(int i=0;i<SLD->salidas->numeroVariables();i++)
+  for(int i=0;i<numeroSalidas();i++)
 	{
-		strSale.Add(SLD->salidas->variable(i)->nombreVariable());
+		strSale.Add(nombreSalida(i));
 	}
 
 	staticEntradas   = new wxStaticText(this,wxID_ANY,_T("Eje Horizontal"));
 	staticSalidas    = new wxStaticText(this,wxID_ANY,_T("Eje Vertical"));
 	choiceEntradas   = new wxChoice(this,DLG_FUNCION_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_FUNCION_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
-	valoresEntradas  = new wxSpinCtrlDouble*[SLD->entradas->numeroVariables()];
-  for(int i=0;i<SLD->entradas->numeroVariables();i++)
+	valoresEntradas  = new wxSpinCtrlDouble*[numeroEntradas()];
+  for(int i=0;i<numeroEntradas();i++)
 	{
 		float mini,maxi,medi,incr;
-		mini=SLD->entradas->variable(i)->rangoMinimo();
-		maxi=SLD->entradas->variable(i)->rangoMaximo();
+		mini=rangoMinimoEntrada(i);
+		maxi=rangoMaximoEntrada(i);
 		medi=0.5*(mini+maxi);
 		incr=0.01*(maxi-mini);
 		valoresEntradas[i]=new wxSpinCtrlDouble(this,wxID_ANY,_T("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
 
 		wxStaticText *stText;
-		stText= new wxStaticText(this,wxID_ANY, SLD->entradas->variable(i)->nombreVariable());
+		stText= new wxStaticText(this,wxID_ANY, nombreEntrada(i));
 		sizerValores ->Add(stText             , 1, wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
 		sizerValores ->Add(valoresEntradas[i] , 1, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
 	}
@@ -142,14 +147,22 @@ void DialogoFuncion::pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,
 	wxRect canvas=canvasFuncion->GetRect();
 	Grafica = new Graficador(&dc,canvas);
 
+	float mnx, mxx, mny, mxy;
+	mnx=rangoMinimoEntrada(numEntra);
+	mxx=rangoMaximoEntrada(numEntra);
+	mny=rangoMinimoSalida(numSale);
+	mxy=rangoMaximoSalida(numSale);
+	wxString nomEntra=nombreEntrada(numEntra);
+	wxString nomSale =nombreSalida (numSale);
+
 	if(flagFondo)
 	{
-		Grafica->pintarFondoFuncionES(SLD, numEntra,numSale);
+		Grafica->pintarFondoFuncion(mnx,mxx,mny,mxy,nomEntra,nomSale);
 	}
 	if(!flagCurva){return;}
 
-	float entra[SLD->entradas->numeroVariables()];
-	for(int i=0;i<SLD->entradas->numeroVariables();i++)
+	float entra[numeroEntradas()];
+	for(int i=0;i<numeroEntradas();i++)
 	{
 		entra[i]=valoresEntradas[i]->GetValue();
 	}
@@ -164,7 +177,7 @@ void DialogoFuncion::limpiar (wxCommandEvent& event)
 	int numSale=0;
 	numEntra = choiceEntradas->GetSelection();
 	numSale  = choiceSalidas->GetSelection();
-	for(int i=0;i<SLD->entradas->numeroVariables();i++)
+	for(int i=0;i<numeroEntradas();i++)
 	{
 		if(i==numEntra)
 		{
@@ -186,4 +199,50 @@ void DialogoFuncion::OnColor (wxCommandEvent& event)
 	}
 }
 
-/////////////  colores, 3D
+int DialogoFuncion::numeroEntradas()
+{
+	return SLD->entradas->numeroVariables();
+}
+
+int DialogoFuncion::numeroSalidas()
+{
+	return SLD->salidas->numeroVariables();
+}
+
+wxString DialogoFuncion::nombreEntrada(int i)
+{
+	wxString str=SLD->entradas->variable(i)->nombreVariable();
+	return str;
+}
+
+wxString DialogoFuncion::nombreSalida (int i)
+{
+	wxString str=SLD->salidas->variable(i)->nombreVariable();
+	return str;
+}
+
+float DialogoFuncion::rangoMinimoEntrada(int i)
+{
+	return SLD->entradas->variable(i)->rangoMinimo();
+}
+
+float DialogoFuncion::rangoMaximoEntrada(int i)
+{
+	return SLD->entradas->variable(i)->rangoMaximo();
+}
+
+float DialogoFuncion::rangoMinimoSalida(int i)
+{
+	return SLD->salidas->variable(i)->rangoMinimo();
+}
+
+float DialogoFuncion::rangoMaximoSalida(int i)
+{
+	return SLD->salidas->variable(i)->rangoMaximo();
+}
+
+void DialogoFuncion::calcular(float* entra, float* sale)
+{
+	SLD->calcular(entra,sale);
+}
+

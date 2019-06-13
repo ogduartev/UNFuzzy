@@ -52,6 +52,9 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   sepYSLD=50;
   tamIconoPlus=20;
 
+	wxFlexGridSizer*  sizerGrafico;
+	wxFlexGridSizer*  sizerIconos;
+
   buttonNuevo           = new wxBitmapButton(this, DLG_FRONTALNET_NUEVO      , wxBitmap("bmp/Nuevo.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
   buttonLeer            = new wxBitmapButton(this, DLG_FRONTALNET_LEER       , wxBitmap("bmp/Leer.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
   buttonGuardar         = new wxBitmapButton(this, DLG_FRONTALNET_GUARDAR    , wxBitmap("bmp/Guardar.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
@@ -62,6 +65,36 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   buttonAbout           = new wxBitmapButton(this, DLG_FRONTALNET_ABOUT      , wxBitmap("bmp/Acerca.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
 
 	staticNombre = new wxStaticText(this,wxID_ANY, Red.nombre);
+
+  sizerTotal      = new wxFlexGridSizer(1,4,0);
+  sizerCanvas     = new wxFlexGridSizer(1,1,0);
+  sizerGrafico    = new wxFlexGridSizer(1,1,0);
+  sizerIconos     = new wxFlexGridSizer(8,1,0);
+
+  int sepIcon=1;
+#ifdef __WXGTK__
+ 	sepIcon=-3;
+#endif
+  sizerIconos->Add(buttonNuevo      , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonLeer       , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonGuardar    , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonDescripcion, 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonFuncion    , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonCalcular   , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonCodigo     , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonAbout      , 0, wxALL, sepIcon);
+
+	canvasRed= new wxSizerItem(100,100);
+
+  sizerCanvas->Add(canvasRed);
+  sizerGrafico->Add(sizerCanvas    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 20);
+
+  sizerTotal->Add(sizerIconos      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
+  sizerTotal->Add(staticNombre      , 1, wxALIGN_CENTRE_HORIZONTAL|wxTOP, 15);
+  sizerTotal->Add(sizerGrafico     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 20);
+
+  this->SetSizer(sizerTotal);
+  this->Layout();
 
 //	crearMenu();
 	crearStatusBar();
@@ -91,14 +124,6 @@ void UNFuzzyNetworkFrame::crearStatusBar()
 
 void UNFuzzyNetworkFrame::crearSizers()
 {
-  wxFlexGridSizer*  sizerTotal;
-	wxFlexGridSizer*  sizerCanvas;
-	wxFlexGridSizer*  sizerGrafico;
-	wxFlexGridSizer*  sizerIconos;
-
-  sizerTotal      = new wxFlexGridSizer(1,4,0);
-  sizerCanvas     = new wxFlexGridSizer(1,1,0);
-  sizerGrafico    = new wxFlexGridSizer(1,1,0);
 
   int W=Red.capas()->GetItemsInContainer()*(sepYSLD + widthSLD);
   int H=0;
@@ -116,33 +141,7 @@ void UNFuzzyNetworkFrame::crearSizers()
 	if(W < tamIconoPlus*2){W=tamIconoPlus*2;}
 	if(H < tamIconoPlus*2){H=tamIconoPlus*2;}
 
-  int sepIcon=1;
-#ifdef __WXGTK__
- 	sepIcon=-3;
-#endif
-
-  sizerIconos = new wxFlexGridSizer(8,1,0);
-
-  sizerIconos->Add(buttonNuevo      , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonLeer       , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonGuardar    , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonDescripcion, 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonFuncion    , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonCalcular   , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonCodigo     , 0, wxALL, sepIcon);
-  sizerIconos->Add(buttonAbout      , 0, wxALL, sepIcon);
-
-	canvasRed= new wxSizerItem(W,H);
-
-  sizerCanvas->Add(canvasRed);
-  sizerGrafico->Add(sizerCanvas    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 20);
-
-  sizerTotal->Add(sizerIconos      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
-  sizerTotal->Add(staticNombre      , 1, wxALIGN_CENTRE_HORIZONTAL|wxTOP, 15);
-  sizerTotal->Add(sizerGrafico     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 20);
-
-  this->SetSizer(sizerTotal);
-  this->Layout();
+	canvasRed->SetMinSize(W,H);
   sizerTotal->Fit(this);
 }
 
@@ -181,8 +180,7 @@ void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _T("Archivos XML (*.xml)|*.xml");
-		extensiones << _T("|Archivos UNFUZZY3 (*.unf)|*.unf");
+		extensiones << _T("Archivos UNFuzzyNetwork (*.unn)|*.unn");
 
 		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
@@ -200,8 +198,7 @@ void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnGuardar   (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos XML (*.xml)|*.xml");
-	extensiones << _T("|Archivos UNFUZZY3 (*.unf)|*.unf");
+	extensiones << _T("Archivos UNFuzzyNetwork (*.unn)|*.unn");
 
 	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -213,7 +210,17 @@ void UNFuzzyNetworkFrame::OnGuardar   (wxCommandEvent& event)
 }
 
 void UNFuzzyNetworkFrame::OnFuncion   (wxCommandEvent& event){}
-void UNFuzzyNetworkFrame::OnCalcular  (wxCommandEvent& event){}
+
+void UNFuzzyNetworkFrame::OnCalcular  (wxCommandEvent& event)
+{
+	DialogoCalculoRed *dial;
+	dial=new DialogoCalculoRed(&Red,this);
+	if(dial->ShowModal()==wxID_OK)
+	{
+	}
+	delete dial;
+}
+
 void UNFuzzyNetworkFrame::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
@@ -400,7 +407,6 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinEntrada(wxPoint punto)
 			nodo* Nodo=Red.ptrNodo( numCapa, numNodo);
 
 			int numEntradas=Nodo->sld()->entradas->numeroVariables();
-			int numSalidas =Nodo->sld()->salidas->numeroVariables();
 			float offset;
 
 			offset=(float)(heightSLD)/(float)numEntradas;
@@ -442,7 +448,6 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinSalidaUp(wxPoint punto)
 
 		nodo* Nodo=Red.ptrNodo( numCapa, numNodo);
 
-		int numEntradas=Nodo->sld()->entradas->numeroVariables();
 		int numSalidas =Nodo->sld()->salidas->numeroVariables();
 		float offset;
 

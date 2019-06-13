@@ -38,7 +38,7 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxStrin
     sizerControles  = new wxBoxSizer(wxHORIZONTAL);
     sizerSLD        = new wxGridBagSizer(0,0);
 
-    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIPCION, wxT("Descripción:\n"), wxDefaultPosition, wxDefaultSize, 0);
+    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIBE, wxT("Descripción:\n"), wxDefaultPosition, wxDefaultSize, 0);
 //f4cdb5
     buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , wxT("&Salir")      , wxDefaultPosition, wxDefaultSize, 0);
     buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , wxT("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
@@ -190,8 +190,7 @@ void DialogoSLD::OnLeer       (wxCommandEvent& event)
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _T("Archivos XML (*.xml)|*.xml");
-		extensiones << _T("|Archivos UNFUZZY3 (*.unf)|*.unf");
+		extensiones << _T("Archivos UNFUZZY3 (*.unf)|*.unf");
 
 		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
@@ -209,8 +208,7 @@ void DialogoSLD::OnLeer       (wxCommandEvent& event)
 void DialogoSLD::OnGuardar    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos XML (*.xml)|*.xml");
-	extensiones << _T("|Archivos UNFUZZY3 (*.unf)|*.unf");
+	extensiones << _T("Archivos UNFUZZY3 (*.unf)|*.unf");
 
 	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -256,8 +254,8 @@ void DialogoSLD::OnFuncion    (wxCommandEvent& event)
 
 void DialogoSLD::OnCalcular   (wxCommandEvent& event)
 {
-	DialogoCalcular *dlg;
-	dlg=new DialogoCalcular(SLD,this);
+	DialogoCalculoSld *dlg;
+	dlg=new DialogoCalculoSld(SLD,this);
 	if(dlg->ShowModal() == wxID_OK)
 	{
 	}

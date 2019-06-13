@@ -15,6 +15,7 @@ class DialogoFuncion : public wxDialog
 	public:
 		DialogoFuncion(SistemaLogicaDifusa *sld, wxWindow *parent);
 		virtual ~DialogoFuncion();
+		void iniciar();
 
 		void OnClose       (wxCloseEvent&   event);
 		void OnOK(wxCommandEvent&   event);
@@ -25,6 +26,17 @@ class DialogoFuncion : public wxDialog
 		void crearGrafica();
 		void pintar(wxCommandEvent&   event);
 		void pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale);
+
+		virtual int numeroEntradas();
+		virtual int numeroSalidas();
+		virtual wxString nombreEntrada(int i);
+		virtual wxString nombreSalida (int i);
+		virtual float rangoMinimoEntrada(int i);
+		virtual float rangoMaximoEntrada(int i);
+		virtual float rangoMinimoSalida(int i);
+		virtual float rangoMaximoSalida(int i);
+		virtual void calcular(float* entra, float* sale);
+
 
 	protected:
 		SistemaLogicaDifusa *SLD;

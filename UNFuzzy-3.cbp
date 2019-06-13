@@ -49,6 +49,8 @@
 		<Unit filename="include/ConjuntoDifuso.h" />
 		<Unit filename="include/DialogoAutodefinirVariable.h" />
 		<Unit filename="include/DialogoCalcular.h" />
+		<Unit filename="include/DialogoCalculo.h" />
+		<Unit filename="include/DialogoCalculoSld.h" />
 		<Unit filename="include/DialogoEditarVariable.h" />
 		<Unit filename="include/DialogoEntrenamiento.h" />
 		<Unit filename="include/DialogoFuncion.h" />
@@ -76,6 +78,8 @@
 		<Unit filename="src/ConjuntoDifuso.cpp" />
 		<Unit filename="src/DialogoAutodefinirVariable.cpp" />
 		<Unit filename="src/DialogoCalcular.cpp" />
+		<Unit filename="src/DialogoCalculo.cpp" />
+		<Unit filename="src/DialogoCalculoSld.cpp" />
 		<Unit filename="src/DialogoEditarVariable.cpp" />
 		<Unit filename="src/DialogoEntrenamiento.cpp" />
 		<Unit filename="src/DialogoFuncion.cpp" />

@@ -57,7 +57,7 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
 	sizerBotones->Add(buttonRapida     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerBotones->Add(buttonDesocupar  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
-	sizerReglas->Add(gridTabla, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerReglas->Add(gridTabla, 1, wxALL, 5);
 
 	sizerControles->Add(sizerReglas, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(sizerBotones, 1, wxALIGN_CENTRE_HORIZONTAL|wxALIGN_CENTRE_VERTICAL|wxALL, 5);

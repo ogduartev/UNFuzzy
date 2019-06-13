@@ -1801,10 +1801,10 @@
 1558390970 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Difusor.cpp
 	"Difusor.h"
 
-1559907487 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Graficador.cpp
+1560429521 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Graficador.cpp
 	"Graficador.h"
 
-1559907051 /home/ogduartev/Proyectos/UNFuzzy-3/include/Graficador.h
+1560431703 /home/ogduartev/Proyectos/UNFuzzy-3/include/Graficador.h
 	<wx/wx.h>
 	<SistemaLogicaDifusa.h>
 
@@ -1930,10 +1930,10 @@
 	"wx/validate.h"
 	<limits>
 
-1559913347 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
+1560430445 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
 	"DialogoFuncion.h"
 
-1559853660 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoFuncion.h
+1560428664 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoFuncion.h
 	<wx/wx.h>
 	<wx/spinctrl.h>
 	<wx/colordlg.h>
@@ -1983,7 +1983,7 @@
 	<SistemaLogicaDifusa.h>
 	<Graficador.h>
 
-1560085793 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
+1560367418 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
 	"DialogoReglas.h"
 
 1560083268 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoReglas.h
@@ -1991,10 +1991,10 @@
 	<wx/grid.h>
 	"SistemaLogicaDifusa.h"
 
-1560307063 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
+1560393419 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
 	"DialogoSLD.h"
 
-1560125921 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
+1560392608 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 	"Archivador.h"
@@ -2002,7 +2002,7 @@
 	<wx/statline.h>
 	<wx/gbsizer.h>
 	<wx/aboutdlg.h>
-	"DialogoCalcular.h"
+	"DialogoCalculoSld.h"
 	"DialogoVariable.h"
 	"DialogoMotor.h"
 	"DialogoReglas.h"
@@ -2277,4 +2277,91 @@
 1560308983 source:/home/ogduartev/Proyectos/UNF/UNFuzzyNetworkMain.cpp
 	"wx_pch.h"
 	"UNFuzzyNetworkMain.h"
+
+1560291170 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/archivadorRed.cpp
+	"archivadorRed.h"
+
+1560290941 /home/ogduartev/Proyectos/UNFuzzy-3/include/archivadorRed.h
+	<wx/wx.h>
+	<wx/xml/xml.h>
+	"Archivador.h"
+	"red.h"
+
+1560308863 /home/ogduartev/Proyectos/UNFuzzy-3/include/red.h
+	<wx/wx.h>
+	"capa.h"
+
+1560101397 /home/ogduartev/Proyectos/UNFuzzy-3/include/capa.h
+	"nodo.h"
+
+1560193878 /home/ogduartev/Proyectos/UNFuzzy-3/include/nodo.h
+	"SistemaLogicaDifusa.h"
+	"pin.h"
+
+1560201733 /home/ogduartev/Proyectos/UNFuzzy-3/include/pin.h
+	<wx/wx.h>
+
+1560194078 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/capa.cpp
+	"capa.h"
+
+1560367933 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/graficadorRed.cpp
+	"graficadorRed.h"
+
+1560267350 /home/ogduartev/Proyectos/UNFuzzy-3/include/graficadorRed.h
+	"red.h"
+
+1560193827 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/nodo.cpp
+	"nodo.h"
+
+1560102913 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/pin.cpp
+	"pin.h"
+	<cstdio>
+
+1560391617 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/red.cpp
+	"red.h"
+
+1560097522 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.cpp
+	"wx_pch.h"
+	"UNFuzzyNetworkApp.h"
+	"UNFuzzyNetworkMain.h"
+
+1560097522 /home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.h
+	<wx/app.h>
+
+1560425703 /home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.h
+	<wx/wx.h>
+	<wx/gbsizer.h>
+	"UNFuzzyNetworkApp.h"
+	"graficadorRed.h"
+	"red.h"
+	"archivadorRed.h"
+	"DialogoSLD.h"
+	"DialogoCalculoRed.h"
+
+1560391980 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculo.h
+	<wx/wx.h>
+	<wx/grid.h>
+	<wx/spinctrl.h>
+	"Arreglo.h"
+
+1560392968 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculo.cpp
+	"DialogoCalculo.h"
+
+1560425703 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.cpp
+	"wx_pch.h"
+	"UNFuzzyNetworkMain.h"
+
+1560390726 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculoRed.h
+	<DialogoCalculo.h>
+	"red.h"
+
+1560393962 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoRed.cpp
+	"DialogoCalculoRed.h"
+
+1560392257 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculoSld.h
+	<DialogoCalculo.h>
+	"SistemaLogicaDifusa.h"
+
+1560392941 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoSld.cpp
+	"DialogoCalculoSld.h"
 
