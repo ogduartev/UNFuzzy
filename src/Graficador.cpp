@@ -354,8 +354,6 @@ void Graficador::pintarCurvaFuncionES(SistemaLogicaDifusa* SLD, int numEntra, in
 
 //	pintarCurvaFuncion(mnx, mxx, mny, mxy, numSalidas, numEntra, numSale, entra, color);
 //	return;
-	numDX=5;
-	numDY=5;
 
 	int MNX, MXX, MNY, MXY;
 	MNX=canvas.GetBottomLeft().x;
