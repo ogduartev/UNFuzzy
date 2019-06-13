@@ -16,6 +16,7 @@ public:
 		NombreVariable=0;
 	  char str[40];sprintf(str,"Sin nombre");
 	  nombreVariable(str);
+	  numeroIntervalos(20);
 	  rangoMinimo(-1.0);
 	  rangoMaximo(1.0);
 	  autodefinirConjuntosRectos(num);

@@ -10,9 +10,8 @@ public:
 	{
 		Motor=maq;
 		int numSal;
-		numSal=Motor->numeroSalidas()+1;
+		numSal=Motor->numeroSalidas();
 		Concresores=new ListaConcresores(numSal);
-
 	}
 	~BloqueConcrecion()
 	{
@@ -34,7 +33,7 @@ public:
 	}
 	Norma *conjuncion()
 	{
-		return concresor(0)->conjuncion();
+		return Conjuncion;
 	}
 	void conjuncion(Norma *nor);
 	void limpiarListaConcresores();
@@ -44,21 +43,20 @@ public:
 		return Motor;
 	}
 	Concresor *concresor(int numSal);
-	float salidaConcreta(int numSal,float *ent)
-	{
-		Concresor *conc;
-		conc=concresor(numSal);
-		return conc->salidaConcreta(ent);
-	}
+	float salidaConcreta(int numSal,float *ent);
 	void salidaConcreta(float *ent,float *sal);
 	void autodefinirBloqueConcrecion(MaquinaInferencia* maq,Norma *conjuncion);
 	float pertenenciaConjuncion(int numSalida,float sal);
+	void adicionarSalida();
+	void eliminarSalida(int NumVar);
 
-protected:
+//protected:
 	typedef Arreglo<Concresor> ListaConcresores;
 
 	ListaConcresores *Concresores;
 	MaquinaInferencia *Motor;
+
+	Norma* Conjuncion;
 
 };
 

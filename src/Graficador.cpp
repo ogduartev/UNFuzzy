@@ -352,9 +352,6 @@ void Graficador::pintarCurvaFuncionES(SistemaLogicaDifusa* SLD, int numEntra, in
 
   int numSalidas=SLD->salidas->numeroVariables();
 
-//	pintarCurvaFuncion(mnx, mxx, mny, mxy, numSalidas, numEntra, numSale, entra, color);
-//	return;
-
 	int MNX, MXX, MNY, MXY;
 	MNX=canvas.GetBottomLeft().x;
 	MNY=canvas.GetBottomLeft().y;
@@ -385,6 +382,51 @@ void Graficador::pintarCurvaFuncionES(SistemaLogicaDifusa* SLD, int numEntra, in
 
 }
 
+void Graficador::pintarCurvaFuncionES(red* Red, int numEntra, int numSale, float* entra,wxColour &color)
+{
+  wxPen penCurva(color, 2);
+  dc->SetPen(penCurva);
+
+	float mnx, mxx, mny, mxy;
+	mnx=Red->variableEntrada(numEntra)->rangoMinimo();
+	mxx=Red->variableEntrada(numEntra)->rangoMaximo();
+	mny=Red->variableSalida(numSale)->rangoMinimo();
+	mxy=Red->variableSalida(numSale)->rangoMaximo();
+
+  int numSalidas=Red->numeroSalidas();
+
+//	pintarCurvaFuncion(mnx, mxx, mny, mxy, numSalidas, numEntra, numSale, entra, color);
+//	return;
+
+	int MNX, MXX, MNY, MXY;
+	MNX=canvas.GetBottomLeft().x;
+	MNY=canvas.GetBottomLeft().y;
+	MXX=canvas.GetTopRight().x;
+	MXY=canvas.GetTopRight().y;
+
+	float sale[Red->numeroSalidas()];
+	float x,y;
+	int XO,YO,XF,YF;
+
+	XO=MNX;
+	entra[numEntra]=mnx;
+	Red->calcular(entra,sale);
+	y=sale[numSale];
+	YO=MNY + (y-mny)*(MXY-MNY)/(mxy-mny);
+	for(int X=MNX; X <= MXX; X++)
+	{
+		x=mnx + (X-MNX)*(mxx-mnx)/(MXX-MNX);
+		entra[numEntra]=x;
+		Red->calcular(entra,sale);
+		y=sale[numSale];
+		XF=X;
+		YF=MNY + (y-mny)*(MXY-MNY)/(mxy-mny);
+		dc->DrawLine(XO,YO,XF,YF);
+		XO=XF;
+		YO=YF;
+	}
+}
+
 void Graficador::pintarLabels(wxString strH, wxString strV)
 {
   wxSize szH=dc->GetTextExtent(strH);
@@ -402,8 +444,8 @@ void Graficador::pintarComposicion(SistemaLogicaDifusa* SLD, int numSale, int nu
   dc->SetPen(penCurva);
 
 	float mnx, mxx, mny, mxy;
-	mnx=SLD->entradas->variable(numSale)->rangoMinimo();
-	mxx=SLD->entradas->variable(numSale)->rangoMaximo();
+	mnx=SLD->salidas->variable(numSale)->rangoMinimo();
+	mxx=SLD->salidas->variable(numSale)->rangoMaximo();
 	mny=0.0;
 	mxy=1.0;
 	numDX=5;
@@ -441,8 +483,8 @@ void Graficador::pintarConjuncion(SistemaLogicaDifusa* SLD, int numSale,float sa
   dc->SetPen(penCurva);
 
 	float mnx, mxx, mny, mxy;
-	mnx=SLD->entradas->variable(numSale)->rangoMinimo();
-	mxx=SLD->entradas->variable(numSale)->rangoMaximo();
+	mnx=SLD->salidas->variable(numSale)->rangoMinimo();
+	mxx=SLD->salidas->variable(numSale)->rangoMaximo();
 	mny=0.0;
 	mxy=1.0;
 	numDX=5;

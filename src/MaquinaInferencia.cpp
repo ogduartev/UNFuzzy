@@ -44,6 +44,43 @@ MaquinaInferencia::~MaquinaInferencia()
 	delete And;
 }
 
+void MaquinaInferencia::adicionarEntrada()
+{
+	for(int i=0;i<numeroReglas();i++)
+	{
+		regla(i)->adicionarEntrada();
+	}
+	NumeroEntradas++;
+}
+
+void MaquinaInferencia::adicionarSalida()
+{
+	for(int i=0;i<numeroReglas();i++)
+	{
+		regla(i)->adicionarSalida();
+	}
+	NumeroSalidas++;
+}
+
+void MaquinaInferencia::eliminarEntrada(int NumVar)
+{
+	for(int i=0;i<numeroReglas();i++)
+	{
+		regla(i)->eliminarEntrada(NumVar);
+	}
+	NumeroEntradas--;
+}
+
+void MaquinaInferencia::eliminarSalida(int NumVar)
+{
+	for(int i=0;i<numeroReglas();i++)
+	{
+		regla(i)->eliminarSalida(NumVar);
+	}
+	NumeroSalidas--;
+}
+
+
 Regla *MaquinaInferencia::regla(int numRegla)
 {
 	return BaseReglas->dato(numRegla);

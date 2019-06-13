@@ -111,6 +111,10 @@ public:
 		( Consecuente == other.Consecuente)&
 		( Modificadores == other.Modificadores) );
 	}
+	void adicionarEntrada();
+	void adicionarSalida();
+	void eliminarEntrada(int NumVar);
+	void eliminarSalida(int NumVar);
 
 protected:
 	int NumeroEntradas;

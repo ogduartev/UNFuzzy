@@ -1216,7 +1216,7 @@ public:
 	{
 		Variable *var;
 		var=variable(numVar);
-		return conjuntoEnVariable(var,numCon);
+		return var->conjunto(numCon);
 	}
 	float rangoMinimoVariable(int numVar)
 	{

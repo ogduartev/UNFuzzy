@@ -13,7 +13,7 @@
 class DialogoFuncion : public wxDialog
 {
 	public:
-		DialogoFuncion(SistemaLogicaDifusa *sld, wxWindow *parent);
+		DialogoFuncion(wxWindow *parent);
 		virtual ~DialogoFuncion();
 		void iniciar();
 
@@ -25,22 +25,22 @@ class DialogoFuncion : public wxDialog
 
 		void crearGrafica();
 		void pintar(wxCommandEvent&   event);
-		void pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale);
+		virtual void pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale)=0;
 
-		virtual int numeroEntradas();
-		virtual int numeroSalidas();
-		virtual wxString nombreEntrada(int i);
-		virtual wxString nombreSalida (int i);
-		virtual float rangoMinimoEntrada(int i);
-		virtual float rangoMaximoEntrada(int i);
-		virtual float rangoMinimoSalida(int i);
-		virtual float rangoMaximoSalida(int i);
-		virtual void calcular(float* entra, float* sale);
-
+		virtual int numeroEntradas()=0;
+		virtual int numeroSalidas()=0;
+		virtual wxString nombreEntrada(int i)=0;
+		virtual wxString nombreSalida (int i)=0;
+		virtual float rangoMinimoEntrada(int i)=0;
+		virtual float rangoMaximoEntrada(int i)=0;
+		virtual float rangoMinimoSalida(int i)=0;
+		virtual float rangoMaximoSalida(int i)=0;
 
 	protected:
 		SistemaLogicaDifusa *SLD;
 	  Graficador *Grafica;
+
+		wxColourData colorData;
 
 	  wxSizerItem *canvasFuncion;
 
@@ -59,7 +59,6 @@ class DialogoFuncion : public wxDialog
 		DECLARE_EVENT_TABLE()
 
 	private:
-	wxColourData colorData;
 };
 
 enum

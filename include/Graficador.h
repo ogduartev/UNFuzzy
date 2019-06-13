@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include <SistemaLogicaDifusa.h>
+#include <red.h>
 
 
 class Graficador
@@ -17,16 +18,21 @@ class Graficador
 		void pintarTitle(wxString strT);
 		void pintarLabels(wxString strH, wxString strV);
 		void pintarTicks(float mnx, float mxx, float mny, float mxy);
+
 		void pintarVariable(Variable *Var,int numConjunto,bool flagColor=true);
 		void pintarDifusor(Variable *Var, bool flagEjes=true);
 		void pintarConjunto(Variable *Var,ConjuntoDifuso *C);
 		void pintarPuntosArrastre(Variable *Var,ConjuntoDifuso *C);
+
 		void pintarFondoFuncion(float mnx, float mxx, float mny, float mxy, wxString nomEntra, wxString nomSale);
-		void pintarFondoFuncionES(SistemaLogicaDifusa* SLD, int numEntra, int numSale);
 		void pintarCurvaFuncion(float mnx, float mxx, float mny, float mxy,int numSalidas, int numEntra, int numSale, float* entra,wxColour &color);
+
+		void pintarFondoFuncionES(SistemaLogicaDifusa* SLD, int numEntra, int numSale);
 		void pintarCurvaFuncionES(SistemaLogicaDifusa* SLD, int numEntra, int numSale, float* entra,wxColour &color);
+		void pintarCurvaFuncionES(red* Red, int numEntra, int numSale, float* entra,wxColour &color);
 		void pintarComposicion(SistemaLogicaDifusa* SLD, int numSale, int numRegla);
 		void pintarConjuncion(SistemaLogicaDifusa* SLD, int numSale,float salida);
+
 		void calcularFuncion(float*entra, float* sale);
 
 		int numeroPuntosArrastre;

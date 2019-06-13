@@ -394,40 +394,36 @@ void DialogoVariable::OnEditarVar      (wxCommandEvent&   event)
 
 void DialogoVariable::OnEliminarVar    (wxCommandEvent&   event)
 {
+	wxMessageDialog *dial1;
+	dial1=new wxMessageDialog (this, _T("¿Desea eliminar la variable?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	if(dial1->ShowModal() == wxID_CANCEL)
+	{
+		delete dial1;
+		return;
+	}
 	if(U->numeroVariables()<2)
 	{
 	  wxMessageBox(_T("No puede eliminar todas las variables"),_T("Atención"));
 	  return;
 	}
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _T("Esta acción implica eliminar todas las reglas ¿Desea eliminar la variable?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
-	if(dial->ShowModal() == wxID_OK)
+	U->eliminarVariable(NumVar);
+
+	if(flagDifusor)
 	{
-		U->eliminarVariable(NumVar);
-
-		delete SLD->motor;
-		delete SLD->concreto;
-	  Norma       *Conjuncion  = new Maximo();
-		SLD->motor=new MaquinaInferencia(SLD->entradas,SLD->salidas,1);
-	  SLD->concreto=new BloqueConcrecion(SLD->motor);
-  	SLD->concreto->autodefinirBloqueConcrecion(SLD->motor,Conjuncion);
-
-		NumVar=0;
+		SLD->motor->eliminarEntrada(NumVar);
+	}else
+	{
+		SLD->motor->eliminarSalida(NumVar);
+		SLD->concreto->eliminarSalida(NumVar);
 	}
-	delete dial;
-	llenarDatos();
 
+	NumVar=0;
+	llenarDatos();
 }
 
 void DialogoVariable::OnAdicionarVar   (wxCommandEvent&   event)
 {
-	wxMessageDialog *dial1;
-	dial1=new wxMessageDialog (this, _T("Esta acción implica eliminar todas las reglas ¿Desea adicionar una variable?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
-	if(dial1->ShowModal() == wxID_CANCEL)
-	{
-		delete dial1;
-		return;
-	}
 	DialogoEditarVariable *dial;
 	Variable *Var;
 	Var=new Variable();
@@ -441,13 +437,14 @@ void DialogoVariable::OnAdicionarVar   (wxCommandEvent&   event)
 		Var->numeroIntervalos(dial->intervalos);
 		U->adicionarVariable(Var);
 
-		delete SLD->motor;
-		delete SLD->concreto;
-	  Norma       *Conjuncion  = new Maximo();
-		SLD->motor=new MaquinaInferencia(SLD->entradas,SLD->salidas,1);
-	  SLD->concreto=new BloqueConcrecion(SLD->motor);
-  	SLD->concreto->autodefinirBloqueConcrecion(SLD->motor,Conjuncion);
-
+		if(flagDifusor)
+		{
+			SLD->motor->adicionarEntrada();
+		}else
+		{
+			SLD->motor->adicionarSalida();
+			SLD->concreto->adicionarSalida();
+		}
 	}
 	delete dial;
 	llenarDatos();

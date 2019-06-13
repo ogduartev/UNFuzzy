@@ -73,7 +73,7 @@ public:
 	T *dato(int index)
 	{
 		if (index <0){index=0;}
-		if (index >=n){index=n-1;}
+		if (index >=items){index=items-1;}
 		return (data[index]);
 	}
 
@@ -82,12 +82,7 @@ public:
 		T* temp;
 		temp=dato(index);
 		delete temp;
-		int i;
-		for(i=index;i<items;i++)
-		{
-			data[i]=data[i+1];
-		}
-		items--;
+		Detach(index);
 	}
 	void Detach(int index)
 	{

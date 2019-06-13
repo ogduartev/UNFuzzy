@@ -35,6 +35,8 @@ class red
 		bool buscarPinSalida(pin* Pin, int *numCapa, int *numNodo, int *numPin);
 		int numeroEntradas();
 		int numeroSalidas();
+		Variable* variableEntrada(int i);
+		Variable* variableSalida(int i);
 		void asignarEntradas(float* entra);
 		void leerSalidas(float* sale);
 		void calcular(float* entra, float* sale);

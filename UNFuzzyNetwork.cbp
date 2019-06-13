@@ -59,6 +59,8 @@
 		<Unit filename="include/DialogoEditarVariable.h" />
 		<Unit filename="include/DialogoEntrenamiento.h" />
 		<Unit filename="include/DialogoFuncion.h" />
+		<Unit filename="include/DialogoFuncionRed.h" />
+		<Unit filename="include/DialogoFuncionSld.h" />
 		<Unit filename="include/DialogoInfo.h" />
 		<Unit filename="include/DialogoMotor.h" />
 		<Unit filename="include/DialogoPaso.h" />
@@ -95,6 +97,8 @@
 		<Unit filename="src/DialogoEditarVariable.cpp" />
 		<Unit filename="src/DialogoEntrenamiento.cpp" />
 		<Unit filename="src/DialogoFuncion.cpp" />
+		<Unit filename="src/DialogoFuncionRed.cpp" />
+		<Unit filename="src/DialogoFuncionSld.cpp" />
 		<Unit filename="src/DialogoInfo.cpp" />
 		<Unit filename="src/DialogoMotor.cpp" />
 		<Unit filename="src/DialogoPaso.cpp" />

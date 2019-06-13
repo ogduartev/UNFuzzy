@@ -291,6 +291,42 @@ int red::numeroSalidas()
 	return num;
 }
 
+Variable* red::variableEntrada(int i)
+{
+	int cnt=0;
+	int numCapa=0;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		for(int numPin=0; numPin < capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer(); numPin++)
+		{
+			if(cnt==i)
+			{
+				return capas()->dato(numCapa)->nodos()->dato(numNodo)->sld()->entradas->variable(numPin);
+			}
+			cnt++;
+		}
+	}
+	return NULL;
+}
+
+Variable* red::variableSalida(int i)
+{
+	int cnt=0;
+	int numCapa=capas()->GetItemsInContainer()-1;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		for(int numPin=0; numPin < capas()->dato(numCapa)->nodos()->dato(numNodo)->sld()->salidas->numeroVariables(); numPin++)
+		{
+			if(cnt==i)
+			{
+				return capas()->dato(numCapa)->nodos()->dato(numNodo)->sld()->salidas->variable(numPin);
+			}
+			cnt++;
+		}
+	}
+	return NULL;
+}
+
 void red::asignarEntradas(float* entra)
 {
 	int cnt=0;

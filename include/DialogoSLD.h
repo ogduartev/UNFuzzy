@@ -17,7 +17,7 @@
 #include "DialogoReglas.h"
 #include "DialogoEntrenamiento.h"
 #include "DialogoInfo.h"
-#include "DialogoFuncion.h"
+#include "DialogoFuncionSld.h"
 #include "DialogoPaso.h"
 
 class DialogoSLD: public wxDialog
@@ -30,7 +30,6 @@ class DialogoSLD: public wxDialog
 
         wxStaticText* staticTextDescripcion;
 
-        wxButton* buttonAcerca;
         wxButton* buttonAyuda;
         wxButton* buttonSalir;
 
@@ -59,7 +58,6 @@ class DialogoSLD: public wxDialog
         void OnClose      (wxCloseEvent&   event);
         void OnSalir      (wxCommandEvent& event);
         void OnAyuda      (wxCommandEvent& event);
-        void OnAcerca     (wxCommandEvent& event);
 
         void OnEntradas  (wxCommandEvent& event);
         void OnSalidas   (wxCommandEvent& event);
@@ -90,7 +88,6 @@ enum
 {
   DLG_FRONTAL_SALIR =1,
   DLG_FRONTAL_AYUDA,
-  DLG_FRONTAL_ACERCA,
   DLG_FRONTAL_ENTRADAS,
   DLG_FRONTAL_SALIDAS,
   DLG_FRONTAL_REGLAS,

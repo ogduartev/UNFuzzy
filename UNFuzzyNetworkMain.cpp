@@ -209,7 +209,15 @@ void UNFuzzyNetworkFrame::OnGuardar   (wxCommandEvent& event)
 	}
 }
 
-void UNFuzzyNetworkFrame::OnFuncion   (wxCommandEvent& event){}
+void UNFuzzyNetworkFrame::OnFuncion   (wxCommandEvent& event)
+{
+	DialogoFuncionRed *dial;
+	dial=new DialogoFuncionRed(&Red,this);
+	if(dial->ShowModal()==wxID_OK)
+	{
+	}
+	delete dial;
+}
 
 void UNFuzzyNetworkFrame::OnCalcular  (wxCommandEvent& event)
 {

@@ -113,6 +113,10 @@ public:
 		BaseReglas->Destroy(num);
 		NumeroReglas--;
 	}
+	void adicionarEntrada();
+	void adicionarSalida();
+	void eliminarEntrada(int NumVar);
+	void eliminarSalida(int NumVar);
 	void actualizarEntradas(float *ent);
 	float pertenenciaDifusores(float *ent);
 	float pertenenciaImplicacion(int numSal,int numRegla, float *ent,float sal);

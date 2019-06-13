@@ -22,7 +22,7 @@ IMPLEMENT_APP(UNFuzzy_3App);
 
 bool UNFuzzy_3App::OnInit()
 {
-  	SLD.crearMinimoSLD(1,1);
+  	SLD.crearMinimoSLD(3,2);
 
     DialogoSLD* dlg = new DialogoSLD(0L, &SLD, _("UNFuzzy 3.0"));
 

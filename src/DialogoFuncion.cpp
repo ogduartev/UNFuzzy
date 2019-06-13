@@ -12,11 +12,9 @@ BEGIN_EVENT_TABLE(DialogoFuncion, wxDialog)
 END_EVENT_TABLE()
 
 
-DialogoFuncion::DialogoFuncion(SistemaLogicaDifusa *sld, wxWindow *parent)
+DialogoFuncion::DialogoFuncion(wxWindow *parent)
 :wxDialog(parent,wxID_ANY,wxString(wxT("Función de entrada-salida")))
 {
-	SLD=sld;
-	iniciar();
 }
 
 void DialogoFuncion::iniciar()
@@ -103,7 +101,7 @@ void DialogoFuncion::iniciar()
   sizerTotal->Add(sizerCentral          , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerTotal->Add(sizerOKCancel, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
-	if(SLD->entradas->numeroVariables()==1)
+	if(numeroEntradas()==1)
 	{
 		sizerValores->Show(false);
 	}
@@ -141,36 +139,6 @@ void DialogoFuncion::pintar(wxCommandEvent&   event)
 	pintarFuncion(false,true,numEntra,numSale);
 }
 
-void DialogoFuncion::pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale)
-{
-	wxClientDC dc(this);
-	wxRect canvas=canvasFuncion->GetRect();
-	Grafica = new Graficador(&dc,canvas);
-
-	float mnx, mxx, mny, mxy;
-	mnx=rangoMinimoEntrada(numEntra);
-	mxx=rangoMaximoEntrada(numEntra);
-	mny=rangoMinimoSalida(numSale);
-	mxy=rangoMaximoSalida(numSale);
-	wxString nomEntra=nombreEntrada(numEntra);
-	wxString nomSale =nombreSalida (numSale);
-
-	if(flagFondo)
-	{
-		Grafica->pintarFondoFuncion(mnx,mxx,mny,mxy,nomEntra,nomSale);
-	}
-	if(!flagCurva){return;}
-
-	float entra[numeroEntradas()];
-	for(int i=0;i<numeroEntradas();i++)
-	{
-		entra[i]=valoresEntradas[i]->GetValue();
-	}
-
-	Grafica->pintarCurvaFuncionES(SLD, numEntra,numSale,entra,colorData.GetColour());
-
-}
-
 void DialogoFuncion::limpiar (wxCommandEvent& event)
 {
 	int numEntra=0;
@@ -198,51 +166,3 @@ void DialogoFuncion::OnColor (wxCommandEvent& event)
 			colorData = dialog.GetColourData();
 	}
 }
-
-int DialogoFuncion::numeroEntradas()
-{
-	return SLD->entradas->numeroVariables();
-}
-
-int DialogoFuncion::numeroSalidas()
-{
-	return SLD->salidas->numeroVariables();
-}
-
-wxString DialogoFuncion::nombreEntrada(int i)
-{
-	wxString str=SLD->entradas->variable(i)->nombreVariable();
-	return str;
-}
-
-wxString DialogoFuncion::nombreSalida (int i)
-{
-	wxString str=SLD->salidas->variable(i)->nombreVariable();
-	return str;
-}
-
-float DialogoFuncion::rangoMinimoEntrada(int i)
-{
-	return SLD->entradas->variable(i)->rangoMinimo();
-}
-
-float DialogoFuncion::rangoMaximoEntrada(int i)
-{
-	return SLD->entradas->variable(i)->rangoMaximo();
-}
-
-float DialogoFuncion::rangoMinimoSalida(int i)
-{
-	return SLD->salidas->variable(i)->rangoMinimo();
-}
-
-float DialogoFuncion::rangoMaximoSalida(int i)
-{
-	return SLD->salidas->variable(i)->rangoMaximo();
-}
-
-void DialogoFuncion::calcular(float* entra, float* sale)
-{
-	SLD->calcular(entra,sale);
-}
-

@@ -22,6 +22,7 @@
 
 #include "DialogoSLD.h"
 #include "DialogoCalculoRed.h"
+#include "DialogoFuncionRed.h"
 
 class UNFuzzyNetworkFrame: public wxFrame
 {

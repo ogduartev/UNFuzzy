@@ -54,6 +54,7 @@
 		<Unit filename="include/DialogoEditarVariable.h" />
 		<Unit filename="include/DialogoEntrenamiento.h" />
 		<Unit filename="include/DialogoFuncion.h" />
+		<Unit filename="include/DialogoFuncionSld.h" />
 		<Unit filename="include/DialogoInfo.h" />
 		<Unit filename="include/DialogoMotor.h" />
 		<Unit filename="include/DialogoPaso.h" />
@@ -71,6 +72,10 @@
 		<Unit filename="include/SistemaLogicaDifusa.h" />
 		<Unit filename="include/Universo.h" />
 		<Unit filename="include/Variable.h" />
+		<Unit filename="include/capa.h" />
+		<Unit filename="include/nodo.h" />
+		<Unit filename="include/pin.h" />
+		<Unit filename="include/red.h" />
 		<Unit filename="src/Archivador.cpp" />
 		<Unit filename="src/Arreglo.cpp" />
 		<Unit filename="src/BloqueConcrecion.cpp" />
@@ -83,6 +88,7 @@
 		<Unit filename="src/DialogoEditarVariable.cpp" />
 		<Unit filename="src/DialogoEntrenamiento.cpp" />
 		<Unit filename="src/DialogoFuncion.cpp" />
+		<Unit filename="src/DialogoFuncionSld.cpp" />
 		<Unit filename="src/DialogoInfo.cpp" />
 		<Unit filename="src/DialogoMotor.cpp" />
 		<Unit filename="src/DialogoPaso.cpp" />
@@ -98,6 +104,10 @@
 		<Unit filename="src/SistemaLogicaDifusa.cpp" />
 		<Unit filename="src/Universo.cpp" />
 		<Unit filename="src/Variable.cpp" />
+		<Unit filename="src/capa.cpp" />
+		<Unit filename="src/nodo.cpp" />
+		<Unit filename="src/pin.cpp" />
+		<Unit filename="src/red.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

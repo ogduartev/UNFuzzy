@@ -18,9 +18,6 @@ class DialogoCalculoRed : public DialogoCalculo
 		float rangoMaximoEntrada(int i);
 		void calcular(float* entra, float* sale);
 
-		Variable* variableEntrada(int i);
-		Variable* variableSalida(int i);
-
 	protected:
 
 	private:

@@ -5,7 +5,6 @@ BEGIN_EVENT_TABLE(DialogoSLD, wxDialog)
     EVT_CLOSE(DialogoSLD::OnClose)
     EVT_BUTTON(DLG_FRONTAL_SALIR      , DialogoSLD::OnSalir)
     EVT_BUTTON(DLG_FRONTAL_AYUDA      , DialogoSLD::OnAyuda)
-    EVT_BUTTON(DLG_FRONTAL_ACERCA     , DialogoSLD::OnAcerca)
     EVT_BUTTON(DLG_FRONTAL_ENTRADAS   , DialogoSLD::OnEntradas)
     EVT_BUTTON(DLG_FRONTAL_SALIDAS    , DialogoSLD::OnSalidas)
     EVT_BUTTON(DLG_FRONTAL_REGLAS     , DialogoSLD::OnReglas)
@@ -42,7 +41,6 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxStrin
 //f4cdb5
     buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , wxT("&Salir")      , wxDefaultPosition, wxDefaultSize, 0);
     buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , wxT("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
-    buttonAcerca          = new wxButton(this, DLG_FRONTAL_ACERCA     , wxT("&Acerca")     , wxDefaultPosition, wxDefaultSize, 0);
 
     buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxBitmap("bmp/Entradas.bmp",wxBITMAP_TYPE_BMP));
     buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxBitmap("bmp/Salidas.bmp",wxBITMAP_TYPE_BMP));
@@ -88,7 +86,6 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxStrin
     sizerSLD->Add(buttonInferencia,wxGBPosition(1,1), wxDefaultSpan, wxALL,0);
 
     sizerControles->Add(buttonAyuda     , 0, wxALL, 5);
-    sizerControles->Add(buttonAcerca    , 0, wxALL, 5);
     sizerControles->Add(buttonSalir     , 0, wxALL, 5);
 
     sizerTotal->Add(sizerIconos          , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
@@ -118,12 +115,7 @@ void DialogoSLD::OnSalir(wxCommandEvent &event)
 
 void DialogoSLD::OnAyuda(wxCommandEvent &event)
 {
-  wxMessageBox(_T("Ayuda"), _T("Ayuda"));
-}
-
-void DialogoSLD::OnAcerca(wxCommandEvent &event)
-{
-  wxMessageBox(_T("Acerca de..."), _T("Acerca de..."));
+  wxMessageBox(_T("En desarrollo..."), _T("Ayuda"));
 }
 
 void DialogoSLD::OnEntradas(wxCommandEvent &event)
@@ -244,8 +236,8 @@ void DialogoSLD::OnEntrenar   (wxCommandEvent& event)
 
 void DialogoSLD::OnFuncion    (wxCommandEvent& event)
 {
-	DialogoFuncion *dlg;
-	dlg=new DialogoFuncion(SLD,this);
+	DialogoFuncionSld *dlg;
+	dlg=new DialogoFuncionSld(SLD,this);
 	if(dlg->ShowModal() == wxID_OK)
 	{
 	}

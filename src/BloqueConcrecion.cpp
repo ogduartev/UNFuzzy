@@ -4,7 +4,7 @@
 void BloqueConcrecion::limpiarListaConcresores()
 {
 	int i,numConc;
-	numConc=Motor->numeroSalidas();
+	numConc=Motor->numeroSalidas()+1;
 	for(i=0;i<numConc;i++)
 	{
 		eliminarConcresor(0);
@@ -26,10 +26,22 @@ Concresor* BloqueConcrecion::concresor(int numSal)
 	return Concresores->dato(numSal);
 }
 
+float BloqueConcrecion::salidaConcreta(int numSal,float *ent)
+{
+	float sale=0.0;
+	Concresor *conc;
+	conc=concresor(numSal);
+	if(conc)
+	{
+		sale=conc->salidaConcreta(ent);
+	}
+	return sale;
+}
+
 void BloqueConcrecion::salidaConcreta(float *ent,float *sal)
 {
 	int numSal;
-	numSal=Motor->numeroSalidas();
+	numSal=Concresores->GetItemsInContainer();
 	int i;
 	for(i=0;i<numSal;i++)
 	{
@@ -51,17 +63,19 @@ void BloqueConcrecion::motor(MaquinaInferencia *maq)
 
 void BloqueConcrecion::conjuncion(Norma *nor)
 {
+	Conjuncion=nor;
 	int i;
 	int j;
 	j=Motor->salidas()->numeroVariables();
 	for(i=0;i<j;i++)
 	{
-		concresor(i)->conjuncion(nor);
+		concresor(i)->conjuncion(Conjuncion);
 	}
 }
 
 void BloqueConcrecion::autodefinirBloqueConcrecion(MaquinaInferencia *maq,Norma *conjuncion)
 {
+	Conjuncion=conjuncion;
 	Motor=maq;
 	Concresor *conc;
 	delete Concresores;
@@ -89,4 +103,16 @@ float BloqueConcrecion::pertenenciaConjuncion(int numSalida,float sal)
 		con=conjuncion()->opera(con,temp);
 	}
   return con;
+}
+
+void BloqueConcrecion::adicionarSalida()
+{
+	Concresor *conc;
+ 	conc=new CentroDeGravedad(Motor,Concresores->GetItemsInContainer(),Conjuncion);
+	adicionarConcresor(conc);
+}
+
+void BloqueConcrecion::eliminarSalida(int NumVar)
+{
+	Concresores->Destroy(NumVar);
 }
