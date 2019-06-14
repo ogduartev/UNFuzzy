@@ -89,6 +89,7 @@ float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 		return V;
 	}
 	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->entradas()->dato(numPin)->valor();
+	return V;
 }
 
 float red::valorPinSalida(int numCapa, int numNodo, int numPin)
@@ -99,6 +100,7 @@ float red::valorPinSalida(int numCapa, int numNodo, int numPin)
 		return V;
 	}
 	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->salidas()->dato(numPin)->valor();
+	return V;
 }
 
 void red::calcularRed()
