@@ -1216,7 +1216,7 @@ public:
 	{
 		Variable *var;
 		var=variable(numVar);
-		return var->conjunto(numCon);
+		return conjuntoEnVariable(var,numCon);
 	}
 	float rangoMinimoVariable(int numVar)
 	{
@@ -2380,146 +2380,11 @@ public:
 		motor->EntrenaUniversoVariable(antecedente,consecuente);
 	}
 
+protected:
 	Universo *entradas;
 	Universo *salidas;
 	MaquinaInferencia *motor;
 	BloqueConcrecion *concreto;
 };
 
-class pin
-{
-	public:
-		pin()
-		{
-			Contacto=NULL;
-			Valor=0.0;
-		}
-		virtual ~pin(){}
-		pin* contacto() const
-		{
-			return Contacto;
-		}
-		void contacto(pin* c)
-		{
-			Contacto=c;
-		}
-		float valor()
-		{
-			return Valor;
-		}
-		void valor(float V)
-		{
-			Valor=V;
-		}
-
-	protected:
-
-	private:
-		pin* Contacto;
-		float Valor;
-
-};
-
-
-typedef Arreglo<pin> ListaPines;
-
-class nodo
-{
-	public:
-		nodo(){}
-		virtual ~nodo(){}
-		ListaPines* entradas()
-		{
-			return &Entradas;
-		}
-		ListaPines* salidas()
-		{
-			return &Salidas;
-		}
-		SistemaLogicaDifusa* sld()
-		{
-			return SLD;
-		}
-		void sld(SistemaLogicaDifusa* sld)
-		{
-			SLD=sld;
-		}
-		void calcularNodo();
-		void actualizarEntradas();
-		void calcular(float* entra, float* sale); // =0 para hacer virtual y heredar de SLD
-		void ajustarPinesAsld();
-
-	protected:
-
-	private:
-  SistemaLogicaDifusa *SLD;
-	ListaPines Entradas;
-	ListaPines Salidas;
-};
-
-	typedef Arreglo<nodo> ListaNodos;
-
-class capa
-{
-	public:
-		capa(){}
-		virtual ~capa(){}
-
-		ListaNodos* nodos()
-		{
-			return &Nodos;
-		}
-	protected:
-
-
-	ListaNodos Nodos;
-};
-
-
-typedef Arreglo<capa> ListaCapas;
-
-class red
-{
-	public:
-		red(){}
-		virtual ~red(){}
-		bool conectar(int capa1, int nodo1, int pin1,int capa2, int nodo2, int pin2);
-		bool buscarCapa(int numCapa);
-		bool buscarNodo(int numCapa, int numNodo);
-		bool buscarPinEntrada(int numCapa, int numNodo, int numPin);
-		bool buscarPinSalida(int numCapa, int numNodo, int numPin);
-		float valorPinEntrada(int numCapa, int numNodo, int numPin);
-		float valorPinSalida(int numCapa, int numNodo, int numPin);
-		void valorEntrada(int numNodo, int numPin, float Valor);
-		nodo* ptrNodo(int numCapa, int numNodo);
-		pin* ptrPinEntrada(int numCapa, int numNodo, int numPin);
-		pin* ptrPinSalida (int numCapa, int numNodo, int numPin);
-		void desconectarSalida(int numCapa, int numNodo, int numPin);
-		void desconectarEntradasNodo(int numCapa, int numNodo);
-		void desconectarSalidasNodo (int numCapa, int numNodo);
-		void eliminarNodo(int numCapa, int numNodo);
-		void eliminarCapa(int numCapa);
-		void eliminarCapas();
-		void adicionarCapa();
-		void adicionarNodo(int numCapa);
-		bool buscarPinEntrada(pin* Pin, int *numCapa, int *numNodo, int *numPin);
-		bool buscarPinSalida(pin* Pin, int *numCapa, int *numNodo, int *numPin);
-		int numeroEntradas();
-		int numeroSalidas();
-		void asignarEntradas(float* entra);
-		void leerSalidas(float* sale);
-		void calcular(float* entra, float* sale);
-
-		void calcularRed();
-
-		ListaCapas* capas()
-		{
-			return &Capas;
-		}
-
-	protected:
-	private:
-
-	ListaCapas Capas;
-};
 
