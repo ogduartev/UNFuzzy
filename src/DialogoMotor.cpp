@@ -10,7 +10,7 @@ BEGIN_EVENT_TABLE(DialogoMotor, wxDialog)
 END_EVENT_TABLE()
 
 DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Parametros del motor de inferencia")))
+:wxDialog(parent,wxID_ANY,wxString(_("Inference Engine Parameters")))
 {
 	Motor = SLD->motor;
 	Concreto = SLD->concreto;
@@ -23,10 +23,10 @@ DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticImplicacion = new wxStaticText(this,wxID_ANY,_("Implicación"));
-  staticComposicion = new wxStaticText(this,wxID_ANY,_("Composición"));
+  staticImplicacion = new wxStaticText(this,wxID_ANY,_("Implication"));
+  staticComposicion = new wxStaticText(this,wxID_ANY,_("Composition"));
   staticAnd         = new wxStaticText(this,wxID_ANY,_("And"));
-  staticConjuncion  = new wxStaticText(this,wxID_ANY,_("Conjunción"));
+  staticConjuncion  = new wxStaticText(this,wxID_ANY,_("Conjunction"));
   comboImplicacion  = new wxComboBox(this,DLG_MOTOR_IMPLICACION,"",wxDefaultPosition,wxSize(150,25));
   comboComposicion  = new wxComboBox(this,DLG_MOTOR_COMPOSICION,"",wxDefaultPosition,wxSize(150,25));
   comboAnd          = new wxComboBox(this,DLG_MOTOR_AND        ,"",wxDefaultPosition,wxSize(150,25));
@@ -36,7 +36,7 @@ DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
   seleccionarCombos();
 
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
 	sizerControles->Add(staticImplicacion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(staticComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
@@ -364,8 +364,8 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 	wxTextValidator Validator(wxFILTER_NUMERIC);
 	wxString msg,val;
 	val << *par;
-	msg << _("Ingrese el parámetro de la familia, entre ") << minimo << _(" y ") << maximo;
-	wxTextEntryDialog dlg(this,msg,_("Parámetro de la familia de norma"),val);
+	msg << _("Enter the family parameter, between ") << minimo << _(" and ") << maximo;
+	wxTextEntryDialog dlg(this,msg,_("Parameter of the Norm familiy"),val);
 	if(dlg.ShowModal()==wxID_OK)
 	{
 	  dlg.GetValue().ToDouble(&tmp);
@@ -374,8 +374,8 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 	if(*par < minimo){*par=minimo;}
 	if(*par > maximo){*par=maximo;}
 	msg = "";
-	msg << _("El parámetro aplicado será ") << *par;
-	wxMessageBox(msg,_("Información"));
+	msg << _("The parameter applied will be ") << *par;
+	wxMessageBox(msg,_("Information"));
 }
 
 bool DialogoMotor::verificar()
@@ -390,14 +390,14 @@ bool DialogoMotor::verificar()
 		wxString str1,str2;
 		if(a==0.0)
 		{
-			str1 = _("La Implicación seleccionada requiere una Conjunción del tipo 'Unión'. La que usted ha seleccionado es del tipo 'Intersección'");
-			str2 = _(IDS_DIALOG_OPCION_IMPLICA2);
+			str1 = _("The selected implication requires a Conjunction type 'Union'. You have selected one of type 'Intersection'");
+			str2 = _("¡Warning!");
 		}else
 		{
-			str1 = _("La Implicación seleccionada requiere una Conjunción del tipo 'Intersección'. La que usted ha seleccionado es del tipo 'Unión'");
-			str2 = _(IDS_DIALOG_OPCION_IMPLICA4);
+			str1 = _("The selected implication requires a Conjunction type 'Intersection'. You have selected one of type 'Union'");
+			str2 = _("¡Warning!");
 		}
-		str1 << "\n" <<_("¿Desea mantener esa elección?");
+		str1 << "\n" <<_("Do you want to keep this choice?");
 		if(wxMessageDialog(this, str1, str2, wxYES_NO|wxNO_DEFAULT).ShowModal() == wxID_YES)
 		{
 			flag=true;

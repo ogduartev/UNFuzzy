@@ -112,8 +112,8 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
 void UNFuzzyNetworkFrame::crearStatusBar()
 {
     CreateStatusBar(1);
-    SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
-		this->SetLabel (_("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
+    SetStatusText(_("Networks of Fuzzy Logic Systems"),0);
+		this->SetLabel (_("UNFuzzyNetwork - Design of Networks of Fuzzy Logic Systems"));
 }
 
 void UNFuzzyNetworkFrame::crearSizers()
@@ -146,7 +146,7 @@ UNFuzzyNetworkFrame::~UNFuzzyNetworkFrame()
 void UNFuzzyNetworkFrame::OnNuevo     (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("This action will erase all the previous definitions and create a new system. It can not be undo. ¿Do you want to proceed?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
   	Red.crearRedMinima();
@@ -170,13 +170,13 @@ void UNFuzzyNetworkFrame::OnDescripcion(wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("This action will erase all the previous definitions and create a new system. It can not be undo. ¿Do you want to proceed?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _("Archivos UNFuzzyNetwork (*.unn)|*.unn");
+		extensiones << _("UNFuzzyNetwork files (*.unn)|*.unn");
 
-		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
+		wxFileDialog dial2(this, _("Fuzzy Logic System"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 		if (dial2.ShowModal() == wxID_OK)
 		{
@@ -192,9 +192,9 @@ void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnGuardar   (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos UNFuzzyNetwork (*.unn)|*.unn");
+	extensiones << _("UNFuzzyNetwork files (*.unn)|*.unn");
 
-	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
+	wxFileDialog dial(this, _("Fuzzy Logic System"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
@@ -226,13 +226,13 @@ void UNFuzzyNetworkFrame::OnCalcular  (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos CPP (*.cpp)|*.cpp");
+	extensiones << _("CPP files (*.cpp)|*.cpp");
 
-	wxFileDialog dial(this, _("Código fuente generado"), "", "",extensiones,
+	wxFileDialog dial(this, _("Source code generated"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
-		wxString nombreClase=_("miRed");  // solo se usa en cpp
+		wxString nombreClase=_("myNetwork");  // solo se usa en cpp
 		Red.generarCodigo(dial.GetPath(),nombreClase);
 	}
 
@@ -269,8 +269,8 @@ void UNFuzzyNetworkFrame::OnIdioma    (wxCommandEvent& event)
 		}
 		setlocale (LC_NUMERIC,"C");
 		paintNow();
-    SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
-		this->SetLabel (_("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
+    SetStatusText(_("Networks of Fuzzy Logic Systems"),0);
+		this->SetLabel (_("UNFuzzyNetwork - Design of Networks of Fuzzy Logic Systems"));
 	}
 }
 
@@ -284,7 +284,7 @@ void UNFuzzyNetworkFrame::OnAbout(wxCommandEvent &event)
   wxAboutDialogInfo info;
   info.SetName(_("UNFuzzyNetwork"));
   info.SetVersion(_("3.0.0. Beta"));
-  info.SetDescription(_("Programa de diseño de\nRedes de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
+  info.SetDescription(_("Software for design of\nNetworks of Fuzzy Logic Systems.\nUniversidad Nacional de Colombia"));
   info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
   wxAboutBox(info);
 }
@@ -533,9 +533,9 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinSalidaDown(wxPoint punto)
 				if(canvasPin.Contains(punto))
 				{
 					pin *Pin=Red.ptrPinSalida(numCapa, numNodo, i);
-					wxString str=_("El valor de la variable ");
+					wxString str=_("Value of the variable ");
 					str << Red.ptrNodo(numCapa, numNodo)->sld()->nombreVariableSalida(i);
-					str << _(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _(") es : ");
+					str << _(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _(") is : ");
 					str << Pin->valor();
 					wxMessageBox(str, "");
 
@@ -645,7 +645,7 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnAdicionarCapa(wxPoint punto)
 void UNFuzzyNetworkFrame::editarSLD(SistemaLogicaDifusa* SLD)
 {
 	DialogoSLD *dial;
-	dial=new DialogoSLD(this,SLD,false,_("Edición del Sistema de Lógica Difusa"));
+	dial=new DialogoSLD(this,SLD,false,_("Fuzzy Logic System design"));
 	if(dial->ShowModal()==wxID_OK)
 	{
 	}
@@ -654,7 +654,7 @@ void UNFuzzyNetworkFrame::editarSLD(SistemaLogicaDifusa* SLD)
 void UNFuzzyNetworkFrame::eliminarNodo(int numCapa,int numNodo)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("¿Desea eliminar el nodo?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Do you want to delete the node?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		Red.eliminarNodo(numCapa,numNodo);
@@ -665,7 +665,7 @@ void UNFuzzyNetworkFrame::eliminarNodo(int numCapa,int numNodo)
 void UNFuzzyNetworkFrame::eliminarCapa(int numCapa)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("¿Desea eliminar la capa?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Do you want to delete the layer?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		Red.eliminarCapa(numCapa);
@@ -676,18 +676,18 @@ void UNFuzzyNetworkFrame::eliminarCapa(int numCapa)
 void UNFuzzyNetworkFrame::datoEntrada(int numNodo, int numPin)
 {
 	int numCapa=0;
-	wxString str=_("Ingrese el valor de la variable ");
+	wxString str=_("Enter the value of the parameter ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->nombreVariableEntrada(numPin);
 	str << _(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _("). ");
-	str << _("Debe estar entre ");
+	str << _("Must be between ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->variableEntrada(numPin)->rangoMinimo();
-	str << _(" y ");
+	str << _(" and ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->variableEntrada(numPin)->rangoMaximo();
 	str << _(" : ");
 	wxTextEntryDialog *dial;
 	float val;
 	val=Red.ptrPinEntrada(numCapa, numNodo, numPin)->valor();
-	dial=new wxTextEntryDialog(this, str, _("Atención"), wxString::Format("%f",val));
+	dial=new wxTextEntryDialog(this, str, _("Warning"), wxString::Format("%f",val));
 	if(dial->ShowModal()==wxID_OK)
 	{
 		wxString strValue=dial->GetValue();

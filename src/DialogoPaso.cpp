@@ -9,7 +9,7 @@ BEGIN_EVENT_TABLE(DialogoPaso, wxDialog)
 END_EVENT_TABLE()
 
 DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Cálculo paso a paso")))
+:wxDialog(parent,wxID_ANY,wxString(_("Step by step calculus")))
 {
 	SLD=sld;
 	sale=new float[SLD->salidas->numeroVariables()];
@@ -73,7 +73,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	}
 
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
   choiceEntradas->SetSelection(0);
   choiceSalidas->SetSelection(0);
@@ -279,7 +279,7 @@ void DialogoPaso::llenarTabla()
 			gridTabla->AppendRows();
 			int regla=gridTabla->GetNumberRows()-1;
 			celda ="";
-			celda << _("Regla ") << (i+1);
+			celda << _("Rule ") << (i+1);
 
 			gridTabla->SetRowLabelValue(regla,celda);
 			for(int e=0;e<SLD->motor->numeroEntradas();e++)

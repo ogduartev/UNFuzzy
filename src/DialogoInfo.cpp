@@ -7,7 +7,7 @@ END_EVENT_TABLE()
 
 
 DialogoInfo::DialogoInfo(wxString *N, wxString *D, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Base de reglas")))
+:wxDialog(parent,wxID_ANY,wxString(_("Rule base")))
 {
 	Nombre=N;
 	Descripcion=D;
@@ -20,12 +20,12 @@ DialogoInfo::DialogoInfo(wxString *N, wxString *D, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,2,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticNombre     = new wxStaticText(this,wxID_ANY, _("Nombre:"));
-  staticDescribe   = new wxStaticText(this,wxID_ANY, _("Descripción:"));
+  staticNombre     = new wxStaticText(this,wxID_ANY, _("Name:"));
+  staticDescribe   = new wxStaticText(this,wxID_ANY, _("Description:"));
   editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , *Nombre     , wxDefaultPosition, wxSize(200,25));
   editDescribe     = new wxTextCtrl(this,DLG_INFO_DESCRIBE, *Descripcion, wxDefaultPosition, wxSize(200,100), wxTE_MULTILINE);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
   sizerControles->Add(staticNombre   , 1, wxALIGN_RIGHT|wxALL, 5);
   sizerControles->Add(editNombre     , 1, wxALIGN_LEFT|wxALL, 5);

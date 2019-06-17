@@ -13,7 +13,7 @@ BEGIN_EVENT_TABLE(DialogoReglas, wxDialog)
 END_EVENT_TABLE()
 
 DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Base de reglas")))
+:wxDialog(parent,wxID_ANY,wxString(_("Rule base")))
 {
 	Motor = SLD->motor;
 
@@ -27,7 +27,7 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerBotones     = new wxFlexGridSizer(1,8,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
-  sizerReglas      = new wxStaticBoxSizer(wxHORIZONTAL,this,_("Base de reglas"));
+  sizerReglas      = new wxStaticBoxSizer(wxHORIZONTAL,this,_("Rule base"));
 
 	int cols,rows;
 	rows = Motor->numeroReglas();
@@ -39,15 +39,15 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
 
 	llenarTabla();
 
-  buttonInsertar   = new wxButton(this,DLG_REGLAS_BTNINSERTAR    ,_("Insertar Regla"));
-  buttonEliminar   = new wxButton(this,DLG_REGLAS_BTNELIMINAR    ,_("Eliminar Reglas"));
-  buttonModificador= new wxButton(this,DLG_REGLAS_BTNMODIFICADOR ,_("Modificador Lingüístico"));
-  buttonCerteza    = new wxButton(this,DLG_REGLAS_BTNCERTEZA     ,_("Certeza"));
-  buttonLlenar     = new wxButton(this,DLG_REGLAS_BTNLLENAR      ,_("Llenar la Base"));
-  buttonRapida     = new wxButton(this,DLG_REGLAS_BTNRAPIDA      ,_("Definición rápida"));
-  buttonDesocupar  = new wxButton(this,DLG_REGLAS_BTNDESOCUPAR   ,_("Vaciar la Base"));
+  buttonInsertar   = new wxButton(this,DLG_REGLAS_BTNINSERTAR    ,_("Insert rule"));
+  buttonEliminar   = new wxButton(this,DLG_REGLAS_BTNELIMINAR    ,_("Delete rule"));
+  buttonModificador= new wxButton(this,DLG_REGLAS_BTNMODIFICADOR ,_("Linguistic modifier"));
+  buttonCerteza    = new wxButton(this,DLG_REGLAS_BTNCERTEZA     ,_("Certainty"));
+  buttonLlenar     = new wxButton(this,DLG_REGLAS_BTNLLENAR      ,_("Fulfill the Rule base"));
+  buttonRapida     = new wxButton(this,DLG_REGLAS_BTNRAPIDA      ,_("Rapid definition"));
+  buttonDesocupar  = new wxButton(this,DLG_REGLAS_BTNDESOCUPAR   ,_("Delete all the Rule base"));
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
 	sizerBotones->Add(buttonInsertar   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerBotones->Add(buttonEliminar   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
@@ -135,7 +135,7 @@ void DialogoReglas::llenarTabla()
 	for(int regla=0;regla<Motor->numeroReglas();regla++)
 	{
 		celda ="";
-		celda << _("Regla ") << (regla+1);
+		celda << _("Rule ") << (regla+1);
 
 		float certeza = Motor->regla(regla)->certeza();
 		if(certeza!=1.0)
@@ -189,11 +189,11 @@ void DialogoReglas::OnEliminar    (wxCommandEvent&   event)
 
 	if(selection.GetCount()<1)
 	{
-		wxMessageBox(_("Seleccione las reglas a eliminar"));
+		wxMessageBox(_("Select the rules to be deleted"));
 		return;
 	}
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _("¿Desea eliminar las reglas?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("Do you want to delete the rules?"), _("Confirmation"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		for(int i=selection.GetCount()-1;i>-1;i--)
@@ -214,7 +214,7 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
   wxTextEntryDialog *dial;
   wxString valor=_("1.000");
 
-  dial = new wxTextEntryDialog(this, _("Valor del modificador (entre 0.0 y 5.0)"), _("Modificador Lingüístico"), valor, wxOK|wxCANCEL);
+  dial = new wxTextEntryDialog(this, _("Modifier value (between 0.0 y 5.0)"), _("Linguistic modifier"), valor, wxOK|wxCANCEL);
   if(dial->ShowModal()==wxID_CANCEL)
 	{
 		return;
@@ -223,7 +223,7 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 	double modificaD=1.0;
 	if(!valor.ToDouble(&modificaD))
 	{
-		wxMessageBox(_("El valor ingresado no es válido"),_("Atención"));
+		wxMessageBox(_("The value provided is not a valid one"),_("Warning"));
 		return;
 	}
 	float modifica=(float)modificaD;
@@ -304,9 +304,9 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 		}
 	}
 
-	valor = _("Se ha aplicado el modificador ");
-	valor << modifica << _(" a ") << NumCambios << _(" etiquetas");
-	wxMessageBox(valor,_("Información"));
+	valor = _("The modifier has been applied ");
+	valor << modifica << _(" to ") << NumCambios << _(" labels");
+	wxMessageBox(valor,_("Information"));
   llenarTabla();
 }
 
@@ -316,14 +316,14 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 
 	if(selection.GetCount()<1)
 	{
-		wxMessageBox(_("Seleccione las reglas cuya certeza quiere cambiar"));
+		wxMessageBox(_("Select the rules whose certainty you want to change"));
 		return;
 	}
 
   wxTextEntryDialog *dial;
   wxString valor=_("1.000");
 
-  dial = new wxTextEntryDialog(this, _("Valor de la certeza (entre 0.0 y 1.0)"), _("Certeza de la regla"), valor, wxOK|wxCANCEL);
+  dial = new wxTextEntryDialog(this, _("Certainty value (between 0.0 y 1.0)"), _("Rule certainty"), valor, wxOK|wxCANCEL);
   if(dial->ShowModal()==wxID_CANCEL)
 	{
 		return;
@@ -332,7 +332,7 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 	double certezaD=1.0;
 	if(!valor.ToDouble(&certezaD))
 	{
-		wxMessageBox(_("El valor ingresado no es válido"),_("Atención"));
+		wxMessageBox(_("The value provided is not a valid one"),_("Warning"));
 		return;
 	}
 	float certeza=(float)certezaD;
@@ -350,7 +350,7 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 void DialogoReglas::OnLlenar    (wxCommandEvent&   event)
 {
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _("Esta acción borra todas las reglas y crea una base nueva ¿Desea proceder?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("This action will delete all the rules and create a new rule base ¿Do you want to proceed?"), _("Confirmation"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		while(gridTabla->GetNumberRows()>0)
@@ -384,24 +384,24 @@ void DialogoReglas::OnRapida    (wxCommandEvent&   event)
 
 	if(selection.GetCount()!=1)
 	{
-		wxMessageBox(_("Seleccione una (y solo una) salida para definir de forma rápida"));
+		wxMessageBox(_("Select one (and only one) output to be rapidly defined"));
 		return;
 	}
 
 	int numSal=selection[0]-offsetX;
 
 	wxArrayString opciones;
-	opciones.Add(_("Sentido creciente"));
-	opciones.Add(_("Sentido decreciente"));
+	opciones.Add(_("Increasing direction"));
+	opciones.Add(_("Decreasing direction"));
 	for(int i=0;i<Motor->salidas()->variable(numSal)->numeroConjuntos();i++)
 	{
-		wxString str=_("Sentido constante: ");
+		wxString str=_("Constant direction: ");
 		str << Motor->salidas()->variable(numSal)->conjunto(i)->nombre();
 		opciones.Add(str);
 	}
 
 	wxSingleChoiceDialog *dial;
-	dial=new wxSingleChoiceDialog (this, _("Estas son las opciones para definir las reglas de la salida"), _("Definición rápida de la base de reglas"), opciones);
+	dial=new wxSingleChoiceDialog (this, _("These are the options to define the rules of the ouput"), _("Rule base rapid definition"), opciones);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		int caso=dial->GetSelection();
@@ -425,7 +425,7 @@ void DialogoReglas::OnRapida    (wxCommandEvent&   event)
 void DialogoReglas::OnDesocupar    (wxCommandEvent&   event)
 {
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _("¿Desea eliminar todas las reglas?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("Do you want to delete the rules?"), _("Confirmation"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		while(gridTabla->GetNumberRows()>0)

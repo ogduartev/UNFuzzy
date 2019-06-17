@@ -26,7 +26,7 @@ bool UNFuzzyNetworkApp::OnInit()
 
 	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 
-  UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _T("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
+  UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _T("UNFuzzyNetwork - Design of Networks of Fuzzy Logic Systems"));
 
   frame->Show();
 

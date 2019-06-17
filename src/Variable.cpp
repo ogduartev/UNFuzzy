@@ -69,24 +69,26 @@ void Variable::autodefinirConjuntosRectos(int num)
 			// Se asume que entre más ConjuntosDifusos,
 			//se requiere un Intervalo de Evaluación más pequeño
 	int i;
-	char cad1[20];
-	char cad2[10];
+	char cad1[200];
 
 			// El primer Conjunto es L, el último es Gamma
 			// y los demás son Triángulo
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
+	wxString n=_("Set ");
+	n << (1);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoL(cad1, rangoMinimo(), rangoMinimo()+dx, rangoMinimo()+2*dx);
 	adicionarConjuntos(cd);
-	for (i=1;i<(num-1);i++){
-		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-		sprintf(cad2,"%d",i+1);
-		strcat(cad1,cad2);
+	for (i=1;i<(num-1);i++)
+	{
+		n=_("Set ");
+		n << (i+1);
+		sprintf(cad1,n.c_str());
 		cd=new ConjuntoTriangulo(cad1, rangoMinimo()+i*dx, rangoMinimo()+(i+1)*dx, rangoMinimo()+(i+2)*dx);
 		adicionarConjuntos(cd);
 	}
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-	sprintf(cad2,"%d",i+1);
-	strcat(cad1,cad2);
+	n=_("Set ");
+	n << (num);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoGamma(cad1, rangoMaximo()-2*dx, rangoMaximo()-dx, rangoMaximo());
 	adicionarConjuntos(cd);
 }
@@ -104,24 +106,26 @@ void Variable::autodefinirConjuntosCurvos(int num)
 			// Se asume que entre más ConjuntosDifusos,
 			//se requiere un Intervalo de Evaluación más pequeño
 	int i;
-	char cad1[20];
-	char cad2[10];
+	char cad1[200];
 
 			// El primer Conjunto es Z, el último es s
 			// y los demás son Campana
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
+	wxString n=_("Set ");
+	n << (1);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoZ(cad1, rangoMinimo(), rangoMinimo()+dx, rangoMinimo()+2*dx);
 	adicionarConjuntos(cd);
-	for (i=1;i<(num-1);i++){
-		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-		sprintf(cad2,"%d",i+1);
-		strcat(cad1,cad2);
+	for (i=1;i<(num-1);i++)
+	{
+		n =_("Set ");
+		n << (i+1);
+		sprintf(cad1,n.c_str());
 		cd=new ConjuntoCampana(cad1, rangoMinimo()+i*dx, rangoMinimo()+(i+1)*dx, rangoMinimo()+(i+2)*dx);
 		adicionarConjuntos(cd);
 	}
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-	sprintf(cad2,"%d",i+1);
-	strcat(cad1,cad2);
+	n =_("Set ");
+	n << (num);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoS(cad1, rangoMaximo()-2*dx, rangoMaximo()-dx, rangoMaximo());
 	adicionarConjuntos(cd);
 }
@@ -141,24 +145,26 @@ void Variable::autodefinirConjuntosRectosCortos(int num)
 			// Se asume que entre más ConjuntosDifusos,
 			//se requiere un Intervalo de Evaluación más pequeño
 	int i;
-	char cad1[20];
-	char cad2[10];
+	char cad1[200];
 
 			// El primer Conjunto es L, el último es Gamma
 			// y los demás son Triángulo
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
+	wxString n=_("Set ");
+	n << (1);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoL(cad1, rangoMinimo(), rangoMinimo(), rangoMinimo()+dx);
 	adicionarConjuntos(cd);
-	for (i=1;i<(num-1);i++){
-		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-		sprintf(cad2,"%d",i+1);
-		strcat(cad1,cad2);
+	for (i=1;i<(num-1);i++)
+	{
+		n=_("Set ");
+		n << (i+1);
+		sprintf(cad1,n.c_str());
 		cd=new ConjuntoTriangulo(cad1, rangoMinimo()+(i-1)*dx, rangoMinimo()+(i)*dx, rangoMinimo()+(i+1)*dx);
 		adicionarConjuntos(cd);
 	}
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-	sprintf(cad2,"%d",i+1);
-	strcat(cad1,cad2);
+	n=_("Set ");
+	n << (num);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoGamma(cad1, rangoMaximo()-dx, rangoMaximo(), rangoMaximo());
 	adicionarConjuntos(cd);
 }
@@ -177,24 +183,26 @@ void Variable::autodefinirConjuntosCurvosCortos(int num)
 			// Se asume que entre más ConjuntosDifusos,
 			//se requiere un Intervalo de Evaluación más pequeño
 	int i;
-	char cad1[20];
-	char cad2[10];
+	char cad1[200];
+	wxString n=_("Set ");
+	n << (1);
+	sprintf(cad1,n.c_str());
 
 			// El primer Conjunto es Z, el último es s
 			// y los demás son Campana
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
 	cd=new ConjuntoZ(cad1, rangoMinimo(), rangoMinimo(), rangoMinimo()+dx);
 	adicionarConjuntos(cd);
-	for (i=1;i<(num-1);i++){
-		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-		sprintf(cad2,"%d",i+1);
-		strcat(cad1,cad2);
+	for (i=1;i<(num-1);i++)
+	{
+		n =_("Set ");
+		n << (i+1);
+		sprintf(cad1,n.c_str());
 		cd=new ConjuntoCampana(cad1, rangoMinimo()+(i-1)*dx, rangoMinimo()+(i)*dx, rangoMinimo()+(i+1)*dx);
 		adicionarConjuntos(cd);
 	}
-	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
-	sprintf(cad2,"%d",i+1);
-	strcat(cad1,cad2);
+	n =_("Set ");
+	n << (num);
+	sprintf(cad1,n.c_str());
 	cd=new ConjuntoS(cad1, rangoMaximo()-dx, rangoMaximo(), rangoMaximo());
 	adicionarConjuntos(cd);
 }

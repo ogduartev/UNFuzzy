@@ -7,7 +7,7 @@ BEGIN_EVENT_TABLE(DialogoCalculo, wxDialog)
 END_EVENT_TABLE()
 
 DialogoCalculo::DialogoCalculo(wxWindow* parent)
-:wxDialog::wxDialog(parent,wxID_ANY,wxString(_("Cálculo individual")))
+:wxDialog::wxDialog(parent,wxID_ANY,wxString(_("Individual calculus")))
 {
 }
 
@@ -50,7 +50,7 @@ void DialogoCalculo::iniciar()
 
 	buttonCalcular   = new wxButton(this, DLG_CALCULO_CALCULAR      , _("=>")      , wxDefaultPosition, wxSize(35,35), 0);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
 	sizerOKCancel->Add(buttonOK, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerOKCancel->Add(buttonCancel, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);

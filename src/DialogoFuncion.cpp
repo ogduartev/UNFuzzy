@@ -13,7 +13,7 @@ END_EVENT_TABLE()
 
 
 DialogoFuncion::DialogoFuncion(wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Función de entrada-salida")))
+:wxDialog(parent,wxID_ANY,wxString(_("Input-Output function")))
 {
 }
 
@@ -50,8 +50,8 @@ void DialogoFuncion::iniciar()
 		strSale.Add(nombreSalida(i));
 	}
 
-	staticEntradas   = new wxStaticText(this,wxID_ANY,_("Eje Horizontal"));
-	staticSalidas    = new wxStaticText(this,wxID_ANY,_("Eje Vertical"));
+	staticEntradas   = new wxStaticText(this,wxID_ANY,_("Horizontal axe"));
+	staticSalidas    = new wxStaticText(this,wxID_ANY,_("Vertical axe"));
 	choiceEntradas   = new wxChoice(this,DLG_FUNCION_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_FUNCION_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
 	valoresEntradas  = new wxSpinCtrlDouble*[numeroEntradas()];
@@ -70,11 +70,11 @@ void DialogoFuncion::iniciar()
 		sizerValores ->Add(valoresEntradas[i] , 1, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
 	}
 
-  buttonPintar     = new wxButton(this,DLG_FUNCION_BTNPINTAR,_("Pintar"));
-  buttonLimpiar    = new wxButton(this,DLG_FUNCION_BTNLIMPIAR,_("Limpiar"));
+  buttonPintar     = new wxButton(this,DLG_FUNCION_BTNPINTAR,_("Paint"));
+  buttonLimpiar    = new wxButton(this,DLG_FUNCION_BTNLIMPIAR,_("Clean"));
   buttonColor      = new wxButton(this,DLG_FUNCION_BTNCOLOR  ,_("Color"));
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
   choiceEntradas->SetSelection(0);
   choiceSalidas->SetSelection(0);

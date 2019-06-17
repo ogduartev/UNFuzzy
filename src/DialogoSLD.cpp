@@ -38,10 +38,10 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStand
     sizerControles  = new wxBoxSizer(wxHORIZONTAL);
     sizerSLD        = new wxGridBagSizer(0,0);
 
-    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIBE, _("Descripción:\n"), wxDefaultPosition, wxDefaultSize, 0);
+    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIBE, _("Description:\n"), wxDefaultPosition, wxDefaultSize, 0);
 //f4cdb5
-    buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , _("&Salir")      , wxDefaultPosition, wxDefaultSize, 0);
-    buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , _("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
+    buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , _("&Exit")      , wxDefaultPosition, wxDefaultSize, 0);
+    buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , _("&Help")      , wxDefaultPosition, wxDefaultSize, 0);
 
     buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxMEMORY_BITMAP(entradas));
     buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxMEMORY_BITMAP(salidas));
@@ -133,7 +133,7 @@ void DialogoSLD::OnSalir(wxCommandEvent &event)
 
 void DialogoSLD::OnAyuda(wxCommandEvent &event)
 {
-  wxMessageBox(_("En desarrollo..."), _("Ayuda"));
+  wxMessageBox(_("Under development..."), _("Help"));
 }
 
 void DialogoSLD::OnEntradas(wxCommandEvent &event)
@@ -183,7 +183,7 @@ void DialogoSLD::OnInferencia(wxCommandEvent &event)
 void DialogoSLD::OnNuevo      (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("This action will erase all the previous definitions and create a new system. It can not be undo. ¿Do you want to proceed?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
   	SLD->crearMinimoSLD(1,1);
@@ -195,15 +195,15 @@ void DialogoSLD::OnNuevo      (wxCommandEvent& event)
 void DialogoSLD::OnLeer       (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("This action will erase all the previous definitions and create a new system. It can not be undo. ¿Do you want to proceed?"),_("Warning"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _("Archivos UNFUZZY 3 (*.unf)|*.unf");
+		extensiones << _("UNFUZZY 3 files (*.unf)|*.unf");
 //		extensiones << _("|Archivos UNFUZZY 1 (*.dif)|*.dif");
 //		extensiones << _("|Archivos UNFUZZY 1 (*.*)|*.*");
 
-		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
+		wxFileDialog dial2(this, _("Fuzzy Logic System"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 		if (dial2.ShowModal() == wxID_OK)
 		{
@@ -219,9 +219,9 @@ void DialogoSLD::OnLeer       (wxCommandEvent& event)
 void DialogoSLD::OnGuardar    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos UNFUZZY 3 (*.unf)|*.unf");
+	extensiones << _("UNFUZZY 3 files (*.unf)|*.unf");
 
-	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
+	wxFileDialog dial(this, _("Fuzzy Logic System"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
@@ -286,14 +286,14 @@ void DialogoSLD::OnPasoAPaso (wxCommandEvent& event)
 void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos CPP (*.cpp)|*.cpp");
-	extensiones << _("|Archivos C (*.c)|*.c");
+	extensiones << _("CPP files (*.cpp)|*.cpp");
+	extensiones << _("C files (*.c)|*.c");
 
-	wxFileDialog dial(this, _("Código fuente generado"), "", "",extensiones,
+	wxFileDialog dial(this, _("Source code generated"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
-		wxString nombreClase=_("miSLD");  // solo se usa en cpp
+		wxString nombreClase=_("myFLS");  // solo se usa en cpp
 		SLD->generarCodigo(dial.GetPath(),nombreClase);
 	}
 }
@@ -301,11 +301,11 @@ void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 void DialogoSLD::OnTabla     (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos CSV (*.csv)|*.csv");
-	extensiones << _("|Archivos de texto (*.txt)|*.txt");
-	extensiones << _("|Todos los archivos (*.*)|*.*");
+	extensiones << _("CSV files (*.csv)|*.csv");
+	extensiones << _("|text files (*.txt)|*.txt");
+	extensiones << _("|All files (*.*)|*.*");
 
-	wxFileDialog dial(this, _("Tabla de datos"), "", "",extensiones,
+	wxFileDialog dial(this, _("Data table"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
@@ -352,7 +352,7 @@ void DialogoSLD::OnAbout(wxCommandEvent& event)
   wxAboutDialogInfo info;
   info.SetName(_("UNFuzzy"));
   info.SetVersion(_("3.0.0. Beta"));
-  info.SetDescription(_("Programa de diseño de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
+  info.SetDescription(_("Software for design of Fuzzy Logic Systems.\nUniversidad Nacional de Colombia"));
   info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
   wxAboutBox(info);
 }
@@ -361,9 +361,9 @@ void DialogoSLD::llenarTexto()
 {
 	wxString str="";
 	str << SLD->nombre << _("\n");
-	str << SLD->entradas->numeroVariables() << _(" entradas, ");
-	str << SLD->salidas->numeroVariables() << _(" salidas, ");
-	str << SLD->motor->numeroReglas() << _(" reglas.");
+	str << SLD->entradas->numeroVariables() << _(" inputs, ");
+	str << SLD->salidas->numeroVariables() << _(" ouputs, ");
+	str << SLD->motor->numeroReglas() << _(" rules.");
 	staticTextDescripcion->SetLabel(str);
 }
 

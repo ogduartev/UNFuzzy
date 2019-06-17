@@ -10,7 +10,7 @@ BEGIN_EVENT_TABLE(DialogoEntrenamiento, wxDialog)
 END_EVENT_TABLE()
 
 DialogoEntrenamiento::DialogoEntrenamiento(SistemaLogicaDifusa *SLD, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Entrenamiento del sistema")))
+:wxDialog(parent,wxID_ANY,wxString(_("System training")))
 {
 	Motor = SLD->motor;
 
@@ -33,19 +33,19 @@ DialogoEntrenamiento::DialogoEntrenamiento(SistemaLogicaDifusa *SLD, wxWindow *p
 
 
 	wxArrayString algoritmos;
-	algoritmos.Add(_("Universos fijos"));
-	algoritmos.Add(_("Universos variables"));
+	algoritmos.Add(_("Fixed unverses"));
+	algoritmos.Add(_("Variable universes"));
 
-  buttonInsertar   = new wxButton(this,DLG_ENTRENA_INSERTAR    ,_("Insertar Patrón"));
-  buttonEliminar   = new wxButton(this,DLG_ENTRENA_ELIMINAR    ,_("Eliminar Patrón"));
-  buttonCargar     = new wxButton(this,DLG_ENTRENA_CARGAR      ,_("Cargar Patrones"));
-  buttonEntrenar   = new wxButton(this,DLG_ENTRENA_ENTRENAR    ,_("Entrenar"));
-  checkLimpiar     = new wxCheckBox(this,DLG_ENTRENA_CHECKLIMPIAR, _("Limpiar el sistema"));
-  staticAlgoritmo  = new wxStaticBox(this,wxID_ANY, _("Algoritmo de entrenamiento"));
+  buttonInsertar   = new wxButton(this,DLG_ENTRENA_INSERTAR    ,_("Insert pattern"));
+  buttonEliminar   = new wxButton(this,DLG_ENTRENA_ELIMINAR    ,_("Delete pattern"));
+  buttonCargar     = new wxButton(this,DLG_ENTRENA_CARGAR      ,_("Load patterns"));
+  buttonEntrenar   = new wxButton(this,DLG_ENTRENA_ENTRENAR    ,_("Train"));
+  checkLimpiar     = new wxCheckBox(this,DLG_ENTRENA_CHECKLIMPIAR, _("Clean the system"));
+  staticAlgoritmo  = new wxStaticBox(this,wxID_ANY, _("Training algorithm"));
   choiceAlgoritmo  = new wxChoice(this,DLG_ENTRENA_CHOICEALGORITMO,wxDefaultPosition,wxDefaultSize,algoritmos);
 
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
-  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
+  buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
 	llenarTabla();
   choiceAlgoritmo->SetSelection(0);
@@ -152,11 +152,11 @@ void DialogoEntrenamiento::OnEliminar    (wxCommandEvent&   event)
 
 	if(selection.GetCount()<1)
 	{
-		wxMessageBox(_("Seleccione los patrones a eliminar"));
+		wxMessageBox(_("Select the patterns you want to dekete"));
 		return;
 	}
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _("¿Desea eliminar los patrones?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("Do you want to delete the patterns?"), _("Confirmation"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		for(int i=selection.GetCount()-1;i>-1;i--)
@@ -234,9 +234,9 @@ void DialogoEntrenamiento::verificarDatos()
 	}
 	if(numArreglos>0)
 	{
-	  wxString str=_("Se han detectado y ajustado ");
-  	str << numArreglos << _(" valores por fuera de los rangos de las variables");
-  	wxMessageBox(str,_("Atención"));
+	  wxString str=_("There has been detected and adjusted ");
+  	str << numArreglos << _(" values outside te variables ranges");
+  	wxMessageBox(str,_("Warning"));
 	}
 }
 
@@ -282,11 +282,11 @@ void DialogoEntrenamiento::cargarLinea(wxString linea)
 void DialogoEntrenamiento::OnCargar      (wxCommandEvent&   event)
 {
 	wxString extensiones="";
-	extensiones << _("Archivos CSV (*.csv)|*.csv");
-	extensiones << _("|Archivos TXT (*.txt)|*.txt");
-	extensiones << _("|Todos los archivos (*.*)|*.*");
+	extensiones << _("CSV files (*.csv)|*.csv");
+	extensiones << _("|Text files (*.txt)|*.txt");
+	extensiones << _("|All files (*.*)|*.*");
 
-	wxFileDialog dial(this, _("Tabla de datos"), "", "",extensiones,
+	wxFileDialog dial(this, _("Data table"), "", "",extensiones,
 											wxFD_OPEN|wxFD_FILE_MUST_EXIST);
   if (dial.ShowModal() == wxID_OK)
 	{
@@ -355,5 +355,5 @@ void DialogoEntrenamiento::OnEntrenar    (wxCommandEvent&   event)
 			default: break;
 		}
 	}
-
+	wxMessageBox(_("Training has successfully finished"),_("Information"));
 }

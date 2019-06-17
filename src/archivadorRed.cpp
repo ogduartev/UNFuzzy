@@ -123,7 +123,7 @@ void archivadorRed::leer(wxString fileName)
 	doc.Load(fileName);
 	if(!doc.IsOk())
 	{
-		wxMessageBox(_("No se pudo cargar el archivo"),_("¡Atención!"));
+		wxMessageBox(_("The file coud not be loaded"),_("¡Warning!"));
 	}
 
 	Red->eliminarCapas();

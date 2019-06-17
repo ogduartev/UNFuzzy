@@ -373,8 +373,10 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		float *puntos;
 		puntos=new float[numeroPuntos];
 		Entradas->variable(i)->conjunto(0)->puntosClaves(puntos);
-		char cad[20];
-		sprintf(cad,"%s%d",IDS_VARIABLE_ETIQUETA,Entradas->variable(i)->numeroConjuntos());
+		char cad[200];
+		wxString n=_("Set ");
+		n << Entradas->variable(i)->numeroConjuntos();
+		sprintf(cad,n.c_str());
 		switch(tipoConjunto)
 		{
 			case 0 : conj=new ConjuntoL(cad,puntos[0],puntos[1],puntos[2]);
@@ -418,8 +420,10 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		float *puntos;
 		puntos=new float[numeroPuntos];
 		Salidas->variable(i)->conjunto(0)->puntosClaves(puntos);
-		char cad[20];
-		sprintf(cad,"%s%d",IDS_VARIABLE_ETIQUETA,Salidas->variable(i)->numeroConjuntos());
+		char cad[200];
+		wxString n=_("Set ");
+		n << (Salidas->variable(i)->numeroConjuntos());
+		sprintf(cad,n.c_str());
 		switch(tipoConjunto)
 		{
 			case 0 : conj=new ConjuntoL(cad,puntos[0],puntos[1],puntos[2]);
@@ -742,7 +746,7 @@ void MaquinaInferencia::limpiaAntesUniversoVariable()
 		{
 			entradas()->variable(i)->eliminarConjuntos(1);
 		}
-		entradas()->variable(i)->conjunto(0)->nombre(IDS_DIALOG_ENTRENA_CONJBASE);
+		entradas()->variable(i)->conjunto(0)->nombre(_("Set base"));
 	}
 	for(i=0;i<numeroSalidas();i++)
 	{
@@ -753,7 +757,7 @@ void MaquinaInferencia::limpiaAntesUniversoVariable()
 		{
 			salidas()->variable(i)->eliminarConjuntos(1);
 		}
-		salidas()->variable(i)->conjunto(0)->nombre(IDS_DIALOG_ENTRENA_CONJBASE);
+		salidas()->variable(i)->conjunto(0)->nombre(_("Set base"));
 	}
 
 }

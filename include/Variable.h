@@ -2,6 +2,7 @@
 #define VARIABLE_H
 
 #include<string.h>
+#include <wx/wx.h>
 
 #include "Arreglo.h"
 #include "Difusor.h"

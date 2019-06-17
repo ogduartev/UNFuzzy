@@ -214,7 +214,7 @@ void Archivador::leer(wxString fileName)
 	doc.Load(fileName);
 	if(!doc.IsOk())
 	{
-		wxMessageBox(_("No se pudo cargar el archivo"),_("¡Atención!"));
+		wxMessageBox(_("The file coud not be loaded"),_("¡Warning!"));
 	}
 	wxXmlNode *Node=doc.GetRoot();
 
@@ -567,7 +567,7 @@ void Archivador::leerImplicacion(wxXmlNode* parent)
 	long tmpL;
 
 	int identificador;
-	parent->GetAttribute(("Tipo")).ToLong(&tmpL);
+	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador=(int)tmpL;
 
 	Implicacion *imp;
