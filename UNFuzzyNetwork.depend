@@ -1992,7 +1992,7 @@
 	<wx/grid.h>
 	"SistemaLogicaDifusa.h"
 
-1560728531 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
+1560775491 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
 	"DialogoSLD.h"
 
 1560772932 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
@@ -2329,7 +2329,7 @@
 1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/red.cpp
 	"red.h"
 
-1560772267 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.cpp
+1560775303 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.cpp
 	"wx_pch.h"
 	"UNFuzzyNetworkApp.h"
 	"UNFuzzyNetworkMain.h"
@@ -2361,7 +2361,7 @@
 1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculo.cpp
 	"DialogoCalculo.h"
 
-1560770914 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.cpp
+1560775438 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.cpp
 	"wx_pch.h"
 	"UNFuzzyNetworkMain.h"
 
@@ -2527,7 +2527,7 @@
 
 1522244266 /usr/include/wx-3.0/wx/unix/stdpaths.h
 
-1560716593 /home/ogduartev/Proyectos/UNFuzzy-3/include/bmps.h
+1560774913 /home/ogduartev/Proyectos/UNFuzzy-3/include/bmps.h
 	"wx/wx.h"
 	"wx/mstream.h"
 

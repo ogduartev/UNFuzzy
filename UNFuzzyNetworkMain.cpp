@@ -69,7 +69,7 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   buttonFuncion         = new wxBitmapButton(this, DLG_FRONTALNET_FUNCION    , wxMEMORY_BITMAP(funcion)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
   buttonCalcular        = new wxBitmapButton(this, DLG_FRONTALNET_CALCULAR   , wxMEMORY_BITMAP(calcular) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
   buttonCodigo          = new wxBitmapButton(this, DLG_FRONTALNET_CODIGO     , wxMEMORY_BITMAP(codigo)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonIdioma          = new wxBitmapButton(this, DLG_FRONTALNET_IDIOMA     , wxMEMORY_BITMAP(vacio)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonIdioma          = new wxBitmapButton(this, DLG_FRONTALNET_IDIOMA     , wxMEMORY_BITMAP(idioma)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
   buttonAbout           = new wxBitmapButton(this, DLG_FRONTALNET_ABOUT      , wxMEMORY_BITMAP(acerca)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
 
 	staticNombre = new wxStaticText(this,wxID_ANY, Red.nombre);
@@ -113,6 +113,7 @@ void UNFuzzyNetworkFrame::crearStatusBar()
 {
     CreateStatusBar(1);
     SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
+		this->SetLabel (_("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
 }
 
 void UNFuzzyNetworkFrame::crearSizers()
@@ -269,6 +270,7 @@ void UNFuzzyNetworkFrame::OnIdioma    (wxCommandEvent& event)
 		setlocale (LC_NUMERIC,"C");
 		paintNow();
     SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
+		this->SetLabel (_("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
 	}
 }
 

@@ -23,7 +23,10 @@ IMPLEMENT_APP(UNFuzzyNetworkApp);
 bool UNFuzzyNetworkApp::OnInit()
 {
 	wxInitAllImageHandlers();
-  UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _("wxWidgets Application Template"));
+
+	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+
+  UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _T("UNFuzzyNetwork - Diseño de redes de sistemas de Lógica Difusa"));
 
   frame->Show();
 

@@ -2,5 +2,5 @@
 # it searches for strings marked with _() in all .cpp files in directory ./src
 # the generated file is called 'app_name.pot' and is generated in ./po
 CPP_FILE_LIST=`find ../ -name '*.cpp' -print`
-xgettext -d unfuzzy --from-code=UTF-8 -s --keyword=_T -p ./po -o unfuzzy.pot $CPP_FILE_LIST
+xgettext -d unfuzzy --from-code=UTF-8 -s --keyword=_ -p ./ -o unfuzzy.pot $CPP_FILE_LIST
 

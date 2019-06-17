@@ -58,7 +58,7 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStand
     buttonPasoAPaso       = new wxBitmapButton(this, DLG_FRONTAL_PASOAPASO  , wxMEMORY_BITMAP(paso)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
     buttonCodigo          = new wxBitmapButton(this, DLG_FRONTAL_CODIGO     , wxMEMORY_BITMAP(codigo)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
     buttonTabla           = new wxBitmapButton(this, DLG_FRONTAL_TABLA      , wxMEMORY_BITMAP(tabla)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonIdioma          = new wxBitmapButton(this, DLG_FRONTAL_IDIOMA     , wxMEMORY_BITMAP(vacio)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonIdioma          = new wxBitmapButton(this, DLG_FRONTAL_IDIOMA     , wxMEMORY_BITMAP(idioma)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
     buttonAbout           = new wxBitmapButton(this, DLG_FRONTAL_ABOUT      , wxMEMORY_BITMAP(acerca)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
 
 		if(flagStandAlone)

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1560555881 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzy_3App.cpp
+1560773034 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzy_3App.cpp
 	"wx_pch.h"
 	"UNFuzzy_3App.h"
 	"DialogoSLD.h"
@@ -2571,7 +2571,7 @@
 
 1522244266 /usr/include/wx-3.0/wx/unix/stdpaths.h
 
-1560716593 /home/ogduartev/Proyectos/UNFuzzy-3/include/bmps.h
+1560774913 /home/ogduartev/Proyectos/UNFuzzy-3/include/bmps.h
 	"wx/wx.h"
 	"wx/mstream.h"
 
