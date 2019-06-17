@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FLS Name="Sin nombre" Description="">
+  <INPUTS>
+    <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="0.000000">
+        <POINT X="-0.005000"/>
+        <POINT X="0.005000"/>
+      </FUZZYFIER>
+      <LABEL Name="Conjunto 1" Type="0">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Conjunto 2" Type="1">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Conjunto 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </INPUTS>
+  <OUTPUTS>
+    <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <LABEL Name="Conjunto 1" Type="0">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Conjunto 2" Type="1">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Conjunto 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </OUTPUTS>
+  <ENGINE>
+    <IMPLICATION Type="0"/>
+    <COMPOSITION Type="2" Parameter="0.000000"/>
+    <AND Type="3" Parameter="0.000000"/>
+    <BASE Inputs="1" Outputs="1">
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="2.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="0.500000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+    </BASE>
+  </ENGINE>
+  <DEFUZZYFIERS>
+    <DEFUZZYFIER Variable="0" Type="3"/>
+    <CONJUNCTION Type="11" Parameter="0.000000"/>
+  </DEFUZZYFIERS>
+</FLS>

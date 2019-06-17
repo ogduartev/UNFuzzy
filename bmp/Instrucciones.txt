@@ -1,0 +1,7 @@
+Para crear el archivo .h desde los bmp, se utiliza el programa wxInclude.exe, que está compilado para windoes.
+
+Se debe correr qwine, ejecutar winconsole, y desde allí :
+
+wxInclude.exe --const --input-type=.bmp --output-file=bmps.h
+
+el archivo bmps.h se copia en la carpeta include

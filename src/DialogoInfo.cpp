@@ -7,7 +7,7 @@ END_EVENT_TABLE()
 
 
 DialogoInfo::DialogoInfo(wxString *N, wxString *D, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Base de reglas")))
+:wxDialog(parent,wxID_ANY,wxString(_("Base de reglas")))
 {
 	Nombre=N;
 	Descripcion=D;
@@ -20,8 +20,8 @@ DialogoInfo::DialogoInfo(wxString *N, wxString *D, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,2,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticNombre     = new wxStaticText(this,wxID_ANY, _T("Nombre:"));
-  staticDescribe   = new wxStaticText(this,wxID_ANY, _T("Descripción:"));
+  staticNombre     = new wxStaticText(this,wxID_ANY, _("Nombre:"));
+  staticDescribe   = new wxStaticText(this,wxID_ANY, _("Descripción:"));
   editNombre       = new wxTextCtrl(this,DLG_INFO_NOMBRE  , *Nombre     , wxDefaultPosition, wxSize(200,25));
   editDescribe     = new wxTextCtrl(this,DLG_INFO_DESCRIBE, *Descripcion, wxDefaultPosition, wxSize(200,100), wxTE_MULTILINE);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));

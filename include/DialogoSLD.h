@@ -10,6 +10,9 @@
 #include <wx/statline.h>
 #include <wx/gbsizer.h>
 #include <wx/aboutdlg.h>
+#include <wx/filefn.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 
 #include "DialogoCalculoSld.h"
 #include "DialogoVariable.h"
@@ -19,16 +22,19 @@
 #include "DialogoInfo.h"
 #include "DialogoFuncionSld.h"
 #include "DialogoPaso.h"
+#include "bmps.h"
 
 class DialogoSLD: public wxDialog
 {
     public:
-        DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxString& title);
+        DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStandAlone, const wxString& title);
         ~DialogoSLD();
 
     protected:
 
         wxStaticText* staticTextDescripcion;
+
+		   	wxLocale *MiLocale;
 
         wxButton* buttonAyuda;
         wxButton* buttonSalir;
@@ -51,6 +57,7 @@ class DialogoSLD: public wxDialog
         wxButton* buttonCodigo;
         wxButton* buttonTabla;
 
+        wxButton* buttonIdioma;
         wxButton* buttonAbout;
 
     private:
@@ -77,6 +84,7 @@ class DialogoSLD: public wxDialog
 				void OnCodigo    (wxCommandEvent& event);
 				void OnTabla     (wxCommandEvent& event);
 
+				void OnIdioma    (wxCommandEvent& event);
 				void OnAbout     (wxCommandEvent& event);
 
 				void llenarTexto();
@@ -102,6 +110,7 @@ enum
   DLG_FRONTAL_PASOAPASO,
   DLG_FRONTAL_CODIGO,
   DLG_FRONTAL_TABLA,
+  DLG_FRONTAL_IDIOMA,
   DLG_FRONTAL_ABOUT,
   DLG_FRONTAL_DESCRIBE
 };

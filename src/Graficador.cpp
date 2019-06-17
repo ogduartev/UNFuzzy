@@ -522,7 +522,7 @@ void Graficador::pintarConjuncion(SistemaLogicaDifusa* SLD, int numSale,float sa
 	YO=MNY;
 	YF=MXY;
 	dc->DrawLine(XO,YO,XF,YF);
-	pintarTitle(_T("Conjunción"));
+	pintarTitle(_("Conjunción"));
 }
 
 void Graficador::calcularFuncion(float*entra, float* sale)

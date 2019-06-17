@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NETWORK Name="Sin nombre" Description="">
+  <LAYERS>
+    <LAYER>
+      <NODE Inputs="2" Outputs="1">
+        <FLS Name="Sin nombre" Description="">
+          <INPUTS>
+            <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="0.200000">
+                <POINT X="0.195000"/>
+                <POINT X="0.205000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+            <VARIABLE Name="Entrada 2" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="0.200000">
+                <POINT X="0.195000"/>
+                <POINT X="0.205000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </INPUTS>
+          <OUTPUTS>
+            <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </OUTPUTS>
+          <ENGINE>
+            <IMPLICATION Type="1"/>
+            <COMPOSITION Type="1" Parameter="0.000000"/>
+            <AND Type="1" Parameter="0.000000"/>
+            <BASE Inputs="2" Outputs="1">
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="2"/>
+              </RULE>
+            </BASE>
+          </ENGINE>
+          <DEFUZZYFIERS>
+            <DEFUZZYFIER Variable="0" Type="3"/>
+            <CONJUNCTION Type="10" Parameter="0.000000"/>
+          </DEFUZZYFIERS>
+        </FLS>
+      </NODE>
+      <NODE Inputs="2" Outputs="1">
+        <FLS Name="Sin nombre" Description="">
+          <INPUTS>
+            <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="-0.200000">
+                <POINT X="-0.205000"/>
+                <POINT X="-0.195000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+            <VARIABLE Name="Entrada 2" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="-0.200000">
+                <POINT X="-0.205000"/>
+                <POINT X="-0.195000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </INPUTS>
+          <OUTPUTS>
+            <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </OUTPUTS>
+          <ENGINE>
+            <IMPLICATION Type="1"/>
+            <COMPOSITION Type="1" Parameter="0.000000"/>
+            <AND Type="1" Parameter="0.000000"/>
+            <BASE Inputs="2" Outputs="1">
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="2"/>
+              </RULE>
+            </BASE>
+          </ENGINE>
+          <DEFUZZYFIERS>
+            <DEFUZZYFIER Variable="0" Type="3"/>
+            <CONJUNCTION Type="10" Parameter="0.000000"/>
+          </DEFUZZYFIERS>
+        </FLS>
+      </NODE>
+    </LAYER>
+    <LAYER>
+      <NODE Inputs="2" Outputs="1">
+        <FLS Name="Sin nombre" Description="">
+          <INPUTS>
+            <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="0.028319">
+                <POINT X="0.023319"/>
+                <POINT X="0.033319"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+            <VARIABLE Name="Entrada 2" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="-0.030688">
+                <POINT X="-0.035688"/>
+                <POINT X="-0.025688"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </INPUTS>
+          <OUTPUTS>
+            <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </OUTPUTS>
+          <ENGINE>
+            <IMPLICATION Type="1"/>
+            <COMPOSITION Type="1" Parameter="0.000000"/>
+            <AND Type="1" Parameter="0.000000"/>
+            <BASE Inputs="2" Outputs="1">
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="2"/>
+              </RULE>
+            </BASE>
+          </ENGINE>
+          <DEFUZZYFIERS>
+            <DEFUZZYFIER Variable="0" Type="3"/>
+            <CONJUNCTION Type="10" Parameter="0.000000"/>
+          </DEFUZZYFIERS>
+        </FLS>
+      </NODE>
+      <NODE Inputs="1" Outputs="1">
+        <FLS Name="Sin nombre" Description="">
+          <INPUTS>
+            <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="0.000000">
+                <POINT X="-0.005000"/>
+                <POINT X="0.005000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </INPUTS>
+          <OUTPUTS>
+            <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </OUTPUTS>
+          <ENGINE>
+            <IMPLICATION Type="1"/>
+            <COMPOSITION Type="1" Parameter="0.000000"/>
+            <AND Type="1" Parameter="0.000000"/>
+            <BASE Inputs="1" Outputs="1">
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="2"/>
+              </RULE>
+            </BASE>
+          </ENGINE>
+          <DEFUZZYFIERS>
+            <DEFUZZYFIER Variable="0" Type="3"/>
+            <CONJUNCTION Type="10" Parameter="0.000000"/>
+          </DEFUZZYFIERS>
+        </FLS>
+      </NODE>
+    </LAYER>
+    <LAYER>
+      <NODE Inputs="1" Outputs="1">
+        <FLS Name="Sin nombre" Description="">
+          <INPUTS>
+            <VARIABLE Name="Entrada 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <FUZZYFIER Type="8" Points="1" Center="0.000000">
+                <POINT X="-0.005000"/>
+                <POINT X="0.005000"/>
+              </FUZZYFIER>
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </INPUTS>
+          <OUTPUTS>
+            <VARIABLE Name="Salida 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+              <LABEL Name="Conjunto 1" Type="0">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 2" Type="1">
+                <POINT X="-1.000000"/>
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+              <LABEL Name="Conjunto 3" Type="3">
+                <POINT X="0.000000"/>
+                <POINT X="1.000000"/>
+              </LABEL>
+            </VARIABLE>
+          </OUTPUTS>
+          <ENGINE>
+            <IMPLICATION Type="1"/>
+            <COMPOSITION Type="1" Parameter="0.000000"/>
+            <AND Type="1" Parameter="0.000000"/>
+            <BASE Inputs="1" Outputs="1">
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="0"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="1"/>
+              </RULE>
+              <RULE Certainty="1.000000">
+                <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+                <CONSEQUENT Variable="0" Label="2"/>
+              </RULE>
+            </BASE>
+          </ENGINE>
+          <DEFUZZYFIERS>
+            <DEFUZZYFIER Variable="0" Type="3"/>
+            <CONJUNCTION Type="10" Parameter="0.000000"/>
+          </DEFUZZYFIERS>
+        </FLS>
+      </NODE>
+    </LAYER>
+  </LAYERS>
+  <LINKS>
+    <LINK InputLayer="2" InputNode="0" InputTerminal="0" OutputLayer="1" OutputNode="0" OutputTerminal="0"/>
+    <LINK InputLayer="1" InputNode="0" InputTerminal="1" OutputLayer="0" OutputNode="1" OutputTerminal="0"/>
+    <LINK InputLayer="1" InputNode="0" InputTerminal="0" OutputLayer="0" OutputNode="0" OutputTerminal="0"/>
+  </LINKS>
+</NETWORK>

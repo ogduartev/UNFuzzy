@@ -6,7 +6,7 @@ BEGIN_EVENT_TABLE(DialogoAutodefinirVariable, wxDialog)
 END_EVENT_TABLE()
 
 DialogoAutodefinirVariable::DialogoAutodefinirVariable(Variable *var,wxWindow* parent)
-:wxDialog(parent,wxID_ANY,wxString(_T("Definición rápida de la variable")))
+:wxDialog(parent,wxID_ANY,wxString(_("Definición rápida de la variable")))
 {
 	Var=var;
 
@@ -21,10 +21,12 @@ DialogoAutodefinirVariable::DialogoAutodefinirVariable(Variable *var,wxWindow* p
  	wxArrayString formas;
 	formas.Add(_("Conjuntos rectos"));
 	formas.Add(_("Conjuntos curvos"));
+	formas.Add(_("Conjuntos rectos cortos"));
+	formas.Add(_("Conjuntos curvos cortos"));
 
-  staticNumero     = new wxStaticText(this,wxID_ANY, _T("Número de conjuntos"));
-  spinNumero       = new wxSpinCtrl(this,DLG_AUTOVAR_NUMERO,_(""),wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,1,15,3);
-  radioForma       = new wxRadioBox(this,DLG_AUTOVAR_FORMA,_("Forma de los conjuntos"),wxDefaultPosition,wxDefaultSize,formas);
+  staticNumero     = new wxStaticText(this,wxID_ANY, _("Número de conjuntos"));
+  spinNumero       = new wxSpinCtrl(this,DLG_AUTOVAR_NUMERO,"",wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,1,15,3);
+  radioForma       = new wxRadioBox(this,DLG_AUTOVAR_FORMA,_("Forma de los conjuntos"),wxDefaultPosition,wxDefaultSize,formas,0,wxRA_SPECIFY_ROWS );
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 
@@ -54,14 +56,14 @@ void DialogoAutodefinirVariable::OnClose(wxCloseEvent&   event)
 
 void DialogoAutodefinirVariable::OnOK(wxCommandEvent&   event)
 {
-	int sel=radioForma->GetSelection();
-	if(sel==0)
-	{
-		flagRectos=true;
-	}else
-	{
-		flagRectos=false;
-	}
+	forma=radioForma->GetSelection();
 	numConjuntos=spinNumero->GetValue();
+	switch(forma)
+	{
+	  case 0: Var->autodefinirConjuntosRectos(numConjuntos);break;
+	  case 1: Var->autodefinirConjuntosCurvos(numConjuntos);break;
+	  case 2: Var->autodefinirConjuntosRectosCortos(numConjuntos);break;
+	  case 3: Var->autodefinirConjuntosCurvosCortos(numConjuntos);break;
+	}
 	EndModal(wxID_OK);
 }

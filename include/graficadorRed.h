@@ -1,7 +1,12 @@
 #ifndef GRAFICADORRED_H
 #define GRAFICADORRED_H
 
+#include <wx/filefn.h>
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
+
 #include "red.h"
+#include "bmps.h"
 
 class graficadorRed
 {

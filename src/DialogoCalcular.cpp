@@ -7,7 +7,7 @@ BEGIN_EVENT_TABLE(DialogoCalcular, wxDialog)
 END_EVENT_TABLE()
 
 DialogoCalcular::DialogoCalcular(SistemaLogicaDifusa *sld, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Calcular")))
+:wxDialog(parent,wxID_ANY,wxString(_("Calcular")))
 {
 	SLD=sld;
 	int numEntradas=SLD->numeroEntradas();
@@ -25,7 +25,7 @@ DialogoCalcular::DialogoCalcular(SistemaLogicaDifusa *sld, wxWindow *parent)
 	sizerSalidas    = new wxFlexGridSizer(1,numSalidas,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-	buttonCalcular = new wxButton(this, DLG_CALCULAR_CALCULAR      , wxT("=>")      , wxDefaultPosition, wxSize(35,35), 0);
+	buttonCalcular = new wxButton(this, DLG_CALCULAR_CALCULAR      , _("=>")      , wxDefaultPosition, wxSize(35,35), 0);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 

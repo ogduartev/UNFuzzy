@@ -13,7 +13,7 @@ BEGIN_EVENT_TABLE(DialogoReglas, wxDialog)
 END_EVENT_TABLE()
 
 DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Base de reglas")))
+:wxDialog(parent,wxID_ANY,wxString(_("Base de reglas")))
 {
 	Motor = SLD->motor;
 
@@ -27,7 +27,7 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerBotones     = new wxFlexGridSizer(1,8,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
-  sizerReglas      = new wxStaticBoxSizer(wxHORIZONTAL,this,_T("Base de reglas"));
+  sizerReglas      = new wxStaticBoxSizer(wxHORIZONTAL,this,_("Base de reglas"));
 
 	int cols,rows;
 	rows = Motor->numeroReglas();
@@ -39,13 +39,13 @@ DialogoReglas::DialogoReglas(SistemaLogicaDifusa *SLD, wxWindow *parent)
 
 	llenarTabla();
 
-  buttonInsertar   = new wxButton(this,DLG_REGLAS_BTNINSERTAR    ,_T("Insertar Regla"));
-  buttonEliminar   = new wxButton(this,DLG_REGLAS_BTNELIMINAR    ,_T("Eliminar Reglas"));
-  buttonModificador= new wxButton(this,DLG_REGLAS_BTNMODIFICADOR ,_T("Modificador Ligüístico"));
-  buttonCerteza    = new wxButton(this,DLG_REGLAS_BTNCERTEZA     ,_T("Certeza"));
-  buttonLlenar     = new wxButton(this,DLG_REGLAS_BTNLLENAR      ,_T("Llenar la Base"));
-  buttonRapida     = new wxButton(this,DLG_REGLAS_BTNRAPIDA      ,_T("Definición rápida"));
-  buttonDesocupar  = new wxButton(this,DLG_REGLAS_BTNDESOCUPAR   ,_T("Vaciar la Base"));
+  buttonInsertar   = new wxButton(this,DLG_REGLAS_BTNINSERTAR    ,_("Insertar Regla"));
+  buttonEliminar   = new wxButton(this,DLG_REGLAS_BTNELIMINAR    ,_("Eliminar Reglas"));
+  buttonModificador= new wxButton(this,DLG_REGLAS_BTNMODIFICADOR ,_("Modificador Lingüístico"));
+  buttonCerteza    = new wxButton(this,DLG_REGLAS_BTNCERTEZA     ,_("Certeza"));
+  buttonLlenar     = new wxButton(this,DLG_REGLAS_BTNLLENAR      ,_("Llenar la Base"));
+  buttonRapida     = new wxButton(this,DLG_REGLAS_BTNRAPIDA      ,_("Definición rápida"));
+  buttonDesocupar  = new wxButton(this,DLG_REGLAS_BTNDESOCUPAR   ,_("Vaciar la Base"));
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 
@@ -135,12 +135,12 @@ void DialogoReglas::llenarTabla()
 	for(int regla=0;regla<Motor->numeroReglas();regla++)
 	{
 		celda ="";
-		celda << _T("Regla ") << (regla+1);
+		celda << _("Regla ") << (regla+1);
 
 		float certeza = Motor->regla(regla)->certeza();
 		if(certeza!=1.0)
 		{
-			celda << _T("(") << certeza << _T(")");
+			celda << _("(") << certeza << _(")");
 		}
 
 		gridTabla->SetRowLabelValue(regla,celda);
@@ -151,7 +151,7 @@ void DialogoReglas::llenarTabla()
 
 			if(Motor->modificador(regla,e)!=1.0)
 			{
-			  celda << _T("(") << Motor->modificador(regla,e) << _T(")");
+			  celda << _("(") << Motor->modificador(regla,e) << _(")");
 			}
 
 			gridTabla->SetCellValue(regla,e,celda);
@@ -189,11 +189,11 @@ void DialogoReglas::OnEliminar    (wxCommandEvent&   event)
 
 	if(selection.GetCount()<1)
 	{
-		wxMessageBox(_T("Seleccione las reglas a eliminar"));
+		wxMessageBox(_("Seleccione las reglas a eliminar"));
 		return;
 	}
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _T("¿Desea eliminar las reglas?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("¿Desea eliminar las reglas?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		for(int i=selection.GetCount()-1;i>-1;i--)
@@ -212,9 +212,9 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 	actualizarBase();
   int NumCambios=0;
   wxTextEntryDialog *dial;
-  wxString valor=_T("1.000");
+  wxString valor=_("1.000");
 
-  dial = new wxTextEntryDialog(this, _T("Valor del modificador (entre 0.0 y 5.0)"), _T("Modificador Lingüístico"), valor, wxOK|wxCANCEL);
+  dial = new wxTextEntryDialog(this, _("Valor del modificador (entre 0.0 y 5.0)"), _("Modificador Lingüístico"), valor, wxOK|wxCANCEL);
   if(dial->ShowModal()==wxID_CANCEL)
 	{
 		return;
@@ -223,7 +223,7 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 	double modificaD=1.0;
 	if(!valor.ToDouble(&modificaD))
 	{
-		wxMessageBox(_T("El valor ingresado no es válido"),_T("Atención"));
+		wxMessageBox(_("El valor ingresado no es válido"),_("Atención"));
 		return;
 	}
 	float modifica=(float)modificaD;
@@ -304,9 +304,9 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 		}
 	}
 
-	valor = _T("Se ha aplicado el modificador ");
-	valor << modifica << _T(" a ") << NumCambios << _T(" etiquetas");
-	wxMessageBox(valor,_T("Información"));
+	valor = _("Se ha aplicado el modificador ");
+	valor << modifica << _(" a ") << NumCambios << _(" etiquetas");
+	wxMessageBox(valor,_("Información"));
   llenarTabla();
 }
 
@@ -316,14 +316,14 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 
 	if(selection.GetCount()<1)
 	{
-		wxMessageBox(_T("Seleccione las reglas cuya certeza quiere cambiar"));
+		wxMessageBox(_("Seleccione las reglas cuya certeza quiere cambiar"));
 		return;
 	}
 
   wxTextEntryDialog *dial;
-  wxString valor=_T("1.000");
+  wxString valor=_("1.000");
 
-  dial = new wxTextEntryDialog(this, _T("Valor de la certeza (entre 0.0 y 1.0)"), _T("Certeza de la regla"), valor, wxOK|wxCANCEL);
+  dial = new wxTextEntryDialog(this, _("Valor de la certeza (entre 0.0 y 1.0)"), _("Certeza de la regla"), valor, wxOK|wxCANCEL);
   if(dial->ShowModal()==wxID_CANCEL)
 	{
 		return;
@@ -332,7 +332,7 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 	double certezaD=1.0;
 	if(!valor.ToDouble(&certezaD))
 	{
-		wxMessageBox(_T("El valor ingresado no es válido"),_T("Atención"));
+		wxMessageBox(_("El valor ingresado no es válido"),_("Atención"));
 		return;
 	}
 	float certeza=(float)certezaD;
@@ -350,7 +350,7 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 void DialogoReglas::OnLlenar    (wxCommandEvent&   event)
 {
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _T("Esta acción borra todas las reglas y crea una base nueva ¿Desea proceder?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("Esta acción borra todas las reglas y crea una base nueva ¿Desea proceder?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		while(gridTabla->GetNumberRows()>0)
@@ -384,15 +384,15 @@ void DialogoReglas::OnRapida    (wxCommandEvent&   event)
 
 	if(selection.GetCount()!=1)
 	{
-		wxMessageBox(_T("Seleccione una (y solo una) salida para definir de forma rápida"));
+		wxMessageBox(_("Seleccione una (y solo una) salida para definir de forma rápida"));
 		return;
 	}
 
 	int numSal=selection[0]-offsetX;
 
 	wxArrayString opciones;
-	opciones.Add(_T("Sentido creciente"));
-	opciones.Add(_T("Sentido decreciente"));
+	opciones.Add(_("Sentido creciente"));
+	opciones.Add(_("Sentido decreciente"));
 	for(int i=0;i<Motor->salidas()->variable(numSal)->numeroConjuntos();i++)
 	{
 		wxString str=_("Sentido constante: ");
@@ -401,7 +401,7 @@ void DialogoReglas::OnRapida    (wxCommandEvent&   event)
 	}
 
 	wxSingleChoiceDialog *dial;
-	dial=new wxSingleChoiceDialog (this, _T("Estas son las opciones para definir las reglas de la salida"), _T("Definición rápida de la base de reglas"), opciones);
+	dial=new wxSingleChoiceDialog (this, _("Estas son las opciones para definir las reglas de la salida"), _("Definición rápida de la base de reglas"), opciones);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		int caso=dial->GetSelection();
@@ -425,7 +425,7 @@ void DialogoReglas::OnRapida    (wxCommandEvent&   event)
 void DialogoReglas::OnDesocupar    (wxCommandEvent&   event)
 {
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _T("¿Desea eliminar todas las reglas?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("¿Desea eliminar todas las reglas?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		while(gridTabla->GetNumberRows()>0)
@@ -472,7 +472,7 @@ void DialogoReglas::actualizarBase()
 			celda = gridTabla->GetCellValue(regla,e);
 			if(Motor->modificador(regla,e)!=1.0)
 			{
-			  celda << _T("(") << Motor->modificador(regla,e) << _T(")");
+			  celda << _("(") << Motor->modificador(regla,e) << _(")");
 			}
 			for(int j=0;j<etiquetasEntrada[e].GetCount();j++)
 			{

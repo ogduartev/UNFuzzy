@@ -3,8 +3,8 @@
 red::red()
 {
 	crearRedMinima();
-	nombre=_T("Sin nombre");
-	descripcion=_T("");
+	nombre=_("Sin nombre");
+	descripcion="";
 }
 
 void red::crearRedMinima()
@@ -374,7 +374,7 @@ void red::generarCodigo(wxString nombreArchivo,wxString nombreClase)
 		verificar << fn.GetName() << "." << fn.GetExt();
 		if(verificar == "fuzzy.cpp")
 		{
-			if(wxMessageBox(_T("El archivo fuzzy.cpp es necesario para compilar ¿desea sobreescribirlo?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT)==wxID_OK)
+			if(wxMessageBox(_("El archivo fuzzy.cpp es necesario para compilar ¿desea sobreescribirlo?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT)==wxID_OK)
 			{
 				generarCodigoCPP(nombreArchivo,nombreClase);
 			}
@@ -397,39 +397,39 @@ void red::generarCodigoCPP(wxString nombreArchivo,wxString nombreClase)
 
 	if(codigoFile.Write())
 	{
-		wxMessageBox(_T("Se ha creado el archivo"),_T("Información"));
+		wxMessageBox(_("Se ha creado el archivo"),_("Información"));
 	}else
 	{
-		wxMessageBox(_T("No se pudo abrir el archivo"),_T("¡Atención!"));
+		wxMessageBox(_("No se pudo abrir el archivo"),_("¡Atención!"));
 	}
 }
 
 void red::generarCodigoCPPEncabezado(wxTextFile* codigoFile)
 {
-	wxString Codigo=_T("");
-	char cad[200];
+	wxString Codigo="";
+	char cad[2000];
 
-	Codigo=_T("// Código C++ del Sistema de Lógica Difusa\n");codigoFile->AddLine(Codigo);
-	Codigo=_T("// Generado automáticamente por UNFUZZY V 3.0");codigoFile->AddLine(Codigo);
-	Codigo=_T("// Autor: Oscar Duarte (ogduartev@unal.edu.co)");codigoFile->AddLine(Codigo);
-	Codigo=_T("// Universidad Nacional de Colombia");codigoFile->AddLine(Codigo);
-	Codigo=_T("// Descargo de responsabilidad: ");codigoFile->AddLine(Codigo);
-	Codigo=_T("// El código generado se usa bajo responsabilidad del usuario.");codigoFile->AddLine(Codigo);
-	Codigo=_T("// En ninguna forma genera responsabilidad para el autor de UNFUZZY");codigoFile->AddLine(Codigo);
-	Codigo=_T("// ni para la Universidad Nacional de Colombia.");codigoFile->AddLine(Codigo);
-	Codigo=_T("// ");codigoFile->AddLine(Codigo);
-	Codigo=_T("// para compilar el archivo xxx.cpp:");codigoFile->AddLine(Codigo);
-	Codigo=_T("//   g++ xxx.cpp fuzzy.cpp");codigoFile->AddLine(Codigo);
-	Codigo=_T("");codigoFile->AddLine(Codigo);
-	Codigo=_T("#ifndef __IOSTREAM_H");codigoFile->AddLine(Codigo);
-	Codigo=_T("#include <iostream>");codigoFile->AddLine(Codigo);
-	Codigo=_T("#endif");codigoFile->AddLine(Codigo);
-	Codigo=_T("");codigoFile->AddLine(Codigo);
-	Codigo=_T("using namespace std;");codigoFile->AddLine(Codigo);
-	Codigo=_T("	");codigoFile->AddLine(Codigo);
-	Codigo=_T("#ifndef __FUZZY_H");codigoFile->AddLine(Codigo);
-	Codigo=_T("#include \"fuzzy.h\"");codigoFile->AddLine(Codigo);
-	Codigo=_T("#endif\r\n");codigoFile->AddLine(Codigo);
+	Codigo=_("// Código C++ del Sistema de Lógica Difusa\n");codigoFile->AddLine(Codigo);
+	Codigo=_("// Generado automáticamente por UNFUZZY V 3.0");codigoFile->AddLine(Codigo);
+	Codigo=_("// Autor: Oscar Duarte (ogduartev@unal.edu.co)");codigoFile->AddLine(Codigo);
+	Codigo=_("// Universidad Nacional de Colombia");codigoFile->AddLine(Codigo);
+	Codigo=_("// Descargo de responsabilidad: ");codigoFile->AddLine(Codigo);
+	Codigo=_("// El código generado se usa bajo responsabilidad del usuario.");codigoFile->AddLine(Codigo);
+	Codigo=_("// En ninguna forma genera responsabilidad para el autor de UNFUZZY");codigoFile->AddLine(Codigo);
+	Codigo=_("// ni para la Universidad Nacional de Colombia.");codigoFile->AddLine(Codigo);
+	Codigo=_("// ");codigoFile->AddLine(Codigo);
+	Codigo=_("// para compilar el archivo xxx.cpp:");codigoFile->AddLine(Codigo);
+	Codigo=_("//   g++ xxx.cpp fuzzy.cpp");codigoFile->AddLine(Codigo);
+	Codigo="";codigoFile->AddLine(Codigo);
+	Codigo=("#ifndef __IOSTREAM_H");codigoFile->AddLine(Codigo);
+	Codigo=("#include <iostream>");codigoFile->AddLine(Codigo);
+	Codigo=("#endif");codigoFile->AddLine(Codigo);
+	Codigo=("");codigoFile->AddLine(Codigo);
+	Codigo=("using namespace std;");codigoFile->AddLine(Codigo);
+	Codigo=("	");codigoFile->AddLine(Codigo);
+	Codigo=("#ifndef __FUZZY_H");codigoFile->AddLine(Codigo);
+	Codigo=("#include \"fuzzy.h\"");codigoFile->AddLine(Codigo);
+	Codigo=("#endif\n");codigoFile->AddLine(Codigo);
 }
 
 void red::generarCodigoCPPsld(wxTextFile* codigoFile)
@@ -438,8 +438,8 @@ void red::generarCodigoCPPsld(wxTextFile* codigoFile)
 	{
 		for(int numNodo=0; numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer(); numNodo++)
 		{
-			wxString nombreClase = _T("SLD_");
-			nombreClase << (numCapa+1) << _T("_") << (numNodo+1);
+			wxString nombreClase = ("SLD_");
+			nombreClase << (numCapa+1) << ("_") << (numNodo+1);
 
 			nodo* Nodo=ptrNodo(numCapa, numNodo);
 			Nodo->sld()->generarCodigoCPPClase(codigoFile, nombreClase);
@@ -449,50 +449,50 @@ void red::generarCodigoCPPsld(wxTextFile* codigoFile)
 
 void red::generarCodigoCPPClase(wxTextFile* codigoFile, wxString nombreClase)
 {
-	wxString Codigo=_T("");
-	char cad[200];
+	wxString Codigo=("");
+	char cad[2000];
 
-	Codigo=_T("class ");
-	Codigo << nombreClase << _T(":public red");codigoFile->AddLine(Codigo);
-	Codigo=_T("{");codigoFile->AddLine(Codigo);
-	Codigo=_T("public:");codigoFile->AddLine(Codigo);
-	Codigo=_T("    ");
-	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
-	Codigo=_T("    ~");
-	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
-	Codigo=_T("protected:");codigoFile->AddLine(Codigo);
-	Codigo=_T("};\r\n");codigoFile->AddLine(Codigo);
+	Codigo=("class ");
+	Codigo << nombreClase << (":public red");codigoFile->AddLine(Codigo);
+	Codigo=("{");codigoFile->AddLine(Codigo);
+	Codigo=("public:");codigoFile->AddLine(Codigo);
+	Codigo=("    ");
+	Codigo << nombreClase << ("();");codigoFile->AddLine(Codigo);
+	Codigo=("    ~");
+	Codigo << nombreClase << ("();");codigoFile->AddLine(Codigo);
+	Codigo=("protected:");codigoFile->AddLine(Codigo);
+	Codigo=("};\n");codigoFile->AddLine(Codigo);
 	Codigo=nombreClase;
-	Codigo << _T("::") << nombreClase << _T("()");codigoFile->AddLine(Codigo);
-	Codigo=_T("{");codigoFile->AddLine(Codigo);
+	Codigo << ("::") << nombreClase << ("()");codigoFile->AddLine(Codigo);
+	Codigo=("{");codigoFile->AddLine(Codigo);
 	for(int numCapa=0; numCapa < capas()->GetItemsInContainer(); numCapa++)
 	{
-		Codigo=_T("  capa* Capa_");
-		Codigo << (numCapa+1) << _T(";"); codigoFile->AddLine(Codigo);
-		Codigo=_T("  Capa_");
-		Codigo << (numCapa+1) << _T("= new capa();"); codigoFile->AddLine(Codigo);
+		Codigo=("  capa* Capa_");
+		Codigo << (numCapa+1) << (";"); codigoFile->AddLine(Codigo);
+		Codigo=("  Capa_");
+		Codigo << (numCapa+1) << ("= new capa();"); codigoFile->AddLine(Codigo);
 		for(int numNodo=0; numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer(); numNodo++)
 		{
 			wxString ext="_";
-			ext << (numCapa+1) << _T("_")<< (numNodo+1);
-			Codigo=_T("\r\n    nodo* Nodo");
-			Codigo << ext << _T(";"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    SLD");
-			Codigo << ext << _T("* miSLD") << ext << _T(";"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    Nodo");
-			Codigo << ext << _T("= new nodo();"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    miSLD");
-			Codigo << ext << _T("= new SLD") << ext << _T("();"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    Nodo");
-			Codigo << ext << _T("->sld(miSLD") << ext << _T(");"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    Nodo");
-			Codigo << ext << _T("->ajustarPinesAsld();"); codigoFile->AddLine(Codigo);
-			Codigo=_T("    Capa_");
-			Codigo << (numCapa+1) << _T("->nodos()->Add(Nodo") << ext << _T(");"); codigoFile->AddLine(Codigo);
+			ext << (numCapa+1) << ("_")<< (numNodo+1);
+			Codigo=("\n    nodo* Nodo");
+			Codigo << ext << (";"); codigoFile->AddLine(Codigo);
+			Codigo=("    SLD");
+			Codigo << ext << ("* miSLD") << ext << (";"); codigoFile->AddLine(Codigo);
+			Codigo=("    Nodo");
+			Codigo << ext << ("= new nodo();"); codigoFile->AddLine(Codigo);
+			Codigo=("    miSLD");
+			Codigo << ext << ("= new SLD") << ext << ("();"); codigoFile->AddLine(Codigo);
+			Codigo=("    Nodo");
+			Codigo << ext << ("->sld(miSLD") << ext << (");"); codigoFile->AddLine(Codigo);
+			Codigo=("    Nodo");
+			Codigo << ext << ("->ajustarPinesAsld();"); codigoFile->AddLine(Codigo);
+			Codigo=("    Capa_");
+			Codigo << (numCapa+1) << ("->nodos()->Add(Nodo") << ext << (");"); codigoFile->AddLine(Codigo);
 
 		}
-		Codigo=_T("  capas()->Add(Capa_");
-		Codigo << (numCapa+1) << _T(");\r\n"); codigoFile->AddLine(Codigo);
+		Codigo=("  capas()->Add(Capa_");
+		Codigo << (numCapa+1) << (");\n"); codigoFile->AddLine(Codigo);
 	}
 
 	for(int numCapa=0; numCapa < capas()->GetItemsInContainer(); numCapa++)
@@ -520,13 +520,13 @@ void red::generarCodigoCPPClase(wxTextFile* codigoFile, wxString nombreClase)
 						buscarPinEntrada(PinEntra, &capaEntra, &nodoEntra, &pinEntra);
 						buscarPinSalida (PinSale,  &capaSale,  &nodoSale,  &pinSale );
 
-						Codigo=_T("  conectar(");
-						Codigo << capaSale  << _T(",");
-						Codigo << nodoSale  << _T(",");
-						Codigo << pinSale   << _T(",");
-						Codigo << capaEntra << _T(",");
-						Codigo << nodoEntra << _T(",");
-						Codigo << pinEntra  << _T(");");
+						Codigo=("  conectar(");
+						Codigo << capaSale  << (",");
+						Codigo << nodoSale  << (",");
+						Codigo << pinSale   << (",");
+						Codigo << capaEntra << (",");
+						Codigo << nodoEntra << (",");
+						Codigo << pinEntra  << (");");
 						codigoFile->AddLine(Codigo);
 					}
 				}
@@ -534,53 +534,55 @@ void red::generarCodigoCPPClase(wxTextFile* codigoFile, wxString nombreClase)
 		}
 	}
 
-	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
+	Codigo=("}\n");codigoFile->AddLine(Codigo);
 	Codigo=nombreClase;
-	Codigo << _T("::~") << nombreClase << _T("()");codigoFile->AddLine(Codigo);
-	Codigo=_T("{");codigoFile->AddLine(Codigo);
-	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
+	Codigo << ("::~") << nombreClase << ("()");codigoFile->AddLine(Codigo);
+	Codigo=("{");codigoFile->AddLine(Codigo);
+	Codigo=("}\n");codigoFile->AddLine(Codigo);
 }
 
 void red::generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase)
 {
-	wxString Codigo=_T("");
-	char cad[200];
+	wxString Codigo=("");
+	char cad[2000];
 
-	Codigo=_T("int main()");codigoFile->AddLine(Codigo);
-	Codigo=_T("{");codigoFile->AddLine(Codigo);
-	Codigo=_T("    float *entra;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    float *sale;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    ");
-	Codigo << nombreClase << _T(" *Red;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    int NumeroEntradas;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    int NumeroSalidas;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    Red=new ");
-	Codigo << nombreClase << _T("();");codigoFile->AddLine(Codigo);
-	Codigo=_T("    NumeroEntradas=Red->numeroEntradas();");codigoFile->AddLine(Codigo);
-	Codigo=_T("    NumeroSalidas=Red->numeroSalidas();");codigoFile->AddLine(Codigo);
-	Codigo=_T("    entra=new float[NumeroEntradas];");codigoFile->AddLine(Codigo);
-	Codigo=_T("    sale=new float[NumeroSalidas];");codigoFile->AddLine(Codigo);
-	Codigo=_T("    int i;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    char q='s';");codigoFile->AddLine(Codigo);
-	Codigo=_T("    while(q=='s')");codigoFile->AddLine(Codigo);
-	Codigo=_T("    {");codigoFile->AddLine(Codigo);
-	Codigo=_T("        for(i=0;i<NumeroEntradas;i++)");codigoFile->AddLine(Codigo);
-	Codigo=_T("        {");codigoFile->AddLine(Codigo);
-	Codigo=_T("            cout << \"Entrada \" << (i+1) << \" : \";");codigoFile->AddLine(Codigo);
-	Codigo=_T("            cin >> entra[i];");codigoFile->AddLine(Codigo);
-	Codigo=_T("        }");codigoFile->AddLine(Codigo);
-	Codigo=_T("        Red->calcular(entra,sale);");codigoFile->AddLine(Codigo);
-	Codigo=_T("        for(i=0;i<NumeroSalidas;i++)");codigoFile->AddLine(Codigo);
-	Codigo=_T("        {");codigoFile->AddLine(Codigo);
-	Codigo=_T("            cout << \"Salida \" << (i+1) << \" : \";");codigoFile->AddLine(Codigo);
-	Codigo=_T("            cout << sale[i] << \"\\n\";");codigoFile->AddLine(Codigo);
-	Codigo=_T("        }");codigoFile->AddLine(Codigo);
-	Codigo=_T("        cout << \"Desea otro cálculo ?(s/n)\";");codigoFile->AddLine(Codigo);
-	Codigo=_T("        cin >> q;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    }");codigoFile->AddLine(Codigo);
-	Codigo=_T("    delete[] entra;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    delete[] sale;");codigoFile->AddLine(Codigo);
-	Codigo=_T("    return 0;");codigoFile->AddLine(Codigo);
-	Codigo=_T("}\r\n");codigoFile->AddLine(Codigo);
+	Codigo=("int main()");codigoFile->AddLine(Codigo);
+	Codigo=("{");codigoFile->AddLine(Codigo);
+	Codigo=("    float *entra;");codigoFile->AddLine(Codigo);
+	Codigo=("    float *sale;");codigoFile->AddLine(Codigo);
+	Codigo=("    ");
+	Codigo << nombreClase << (" *Red;");codigoFile->AddLine(Codigo);
+	Codigo=("    int NumeroEntradas;");codigoFile->AddLine(Codigo);
+	Codigo=("    int NumeroSalidas;");codigoFile->AddLine(Codigo);
+	Codigo=("    Red=new ");
+	Codigo << nombreClase << ("();");codigoFile->AddLine(Codigo);
+	Codigo=("    NumeroEntradas=Red->numeroEntradas();");codigoFile->AddLine(Codigo);
+	Codigo=("    NumeroSalidas=Red->numeroSalidas();");codigoFile->AddLine(Codigo);
+	Codigo=("    entra=new float[NumeroEntradas];");codigoFile->AddLine(Codigo);
+	Codigo=("    sale=new float[NumeroSalidas];");codigoFile->AddLine(Codigo);
+	Codigo=("    int i;");codigoFile->AddLine(Codigo);
+	Codigo=("    char q='s';");codigoFile->AddLine(Codigo);
+	Codigo=("    while(q=='s')");codigoFile->AddLine(Codigo);
+	Codigo=("    {");codigoFile->AddLine(Codigo);
+	Codigo=("        for(i=0;i<NumeroEntradas;i++)");codigoFile->AddLine(Codigo);
+	Codigo=("        {");codigoFile->AddLine(Codigo);
+	Codigo=("            cout << \"Entrada \" << (i+1) << \" : \";");codigoFile->AddLine(Codigo);
+	Codigo=("            cin >> entra[i];");codigoFile->AddLine(Codigo);
+	Codigo=("        }");codigoFile->AddLine(Codigo);
+	Codigo=("        Red->calcular(entra,sale);");codigoFile->AddLine(Codigo);
+	Codigo=("        for(i=0;i<NumeroSalidas;i++)");codigoFile->AddLine(Codigo);
+	Codigo=("        {");codigoFile->AddLine(Codigo);
+	Codigo=("            cout << \"Salida \" << (i+1) << \" : \";");codigoFile->AddLine(Codigo);
+	Codigo=("            cout << sale[i] << \"\\n\";");codigoFile->AddLine(Codigo);
+	Codigo=("        }");codigoFile->AddLine(Codigo);
+	Codigo=("        cout << \"");
+	Codigo+=_("Desea otro cálculo ?(s/n)");
+	Codigo+=("\";");codigoFile->AddLine(Codigo);
+	Codigo=("        cin >> q;");codigoFile->AddLine(Codigo);
+	Codigo=("    }");codigoFile->AddLine(Codigo);
+	Codigo=("    delete[] entra;");codigoFile->AddLine(Codigo);
+	Codigo=("    delete[] sale;");codigoFile->AddLine(Codigo);
+	Codigo=("    return 0;");codigoFile->AddLine(Codigo);
+	Codigo=("}\n");codigoFile->AddLine(Codigo);
 }
 

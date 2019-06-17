@@ -1,0 +1,768 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-16 18:48-0500\n"
+"PO-Revision-Date: 2019-06-17 06:19-0500\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#: ../src/SistemaLogicaDifusa.cpp:86 ../src/SistemaLogicaDifusa.cpp:90
+#: ../src/SistemaLogicaDifusa.cpp:144 ../src/SistemaLogicaDifusa.cpp:148
+msgid "\t"
+msgstr "\t"
+
+#: ../src/DialogoSLD.cpp:311
+msgid "\n"
+msgstr "\n"
+
+#: ../src/DialogoPaso.cpp:53
+msgid "                 "
+msgstr "                 "
+
+#: ../UNFuzzyNetworkMain.cpp:516 ../UNFuzzyNetworkMain.cpp:659
+msgid " ("
+msgstr " ("
+
+#: ../src/DialogoCalculo.cpp:97 ../UNFuzzyNetworkMain.cpp:664
+msgid " : "
+msgstr " : "
+
+#: ../src/DialogoReglas.cpp:308
+msgid " a "
+msgstr " a "
+
+#: ../src/DialogoSLD.cpp:312
+msgid " entradas, "
+msgstr " entradas, "
+
+#: ../src/DialogoReglas.cpp:308
+msgid " etiquetas"
+msgstr " etiquetas"
+
+#: ../src/DialogoSLD.cpp:314
+msgid " reglas."
+msgstr " reglas."
+
+#: ../src/DialogoSLD.cpp:313
+msgid " salidas, "
+msgstr " salidas, "
+
+#: ../src/DialogoEntrenamiento.cpp:238
+msgid " valores por fuera de los rangos de las variables"
+msgstr " valores por fuera de los rangos de las variables"
+
+#: ../src/DialogoMotor.cpp:367 ../UNFuzzyNetworkMain.cpp:662
+msgid " y "
+msgstr " y "
+
+#: ../src/DialogoSLD.cpp:42
+msgid "&Salir"
+msgstr "&Salir"
+
+#: ../src/DialogoReglas.cpp:143 ../src/DialogoReglas.cpp:154
+#: ../src/DialogoReglas.cpp:475 ../src/DialogoPaso.cpp:292
+msgid "("
+msgstr "("
+
+#: ../src/DialogoSLD.cpp:304 ../UNFuzzyNetworkMain.cpp:266
+msgid "(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"
+msgstr "(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"
+
+#: ../src/DialogoReglas.cpp:143 ../src/DialogoReglas.cpp:154
+#: ../src/DialogoReglas.cpp:475 ../src/DialogoPaso.cpp:292
+msgid ")"
+msgstr ")"
+
+#: ../UNFuzzyNetworkMain.cpp:516
+msgid ") es : "
+msgstr ") es : "
+
+#: ../UNFuzzyNetworkMain.cpp:659
+msgid "). "
+msgstr "). "
+
+#: ../src/DialogoMotor.cpp:121
+msgid "----------"
+msgstr "----------"
+
+#: ../src/SistemaLogicaDifusa.cpp:113
+msgid "/"
+msgstr "/"
+
+#: ../src/SistemaLogicaDifusa.cpp:236 ../src/red.cpp:420
+msgid "// "
+msgstr "// "
+
+#: ../src/SistemaLogicaDifusa.cpp:238 ../src/red.cpp:422
+msgid "//   g++ xxx.cpp fuzzy.cpp"
+msgstr "//   g++ xxx.cpp fuzzy.cpp"
+
+#: ../src/SistemaLogicaDifusa.cpp:230 ../src/red.cpp:414
+msgid "// Autor: Oscar Duarte (ogduartev@unal.edu.co)"
+msgstr "// Autor: Oscar Duarte (ogduartev@unal.edu.co)"
+
+#: ../src/SistemaLogicaDifusa.cpp:228 ../src/red.cpp:412
+msgid "// Código C++ del Sistema de Lógica Difusa\n"
+msgstr "// Código C++ del Sistema de Lógica Difusa\n"
+
+#: ../src/SistemaLogicaDifusa.cpp:232 ../src/red.cpp:416
+msgid "// Descargo de responsabilidad: "
+msgstr "// Descargo de responsabilidad: "
+
+#: ../src/SistemaLogicaDifusa.cpp:233 ../src/red.cpp:417
+msgid "// El código generado se usa bajo responsabilidad del usuario."
+msgstr "// El código generado se usa bajo responsabilidad del usuario."
+
+#: ../src/SistemaLogicaDifusa.cpp:234 ../src/red.cpp:418
+msgid "// En ninguna forma genera responsabilidad para el autor de UNFUZZY"
+msgstr "// En ninguna forma genera responsabilidad para el autor de UNFUZZY"
+
+#: ../src/SistemaLogicaDifusa.cpp:229 ../src/red.cpp:413
+msgid "// Generado automáticamente por UNFUZZY V 3.0"
+msgstr "// Generado automáticamente por UNFUZZY V 3.0"
+
+#: ../src/SistemaLogicaDifusa.cpp:231 ../src/red.cpp:415
+msgid "// Universidad Nacional de Colombia"
+msgstr "// Universidad Nacional de Colombia"
+
+#: ../src/SistemaLogicaDifusa.cpp:235 ../src/red.cpp:419
+msgid "// ni para la Universidad Nacional de Colombia."
+msgstr "// ni para la Universidad Nacional de Colombia."
+
+#: ../src/SistemaLogicaDifusa.cpp:237 ../src/red.cpp:421
+msgid "// para compilar el archivo xxx.cpp:"
+msgstr "// para compilar el archivo xxx.cpp:"
+
+#: ../src/DialogoReglas.cpp:215 ../src/DialogoReglas.cpp:324
+msgid "1.000"
+msgstr "1.000"
+
+#: ../src/DialogoSLD.cpp:302 ../UNFuzzyNetworkMain.cpp:264
+msgid "3.0.0. Beta"
+msgstr "3.0.0. Beta"
+
+#: ../src/DialogoCalculo.cpp:51 ../src/DialogoCalcular.cpp:28
+msgid "=>"
+msgstr "=>"
+
+#: ../src/DialogoSLD.cpp:43
+msgid "A&yuda"
+msgstr "A&yuda"
+
+#: ../src/DialogoVariable.cpp:124 ../src/DialogoVariable.cpp:128
+msgid "Adicionar"
+msgstr "Adicionar"
+
+#: ../src/DialogoEntrenamiento.cpp:44
+msgid "Algoritmo de entrenamiento"
+msgstr "Algoritmo de entrenamiento"
+
+#: ../src/DialogoVariable.cpp:85
+msgid "Ancho"
+msgstr "Ancho"
+
+#: ../src/DialogoMotor.cpp:28
+msgid "And"
+msgstr "And"
+
+#: ../src/DialogoSLD.cpp:271 ../UNFuzzyNetworkMain.cpp:237
+msgid "Archivos CPP (*.cpp)|*.cpp"
+msgstr "Archivos CPP (*.cpp)|*.cpp"
+
+#: ../src/DialogoSLD.cpp:286 ../src/DialogoEntrenamiento.cpp:285
+msgid "Archivos CSV (*.csv)|*.csv"
+msgstr "Archivos CSV (*.csv)|*.csv"
+
+#: ../src/DialogoSLD.cpp:184 ../src/DialogoSLD.cpp:204
+msgid "Archivos UNFUZZY 3 (*.unf)|*.unf"
+msgstr "Archivos UNFUZZY 3 (*.unf)|*.unf"
+
+#: ../UNFuzzyNetworkMain.cpp:185 ../UNFuzzyNetworkMain.cpp:203
+msgid "Archivos UNFuzzyNetwork (*.unn)|*.unn"
+msgstr "Archivos UNFuzzyNetwork (*.unn)|*.unn"
+
+#: ../src/DialogoReglas.cpp:226 ../src/DialogoReglas.cpp:335
+#: ../src/SistemaLogicaDifusa.cpp:191 ../src/red.cpp:377
+#: ../src/DialogoSLD.cpp:168 ../src/DialogoSLD.cpp:180
+#: ../src/DialogoEntrenamiento.cpp:239 ../src/DialogoVariable.cpp:406
+#: ../src/DialogoVariable.cpp:488 ../UNFuzzyNetworkMain.cpp:157
+#: ../UNFuzzyNetworkMain.cpp:181 ../UNFuzzyNetworkMain.cpp:635
+#: ../UNFuzzyNetworkMain.cpp:646 ../UNFuzzyNetworkMain.cpp:668
+msgid "Atención"
+msgstr "Atención"
+
+#: ../src/DialogoVariable.cpp:125
+msgid "Autodefinir"
+msgstr "Autodefinir"
+
+#: ../src/SistemaLogicaDifusa.cpp:108
+msgid "Avance"
+msgstr "Avance"
+
+#: ../src/DialogoSLD.cpp:118
+msgid "Ayuda"
+msgstr "Ayuda"
+
+#: ../src/DialogoReglas.cpp:16 ../src/DialogoReglas.cpp:30
+#: ../src/DialogoInfo.cpp:10
+msgid "Base de reglas"
+msgstr "Base de reglas"
+
+#: ../src/DialogoCalcular.cpp:10
+msgid "Calcular"
+msgstr "Calcular"
+
+#: ../src/DialogoEditarVariable.cpp:30 ../src/DialogoAutodefinirVariable.cpp:31
+#: ../src/DialogoReglas.cpp:50 ../src/DialogoInfo.cpp:28
+#: ../src/DialogoCalculo.cpp:53 ../src/DialogoCalcular.cpp:30
+#: ../src/DialogoPaso.cpp:76 ../src/DialogoMotor.cpp:39
+#: ../src/DialogoEntrenamiento.cpp:48 ../src/DialogoFuncion.cpp:77
+#: ../src/DialogoVariable.cpp:130
+msgid "Cancelar"
+msgstr "Cancelar"
+
+#: ../src/DialogoEntrenamiento.cpp:41
+msgid "Cargar Patrones"
+msgstr "Cargar Patrones"
+
+#: ../src/DialogoReglas.cpp:45
+msgid "Certeza"
+msgstr "Certeza"
+
+#: ../src/DialogoReglas.cpp:326
+msgid "Certeza de la regla"
+msgstr "Certeza de la regla"
+
+#: ../src/DialogoFuncion.cpp:75
+msgid "Color"
+msgstr "Color"
+
+#: ../src/DialogoMotor.cpp:27
+msgid "Composición"
+msgstr "Composición"
+
+#: ../src/DialogoVariable.cpp:112
+msgid "Concresor"
+msgstr "Concresor"
+
+#: ../src/DialogoReglas.cpp:196 ../src/DialogoReglas.cpp:353
+#: ../src/DialogoReglas.cpp:428 ../src/DialogoEntrenamiento.cpp:159
+#: ../src/DialogoVariable.cpp:398 ../src/DialogoVariable.cpp:492
+msgid "Confirmación"
+msgstr "Confirmación"
+
+#: ../src/Graficador.cpp:525 ../src/DialogoMotor.cpp:29
+msgid "Conjunción"
+msgstr "Conjunción"
+
+#: ../src/DialogoVariable.cpp:65
+msgid "Conjuntos"
+msgstr "Conjuntos"
+
+#: ../src/DialogoAutodefinirVariable.cpp:23
+msgid "Conjuntos curvos"
+msgstr "Conjuntos curvos"
+
+#: ../src/DialogoAutodefinirVariable.cpp:25
+msgid "Conjuntos curvos cortos"
+msgstr "Conjuntos curvos cortos"
+
+#: ../src/DialogoAutodefinirVariable.cpp:22
+msgid "Conjuntos rectos"
+msgstr "Conjuntos rectos"
+
+#: ../src/DialogoAutodefinirVariable.cpp:24
+msgid "Conjuntos rectos cortos"
+msgstr "Conjuntos rectos cortos"
+
+#: ../src/DialogoCalculo.cpp:10
+msgid "Cálculo individual"
+msgstr "Cálculo individual"
+
+#: ../src/DialogoPaso.cpp:12
+msgid "Cálculo paso a paso"
+msgstr "Cálculo paso a paso"
+
+#: ../src/DialogoSLD.cpp:274 ../UNFuzzyNetworkMain.cpp:239
+msgid "Código fuente generado"
+msgstr "Código fuente generado"
+
+#: ../UNFuzzyNetworkMain.cpp:660
+msgid "Debe estar entre "
+msgstr "Debe estar entre "
+
+#: ../src/DialogoReglas.cpp:47
+msgid "Definición rápida"
+msgstr "Definición rápida"
+
+#: ../src/DialogoReglas.cpp:404
+msgid "Definición rápida de la base de reglas"
+msgstr "Definición rápida de la base de reglas"
+
+#: ../src/DialogoAutodefinirVariable.cpp:9
+msgid "Definición rápida de la variable"
+msgstr "Definición rápida de la variable"
+
+#: ../src/DialogoInfo.cpp:24
+msgid "Descripción:"
+msgstr "Descripción:"
+
+#: ../src/DialogoSLD.cpp:40
+msgid "Descripción:\n"
+msgstr "Descripción:\n"
+
+#: ../src/SistemaLogicaDifusa.cpp:423 ../src/SistemaLogicaDifusa.cpp:556
+#: ../src/red.cpp:579
+msgid "Desea otro cálculo ?(s/n)"
+msgstr "Desea otro cálculo ?(s/n)"
+
+#: ../src/DialogoVariable.cpp:77 ../src/DialogoVariable.cpp:82
+msgid "Difusor"
+msgstr "Difusor"
+
+#: ../src/DialogoVariable.cpp:27
+msgid "Diseño de Universos de Entrada o Salida"
+msgstr "Diseño de Universos de Entrada o Salida"
+
+#: ../src/DialogoEditarVariable.cpp:9
+msgid "Edición de Variables"
+msgstr "Edición de Variables"
+
+#: ../UNFuzzyNetworkMain.cpp:626
+msgid "Edición del Sistema de Lógica Difusa"
+msgstr "Edición del Sistema de Lógica Difusa"
+
+#: ../src/DialogoDifusor.cpp:4
+msgid "Edición del difusor"
+msgstr "Edición del difusor"
+
+#: ../src/DialogoVariable.cpp:122
+msgid "Editar"
+msgstr "Editar"
+
+#: ../src/DialogoFuncion.cpp:53
+msgid "Eje Horizontal"
+msgstr "Eje Horizontal"
+
+#: ../src/DialogoFuncion.cpp:54
+msgid "Eje Vertical"
+msgstr "Eje Vertical"
+
+#: ../src/SistemaLogicaDifusa.cpp:191 ../src/red.cpp:377
+msgid "El archivo fuzzy.cpp es necesario para compilar ¿desea sobreescribirlo?"
+msgstr ""
+"El archivo fuzzy.cpp es necesario para compilar ¿desea sobreescribirlo?"
+
+#: ../src/DialogoMotor.cpp:377
+msgid "El parámetro aplicado será "
+msgstr "El parámetro aplicado será "
+
+#: ../UNFuzzyNetworkMain.cpp:514
+msgid "El valor de la variable "
+msgstr "El valor de la variable "
+
+#: ../src/DialogoReglas.cpp:226 ../src/DialogoReglas.cpp:335
+msgid "El valor ingresado no es válido"
+msgstr "El valor ingresado no es válido"
+
+#: ../src/DialogoVariable.cpp:123 ../src/DialogoVariable.cpp:127
+msgid "Eliminar"
+msgstr "Eliminar"
+
+#: ../src/DialogoEntrenamiento.cpp:40
+msgid "Eliminar Patrón"
+msgstr "Eliminar Patrón"
+
+#: ../src/DialogoReglas.cpp:43
+msgid "Eliminar Reglas"
+msgstr "Eliminar Reglas"
+
+#: ../src/DialogoSLD.cpp:118
+msgid "En desarrollo..."
+msgstr "En desarrollo..."
+
+#: ../src/DialogoEntrenamiento.cpp:13
+msgid "Entrenamiento del sistema"
+msgstr "Entrenamiento del sistema"
+
+#: ../src/DialogoEntrenamiento.cpp:42
+msgid "Entrenar"
+msgstr "Entrenar"
+
+#: ../src/DialogoVariable.cpp:492
+msgid "Esta acción afectará la base de reglas ¿Desea eliminar el conjunto?"
+msgstr "Esta acción afectará la base de reglas ¿Desea eliminar el conjunto?"
+
+#: ../src/DialogoSLD.cpp:168 ../src/DialogoSLD.cpp:180
+#: ../UNFuzzyNetworkMain.cpp:157 ../UNFuzzyNetworkMain.cpp:181
+msgid ""
+"Esta acción borra todas las definiciones previas y crea un sistema nuevo. No "
+"puede deshacerse. ¿Desea continuar?"
+msgstr ""
+"Esta acción borra todas las definiciones previas y crea un sistema nuevo. No "
+"puede deshacerse. ¿Desea continuar?"
+
+#: ../src/DialogoReglas.cpp:353
+msgid ""
+"Esta acción borra todas las reglas y crea una base nueva ¿Desea proceder?"
+msgstr ""
+"Esta acción borra todas las reglas y crea una base nueva ¿Desea proceder?"
+
+#: ../src/DialogoReglas.cpp:404
+msgid "Estas son las opciones para definir las reglas de la salida"
+msgstr "Estas son las opciones para definir las reglas de la salida"
+
+#: ../src/DialogoVariable.cpp:126 ../src/DialogoVariable.cpp:473
+#: ../src/DialogoVariable.cpp:509
+msgid "Etiqueta"
+msgstr "Etiqueta"
+
+#: ../src/DialogoVariable.cpp:473 ../src/DialogoVariable.cpp:509
+msgid "Etiqueta del conjunto"
+msgstr "Etiqueta del conjunto"
+
+#: ../src/DialogoAutodefinirVariable.cpp:29
+msgid "Forma de los conjuntos"
+msgstr "Forma de los conjuntos"
+
+#: ../src/DialogoFuncion.cpp:16
+msgid "Función de entrada-salida"
+msgstr "Función de entrada-salida"
+
+#: ../src/DialogoMotor.cpp:26
+msgid "Implicación"
+msgstr "Implicación"
+
+#: ../src/DialogoReglas.cpp:309 ../src/SistemaLogicaDifusa.cpp:173
+#: ../src/SistemaLogicaDifusa.cpp:216 ../src/red.cpp:400
+#: ../src/DialogoMotor.cpp:378
+msgid "Información"
+msgstr "Información"
+
+#: ../src/DialogoMotor.cpp:367
+msgid "Ingrese el parámetro de la familia, entre "
+msgstr "Ingrese el parámetro de la familia, entre "
+
+#: ../UNFuzzyNetworkMain.cpp:657
+msgid "Ingrese el valor de la variable "
+msgstr "Ingrese el valor de la variable "
+
+#: ../src/DialogoEntrenamiento.cpp:39
+msgid "Insertar Patrón"
+msgstr "Insertar Patrón"
+
+#: ../src/DialogoReglas.cpp:42
+msgid "Insertar Regla"
+msgstr "Insertar Regla"
+
+#: ../src/DialogoMotor.cpp:397
+msgid ""
+"La Implicación seleccionada requiere una Conjunción del tipo 'Intersección'. "
+"La que usted ha seleccionado es del tipo 'Unión'"
+msgstr ""
+"La Implicación seleccionada requiere una Conjunción del tipo 'Intersección'. "
+"La que usted ha seleccionado es del tipo 'Unión'"
+
+#: ../src/DialogoMotor.cpp:393
+msgid ""
+"La Implicación seleccionada requiere una Conjunción del tipo 'Unión'. La que "
+"usted ha seleccionado es del tipo 'Intersección'"
+msgstr ""
+"La Implicación seleccionada requiere una Conjunción del tipo 'Unión'. La que "
+"usted ha seleccionado es del tipo 'Intersección'"
+
+#: ../src/DialogoFuncion.cpp:74
+msgid "Limpiar"
+msgstr "Limpiar"
+
+#: ../src/DialogoEntrenamiento.cpp:43
+msgid "Limpiar el sistema"
+msgstr "Limpiar el sistema"
+
+#: ../src/SistemaLogicaDifusa.cpp:107
+msgid "Lineas"
+msgstr "Lineas"
+
+#: ../src/SistemaLogicaDifusa.cpp:112
+msgid "Lineas: "
+msgstr "Lineas: "
+
+#: ../src/DialogoReglas.cpp:46
+msgid "Llenar la Base"
+msgstr "Llenar la Base"
+
+#: ../src/DialogoReglas.cpp:44 ../src/DialogoReglas.cpp:217
+msgid "Modificador Lingüístico"
+msgstr "Modificador Lingüístico"
+
+#: ../src/DialogoVariable.cpp:406
+msgid "No puede eliminar todas las variables"
+msgstr "No puede eliminar todas las variables"
+
+#: ../src/DialogoVariable.cpp:488
+msgid "No puede eliminar todos los conjuntos"
+msgstr "No puede eliminar todos los conjuntos"
+
+#: ../src/SistemaLogicaDifusa.cpp:176 ../src/SistemaLogicaDifusa.cpp:219
+#: ../src/SistemaLogicaDifusa.cpp:984 ../src/red.cpp:403
+msgid "No se pudo abrir el archivo"
+msgstr "No se pudo abrir el archivo"
+
+#: ../src/archivadorRed.cpp:126 ../src/Archivador.cpp:217
+msgid "No se pudo cargar el archivo"
+msgstr "No se pudo cargar el archivo"
+
+#: ../src/DialogoEditarVariable.cpp:21
+msgid "Nombre de la variable"
+msgstr "Nombre de la variable"
+
+#: ../src/DialogoInfo.cpp:23
+msgid "Nombre:"
+msgstr "Nombre:"
+
+#: ../src/DialogoAutodefinirVariable.cpp:27
+msgid "Número de conjuntos"
+msgstr "Número de conjuntos"
+
+#: ../src/DialogoEditarVariable.cpp:24
+msgid "Número de intervalos de evaluación"
+msgstr "Número de intervalos de evaluación"
+
+#: ../src/DialogoEditarVariable.cpp:29 ../src/DialogoAutodefinirVariable.cpp:30
+#: ../src/DialogoReglas.cpp:49 ../src/DialogoInfo.cpp:27
+#: ../src/DialogoCalculo.cpp:52 ../src/DialogoCalcular.cpp:29
+#: ../src/DialogoPaso.cpp:75 ../src/DialogoMotor.cpp:38
+#: ../src/DialogoEntrenamiento.cpp:47 ../src/DialogoFuncion.cpp:76
+#: ../src/DialogoVariable.cpp:129
+msgid "OK"
+msgstr "OK"
+
+#: ../src/DialogoMotor.cpp:13
+msgid "Parametros del motor de inferencia"
+msgstr "Parametros del motor de inferencia"
+
+#: ../src/DialogoMotor.cpp:368
+msgid "Parámetro de la familia de norma"
+msgstr "Parámetro de la familia de norma"
+
+#: ../src/DialogoFuncion.cpp:73
+msgid "Pintar"
+msgstr "Pintar"
+
+#: ../UNFuzzyNetworkMain.cpp:265
+msgid ""
+"Programa de diseño de\n"
+"Redes de Sistemas de Lógica Difusa\n"
+"Universidad Nacional de Colombia"
+msgstr ""
+"Programa de diseño de\n"
+"Redes de Sistemas de Lógica Difusa\n"
+"Universidad Nacional de Colombia"
+
+#: ../src/DialogoSLD.cpp:303
+msgid ""
+"Programa de diseño de Sistemas de Lógica Difusa\n"
+"Universidad Nacional de Colombia"
+msgstr ""
+"Programa de diseño de Sistemas de Lógica Difusa\n"
+"Universidad Nacional de Colombia"
+
+#: ../src/DialogoVariable.cpp:84
+msgid "Puntos de evaluación"
+msgstr "Puntos de evaluación"
+
+#: ../UNFuzzyNetworkMain.cpp:124
+msgid "Redes de Sistemas de Lógica Difusa"
+msgstr "Redes de Sistemas de Lógica Difusa"
+
+#: ../src/DialogoReglas.cpp:138 ../src/DialogoPaso.cpp:282
+msgid "Regla "
+msgstr "Regla "
+
+#: ../src/DialogoReglas.cpp:307
+msgid "Se ha aplicado el modificador "
+msgstr "Se ha aplicado el modificador "
+
+#: ../src/SistemaLogicaDifusa.cpp:173 ../src/SistemaLogicaDifusa.cpp:216
+#: ../src/SistemaLogicaDifusa.cpp:981 ../src/red.cpp:400
+msgid "Se ha creado el archivo"
+msgstr "Se ha creado el archivo"
+
+#: ../src/DialogoEntrenamiento.cpp:237
+msgid "Se han detectado y ajustado "
+msgstr "Se han detectado y ajustado "
+
+#: ../src/DialogoReglas.cpp:192
+msgid "Seleccione las reglas a eliminar"
+msgstr "Seleccione las reglas a eliminar"
+
+#: ../src/DialogoReglas.cpp:319
+msgid "Seleccione las reglas cuya certeza quiere cambiar"
+msgstr "Seleccione las reglas cuya certeza quiere cambiar"
+
+#: ../src/DialogoEntrenamiento.cpp:155
+msgid "Seleccione los patrones a eliminar"
+msgstr "Seleccione los patrones a eliminar"
+
+#: ../src/DialogoReglas.cpp:387
+msgid "Seleccione una (y solo una) salida para definir de forma rápida"
+msgstr "Seleccione una (y solo una) salida para definir de forma rápida"
+
+#: ../src/DialogoReglas.cpp:398
+msgid "Sentido constante: "
+msgstr "Sentido constante: "
+
+#: ../src/DialogoReglas.cpp:394
+msgid "Sentido creciente"
+msgstr "Sentido creciente"
+
+#: ../src/DialogoReglas.cpp:395
+msgid "Sentido decreciente"
+msgstr "Sentido decreciente"
+
+#: ../src/DialogoVariable.cpp:506
+msgid "Sin etiqueta"
+msgstr "Sin etiqueta"
+
+#: ../src/SistemaLogicaDifusa.cpp:5 ../src/red.cpp:6
+#: ../src/DialogoVariable.cpp:430
+msgid "Sin nombre"
+msgstr "Sin nombre"
+
+#: ../src/DialogoSLD.cpp:188 ../src/DialogoSLD.cpp:206
+msgid "Sistema de Lógica Difusa"
+msgstr "Sistema de Lógica Difusa"
+
+#: ../src/DialogoSLD.cpp:290 ../src/DialogoEntrenamiento.cpp:289
+msgid "Tabla de datos"
+msgstr "Tabla de datos"
+
+#: ../src/DialogoVariable.cpp:83
+msgid "Tipo"
+msgstr "Tipo"
+
+#: ../src/DialogoSLD.cpp:301
+msgid "UNFuzzy"
+msgstr "UNFuzzy"
+
+#: ../UNFuzzyNetworkMain.cpp:263
+msgid "UNFuzzyNetwork"
+msgstr "UNFuzzyNetwork"
+
+#: ../src/DialogoEntrenamiento.cpp:36
+msgid "Universos fijos"
+msgstr "Universos fijos"
+
+#: ../src/DialogoEntrenamiento.cpp:37
+msgid "Universos variables"
+msgstr "Universos variables"
+
+#: ../src/DialogoReglas.cpp:48
+msgid "Vaciar la Base"
+msgstr "Vaciar la Base"
+
+#: ../src/DialogoVariable.cpp:593
+msgid "Valor actual"
+msgstr "Valor actual"
+
+#: ../src/DialogoReglas.cpp:326
+msgid "Valor de la certeza (entre 0.0 y 1.0)"
+msgstr "Valor de la certeza (entre 0.0 y 1.0)"
+
+#: ../src/DialogoReglas.cpp:217
+msgid "Valor del modificador (entre 0.0 y 5.0)"
+msgstr "Valor del modificador (entre 0.0 y 5.0)"
+
+#: ../src/DialogoVariable.cpp:593
+msgid "Valor del punto"
+msgstr "Valor del punto"
+
+#: ../src/DialogoEditarVariable.cpp:23
+msgid "Valor máximo"
+msgstr "Valor máximo"
+
+#: ../src/DialogoEditarVariable.cpp:22
+msgid "Valor mínimo"
+msgstr "Valor mínimo"
+
+#: ../src/DialogoVariable.cpp:71
+msgid "Variable Lingüística"
+msgstr "Variable Lingüística"
+
+#: ../src/DialogoVariable.cpp:64
+msgid "Variables"
+msgstr "Variables"
+
+#: ../src/DialogoPaso.cpp:66 ../src/DialogoFuncion.cpp:65
+msgid "X"
+msgstr "X"
+
+#: ../UNFuzzyNetworkMain.cpp:243
+msgid "miRed"
+msgstr "miRed"
+
+#: ../src/DialogoSLD.cpp:278
+msgid "miSLD"
+msgstr "miSLD"
+
+#: ../src/DialogoSLD.cpp:272
+msgid "|Archivos C (*.c)|*.c"
+msgstr "|Archivos C (*.c)|*.c"
+
+#: ../src/DialogoEntrenamiento.cpp:286
+msgid "|Archivos TXT (*.txt)|*.txt"
+msgstr "|Archivos TXT (*.txt)|*.txt"
+
+#: ../src/DialogoSLD.cpp:287
+msgid "|Archivos de texto (*.txt)|*.txt"
+msgstr "|Archivos de texto (*.txt)|*.txt"
+
+#: ../src/DialogoSLD.cpp:288 ../src/DialogoEntrenamiento.cpp:287
+msgid "|Todos los archivos (*.*)|*.*"
+msgstr "|Todos los archivos (*.*)|*.*"
+
+#: ../src/archivadorRed.cpp:126 ../src/SistemaLogicaDifusa.cpp:176
+#: ../src/SistemaLogicaDifusa.cpp:219 ../src/red.cpp:403
+#: ../src/Archivador.cpp:217
+msgid "¡Atención!"
+msgstr "¡Atención!"
+
+#: ../UNFuzzyNetworkMain.cpp:635
+msgid "¿Desea eliminar el nodo?"
+msgstr "¿Desea eliminar el nodo?"
+
+#: ../UNFuzzyNetworkMain.cpp:646
+msgid "¿Desea eliminar la capa?"
+msgstr "¿Desea eliminar la capa?"
+
+#: ../src/DialogoVariable.cpp:398
+msgid "¿Desea eliminar la variable?"
+msgstr "¿Desea eliminar la variable?"
+
+#: ../src/DialogoReglas.cpp:196
+msgid "¿Desea eliminar las reglas?"
+msgstr "¿Desea eliminar las reglas?"
+
+#: ../src/DialogoEntrenamiento.cpp:159
+msgid "¿Desea eliminar los patrones?"
+msgstr "¿Desea eliminar los patrones?"
+
+#: ../src/DialogoReglas.cpp:428
+msgid "¿Desea eliminar todas las reglas?"
+msgstr "¿Desea eliminar todas las reglas?"
+
+#: ../src/DialogoMotor.cpp:400
+msgid "¿Desea mantener esa elección?"
+msgstr "¿Desea mantener esa elección?"

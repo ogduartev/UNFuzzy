@@ -13,12 +13,16 @@
 #ifndef WX_PRECOMP
     #include <wx/wx.h>
 		#include <wx/gbsizer.h>
+		#include <wx/filefn.h>
+		#include <wx/filename.h>
+		#include <wx/stdpaths.h>
 #endif
 
 #include "UNFuzzyNetworkApp.h"
 #include "graficadorRed.h"
 #include "red.h"
 #include "archivadorRed.h"
+#include "bmps.h"
 
 #include "DialogoSLD.h"
 #include "DialogoCalculoRed.h"
@@ -37,6 +41,7 @@ class UNFuzzyNetworkFrame: public wxFrame
         void OnFuncion   (wxCommandEvent& event);
         void OnCalcular  (wxCommandEvent& event);
 				void OnCodigo    (wxCommandEvent& event);
+				void OnIdioma     (wxCommandEvent& event);
 				void OnAbout     (wxCommandEvent& event);
 
 //        void crearMenu();
@@ -76,6 +81,8 @@ class UNFuzzyNetworkFrame: public wxFrame
     	pin* pinInicioArrastre;
     	int capaInicioArrastre;
 
+    	wxLocale *MiLocale;
+
 			int tamElimina;
     	int tamPunto;
     	int tamIconoPlus;
@@ -89,18 +96,19 @@ class UNFuzzyNetworkFrame: public wxFrame
   		wxRect***					botonesSLD;
 
 
-    wxButton* buttonNuevo;
-    wxButton* buttonDescripcion;
-    wxButton* buttonLeer;
-    wxButton* buttonGuardar;
-    wxButton* buttonFuncion;
-    wxButton* buttonCalcular;
-    wxButton* buttonCodigo;
-    wxButton* buttonAbout;
-    wxStaticText* staticNombre;
+			wxButton* buttonNuevo;
+			wxButton* buttonDescripcion;
+			wxButton* buttonLeer;
+			wxButton* buttonGuardar;
+			wxButton* buttonFuncion;
+			wxButton* buttonCalcular;
+			wxButton* buttonCodigo;
+			wxButton* buttonIdioma;
+			wxButton* buttonAbout;
+			wxStaticText* staticNombre;
 
-		wxFlexGridSizer*  sizerTotal;
-		wxFlexGridSizer*  sizerCanvas;
+			wxFlexGridSizer*  sizerTotal;
+			wxFlexGridSizer*  sizerCanvas;
 
 			DECLARE_EVENT_TABLE()
 };
@@ -121,6 +129,7 @@ enum
   DLG_FRONTALNET_FUNCION,
   DLG_FRONTALNET_CALCULAR,
   DLG_FRONTALNET_CODIGO,
+  DLG_FRONTALNET_IDIOMA,
   DLG_FRONTALNET_ABOUT
 };
 #endif // UNFUZZYNETWORKMAIN_H

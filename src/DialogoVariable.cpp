@@ -24,7 +24,7 @@ BEGIN_EVENT_TABLE(DialogoVariable, wxDialog)
 END_EVENT_TABLE()
 
 DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool flagDif, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Diseño de Universos de Entrada o Salida")))
+:wxDialog(parent,wxID_ANY,wxString(_("Diseño de Universos de Entrada o Salida")))
 {
 	U=u;
 	SLD=sld;
@@ -61,14 +61,14 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	sizerBotonesDifConc    = new wxFlexGridSizer(2,3,0);
 	sizerFlexiVariable     = new wxFlexGridSizer(1,2,0);
 	sizerImgVariable       = new wxFlexGridSizer(2,2,0);
-	sizerStaticVariables   = new wxStaticBoxSizer(wxVERTICAL,this,_T("Variables"));
-	sizerStaticConjuntos   = new wxStaticBoxSizer(wxVERTICAL,this,_T("Conjuntos"));
+	sizerStaticVariables   = new wxStaticBoxSizer(wxVERTICAL,this,_("Variables"));
+	sizerStaticConjuntos   = new wxStaticBoxSizer(wxVERTICAL,this,_("Conjuntos"));
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
 	listaVariables    = new wxListBox(this,DLG_VARIABLE_LISTAVAR,wxDefaultPosition,wxSize(150,150));
 	listaConjuntos    = new wxListBox(this,DLG_VARIABLE_LISTACON,wxDefaultPosition,wxSize(150,150));
   canvasVar         = new wxSizerItem(600,200);
-  staticLabelVar    = new wxStaticText(this,wxID_ANY,_T("Variable Lingüística"));
+  staticLabelVar    = new wxStaticText(this,wxID_ANY,_("Variable Lingüística"));
 
   if(flagDifusor)
 	{
@@ -76,13 +76,13 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 
 	  staticLabelDif      = new wxStaticText(this,wxID_ANY,_("Difusor"));
 		comboTipoDifusor    = new wxComboBox(this,DLG_VARIABLE_COMBODIFUSOR);
-	  spinDifIntervalos   = new wxSpinCtrl(this,DLG_VARIABLE_SPINDIFINTERVALOS, _T(""),wxDefaultPosition,wxSize(120,25));
-	  spinDifAncho        = new wxSpinCtrlDouble(this,DLG_VARIABLE_SPINDIFANCHO,_T(""),wxDefaultPosition,wxSize(120,25));
+	  spinDifIntervalos   = new wxSpinCtrl(this,DLG_VARIABLE_SPINDIFINTERVALOS, "",wxDefaultPosition,wxSize(120,25));
+	  spinDifAncho        = new wxSpinCtrlDouble(this,DLG_VARIABLE_SPINDIFANCHO,"",wxDefaultPosition,wxSize(120,25));
 		comboTipoConcresor  = NULL;
-		sizerStaticDifConc  = new wxStaticBoxSizer(wxVERTICAL,this,_T("Difusor"));
-		staticTipoDif       = new wxStaticText(this,wxID_ANY,_T("Tipo"));
-		staticInterDif      = new wxStaticText(this,wxID_ANY,_T("Puntos de evaluación"));
-		staticAnchoDif      = new wxStaticText(this,wxID_ANY,_T("Ancho"));
+		sizerStaticDifConc  = new wxStaticBoxSizer(wxVERTICAL,this,_("Difusor"));
+		staticTipoDif       = new wxStaticText(this,wxID_ANY,_("Tipo"));
+		staticInterDif      = new wxStaticText(this,wxID_ANY,_("Puntos de evaluación"));
+		staticAnchoDif      = new wxStaticText(this,wxID_ANY,_("Ancho"));
 
 		sizerBotonesDifConc->Add(staticTipoDif        , 1, wxALIGN_RIGHT|wxALL, 1);
 		sizerBotonesDifConc->Add(comboTipoDifusor     , 1, wxALIGN_LEFT |wxALL, 1);
@@ -91,16 +91,16 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 		sizerBotonesDifConc->Add(staticAnchoDif       , 1, wxALIGN_RIGHT|wxALL, 1);
 		sizerBotonesDifConc->Add(spinDifAncho         , 1, wxALIGN_LEFT |wxALL, 1);
 
-		comboTipoDifusor->Append(_T(IDS_CONJUNTOS_TIPO_1));
-		comboTipoDifusor->Append(_T(IDS_CONJUNTOS_TIPO_2));
-		comboTipoDifusor->Append(_T(IDS_CONJUNTOS_TIPO_5));
-		comboTipoDifusor->Append(_T(IDS_CONJUNTOS_TIPO_6));
-		comboTipoDifusor->Append(_T(IDS_CONJUNTOS_TIPO_8));
+		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_1));
+		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_2));
+		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_5));
+		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_6));
+		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_8));
 	}else
 	{
 	  canvasDif         = new wxSizerItem(1,200);
 
-	  staticLabelDif      = new wxStaticText(this,wxID_ANY,_(""));
+	  staticLabelDif      = new wxStaticText(this,wxID_ANY,"");
 		comboTipoDifusor    = NULL;
 	  spinDifIntervalos   = NULL;
 	  spinDifAncho        = NULL;
@@ -109,36 +109,36 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 		staticAnchoDif      = NULL;
 
 		comboTipoConcresor  = new wxComboBox(this,DLG_VARIABLE_COMBOCONCRESOR);
-		sizerStaticDifConc  = new wxStaticBoxSizer(wxVERTICAL,this,_T("Concresor"));
+		sizerStaticDifConc  = new wxStaticBoxSizer(wxVERTICAL,this,_("Concresor"));
 		sizerBotonesDifConc->Add(comboTipoConcresor     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 
-		comboTipoConcresor->Append(_T(IDS_CONCRESOR_TIPO_0));
-		comboTipoConcresor->Append(_T(IDS_CONCRESOR_TIPO_1));
-		comboTipoConcresor->Append(_T(IDS_CONCRESOR_TIPO_2));
-		comboTipoConcresor->Append(_T(IDS_CONCRESOR_TIPO_3));
-		comboTipoConcresor->Append(_T(IDS_CONCRESOR_TIPO_4));
+		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_0));
+		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_1));
+		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_2));
+		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_3));
+		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_4));
 	}
 
-	buttonEditarVar      = new wxButton(this,DLG_VARIABLE_VAREDITAR      ,_T("Editar"));
-	buttonEliminarVar    = new wxButton(this,DLG_VARIABLE_VARELIMINAR    ,_T("Eliminar"));
-	buttonAdicionarVar   = new wxButton(this,DLG_VARIABLE_VARADICIONAR   ,_T("Adicionar"));
-	buttonAutodefinirVar = new wxButton(this,DLG_VARIABLE_VARAUTODEFINIR ,_T("Autodefinir"));
-	buttonEditarCon      = new wxButton(this,DLG_VARIABLE_CONEDITAR      ,_T("Etiqueta"));
-	buttonEliminarCon    = new wxButton(this,DLG_VARIABLE_CONELIMINAR    ,_T("Eliminar"));
-	buttonAdicionarCon   = new wxButton(this,DLG_VARIABLE_CONADICIONAR   ,_T("Adicionar"));
+	buttonEditarVar      = new wxButton(this,DLG_VARIABLE_VAREDITAR      ,_("Editar"));
+	buttonEliminarVar    = new wxButton(this,DLG_VARIABLE_VARELIMINAR    ,_("Eliminar"));
+	buttonAdicionarVar   = new wxButton(this,DLG_VARIABLE_VARADICIONAR   ,_("Adicionar"));
+	buttonAutodefinirVar = new wxButton(this,DLG_VARIABLE_VARAUTODEFINIR ,_("Autodefinir"));
+	buttonEditarCon      = new wxButton(this,DLG_VARIABLE_CONEDITAR      ,_("Etiqueta"));
+	buttonEliminarCon    = new wxButton(this,DLG_VARIABLE_CONELIMINAR    ,_("Eliminar"));
+	buttonAdicionarCon   = new wxButton(this,DLG_VARIABLE_CONADICIONAR   ,_("Adicionar"));
   buttonOK             = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel         = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 	comboTipoCon         = new wxComboBox(this,DLG_VARIABLE_CONTIPO);
 
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_0));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_1));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_2));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_3));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_4));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_5));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_6));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_7));
-	comboTipoCon->Append(_T(IDS_CONJUNTOS_TIPO_8));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_0));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_1));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_2));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_3));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_4));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_5));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_6));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_7));
+	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_8));
 
 ///////////////////
 	sizerBotonesVariable->Add(buttonEditarVar     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
@@ -395,7 +395,7 @@ void DialogoVariable::OnEditarVar      (wxCommandEvent&   event)
 void DialogoVariable::OnEliminarVar    (wxCommandEvent&   event)
 {
 	wxMessageDialog *dial1;
-	dial1=new wxMessageDialog (this, _T("¿Desea eliminar la variable?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial1=new wxMessageDialog (this, _("¿Desea eliminar la variable?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial1->ShowModal() == wxID_CANCEL)
 	{
 		delete dial1;
@@ -403,7 +403,7 @@ void DialogoVariable::OnEliminarVar    (wxCommandEvent&   event)
 	}
 	if(U->numeroVariables()<2)
 	{
-	  wxMessageBox(_T("No puede eliminar todas las variables"),_T("Atención"));
+	  wxMessageBox(_("No puede eliminar todas las variables"),_("Atención"));
 	  return;
 	}
 	wxMessageDialog *dial;
@@ -427,6 +427,8 @@ void DialogoVariable::OnAdicionarVar   (wxCommandEvent&   event)
 	DialogoEditarVariable *dial;
 	Variable *Var;
 	Var=new Variable();
+	wxString name=_("Sin nombre");
+	Var->nombreVariable(name.c_str());
 	Var->autodefinirConjuntosRectos(3);
 	dial=new  DialogoEditarVariable(Var,this);
 	if(dial->ShowModal() == wxID_OK)
@@ -456,13 +458,6 @@ void DialogoVariable::OnAutodefinirVar (wxCommandEvent&   event)
 	dial=new  DialogoAutodefinirVariable(U->variable(NumVar),this);
 	if(dial->ShowModal() == wxID_OK)
 	{
-		if(dial->flagRectos)
-		{
-			U->variable(NumVar)->autodefinirConjuntosRectos(dial->numConjuntos);
-		}else
-		{
-			U->variable(NumVar)->autodefinirConjuntosCurvos(dial->numConjuntos);
-		}
 	}
 	delete dial;
 	llenarDatos();
@@ -490,11 +485,11 @@ void DialogoVariable::OnEliminarCon    (wxCommandEvent&   event)
 {
 	if(U->variable(NumVar)->numeroConjuntos()<2)
 	{
-	  wxMessageBox(_T("No puede eliminar todos los conjuntos"),_T("Atención"));
+	  wxMessageBox(_("No puede eliminar todos los conjuntos"),_("Atención"));
 	  return;
 	}
 	wxMessageDialog *dial;
-	dial=new wxMessageDialog (this, _T("Esta acción afectará la base de reglas ¿Desea eliminar el conjunto?"), _T("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
+	dial=new wxMessageDialog (this, _("Esta acción afectará la base de reglas ¿Desea eliminar el conjunto?"), _("Confirmación"), wxOK|wxCANCEL|wxCENTRE);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		U->variable(NumVar)->eliminarConjuntos(NumCon);
@@ -508,7 +503,7 @@ void DialogoVariable::OnEliminarCon    (wxCommandEvent&   event)
 
 void DialogoVariable::OnAdicionarCon   (wxCommandEvent&   event)
 {
-	wxString nombre=_T("Sin etiqueta");
+	wxString nombre=_("Sin etiqueta");
 
 	wxTextEntryDialog* dial;
 	dial=new  wxTextEntryDialog(this,_("Etiqueta"),_("Etiqueta del conjunto"),nombre);

@@ -13,7 +13,7 @@ END_EVENT_TABLE()
 
 
 DialogoFuncion::DialogoFuncion(wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Función de entrada-salida")))
+:wxDialog(parent,wxID_ANY,wxString(_("Función de entrada-salida")))
 {
 }
 
@@ -50,8 +50,8 @@ void DialogoFuncion::iniciar()
 		strSale.Add(nombreSalida(i));
 	}
 
-	staticEntradas   = new wxStaticText(this,wxID_ANY,_T("Eje Horizontal"));
-	staticSalidas    = new wxStaticText(this,wxID_ANY,_T("Eje Vertical"));
+	staticEntradas   = new wxStaticText(this,wxID_ANY,_("Eje Horizontal"));
+	staticSalidas    = new wxStaticText(this,wxID_ANY,_("Eje Vertical"));
 	choiceEntradas   = new wxChoice(this,DLG_FUNCION_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_FUNCION_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
 	valoresEntradas  = new wxSpinCtrlDouble*[numeroEntradas()];
@@ -62,7 +62,7 @@ void DialogoFuncion::iniciar()
 		maxi=rangoMaximoEntrada(i);
 		medi=0.5*(mini+maxi);
 		incr=0.01*(maxi-mini);
-		valoresEntradas[i]=new wxSpinCtrlDouble(this,wxID_ANY,_T("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
+		valoresEntradas[i]=new wxSpinCtrlDouble(this,wxID_ANY,_("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
 
 		wxStaticText *stText;
 		stText= new wxStaticText(this,wxID_ANY, nombreEntrada(i));
@@ -70,9 +70,9 @@ void DialogoFuncion::iniciar()
 		sizerValores ->Add(valoresEntradas[i] , 1, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 3);
 	}
 
-  buttonPintar     = new wxButton(this,DLG_FUNCION_BTNPINTAR,_T("Pintar"));
-  buttonLimpiar    = new wxButton(this,DLG_FUNCION_BTNLIMPIAR,_T("Limpiar"));
-  buttonColor      = new wxButton(this,DLG_FUNCION_BTNCOLOR  ,_T("Color"));
+  buttonPintar     = new wxButton(this,DLG_FUNCION_BTNPINTAR,_("Pintar"));
+  buttonLimpiar    = new wxButton(this,DLG_FUNCION_BTNLIMPIAR,_("Limpiar"));
+  buttonColor      = new wxButton(this,DLG_FUNCION_BTNCOLOR  ,_("Color"));
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 

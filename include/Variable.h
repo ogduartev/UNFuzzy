@@ -9,18 +9,7 @@
 class Variable
 {
 public:
-	Variable(int num=10)
-	{
-		Conjuntos = new ListaConjuntos(num);
-		DifusorEntrada= new DifusorSinglenton(0.5,0.01);
-		NombreVariable=0;
-	  char str[40];sprintf(str,"Sin nombre");
-	  nombreVariable(str);
-	  numeroIntervalos(20);
-	  rangoMinimo(-1.0);
-	  rangoMaximo(1.0);
-	  autodefinirConjuntosRectos(num);
-	}
+	Variable(int num=10);
 	~Variable();
 	Difusor* difusorEntrada() const
 	{
@@ -83,6 +72,8 @@ public:
 	void rangoMaximo(float rm){RangoMaximo=rm;}
 	void autodefinirConjuntosRectos(int num);
 	void autodefinirConjuntosCurvos(int num);
+	void autodefinirConjuntosRectosCortos(int num);
+	void autodefinirConjuntosCurvosCortos(int num);
 	void ajustar(float minimo, float maximo);
 	BOOL operator==(const Variable& other)
 	{

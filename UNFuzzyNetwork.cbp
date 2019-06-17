@@ -79,6 +79,7 @@
 		<Unit filename="include/Universo.h" />
 		<Unit filename="include/Variable.h" />
 		<Unit filename="include/archivadorRed.h" />
+		<Unit filename="include/bmps.h" />
 		<Unit filename="include/capa.h" />
 		<Unit filename="include/graficadorRed.h" />
 		<Unit filename="include/nodo.h" />

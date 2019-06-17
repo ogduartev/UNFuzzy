@@ -146,6 +146,7 @@ void graficadorRed::pintarIconosPlus(red *Red)
 	dc->SetPen(penIconoPlus);
 	wxBrush brushIconoPlus(*wxTRANSPARENT_BRUSH);
 	dc->SetBrush(brushIconoPlus);
+
   for(int numCapa=0;numCapa < Red->capas()->GetItemsInContainer(); numCapa++)
 	{
 		int Xo=marco.GetLeftBottom().x + sepXSLD/2 + numCapa*(widthSLD+sepXSLD) + widthSLD/2;
@@ -153,11 +154,11 @@ void graficadorRed::pintarIconosPlus(red *Red)
 		int xo,yo;
 		yo=Yo;
 		xo=Xo - tamIconoPlus*3/2;
-		dc->DrawBitmap(wxBitmap(_T("bmp/eliminaCapa.bmp"),wxBITMAP_TYPE_BMP),xo,yo);
+		dc->DrawBitmap(wxMEMORY_BITMAP(eliminacapa),xo,yo);
 		xo=Xo + tamIconoPlus*1/2 ;
-		dc->DrawBitmap(wxBitmap(_T("bmp/adicionaNodo.bmp"),wxBITMAP_TYPE_BMP),xo,yo);
+		dc->DrawBitmap(wxMEMORY_BITMAP(adicionanodo),xo,yo);
 	}
 	int xo=marco.GetRightBottom().x - tamIconoPlus*3/2;
 	int yo=marco.GetLeftBottom().y - tamIconoPlus*3/2;
-	dc->DrawBitmap(wxBitmap(_T("bmp/adicionaCapa.bmp"),wxBITMAP_TYPE_BMP),xo,yo);
+	dc->DrawBitmap(wxMEMORY_BITMAP(adicionacapa),xo,yo);
 }

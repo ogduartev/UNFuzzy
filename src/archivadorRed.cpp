@@ -15,9 +15,9 @@ void archivadorRed::guardar(wxString fileName)
 {
 
 	wxXmlNode* Node;
-	Node=new wxXmlNode(NULL,wxXML_ELEMENT_NODE,_T("RED"));
-	Node->AddAttribute(_T("Nombre")      , Red->nombre);
-	Node->AddAttribute(_T("Descripción") , Red->descripcion);
+	Node=new wxXmlNode(NULL,wxXML_ELEMENT_NODE,("NETWORK"));
+	Node->AddAttribute(("Name")      , Red->nombre);
+	Node->AddAttribute(("Description") , Red->descripcion);
 	doc.SetRoot(Node);
 
 	guardarEnlaces(Node);
@@ -29,7 +29,7 @@ void archivadorRed::guardar(wxString fileName)
 void archivadorRed::guardarCapas(wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("CAPAS"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("LAYERS"));
 	for(int i = Red->capas()->GetItemsInContainer()-1; i >= 0 ; i--)
 	{
 		capa *Capa=Red->capas()->dato(i);
@@ -40,7 +40,7 @@ void archivadorRed::guardarCapas(wxXmlNode* parent)
 void archivadorRed::guardarCapa(wxXmlNode* parent, capa* Capa)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("CAPA"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("LAYER"));
 
 	for(int j=Capa->nodos()->GetItemsInContainer()-1; j>=0 ;j--)
 	{
@@ -52,9 +52,9 @@ void archivadorRed::guardarCapa(wxXmlNode* parent, capa* Capa)
 void archivadorRed::guardarNodo(wxXmlNode* parent, nodo *Nodo)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("NODO"));
-	NodeA->AddAttribute(_T("Entradas")      , wxString::Format("%d",Nodo->sld()->entradas->numeroVariables()));
-	NodeA->AddAttribute(_T("Salidas")       , wxString::Format("%d",Nodo->sld()->salidas->numeroVariables()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("NODE"));
+	NodeA->AddAttribute(("Inputs")      , wxString::Format("%d",Nodo->sld()->entradas->numeroVariables()));
+	NodeA->AddAttribute(("Outputs")     , wxString::Format("%d",Nodo->sld()->salidas->numeroVariables()));
 
 	guardarSLD(NodeA, Nodo->sld());
 }
@@ -62,7 +62,7 @@ void archivadorRed::guardarNodo(wxXmlNode* parent, nodo *Nodo)
 void archivadorRed::guardarSLD(wxXmlNode* parent, SistemaLogicaDifusa *SLD)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("SLD"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("FLS"));
 
 	Archivador archSLD(SLD);
 	archSLD.guardarSLD(NodeA);
@@ -71,7 +71,7 @@ void archivadorRed::guardarSLD(wxXmlNode* parent, SistemaLogicaDifusa *SLD)
 void archivadorRed::guardarEnlaces (wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("ENLACES"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("LINKS"));
 
 	for(int numCapa=0;numCapa < Red->capas()->GetItemsInContainer(); numCapa++)
 	{
@@ -99,7 +99,7 @@ void archivadorRed::guardarEnlaces (wxXmlNode* parent)
 void archivadorRed::guardarEnlace  (wxXmlNode* parent,pin* PinEntra, pin* PinSale)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("ENLACE"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("LINK"));
 	int capaEntra=-1;
 	int nodoEntra=-1;
 	int pinEntra=-1;
@@ -110,12 +110,12 @@ void archivadorRed::guardarEnlace  (wxXmlNode* parent,pin* PinEntra, pin* PinSal
 	Red->buscarPinEntrada(PinEntra, &capaEntra, &nodoEntra, &pinEntra);
 	Red->buscarPinSalida (PinSale,  &capaSale,  &nodoSale,  &pinSale );
 
-	NodeA->AddAttribute(_T("CapaEntrada")      , wxString::Format("%d",capaEntra));
-	NodeA->AddAttribute(_T("NodoEntrada")      , wxString::Format("%d",nodoEntra));
-	NodeA->AddAttribute(_T("PinEntrada")       , wxString::Format("%d",pinEntra));
-	NodeA->AddAttribute(_T("CapaSalida")       , wxString::Format("%d",capaSale));
-	NodeA->AddAttribute(_T("NodoSalida")       , wxString::Format("%d",nodoSale));
-	NodeA->AddAttribute(_T("PinSalida")        , wxString::Format("%d",pinSale));
+	NodeA->AddAttribute(("InputLayer")     , wxString::Format("%d",capaEntra));
+	NodeA->AddAttribute(("InputNode")      , wxString::Format("%d",nodoEntra));
+	NodeA->AddAttribute(("InputTerminal")  , wxString::Format("%d",pinEntra));
+	NodeA->AddAttribute(("OutputLayer")    , wxString::Format("%d",capaSale));
+	NodeA->AddAttribute(("OutputNode")     , wxString::Format("%d",nodoSale));
+	NodeA->AddAttribute(("OutputTerminal") , wxString::Format("%d",pinSale));
 }
 
 void archivadorRed::leer(wxString fileName)
@@ -123,22 +123,22 @@ void archivadorRed::leer(wxString fileName)
 	doc.Load(fileName);
 	if(!doc.IsOk())
 	{
-		wxMessageBox(_T("No se pudo cargar el archivo"),_T("¡Atención!"));
+		wxMessageBox(_("No se pudo cargar el archivo"),_("¡Atención!"));
 	}
 
 	Red->eliminarCapas();
 
 	wxXmlNode *Node=doc.GetRoot();
-	Red->nombre=Node->GetAttribute(_T("Nombre"));
-	Red->descripcion=Node->GetAttribute(_T("Descripción"));
+	Red->nombre=Node->GetAttribute(("Name"));
+	Red->descripcion=Node->GetAttribute(("Description"));
 
 	wxXmlNode *NodeA=Node->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("CAPAS"))
+		if(NodeA->GetName()==("LAYERS"))
 		{
 			leerCapas(NodeA);
-		}if(NodeA->GetName()==_T("ENLACES"))
+		}if(NodeA->GetName()==("LINKS"))
 		{
 			leerEnlaces(NodeA);
 		}
@@ -151,7 +151,7 @@ void archivadorRed::leerCapas   (wxXmlNode* parent)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("CAPA"))
+		if(NodeA->GetName()==("LAYER"))
 		{
 			capa *Capa;
 			Capa=new capa();
@@ -167,11 +167,11 @@ void archivadorRed::leerCapa(wxXmlNode* parent, capa *Capa)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("NODO"))
+		if(NodeA->GetName()==("NODE"))
 		{
 			long numEnt,numSal;
-			NodeA->GetAttribute(_T("Entradas")).ToLong(&numEnt);
-			NodeA->GetAttribute(_T("Salidas")).ToLong(&numSal);
+			NodeA->GetAttribute(("Inputs")).ToLong(&numEnt);
+			NodeA->GetAttribute(("Outputs")).ToLong(&numSal);
 			nodo *Nodo;
 			Nodo=new nodo((int)numEnt,(int)numSal);
 			leerNodo(NodeA,Nodo);
@@ -185,7 +185,7 @@ void archivadorRed::leerNodo(wxXmlNode* parent, nodo *Nodo)
 {
 	wxXmlNode *NodeA=parent->GetChildren();
 
-	if(NodeA->GetName()==_T("SLD"))
+	if(NodeA->GetName()==("FLS"))
 	{
 		leerSLD(NodeA, Nodo->sld());
 	}
@@ -202,7 +202,7 @@ void archivadorRed::leerEnlaces    (wxXmlNode* parent)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("ENLACE"))
+		if(NodeA->GetName()==("LINK"))
 		{
 			leerEnlace(NodeA);
 		}
@@ -219,12 +219,12 @@ void archivadorRed::leerEnlace     (wxXmlNode* parent)
 	long nodoSale=-1;
 	long pinSale=-1;
 
-	parent->GetAttribute(_T("CapaEntrada")).ToLong(&capaEntra);
-	parent->GetAttribute(_T("NodoEntrada")).ToLong(&nodoEntra);
-	parent->GetAttribute(_T("PinEntrada") ).ToLong(&pinEntra);
-	parent->GetAttribute(_T("CapaSalida") ).ToLong(&capaSale);
-	parent->GetAttribute(_T("NodoSalida") ).ToLong(&nodoSale);
-	parent->GetAttribute(_T("PinSalida")  ).ToLong(&pinSale);
+	parent->GetAttribute(("InputLayer"    )).ToLong(&capaEntra);
+	parent->GetAttribute(("InputNode"     )).ToLong(&nodoEntra);
+	parent->GetAttribute(("InputTerminal" )).ToLong(&pinEntra);
+	parent->GetAttribute(("OutputLayer"   )).ToLong(&capaSale);
+	parent->GetAttribute(("OutputNode"    )).ToLong(&nodoSale);
+	parent->GetAttribute(("OutputTerminal")).ToLong(&pinSale);
 
 	if (capaEntra>=0 and nodoEntra>=0 and pinEntra>=0 and
 			capaSale>=0  and nodoSale>=0  and pinSale>=0 )

@@ -14,7 +14,7 @@ class DialogoAutodefinirVariable : public wxDialog
 		void OnClose(wxCloseEvent&   event);
 		void OnOK(wxCommandEvent&   event);
 
-		bool flagRectos;
+		int forma;
 		int numConjuntos;
 	protected:
 		Variable *Var;

@@ -22,9 +22,10 @@ IMPLEMENT_APP(UNFuzzyNetworkApp);
 
 bool UNFuzzyNetworkApp::OnInit()
 {
-    UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _("wxWidgets Application Template"));
-    
-    frame->Show();
-    
-    return true;
+	wxInitAllImageHandlers();
+  UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _("wxWidgets Application Template"));
+
+  frame->Show();
+
+  return true;
 }

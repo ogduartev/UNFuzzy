@@ -15,7 +15,7 @@ void Archivador::guardar(wxString fileName)
 {
 
 	wxXmlNode* Node;
-	Node=new wxXmlNode(NULL,wxXML_ELEMENT_NODE,_T("SLD"));
+	Node=new wxXmlNode(NULL,wxXML_ELEMENT_NODE,("FLS"));
 	doc.SetRoot(Node);
 
 	guardarSLD(Node);
@@ -25,8 +25,8 @@ void Archivador::guardar(wxString fileName)
 
 void Archivador::guardarSLD(wxXmlNode* parent)
 {
-	parent->AddAttribute(_T("Nombre")      , SLD->nombre);
-	parent->AddAttribute(_T("Descripción") , SLD->descripcion);
+	parent->AddAttribute(("Name")      , SLD->nombre);
+	parent->AddAttribute(("Description") , SLD->descripcion);
 
 	guardarConcrecion(parent);
 	guardarMaquina   (parent);
@@ -37,7 +37,7 @@ void Archivador::guardarSLD(wxXmlNode* parent)
 void Archivador::guardarEntradas(wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("ENTRADAS"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("INPUTS"));
 	for(int i = SLD->entradas->numeroVariables()-1; i >= 0 ; i--)
 	{
 		Variable *var=SLD->entradas->variable(i);
@@ -48,7 +48,7 @@ void Archivador::guardarEntradas(wxXmlNode* parent)
 void Archivador::guardarSalidas(wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("SALIDAS"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("OUTPUTS"));
 	for(int i = SLD->salidas->numeroVariables()-1; i >= 0 ; i--)
 	{
 		Variable *var=SLD->salidas->variable(i);
@@ -59,11 +59,11 @@ void Archivador::guardarSalidas(wxXmlNode* parent)
 void Archivador::guardarVariable(wxXmlNode* parent, Variable *var, bool flagDifusor)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("VARIABLE"));
-	NodeA->AddAttribute(_T("Nombre")      , var->nombreVariable());
-	NodeA->AddAttribute(_T("Mínimo")      , wxString::Format(wxT("%f"),var->rangoMinimo()));
-	NodeA->AddAttribute(_T("Máximo")      , wxString::Format(wxT("%f"),var->rangoMaximo()));
-	NodeA->AddAttribute(_T("Intervalos")  , wxString::Format(wxT("%d"),var->numeroIntervalos()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("VARIABLE"));
+	NodeA->AddAttribute(("Name")      , var->nombreVariable());
+	NodeA->AddAttribute(("Minimum")      , wxString::Format(("%f"),var->rangoMinimo()));
+	NodeA->AddAttribute(("Maximum")      , wxString::Format(("%f"),var->rangoMaximo()));
+	NodeA->AddAttribute(("Intervals")  , wxString::Format(("%d"),var->numeroIntervalos()));
 
 	for(int j=var->numeroConjuntos()-1; j>=0 ;j--)
 	{
@@ -82,55 +82,55 @@ void Archivador::guardarVariable(wxXmlNode* parent, Variable *var, bool flagDifu
 void Archivador::guardarDifusor(wxXmlNode* parent, Difusor *dif)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("DIFUSOR"));
-	NodeA->AddAttribute(_T("Tipo")        ,  wxString::Format(wxT("%d"),dif->identificador()));
-	NodeA->AddAttribute(_T("Puntos")      ,  wxString::Format(wxT("%d"),dif->numeroPuntos()));
-	NodeA->AddAttribute(_T("Centro")      ,  wxString::Format(wxT("%f"),dif->centro()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("FUZZYFIER"));
+	NodeA->AddAttribute(("Type")        ,  wxString::Format(("%d"),dif->identificador()));
+	NodeA->AddAttribute(("Points")      ,  wxString::Format(("%d"),dif->numeroPuntos()));
+	NodeA->AddAttribute(("Center")      ,  wxString::Format(("%f"),dif->centro()));
 
 	float puntos[dif->numeroPuntosClaves()];
 	dif->puntosClaves(puntos);
 	for(int i=dif->numeroPuntosClaves()-1;i>=0;i--)
 	{
 		wxXmlNode* NodeB;
-		NodeB=new wxXmlNode(NodeA,wxXML_ELEMENT_NODE,_T("PUNTO"));
-		NodeB->AddAttribute(_T("X")      , wxString::Format(wxT("%f"),puntos[i]));
+		NodeB=new wxXmlNode(NodeA,wxXML_ELEMENT_NODE,("POINT"));
+		NodeB->AddAttribute(("X")      , wxString::Format(("%f"),puntos[i]));
 	}
 }
 
 void Archivador::guardarConjunto(wxXmlNode* parent, ConjuntoDifuso *cd)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("ETIQUETA"));
-	NodeA->AddAttribute(_T("Nombre")      , cd->nombre());
-	NodeA->AddAttribute(_T("Tipo")        ,  wxString::Format(wxT("%d"),cd->identificador()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("LABEL"));
+	NodeA->AddAttribute(("Name")      , cd->nombre());
+	NodeA->AddAttribute(("Type")        ,  wxString::Format(("%d"),cd->identificador()));
 
 	float puntos[cd->numeroPuntosClaves()];
 	cd->puntosClaves(puntos);
 	for(int i=cd->numeroPuntosClaves()-1;i>=0;i--)
 	{
 		wxXmlNode* NodeB;
-		NodeB=new wxXmlNode(NodeA,wxXML_ELEMENT_NODE,_T("PUNTO"));
-		NodeB->AddAttribute(_T("X")      , wxString::Format(wxT("%f"),puntos[i]));
+		NodeB=new wxXmlNode(NodeA,wxXML_ELEMENT_NODE,("POINT"));
+		NodeB->AddAttribute(("X")      , wxString::Format(("%f"),puntos[i]));
 	}
 }
 
 void Archivador::guardarMaquina (wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("MOTOR"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("ENGINE"));
 
 	guardarBase(NodeA);
-	guardarNorma(NodeA,SLD->motor->and_(),_T("AND"));
-	guardarNorma(NodeA,SLD->motor->composicion(),_T("COMPOSICIÓN"));
+	guardarNorma(NodeA,SLD->motor->and_(),("AND"));
+	guardarNorma(NodeA,SLD->motor->composicion(),("COMPOSITION"));
 	guardarImplicacion(NodeA,SLD->motor->implicacion());
 }
 
 void Archivador::guardarBase    (wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("BASE"));
-	NodeA->AddAttribute(_T("Entradas")    , wxString::Format(wxT("%d"),SLD->entradas->numeroVariables()));
-	NodeA->AddAttribute(_T("Salidas")     , wxString::Format(wxT("%d"),SLD->salidas->numeroVariables()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("BASE"));
+	NodeA->AddAttribute(("Inputs")    , wxString::Format(("%d"),SLD->entradas->numeroVariables()));
+	NodeA->AddAttribute(("Outputs")     , wxString::Format(("%d"),SLD->salidas->numeroVariables()));
 
 	for(int i=SLD->motor->numeroReglas()-1;i>=0;i--)
 	{
@@ -142,8 +142,8 @@ void Archivador::guardarBase    (wxXmlNode* parent)
 void Archivador::guardarRegla   (wxXmlNode* parent, Regla *regla)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("REGLA"));
-	NodeA->AddAttribute(_T("Certeza")      , wxString::Format(wxT("%f"),regla->certeza()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("RULE"));
+	NodeA->AddAttribute(("Certainty")      , wxString::Format(("%f"),regla->certeza()));
 
 	for(int i=SLD->salidas->numeroVariables()-1;i>=0;i--)
 	{
@@ -158,42 +158,42 @@ void Archivador::guardarRegla   (wxXmlNode* parent, Regla *regla)
 void Archivador::guardarAntecedente(wxXmlNode* parent, Regla *regla, int num)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("ANTECEDENTE"));
-	NodeA->AddAttribute(_T("Variable")      , wxString::Format(wxT("%d"),num));
-	NodeA->AddAttribute(_T("Etiqueta")      , wxString::Format(wxT("%d"),regla->conjuntoEntrada(num)));
-	NodeA->AddAttribute(_T("Modificador")   , wxString::Format(wxT("%f"),regla->modificador(num)));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("ANTECEDENT"));
+	NodeA->AddAttribute(("Variable")      , wxString::Format(("%d"),num));
+	NodeA->AddAttribute(("Label")      , wxString::Format(("%d"),regla->conjuntoEntrada(num)));
+	NodeA->AddAttribute(("Modifier")   , wxString::Format(("%f"),regla->modificador(num)));
 }
 
 void Archivador::guardarConsecuente(wxXmlNode* parent, Regla *regla, int num)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("CONSECUENTE"));
-	NodeA->AddAttribute(_T("Variable")      , wxString::Format(wxT("%d"),num));
-	NodeA->AddAttribute(_T("Etiqueta")      , wxString::Format(wxT("%d"),regla->conjuntoSalida(num)));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("CONSEQUENT"));
+	NodeA->AddAttribute(("Variable")      , wxString::Format(("%d"),num));
+	NodeA->AddAttribute(("Label")      , wxString::Format(("%d"),regla->conjuntoSalida(num)));
 }
 
 void Archivador::guardarNorma   (wxXmlNode* parent, Norma *norma, wxString label)
 {
 	wxXmlNode* NodeA;
 	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,label);
-	NodeA->AddAttribute(_T("Tipo")      , wxString::Format(wxT("%d"),norma->identificador()));
-	NodeA->AddAttribute(_T("Parámetro")  , wxString::Format(wxT("%f"),norma->parametro()));
+	NodeA->AddAttribute(("Type")      , wxString::Format(("%d"),norma->identificador()));
+	NodeA->AddAttribute(("Parameter")  , wxString::Format(("%f"),norma->parametro()));
 
 }
 
 void Archivador::guardarImplicacion(wxXmlNode* parent, Implicacion *imp)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("IMPLICACIÓN"));
-	NodeA->AddAttribute(_T("Tipo")      , wxString::Format(wxT("%d"),imp->identificador()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("IMPLICATION"));
+	NodeA->AddAttribute(("Type")      , wxString::Format(("%d"),imp->identificador()));
 }
 
 void Archivador::guardarConcrecion (wxXmlNode* parent)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("CONCRECIÓN"));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("DEFUZZYFIERS"));
 
-	guardarNorma(NodeA,SLD->concreto->conjuncion(),_T("CONJUNCIÓN"));
+	guardarNorma(NodeA,SLD->concreto->conjuncion(),("CONJUNCTION"));
 	for(int i=SLD->concreto->numeroConcresores()-1;i>=0;i--)
 	{
 		Concresor *conc=SLD->concreto->concresor(i);
@@ -204,9 +204,9 @@ void Archivador::guardarConcrecion (wxXmlNode* parent)
 void Archivador::guardarConcresor  (wxXmlNode* parent, Concresor *conc, int numVar)
 {
 	wxXmlNode* NodeA;
-	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,_T("CONCRESOR"));
-	NodeA->AddAttribute(_T("Variable")  , wxString::Format(wxT("%d"),numVar));
-	NodeA->AddAttribute(_T("Tipo")      , wxString::Format(wxT("%d"),conc->identificador()));
+	NodeA=new wxXmlNode(parent,wxXML_ELEMENT_NODE,("DEFUZZYFIER"));
+	NodeA->AddAttribute(("Variable")  , wxString::Format(("%d"),numVar));
+	NodeA->AddAttribute(("Type")      , wxString::Format(("%d"),conc->identificador()));
 }
 
 void Archivador::leer(wxString fileName)
@@ -214,7 +214,7 @@ void Archivador::leer(wxString fileName)
 	doc.Load(fileName);
 	if(!doc.IsOk())
 	{
-		wxMessageBox(_T("No se pudo cargar el archivo"),_T("¡Atención!"));
+		wxMessageBox(_("No se pudo cargar el archivo"),_("¡Atención!"));
 	}
 	wxXmlNode *Node=doc.GetRoot();
 
@@ -224,22 +224,22 @@ void Archivador::leer(wxString fileName)
 void Archivador::leerSLD   (wxXmlNode* parent)
 {
 	SLD->crearMinimoSLD(1,1);
-	SLD->nombre=parent->GetAttribute(_T("Nombre"));
-	SLD->descripcion=parent->GetAttribute(_T("Descripción"));
+	SLD->nombre=parent->GetAttribute(("Name"));
+	SLD->descripcion=parent->GetAttribute(("Description"));
 
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("ENTRADAS"))
+		if(NodeA->GetName()==("INPUTS"))
 		{
 			leerEntradas(NodeA);
-		}else if(NodeA->GetName()==_T("SALIDAS"))
+		}else if(NodeA->GetName()==("OUTPUTS"))
 		{
 			leerSalidas(NodeA);
-		}else if(NodeA->GetName()==_T("MOTOR"))
+		}else if(NodeA->GetName()==("ENGINE"))
 		{
 			leerMaquina(NodeA);
-		}else if(NodeA->GetName()==_T("CONCRECIÓN"))
+		}else if(NodeA->GetName()==("DEFUZZYFIERS"))
 		{
 			leerConcrecion(NodeA);
 		}
@@ -253,7 +253,7 @@ void Archivador::leerEntradas   (wxXmlNode* parent)
 	int cnt=0;
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("VARIABLE"))
+		if(NodeA->GetName()==("VARIABLE"))
 		{
 			Variable *var;
 			var=new Variable(2);
@@ -275,7 +275,7 @@ void Archivador::leerSalidas   (wxXmlNode* parent)
 	int cnt=0;
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("VARIABLE"))
+		if(NodeA->GetName()==("VARIABLE"))
 		{
 			Variable *var;
 			var=new Variable(2);
@@ -297,26 +297,26 @@ void Archivador::leerVariable      (wxXmlNode* parent, Variable *var, bool flagD
 	double tmpD;
 	long tmpL;
 
-	strS=parent->GetAttribute(_T("Nombre"));
+	strS=parent->GetAttribute(("Name"));
 	var->nombreVariable(strS.mb_str());
-	parent->GetAttribute(_T("Mínimo")).ToDouble(&tmpD);
+	parent->GetAttribute(("Minimum")).ToDouble(&tmpD);
 	var->rangoMinimo((float)tmpD);
-	parent->GetAttribute(_T("Máximo")).ToDouble(&tmpD);
+	parent->GetAttribute(("Maximum")).ToDouble(&tmpD);
 	var->rangoMaximo((float)tmpD);
-	parent->GetAttribute(_T("Intervalos")).ToLong(&tmpL);
+	parent->GetAttribute(("Intervals")).ToLong(&tmpL);
 	var->numeroIntervalos((int)tmpL);
 
 	wxXmlNode *NodeA=parent->GetChildren();
 	int cnt=0;
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("ETIQUETA"))
+		if(NodeA->GetName()==("LABEL"))
 		{
 			ConjuntoDifuso *cd;
 			cd=leerConjunto(NodeA,var);
 			var->adicionarConjuntos(cd);
 			cnt++;
-		}else if(NodeA->GetName()==_T("DIFUSOR"))
+		}else if(NodeA->GetName()==("FUZZYFIER"))
 		{
 			Difusor *dif;
 			dif=leerDifusor(NodeA,var);
@@ -347,11 +347,11 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 	float maximo;
 	float centro;
 
-	parent->GetAttribute(_T("Tipo")).ToLong(&tmpL);
+	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador = (int)tmpL;
-	parent->GetAttribute(_T("Puntos")).ToLong(&tmpL);
+	parent->GetAttribute(("Points")).ToLong(&tmpL);
 	numeroPuntos = (int)tmpL;
-	parent->GetAttribute(_T("Centro")).ToDouble(&tmpD);
+	parent->GetAttribute(("Center")).ToDouble(&tmpD);
 	centro = (float)tmpD;
 	minimo = var->rangoMinimo();
 	maximo = var->rangoMaximo();
@@ -361,9 +361,9 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 	int cnt=0;
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("PUNTO"))
+		if(NodeA->GetName()==("POINT"))
 		{
-			NodeA->GetAttribute(_T("X")).ToDouble(&tmpD);
+			NodeA->GetAttribute(("X")).ToDouble(&tmpD);
 			puntos[cnt]=(float)tmpD;
 			cnt++;
 		}
@@ -398,8 +398,8 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 	float minimo;
 	float maximo;
 
-	Nombre=parent->GetAttribute(_T("Nombre"));
-	parent->GetAttribute(_T("Tipo")).ToLong(&tmpL);
+	Nombre=parent->GetAttribute(("Name"));
+	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador = (int)tmpL;
 	minimo = var->rangoMinimo();
 	maximo = var->rangoMaximo();
@@ -409,9 +409,9 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 	int cnt=0;
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("PUNTO"))
+		if(NodeA->GetName()==("POINT"))
 		{
-			NodeA->GetAttribute(_T("X")).ToDouble(&tmpD);
+			NodeA->GetAttribute(("X")).ToDouble(&tmpD);
 			puntos[cnt]=(float)tmpD;
 			cnt++;
 		}
@@ -440,17 +440,17 @@ void Archivador::leerMaquina(wxXmlNode* parent)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("BASE"))
+		if(NodeA->GetName()==("BASE"))
 		{
 			leerBase(NodeA);
-		}else if(NodeA->GetName()==_T("IMPLICACIÓN"))
+		}else if(NodeA->GetName()==("IMPLICATION"))
 		{
 			leerImplicacion(NodeA);
-		}else if(NodeA->GetName()==_T("COMPOSICIÓN"))
+		}else if(NodeA->GetName()==("COMPOSITION"))
 		{
 			Norma* norma=leerNorma(NodeA);
 			SLD->motor->composicion(norma);
-		}else if(NodeA->GetName()==_T("AND"))
+		}else if(NodeA->GetName()==("AND"))
 		{
 			Norma* norma=leerNorma(NodeA);
 			SLD->motor->and_(norma);
@@ -466,9 +466,9 @@ void Archivador::leerBase(wxXmlNode* parent)
 	int numEnt;
 	int numSal;
 
-	parent->GetAttribute(_T("Entradas")).ToLong(&tmpL);
+	parent->GetAttribute(("Inputs")).ToLong(&tmpL);
 	numEnt=(int)tmpL;
-	parent->GetAttribute(_T("Salidas")).ToLong(&tmpL);
+	parent->GetAttribute(("Outputs")).ToLong(&tmpL);
 	numSal=(int)tmpL;
 
 	SLD->motor->desocuparBaseReglas();
@@ -479,7 +479,7 @@ void Archivador::leerBase(wxXmlNode* parent)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("REGLA"))
+		if(NodeA->GetName()==("RULE"))
 		{
 			Regla* regla;
 			regla=new Regla(numEnt,numSal);
@@ -499,25 +499,28 @@ void Archivador::leerRegla(wxXmlNode* parent, Regla *regla)
 	int numEt;
 	float mod;
 
+	parent->GetAttribute(("Certainty")).ToDouble(&tmpD);
+	regla->certeza((float)tmpD);
+
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("ANTECEDENTE"))
+		if(NodeA->GetName()==("ANTECEDENT"))
 		{
-			NodeA->GetAttribute(_T("Variable")).ToLong(&tmpL);
+			NodeA->GetAttribute(("Variable")).ToLong(&tmpL);
 			numVar=(int)tmpL;
-			NodeA->GetAttribute(_T("Etiqueta")).ToLong(&tmpL);
+			NodeA->GetAttribute(("Label")).ToLong(&tmpL);
 			numEt =(int)tmpL;
-			NodeA->GetAttribute(_T("Modificador")).ToDouble(&tmpD);
+			NodeA->GetAttribute(("Modifier")).ToDouble(&tmpD);
 			mod   =(float)tmpD;
 			regla->conjuntoEntrada(numVar,numEt);
 			regla->modificador(numVar,mod);
 
-		}else if(NodeA->GetName()==_T("CONSECUENTE"))
+		}else if(NodeA->GetName()==("CONSEQUENT"))
 		{
-			NodeA->GetAttribute(_T("Variable")).ToLong(&tmpL);
+			NodeA->GetAttribute(("Variable")).ToLong(&tmpL);
 			numVar=(int)tmpL;
-			NodeA->GetAttribute(_T("Etiqueta")).ToLong(&tmpL);
+			NodeA->GetAttribute(("Label")).ToLong(&tmpL);
 			numEt =(int)tmpL;
 			regla->conjuntoSalida(numVar,numEt);
 		}
@@ -533,9 +536,9 @@ Norma* Archivador::leerNorma(wxXmlNode* parent)
 	int identificador;
 	float parametro;
 
-	parent->GetAttribute(_T("Tipo")).ToLong(&tmpL);
+	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador=(int)tmpL;
-	parent->GetAttribute(_T("Parámetro")).ToDouble(&tmpD);
+	parent->GetAttribute(("Parameter")).ToDouble(&tmpD);
 	parametro=(float)tmpD;
 
 	Norma* norma;
@@ -564,7 +567,7 @@ void Archivador::leerImplicacion(wxXmlNode* parent)
 	long tmpL;
 
 	int identificador;
-	parent->GetAttribute(_T("Tipo")).ToLong(&tmpL);
+	parent->GetAttribute(("Tipo")).ToLong(&tmpL);
 	identificador=(int)tmpL;
 
 	Implicacion *imp;
@@ -593,10 +596,10 @@ void Archivador::leerConcrecion(wxXmlNode* parent)
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
 	{
-		if(NodeA->GetName()==_T("CONCRESOR"))
+		if(NodeA->GetName()==("DEFUZZYFIER"))
 		{
 			leerConcresor(NodeA);
-		}else if(NodeA->GetName()==_T("CONJUNCIÓN"))
+		}else if(NodeA->GetName()==("CONJUNCTION"))
 		{
 			Norma *norma=leerNorma(NodeA);
 			SLD->concreto->conjuncion(norma);
@@ -612,9 +615,9 @@ void Archivador::leerConcresor(wxXmlNode* parent)
 	int identificador;
 	int numVar;
 
-	parent->GetAttribute(_T("Variable")).ToLong(&tmpL);
+	parent->GetAttribute(("Variable")).ToLong(&tmpL);
 	numVar=(int)tmpL;
-	parent->GetAttribute(_T("Tipo")).ToLong(&tmpL);
+	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador=(int)tmpL;
 
 	Norma *conjuncion=new Maximo();

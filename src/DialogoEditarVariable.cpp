@@ -6,7 +6,7 @@ BEGIN_EVENT_TABLE(DialogoEditarVariable, wxDialog)
 END_EVENT_TABLE()
 
 DialogoEditarVariable::DialogoEditarVariable(Variable *var,wxWindow* parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Edición de Variables")))
+:wxDialog(parent,wxID_ANY,wxString(_("Edición de Variables")))
 {
 	Var=var;
 
@@ -18,14 +18,14 @@ DialogoEditarVariable::DialogoEditarVariable(Variable *var,wxWindow* parent)
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticNombre     = new wxStaticText(this,wxID_ANY, _T("Nombre de la variable"));
-  staticMinimo     = new wxStaticText(this,wxID_ANY, _T("Valor mínimo"));
-  staticMaximo     = new wxStaticText(this,wxID_ANY, _T("Valor máximo"));
-  staticIntervalos = new wxStaticText(this,wxID_ANY, _T("Número de intervalos de evaluación"));
-  textNombre       = new wxTextCtrl(this,DLG_EDITVAR_NOMBRE    ,_(""),wxDefaultPosition,wxSize(150,20));
-  textMinimo       = new wxTextCtrl(this,DLG_EDITVAR_MINIMO    ,_(""),wxDefaultPosition,wxSize(100,20));
-  textMaximo       = new wxTextCtrl(this,DLG_EDITVAR_MAXIMO    ,_(""),wxDefaultPosition,wxSize(100,20));
-  spinIntervalos   = new wxSpinCtrl(this,DLG_EDITVAR_INTERVALOS,_(""),wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,5,200,30);
+  staticNombre     = new wxStaticText(this,wxID_ANY, _("Nombre de la variable"));
+  staticMinimo     = new wxStaticText(this,wxID_ANY, _("Valor mínimo"));
+  staticMaximo     = new wxStaticText(this,wxID_ANY, _("Valor máximo"));
+  staticIntervalos = new wxStaticText(this,wxID_ANY, _("Número de intervalos de evaluación"));
+  textNombre       = new wxTextCtrl(this,DLG_EDITVAR_NOMBRE    ,"",wxDefaultPosition,wxSize(150,20));
+  textMinimo       = new wxTextCtrl(this,DLG_EDITVAR_MINIMO    ,"",wxDefaultPosition,wxSize(100,20));
+  textMaximo       = new wxTextCtrl(this,DLG_EDITVAR_MAXIMO    ,"",wxDefaultPosition,wxSize(100,20));
+  spinIntervalos   = new wxSpinCtrl(this,DLG_EDITVAR_INTERVALOS,"",wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,5,200,30);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 

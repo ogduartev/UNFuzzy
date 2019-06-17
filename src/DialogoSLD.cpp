@@ -19,10 +19,11 @@ BEGIN_EVENT_TABLE(DialogoSLD, wxDialog)
     EVT_BUTTON(DLG_FRONTAL_PASOAPASO  , DialogoSLD::OnPasoAPaso)
     EVT_BUTTON(DLG_FRONTAL_CODIGO     , DialogoSLD::OnCodigo)
     EVT_BUTTON(DLG_FRONTAL_TABLA      , DialogoSLD::OnTabla)
+    EVT_BUTTON(DLG_FRONTAL_IDIOMA     , DialogoSLD::OnIdioma)
     EVT_BUTTON(DLG_FRONTAL_ABOUT      , DialogoSLD::OnAbout)
 END_EVENT_TABLE()
 
-DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxString &title)
+DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStandAlone, const wxString &title)
     : wxDialog(parent, -1, title)
 {
 	SLD=sld;
@@ -33,31 +34,47 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxStrin
     wxGridBagSizer*   sizerSLD;
 
     sizerTotal      = new wxFlexGridSizer(1,3,0);
-    sizerIconos     = new wxFlexGridSizer(11,1,0);
+    sizerIconos     = new wxFlexGridSizer(12,1,0);
     sizerControles  = new wxBoxSizer(wxHORIZONTAL);
     sizerSLD        = new wxGridBagSizer(0,0);
 
-    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIBE, wxT("Descripción:\n"), wxDefaultPosition, wxDefaultSize, 0);
+    staticTextDescripcion = new wxStaticText(this, DLG_FRONTAL_DESCRIBE, _("Descripción:\n"), wxDefaultPosition, wxDefaultSize, 0);
 //f4cdb5
-    buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , wxT("&Salir")      , wxDefaultPosition, wxDefaultSize, 0);
-    buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , wxT("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
+    buttonSalir           = new wxButton(this, DLG_FRONTAL_SALIR      , _("&Salir")      , wxDefaultPosition, wxDefaultSize, 0);
+    buttonAyuda           = new wxButton(this, DLG_FRONTAL_AYUDA      , _("A&yuda")      , wxDefaultPosition, wxDefaultSize, 0);
 
-    buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxBitmap("bmp/Entradas.bmp",wxBITMAP_TYPE_BMP));
-    buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxBitmap("bmp/Salidas.bmp",wxBITMAP_TYPE_BMP));
-    buttonReglas          = new wxBitmapButton(this, DLG_FRONTAL_REGLAS     , wxBitmap("bmp/Reglas.bmp",wxBITMAP_TYPE_BMP));
-    buttonInferencia      = new wxBitmapButton(this, DLG_FRONTAL_INFERENCIA , wxBitmap("bmp/Motor.bmp",wxBITMAP_TYPE_BMP));
+    buttonEntradas        = new wxBitmapButton(this, DLG_FRONTAL_ENTRADAS   , wxMEMORY_BITMAP(entradas));
+    buttonSalidas         = new wxBitmapButton(this, DLG_FRONTAL_SALIDAS    , wxMEMORY_BITMAP(salidas));
+    buttonReglas          = new wxBitmapButton(this, DLG_FRONTAL_REGLAS     , wxMEMORY_BITMAP(reglas));
+    buttonInferencia      = new wxBitmapButton(this, DLG_FRONTAL_INFERENCIA , wxMEMORY_BITMAP(motor));
 
-    buttonNuevo           = new wxBitmapButton(this, DLG_FRONTAL_NUEVO      , wxBitmap("bmp/Nuevo.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonLeer            = new wxBitmapButton(this, DLG_FRONTAL_LEER       , wxBitmap("bmp/Leer.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonGuardar         = new wxBitmapButton(this, DLG_FRONTAL_GUARDAR    , wxBitmap("bmp/Guardar.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTAL_DESCRIPCION, wxBitmap("bmp/Describe.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonEntrenar        = new wxBitmapButton(this, DLG_FRONTAL_ENTRENAR   , wxBitmap("bmp/Entrenar.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonFuncion         = new wxBitmapButton(this, DLG_FRONTAL_FUNCION    , wxBitmap("bmp/Funcion.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonCalcular        = new wxBitmapButton(this, DLG_FRONTAL_CALCULAR   , wxBitmap("bmp/Calcular.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonPasoAPaso       = new wxBitmapButton(this, DLG_FRONTAL_PASOAPASO  , wxBitmap("bmp/Paso.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonCodigo          = new wxBitmapButton(this, DLG_FRONTAL_CODIGO     , wxBitmap("bmp/Codigo.bmp",wxBITMAP_TYPE_BMP)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonTabla           = new wxBitmapButton(this, DLG_FRONTAL_TABLA      , wxBitmap("bmp/Tabla.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-    buttonAbout           = new wxBitmapButton(this, DLG_FRONTAL_ABOUT      , wxBitmap("bmp/Acerca.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonNuevo           = new wxBitmapButton(this, DLG_FRONTAL_NUEVO      , wxMEMORY_BITMAP(nuevo)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonLeer            = new wxBitmapButton(this, DLG_FRONTAL_LEER       , wxMEMORY_BITMAP(leer)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonGuardar         = new wxBitmapButton(this, DLG_FRONTAL_GUARDAR    , wxMEMORY_BITMAP(guardar)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTAL_DESCRIPCION, wxMEMORY_BITMAP(describe) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonEntrenar        = new wxBitmapButton(this, DLG_FRONTAL_ENTRENAR   , wxMEMORY_BITMAP(entrenar) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonFuncion         = new wxBitmapButton(this, DLG_FRONTAL_FUNCION    , wxMEMORY_BITMAP(funcion)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonCalcular        = new wxBitmapButton(this, DLG_FRONTAL_CALCULAR   , wxMEMORY_BITMAP(calcular) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonPasoAPaso       = new wxBitmapButton(this, DLG_FRONTAL_PASOAPASO  , wxMEMORY_BITMAP(paso)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonCodigo          = new wxBitmapButton(this, DLG_FRONTAL_CODIGO     , wxMEMORY_BITMAP(codigo)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonTabla           = new wxBitmapButton(this, DLG_FRONTAL_TABLA      , wxMEMORY_BITMAP(tabla)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonIdioma          = new wxBitmapButton(this, DLG_FRONTAL_IDIOMA     , wxMEMORY_BITMAP(vacio)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+    buttonAbout           = new wxBitmapButton(this, DLG_FRONTAL_ABOUT      , wxMEMORY_BITMAP(acerca)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+
+		if(flagStandAlone)
+		{
+			wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+			wxString strLocale(f.GetPath());
+			strLocale << "/locale/";
+			MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+			MiLocale->AddCatalogLookupPathPrefix(strLocale);
+			MiLocale->AddCatalog("en");
+			setlocale (LC_NUMERIC,"C");
+		}else
+		{
+			buttonIdioma->Show(false);
+			MiLocale=NULL;
+		}
 
     staticTextDescripcion->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT , wxNORMAL, wxNORMAL));
     llenarTexto();
@@ -78,6 +95,7 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld, const wxStrin
     sizerIconos->Add(buttonPasoAPaso  , 0, wxALL, sepIcon);
     sizerIconos->Add(buttonCodigo     , 0, wxALL, sepIcon);
     sizerIconos->Add(buttonTabla      , 0, wxALL, sepIcon);
+    sizerIconos->Add(buttonIdioma     , 0, wxALL, sepIcon);
     sizerIconos->Add(buttonAbout      , 0, wxALL, sepIcon);
 
     sizerSLD->Add(buttonEntradas  ,wxGBPosition(1,0), wxDefaultSpan, wxALL,0);
@@ -115,7 +133,7 @@ void DialogoSLD::OnSalir(wxCommandEvent &event)
 
 void DialogoSLD::OnAyuda(wxCommandEvent &event)
 {
-  wxMessageBox(_T("En desarrollo..."), _T("Ayuda"));
+  wxMessageBox(_("En desarrollo..."), _("Ayuda"));
 }
 
 void DialogoSLD::OnEntradas(wxCommandEvent &event)
@@ -165,7 +183,7 @@ void DialogoSLD::OnInferencia(wxCommandEvent &event)
 void DialogoSLD::OnNuevo      (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
   	SLD->crearMinimoSLD(1,1);
@@ -174,15 +192,16 @@ void DialogoSLD::OnNuevo      (wxCommandEvent& event)
 	delete dial;
 }
 
-
 void DialogoSLD::OnLeer       (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _T("Archivos UNFUZZY3 (*.unf)|*.unf");
+		extensiones << _("Archivos UNFUZZY 3 (*.unf)|*.unf");
+//		extensiones << _("|Archivos UNFUZZY 1 (*.dif)|*.dif");
+//		extensiones << _("|Archivos UNFUZZY 1 (*.*)|*.*");
 
 		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
@@ -200,7 +219,7 @@ void DialogoSLD::OnLeer       (wxCommandEvent& event)
 void DialogoSLD::OnGuardar    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos UNFUZZY3 (*.unf)|*.unf");
+	extensiones << _("Archivos UNFUZZY 3 (*.unf)|*.unf");
 
 	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -267,14 +286,14 @@ void DialogoSLD::OnPasoAPaso (wxCommandEvent& event)
 void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos CPP (*.cpp)|*.cpp");
-	extensiones << _T("|Archivos de texto (*.c)|*.c");
+	extensiones << _("Archivos CPP (*.cpp)|*.cpp");
+	extensiones << _("|Archivos C (*.c)|*.c");
 
-	wxFileDialog dial(this, _T("Código fuente generado"), "", "",extensiones,
+	wxFileDialog dial(this, _("Código fuente generado"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
-		wxString nombreClase=_T("miSLD");  // solo se usa en cpp
+		wxString nombreClase=_("miSLD");  // solo se usa en cpp
 		SLD->generarCodigo(dial.GetPath(),nombreClase);
 	}
 }
@@ -282,9 +301,9 @@ void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 void DialogoSLD::OnTabla     (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos CSV (*.csv)|*.csv");
-	extensiones << _T("|Archivos de texto (*.txt)|*.txt");
-	extensiones << _T("|Todos los archivos (*.*)|*.*");
+	extensiones << _("Archivos CSV (*.csv)|*.csv");
+	extensiones << _("|Archivos de texto (*.txt)|*.txt");
+	extensiones << _("|Todos los archivos (*.*)|*.*");
 
 	wxFileDialog dial(this, _("Tabla de datos"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -294,23 +313,57 @@ void DialogoSLD::OnTabla     (wxCommandEvent& event)
 	}
 }
 
+void DialogoSLD::OnIdioma    (wxCommandEvent& event)
+{
+	wxSingleChoiceDialog *dialogo;
+	wxArrayString idiomas;
+	idiomas.push_back(_("Spanish"));
+	idiomas.push_back(_("English"));
+	dialogo=new wxSingleChoiceDialog((wxWindow*)this,_("Available languages"),_("Select the language"),idiomas);//,(char**)NULL,wxCHOICEDLG_STYLE,wxDefaultPosition);
+	if(dialogo->ShowModal()==wxID_OK)
+	{
+		wxDELETE(MiLocale);
+		wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+		wxString strLocale(f.GetPath());
+		strLocale << "/locale/";
+		int idioma=dialogo->GetSelection();
+		switch(idioma)
+		{
+			case 0 :	MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								break;
+			case 1 :	MiLocale =new wxLocale(wxLANGUAGE_ENGLISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("en");
+								break;
+			default:	MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								break;
+		}
+		setlocale (LC_NUMERIC,"C");
+		llenarTexto();
+	}
+}
+
 void DialogoSLD::OnAbout(wxCommandEvent& event)
 {
   wxAboutDialogInfo info;
-  info.SetName(_T("UNFuzzy"));
-  info.SetVersion(_T("3.0.0. Beta"));
-  info.SetDescription(_T("Programa de diseño de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
-  info.SetCopyright(_T("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
+  info.SetName(_("UNFuzzy"));
+  info.SetVersion(_("3.0.0. Beta"));
+  info.SetDescription(_("Programa de diseño de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
+  info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
   wxAboutBox(info);
 }
 
 void DialogoSLD::llenarTexto()
 {
-	wxString str=_T("");
-	str << SLD->nombre << _T("\n");
-	str << SLD->entradas->numeroVariables() << _T(" entradas, ");
-	str << SLD->salidas->numeroVariables() << _T(" salidas, ");
-	str << SLD->motor->numeroReglas() << _T(" reglas.");
+	wxString str="";
+	str << SLD->nombre << _("\n");
+	str << SLD->entradas->numeroVariables() << _(" entradas, ");
+	str << SLD->salidas->numeroVariables() << _(" salidas, ");
+	str << SLD->motor->numeroReglas() << _(" reglas.");
 	staticTextDescripcion->SetLabel(str);
 }
 

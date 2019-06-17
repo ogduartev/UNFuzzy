@@ -72,6 +72,7 @@
 		<Unit filename="include/SistemaLogicaDifusa.h" />
 		<Unit filename="include/Universo.h" />
 		<Unit filename="include/Variable.h" />
+		<Unit filename="include/bmps.h" />
 		<Unit filename="include/capa.h" />
 		<Unit filename="include/nodo.h" />
 		<Unit filename="include/pin.h" />

@@ -1,5 +1,18 @@
 #include "Variable.h"
 
+Variable::Variable(int num)
+{
+	Conjuntos = new ListaConjuntos(num);
+	DifusorEntrada= new DifusorSinglenton(0.5,0.01);
+	NombreVariable=0;
+  char str[40];sprintf(str,"--");
+  nombreVariable(str);
+  numeroIntervalos(20);
+  rangoMinimo(-1.0);
+  rangoMaximo(1.0);
+  autodefinirConjuntosRectos(num);
+}
+
 Variable::~Variable()
 {
 	limpiarListaConjuntos();
@@ -110,6 +123,79 @@ void Variable::autodefinirConjuntosCurvos(int num)
 	sprintf(cad2,"%d",i+1);
 	strcat(cad1,cad2);
 	cd=new ConjuntoS(cad1, rangoMaximo()-2*dx, rangoMaximo()-dx, rangoMaximo());
+	adicionarConjuntos(cd);
+}
+
+
+void Variable::autodefinirConjuntosRectosCortos(int num)
+{
+	if(num<2){return;}
+	limpiarListaConjuntos();
+	ConjuntoDifuso *cd;
+	float dx;
+			// esta variable ayuda a calcular los soportes
+			//de cada ConjuntoDifuso
+
+	dx=(rangoMaximo()-rangoMinimo())/(num-1);
+	numeroIntervalos((num+1)*5);
+			// Se asume que entre más ConjuntosDifusos,
+			//se requiere un Intervalo de Evaluación más pequeño
+	int i;
+	char cad1[20];
+	char cad2[10];
+
+			// El primer Conjunto es L, el último es Gamma
+			// y los demás son Triángulo
+	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
+	cd=new ConjuntoL(cad1, rangoMinimo(), rangoMinimo(), rangoMinimo()+dx);
+	adicionarConjuntos(cd);
+	for (i=1;i<(num-1);i++){
+		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
+		sprintf(cad2,"%d",i+1);
+		strcat(cad1,cad2);
+		cd=new ConjuntoTriangulo(cad1, rangoMinimo()+(i-1)*dx, rangoMinimo()+(i)*dx, rangoMinimo()+(i+1)*dx);
+		adicionarConjuntos(cd);
+	}
+	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
+	sprintf(cad2,"%d",i+1);
+	strcat(cad1,cad2);
+	cd=new ConjuntoGamma(cad1, rangoMaximo()-dx, rangoMaximo(), rangoMaximo());
+	adicionarConjuntos(cd);
+}
+
+void Variable::autodefinirConjuntosCurvosCortos(int num)
+{
+	if(num<2){return;}
+	limpiarListaConjuntos();
+	ConjuntoDifuso *cd;
+	float dx;
+			// esta variable ayuda a calcular los soportes
+			//de cada ConjuntoDifuso
+
+	dx=(rangoMaximo()-rangoMinimo())/(num-1);
+	numeroIntervalos((num+1)*5);
+			// Se asume que entre más ConjuntosDifusos,
+			//se requiere un Intervalo de Evaluación más pequeño
+	int i;
+	char cad1[20];
+	char cad2[10];
+
+			// El primer Conjunto es Z, el último es s
+			// y los demás son Campana
+	strcpy(cad1,IDS_VARIABLE_ETIQUETA1);
+	cd=new ConjuntoZ(cad1, rangoMinimo(), rangoMinimo(), rangoMinimo()+dx);
+	adicionarConjuntos(cd);
+	for (i=1;i<(num-1);i++){
+		strcpy(cad1,IDS_VARIABLE_ETIQUETA);
+		sprintf(cad2,"%d",i+1);
+		strcat(cad1,cad2);
+		cd=new ConjuntoCampana(cad1, rangoMinimo()+(i-1)*dx, rangoMinimo()+(i)*dx, rangoMinimo()+(i+1)*dx);
+		adicionarConjuntos(cd);
+	}
+	strcpy(cad1,IDS_VARIABLE_ETIQUETA);
+	sprintf(cad2,"%d",i+1);
+	strcat(cad1,cad2);
+	cd=new ConjuntoS(cad1, rangoMaximo()-dx, rangoMaximo(), rangoMaximo());
 	adicionarConjuntos(cd);
 }
 

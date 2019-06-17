@@ -1736,7 +1736,7 @@
 1560462629 /home/ogduartev/Proyectos/UNFuzzy-3/include/Universo.h
 	"Variable.h"
 
-1560463741 /home/ogduartev/Proyectos/UNFuzzy-3/include/Variable.h
+1560725599 /home/ogduartev/Proyectos/UNFuzzy-3/include/Variable.h
 	<string.h>
 	"Arreglo.h"
 	"Difusor.h"
@@ -1771,7 +1771,7 @@
 
 1560458801 /home/ogduartev/Proyectos/UNFuzzy-3/include/Regla.h
 
-1560287928 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Archivador.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Archivador.cpp
 	"Archivador.h"
 
 1560287908 /home/ogduartev/Proyectos/UNFuzzy-3/include/Archivador.h
@@ -1786,22 +1786,22 @@
 	"wx/list.h"
 	"wx/versioninfo.h"
 
-1558394666 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Arreglo.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Arreglo.cpp
 	"Arreglo.h"
 
-1560468672 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/BloqueConcrecion.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/BloqueConcrecion.cpp
 	"BloqueConcrecion.h"
 
-1560468288 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Concresor.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Concresor.cpp
 	"Concresor.h"
 
-1559579598 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/ConjuntoDifuso.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/ConjuntoDifuso.cpp
 	"ConjuntoDifuso.h"
 
-1558390970 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Difusor.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Difusor.cpp
 	"Difusor.h"
 
-1560459931 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Graficador.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Graficador.cpp
 	"Graficador.h"
 
 1560433145 /home/ogduartev/Proyectos/UNFuzzy-3/include/Graficador.h
@@ -1809,31 +1809,31 @@
 	<SistemaLogicaDifusa.h>
 	<red.h>
 
-1558395066 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Implicacion.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Implicacion.cpp
 	"Implicacion.h"
 
-1560458801 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/MaquinaInferencia.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/MaquinaInferencia.cpp
 	"MaquinaInferencia.h"
 
-1558394902 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Norma.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Norma.cpp
 	"Norma.h"
 
-1560458881 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Regla.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Regla.cpp
 	"Regla.h"
 
-1560307075 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/SistemaLogicaDifusa.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/SistemaLogicaDifusa.cpp
 	"SistemaLogicaDifusa.h"
 
-1560002684 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Universo.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Universo.cpp
 	"Universo.h"
 
-1560003160 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Variable.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Variable.cpp
 	"Variable.h"
 
-1558922580 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoAutodefinirVariable.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoAutodefinirVariable.cpp
 	"DialogoAutodefinirVariable.h"
 
-1558922395 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoAutodefinirVariable.h
+1560555689 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoAutodefinirVariable.h
 	<wx/wx.h>
 	<wx/spinctrl.h>
 	<Variable.h>
@@ -1883,14 +1883,14 @@
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1559075248 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoDifusor.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoDifusor.cpp
 	"DialogoDifusor.h"
 
 1559075278 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoDifusor.h
 	<wx/wx.h>
 	"Variable.h"
 
-1558922395 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoEditarVariable.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoEditarVariable.cpp
 	"DialogoEditarVariable.h"
 
 1558918007 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoEditarVariable.h
@@ -1898,7 +1898,7 @@
 	<wx/spinctrl.h>
 	<Variable.h>
 
-1559688231 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoEntrenamiento.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoEntrenamiento.cpp
 	"DialogoEntrenamiento.h"
 
 1559677444 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoEntrenamiento.h
@@ -1931,7 +1931,7 @@
 	"wx/validate.h"
 	<limits>
 
-1560437224 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncion.cpp
 	"DialogoFuncion.h"
 
 1560437250 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoFuncion.h
@@ -1960,21 +1960,21 @@
 	"wx/gdicmn.h"
 	"wx/dialog.h"
 
-1560291331 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
 	"DialogoInfo.h"
 
 1560291331 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoInfo.h
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1559182597 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoMotor.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoMotor.cpp
 	"DialogoMotor.h"
 
 1559182079 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoMotor.h
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1560459931 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoPaso.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoPaso.cpp
 	"DialogoPaso.h"
 
 1559943793 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoPaso.h
@@ -1984,7 +1984,7 @@
 	<SistemaLogicaDifusa.h>
 	<Graficador.h>
 
-1560457611 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoReglas.cpp
 	"DialogoReglas.h"
 
 1560083268 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoReglas.h
@@ -1992,10 +1992,10 @@
 	<wx/grid.h>
 	"SistemaLogicaDifusa.h"
 
-1560469630 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
+1560728531 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoSLD.cpp
 	"DialogoSLD.h"
 
-1560469610 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
+1560772932 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoSLD.h
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 	"Archivador.h"
@@ -2003,6 +2003,9 @@
 	<wx/statline.h>
 	<wx/gbsizer.h>
 	<wx/aboutdlg.h>
+	<wx/filefn.h>
+	<wx/filename.h>
+	<wx/stdpaths.h>
 	"DialogoCalculoSld.h"
 	"DialogoVariable.h"
 	"DialogoMotor.h"
@@ -2011,6 +2014,7 @@
 	"DialogoInfo.h"
 	"DialogoFuncionSld.h"
 	"DialogoPaso.h"
+	"bmps.h"
 
 1522244266 /usr/include/wx-3.0/wx/statline.h
 	"wx/defs.h"
@@ -2044,7 +2048,7 @@
 	<DialogoEditarVariable.h>
 	<DialogoAutodefinirVariable.h>
 
-1560468226 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoVariable.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoVariable.cpp
 	"DialogoVariable.h"
 
 1560165506 /home/ogduartev/Proyectos/UNFuzzyNetwork/include/wxSLDButton.h
@@ -2279,7 +2283,7 @@
 	"wx_pch.h"
 	"UNFuzzyNetworkMain.h"
 
-1560291170 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/archivadorRed.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/archivadorRed.cpp
 	"archivadorRed.h"
 
 1560290941 /home/ogduartev/Proyectos/UNFuzzy-3/include/archivadorRed.h
@@ -2302,26 +2306,30 @@
 1560201733 /home/ogduartev/Proyectos/UNFuzzy-3/include/pin.h
 	<wx/wx.h>
 
-1560194078 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/capa.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/capa.cpp
 	"capa.h"
 
-1560367933 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/graficadorRed.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/graficadorRed.cpp
 	"graficadorRed.h"
 
-1560267350 /home/ogduartev/Proyectos/UNFuzzy-3/include/graficadorRed.h
+1560716946 /home/ogduartev/Proyectos/UNFuzzy-3/include/graficadorRed.h
+	<wx/filefn.h>
+	<wx/filename.h>
+	<wx/stdpaths.h>
 	"red.h"
+	"bmps.h"
 
-1560193827 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/nodo.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/nodo.cpp
 	"nodo.h"
 
-1560102913 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/pin.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/pin.cpp
 	"pin.h"
 	<cstdio>
 
-1560433131 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/red.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/red.cpp
 	"red.h"
 
-1560097522 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.cpp
+1560772267 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.cpp
 	"wx_pch.h"
 	"UNFuzzyNetworkApp.h"
 	"UNFuzzyNetworkMain.h"
@@ -2329,13 +2337,17 @@
 1560097522 /home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkApp.h
 	<wx/app.h>
 
-1560438224 /home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.h
+1560769380 /home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.h
 	<wx/wx.h>
 	<wx/gbsizer.h>
+	<wx/filefn.h>
+	<wx/filename.h>
+	<wx/stdpaths.h>
 	"UNFuzzyNetworkApp.h"
 	"graficadorRed.h"
 	"red.h"
 	"archivadorRed.h"
+	"bmps.h"
 	"DialogoSLD.h"
 	"DialogoCalculoRed.h"
 	"DialogoFuncionRed.h"
@@ -2346,10 +2358,10 @@
 	<wx/spinctrl.h>
 	"Arreglo.h"
 
-1560392968 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculo.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculo.cpp
 	"DialogoCalculo.h"
 
-1560438203 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.cpp
+1560770914 source:/home/ogduartev/Proyectos/UNFuzzy-3/UNFuzzyNetworkMain.cpp
 	"wx_pch.h"
 	"UNFuzzyNetworkMain.h"
 
@@ -2357,25 +2369,169 @@
 	<DialogoCalculo.h>
 	"red.h"
 
-1560433264 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoRed.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoRed.cpp
 	"DialogoCalculoRed.h"
 
 1560392257 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoCalculoSld.h
 	<DialogoCalculo.h>
 	"SistemaLogicaDifusa.h"
 
-1560392941 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoSld.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoCalculoSld.cpp
 	"DialogoCalculoSld.h"
 
 1560437224 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoFuncionSld.h
 	<DialogoFuncion.h>
 
-1560437224 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncionSld.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncionSld.cpp
 	"DialogoFuncionSld.h"
 
-1560437745 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncionRed.cpp
+1560772246 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoFuncionRed.cpp
 	"DialogoFuncionRed.h"
 
 1560437745 /home/ogduartev/Proyectos/UNFuzzy-3/include/DialogoFuncionRed.h
 	<DialogoFuncion.h>
+
+1545436912 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/objstrm.h
+	<owl/defs.h>
+	<owl/streambl.h>
+	<iostream>
+	<fstream>
+	<typeinfo>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1555315662 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/defs.h
+	<owl/private/defs.h>
+	<owl/private/memory.h>
+	<owl/private/except.h>
+	<owl/private/number.h>
+	<tchar.h>
+	<string>
+	<limits>
+	<type_traits>
+	<filesystem>
+	<owl/private/checks.h>
+	<owl/wsysinc.h>
+	<owl/system.h>
+	<owl/version.h>
+
+1560611607 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/defs.h
+	<port/owl-port.h>
+	<owl/private/borlandc.h>
+	<owl/private/msc.h>
+	<owl/private/gnuc.h>
+	<assert.h>
+	<climits>
+
+1485779459 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/borlandc.h
+	<owl/private/owllink.h>
+
+1544473798 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/owllink.h
+	<owl/version.h>
+
+1545436912 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/msc.h
+	<owl/private/owllink.h>
+
+1545436912 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/gnuc.h
+	<algorithm>
+	<stddef.h>
+	<exception>
+	<owl/private/mingw32.h>
+	<owl/private/cygwin.h>
+	<owl/private/winelib.h>
+
+1432071160 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/mingw32.h
+
+1432071160 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/cygwin.h
+
+1432071160 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/winelib.h
+	<winsock2.h>
+
+1545436912 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/memory.h
+	<owl/private/defs.h>
+	<tchar.h>
+	<mem.h>
+	<memory.h>
+	<string.h>
+	<stdlib.h>
+	<malloc.h>
+	<owl/private/wsysinc.h>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1554789160 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/wsysinc.h
+	<owl/private/defs.h>
+	<windows.h>
+
+1474859023 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/preclass.h
+
+1474859023 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/posclass.h
+
+1474858207 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/except.h
+	<owl/private/defs.h>
+	<except.h>
+	<eh.h>
+	<stdlib.h>
+	<new>
+
+1474858207 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/number.h
+	<owl/private/defs.h>
+
+1524347203 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/checks.h
+	<owl/private/defs.h>
+	<owl/exbase.h>
+	<owl/private/except.h>
+	<owl/private/strmdefs.h>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1474859863 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/exbase.h
+	<owl/private/defs.h>
+	<owl/defs.h>
+	<owl/private/except.h>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1474858207 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/private/strmdefs.h
+	<owl/private/defs.h>
+	<iomanip>
+	<iosfwd>
+	<sstream>
+
+1474858207 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/wsysinc.h
+	<owl/private/defs.h>
+	<owl/private/wsysinc.h>
+
+1524631202 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/system.h
+	<owl/private/defs.h>
+	<owl/wsysinc.h>
+	<owl/defs.h>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1474859863 /home/ogduartev/Proyectos/UNFuzzy-3/include/owl-include/owl/streambl.h
+	<owl/private/defs.h>
+	<string.h>
+	<owl/private/wsysinc.h>
+	<owl/preclass.h>
+	<owl/posclass.h>
+
+1522244266 /usr/include/wx-3.0/wx/stdpaths.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/filefn.h"
+	"wx/msw/stdpaths.h"
+	"wx/osx/core/stdpaths.h"
+	"wx/os2/stdpaths.h"
+	"wx/unix/stdpaths.h"
+
+1522244266 /usr/include/wx-3.0/wx/unix/stdpaths.h
+
+1560716593 /home/ogduartev/Proyectos/UNFuzzy-3/include/bmps.h
+	"wx/wx.h"
+	"wx/mstream.h"
+
+1522244266 /usr/include/wx-3.0/wx/mstream.h
+	"wx/defs.h"
+	"wx/stream.h"
 

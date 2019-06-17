@@ -22,8 +22,6 @@
 BEGIN_EVENT_TABLE(UNFuzzyNetworkFrame, wxFrame)
 		EVT_PAINT(UNFuzzyNetworkFrame::OnPaint)
     EVT_CLOSE(UNFuzzyNetworkFrame::OnClose)
-//    EVT_MENU(idMenuQuit, UNFuzzyNetworkFrame::OnQuit)
-//    EVT_MENU(idMenuAbout, UNFuzzyNetworkFrame::OnAbout)
     EVT_LEFT_DOWN(UNFuzzyNetworkFrame::OnMouseLeftDown)
     EVT_LEFT_UP(UNFuzzyNetworkFrame::OnMouseLeftUp)
     EVT_BUTTON(DLG_FRONTALNET_NUEVO      , UNFuzzyNetworkFrame::OnNuevo)
@@ -33,6 +31,7 @@ BEGIN_EVENT_TABLE(UNFuzzyNetworkFrame, wxFrame)
     EVT_BUTTON(DLG_FRONTALNET_FUNCION    , UNFuzzyNetworkFrame::OnFuncion)
     EVT_BUTTON(DLG_FRONTALNET_CALCULAR   , UNFuzzyNetworkFrame::OnCalcular)
     EVT_BUTTON(DLG_FRONTALNET_CODIGO     , UNFuzzyNetworkFrame::OnCodigo)
+    EVT_BUTTON(DLG_FRONTALNET_IDIOMA     , UNFuzzyNetworkFrame::OnIdioma)
     EVT_BUTTON(DLG_FRONTALNET_ABOUT      , UNFuzzyNetworkFrame::OnAbout)
 END_EVENT_TABLE()
 
@@ -52,24 +51,33 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   sepYSLD=50;
   tamIconoPlus=20;
 
+	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+	wxString strLocale(f.GetPath());
+	strLocale << "/locale/";
+  MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+	MiLocale->AddCatalogLookupPathPrefix(strLocale);
+	MiLocale->AddCatalog("en");
+	setlocale (LC_NUMERIC,"C");
+
 	wxFlexGridSizer*  sizerGrafico;
 	wxFlexGridSizer*  sizerIconos;
 
-  buttonNuevo           = new wxBitmapButton(this, DLG_FRONTALNET_NUEVO      , wxBitmap("bmp/Nuevo.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonLeer            = new wxBitmapButton(this, DLG_FRONTALNET_LEER       , wxBitmap("bmp/Leer.bmp",wxBITMAP_TYPE_BMP)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonGuardar         = new wxBitmapButton(this, DLG_FRONTALNET_GUARDAR    , wxBitmap("bmp/Guardar.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTALNET_DESCRIPCION, wxBitmap("bmp/Describe.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonFuncion         = new wxBitmapButton(this, DLG_FRONTALNET_FUNCION    , wxBitmap("bmp/Funcion.bmp",wxBITMAP_TYPE_BMP)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonCalcular        = new wxBitmapButton(this, DLG_FRONTALNET_CALCULAR   , wxBitmap("bmp/Calcular.bmp",wxBITMAP_TYPE_BMP) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonCodigo          = new wxBitmapButton(this, DLG_FRONTALNET_CODIGO     , wxBitmap("bmp/Codigo.bmp",wxBITMAP_TYPE_BMP)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
-  buttonAbout           = new wxBitmapButton(this, DLG_FRONTALNET_ABOUT      , wxBitmap("bmp/Acerca.bmp",wxBITMAP_TYPE_BMP)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonNuevo           = new wxBitmapButton(this, DLG_FRONTALNET_NUEVO      , wxMEMORY_BITMAP(nuevo)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonLeer            = new wxBitmapButton(this, DLG_FRONTALNET_LEER       , wxMEMORY_BITMAP(leer)     ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonGuardar         = new wxBitmapButton(this, DLG_FRONTALNET_GUARDAR    , wxMEMORY_BITMAP(guardar)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonDescripcion     = new wxBitmapButton(this, DLG_FRONTALNET_DESCRIPCION, wxMEMORY_BITMAP(describe) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonFuncion         = new wxBitmapButton(this, DLG_FRONTALNET_FUNCION    , wxMEMORY_BITMAP(funcion)  ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonCalcular        = new wxBitmapButton(this, DLG_FRONTALNET_CALCULAR   , wxMEMORY_BITMAP(calcular) ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonCodigo          = new wxBitmapButton(this, DLG_FRONTALNET_CODIGO     , wxMEMORY_BITMAP(codigo)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonIdioma          = new wxBitmapButton(this, DLG_FRONTALNET_IDIOMA     , wxMEMORY_BITMAP(vacio)    ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
+  buttonAbout           = new wxBitmapButton(this, DLG_FRONTALNET_ABOUT      , wxMEMORY_BITMAP(acerca)   ,wxDefaultPosition,wxDefaultSize,wxBORDER_NONE);
 
 	staticNombre = new wxStaticText(this,wxID_ANY, Red.nombre);
 
   sizerTotal      = new wxFlexGridSizer(1,4,0);
   sizerCanvas     = new wxFlexGridSizer(1,1,0);
   sizerGrafico    = new wxFlexGridSizer(1,1,0);
-  sizerIconos     = new wxFlexGridSizer(8,1,0);
+  sizerIconos     = new wxFlexGridSizer(9,1,0);
 
   int sepIcon=1;
 #ifdef __WXGTK__
@@ -82,6 +90,7 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   sizerIconos->Add(buttonFuncion    , 0, wxALL, sepIcon);
   sizerIconos->Add(buttonCalcular   , 0, wxALL, sepIcon);
   sizerIconos->Add(buttonCodigo     , 0, wxALL, sepIcon);
+  sizerIconos->Add(buttonIdioma     , 0, wxALL, sepIcon);
   sizerIconos->Add(buttonAbout      , 0, wxALL, sepIcon);
 
 	canvasRed= new wxSizerItem(100,100);
@@ -96,30 +105,14 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   this->SetSizer(sizerTotal);
   this->Layout();
 
-//	crearMenu();
 	crearStatusBar();
 	crearSizers();
 }
 
-/*
-void UNFuzzyNetworkFrame::crearMenu()
-{
-    wxMenuBar* mbar = new wxMenuBar();
-    wxMenu* fileMenu = new wxMenu(_T(""));
-    fileMenu->Append(idMenuQuit, _T("&Quit\tAlt-F4"), _T("Quit the application"));
-    mbar->Append(fileMenu, _T("&File"));
-
-    wxMenu* helpMenu = new wxMenu(_T(""));
-    helpMenu->Append(idMenuAbout, _T("&About\tF1"), _T("Show info about this application"));
-    mbar->Append(helpMenu, _T("&Help"));
-
-    SetMenuBar(mbar);
-}*/
-
 void UNFuzzyNetworkFrame::crearStatusBar()
 {
     CreateStatusBar(1);
-    SetStatusText(_T("Redes de Sistemas de Lógica Difusa"),0);
+    SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
 }
 
 void UNFuzzyNetworkFrame::crearSizers()
@@ -152,7 +145,7 @@ UNFuzzyNetworkFrame::~UNFuzzyNetworkFrame()
 void UNFuzzyNetworkFrame::OnNuevo     (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
   	Red.crearRedMinima();
@@ -176,11 +169,11 @@ void UNFuzzyNetworkFrame::OnDescripcion(wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("Esta acción borra todas las definiciones previas y crea un sistema nuevo. No puede deshacerse. ¿Desea continuar?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		wxString extensiones="";
-		extensiones << _T("Archivos UNFuzzyNetwork (*.unn)|*.unn");
+		extensiones << _("Archivos UNFuzzyNetwork (*.unn)|*.unn");
 
 		wxFileDialog dial2(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 												wxFD_OPEN|wxFD_FILE_MUST_EXIST);
@@ -198,7 +191,7 @@ void UNFuzzyNetworkFrame::OnLeer      (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnGuardar   (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos UNFuzzyNetwork (*.unn)|*.unn");
+	extensiones << _("Archivos UNFuzzyNetwork (*.unn)|*.unn");
 
 	wxFileDialog dial(this, _("Sistema de Lógica Difusa"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -232,16 +225,51 @@ void UNFuzzyNetworkFrame::OnCalcular  (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
-	extensiones << _T("Archivos CPP (*.cpp)|*.cpp");
+	extensiones << _("Archivos CPP (*.cpp)|*.cpp");
 
-	wxFileDialog dial(this, _T("Código fuente generado"), "", "",extensiones,
+	wxFileDialog dial(this, _("Código fuente generado"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
   if (dial.ShowModal() == wxID_OK)
 	{
-		wxString nombreClase=_T("miRed");  // solo se usa en cpp
+		wxString nombreClase=_("miRed");  // solo se usa en cpp
 		Red.generarCodigo(dial.GetPath(),nombreClase);
 	}
 
+}
+
+void UNFuzzyNetworkFrame::OnIdioma    (wxCommandEvent& event)
+{
+	wxSingleChoiceDialog *dialogo;
+	wxArrayString idiomas;
+	idiomas.push_back(_("Spanish"));
+	idiomas.push_back(_("English"));
+	dialogo=new wxSingleChoiceDialog((wxWindow*)this,_("Available languages"),_("Select the language"),idiomas);//,(char**)NULL,wxCHOICEDLG_STYLE,wxDefaultPosition);
+	if(dialogo->ShowModal()==wxID_OK)
+	{
+		wxDELETE(MiLocale);
+		wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+		wxString strLocale(f.GetPath());
+		strLocale << "/locale/";
+		int idioma=dialogo->GetSelection();
+		switch(idioma)
+		{
+			case 0 :	MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								break;
+			case 1 :	MiLocale =new wxLocale(wxLANGUAGE_ENGLISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("en");
+								break;
+			default:	MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								break;
+		}
+		setlocale (LC_NUMERIC,"C");
+		paintNow();
+    SetStatusText(_("Redes de Sistemas de Lógica Difusa"),0);
+	}
 }
 
 void UNFuzzyNetworkFrame::OnClose(wxCloseEvent &event)
@@ -249,19 +277,13 @@ void UNFuzzyNetworkFrame::OnClose(wxCloseEvent &event)
     Destroy();
 }
 
-/*
-void UNFuzzyNetworkFrame::OnQuit(wxCommandEvent &event)
-{
-    Destroy();
-}*/
-
 void UNFuzzyNetworkFrame::OnAbout(wxCommandEvent &event)
 {
   wxAboutDialogInfo info;
-  info.SetName(_T("UNFuzzyNetwork"));
-  info.SetVersion(_T("3.0.0. Beta"));
-  info.SetDescription(_T("Programa de diseño de\nRedes de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
-  info.SetCopyright(_T("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
+  info.SetName(_("UNFuzzyNetwork"));
+  info.SetVersion(_("3.0.0. Beta"));
+  info.SetDescription(_("Programa de diseño de\nRedes de Sistemas de Lógica Difusa\nUniversidad Nacional de Colombia"));
+  info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
   wxAboutBox(info);
 }
 
@@ -446,8 +468,8 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinEntrada(wxPoint punto)
 
 bool UNFuzzyNetworkFrame::buscarPuntosEnPinSalidaUp(wxPoint punto)
 {
-	int numCapa=capaInicioArrastre-1;
-
+	for(int numCapa=0;numCapa <=capaInicioArrastre-1;numCapa++)
+  {
 	for(int numNodo=0;numNodo < Red.capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
 	{
 		wxPoint pt;
@@ -478,6 +500,7 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinSalidaUp(wxPoint punto)
 			}
 		}
 	}
+  }
 	capaInicioArrastre=0;
 
 	return false;
@@ -508,11 +531,11 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnPinSalidaDown(wxPoint punto)
 				if(canvasPin.Contains(punto))
 				{
 					pin *Pin=Red.ptrPinSalida(numCapa, numNodo, i);
-					wxString str=_T("El valor de la variable ");
+					wxString str=_("El valor de la variable ");
 					str << Red.ptrNodo(numCapa, numNodo)->sld()->nombreVariableSalida(i);
-					str << _T(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _T(") es : ");
+					str << _(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _(") es : ");
 					str << Pin->valor();
-					wxMessageBox(str, _T(""));
+					wxMessageBox(str, "");
 
 					return true;
 				}
@@ -620,7 +643,7 @@ bool UNFuzzyNetworkFrame::buscarPuntosEnAdicionarCapa(wxPoint punto)
 void UNFuzzyNetworkFrame::editarSLD(SistemaLogicaDifusa* SLD)
 {
 	DialogoSLD *dial;
-	dial=new DialogoSLD(this,SLD,_T("Edición del Sistema de Lógica Difusa"));
+	dial=new DialogoSLD(this,SLD,false,_("Edición del Sistema de Lógica Difusa"));
 	if(dial->ShowModal()==wxID_OK)
 	{
 	}
@@ -629,7 +652,7 @@ void UNFuzzyNetworkFrame::editarSLD(SistemaLogicaDifusa* SLD)
 void UNFuzzyNetworkFrame::eliminarNodo(int numCapa,int numNodo)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("¿Desea eliminar el nodo?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("¿Desea eliminar el nodo?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		Red.eliminarNodo(numCapa,numNodo);
@@ -640,7 +663,7 @@ void UNFuzzyNetworkFrame::eliminarNodo(int numCapa,int numNodo)
 void UNFuzzyNetworkFrame::eliminarCapa(int numCapa)
 {
 	wxMessageDialog* dial;
-  dial = new wxMessageDialog(this,_T("¿Desea eliminar la capa?"),_T("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
+  dial = new wxMessageDialog(this,_("¿Desea eliminar la capa?"),_("Atención"),wxOK|wxCANCEL|wxCANCEL_DEFAULT);
 	if(dial->ShowModal() == wxID_OK)
 	{
 		Red.eliminarCapa(numCapa);
@@ -651,18 +674,18 @@ void UNFuzzyNetworkFrame::eliminarCapa(int numCapa)
 void UNFuzzyNetworkFrame::datoEntrada(int numNodo, int numPin)
 {
 	int numCapa=0;
-	wxString str=_T("Ingrese el valor de la variable ");
+	wxString str=_("Ingrese el valor de la variable ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->nombreVariableEntrada(numPin);
-	str << _T(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _T("). ");
-	str << _T("Debe estar entre ");
+	str << _(" (") << Red.ptrNodo(numCapa, numNodo)->sld()->nombre << _("). ");
+	str << _("Debe estar entre ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->variableEntrada(numPin)->rangoMinimo();
-	str << _T(" y ");
+	str << _(" y ");
 	str << Red.ptrNodo(numCapa, numNodo)->sld()->variableEntrada(numPin)->rangoMaximo();
-	str << _T(" : ");
+	str << _(" : ");
 	wxTextEntryDialog *dial;
 	float val;
 	val=Red.ptrPinEntrada(numCapa, numNodo, numPin)->valor();
-	dial=new wxTextEntryDialog(this, str, _T("Atención"), wxString::Format("%f",val));
+	dial=new wxTextEntryDialog(this, str, _("Atención"), wxString::Format("%f",val));
 	if(dial->ShowModal()==wxID_OK)
 	{
 		wxString strValue=dial->GetValue();

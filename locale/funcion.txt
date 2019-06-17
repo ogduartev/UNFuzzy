@@ -1,0 +1,75 @@
+        wxLocale *MiLocale;
+
+
+RecorteFrame::RecorteFrame(wxWindow* parent,wxWindowID id)
+{
+	 	wxString fn="";
+		fn << wxGetCwd() << "/config/configRecorte.ini";
+		leerConfig(fn);
+
+/////////////////////////////////
+		wxString strLocale="";
+		strLocale << wxGetCwd() << "/locale/";
+		int idioma=0;
+		if(languageAlias=="en"){idioma=1;}
+		switch(idioma)
+		{
+			case 0 :	MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+							  MiLocale->AddCatalog("es");
+							  break;
+			case 1 :	MiLocale =new wxLocale(wxLANGUAGE_ENGLISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+							  MiLocale->AddCatalog("en");
+							  break;
+			default:  MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+							  MiLocale->AddCatalog("es");
+							  break;
+		}
+		setlocale (LC_NUMERIC,"C");
+}
+
+void RecorteFrame::OnIdioma(wxCommandEvent& event)
+{
+	wxSingleChoiceDialog *dialogo;
+	wxArrayString idiomas;
+	idiomas.push_back(_("Spanish"));
+	idiomas.push_back(_("English"));
+	int idiomaAntes=0;
+	if(languageAlias=="en"){idiomaAntes=1;}
+	dialogo=new wxSingleChoiceDialog((wxWindow*)this,_("Available languages"),_("Select the language"),idiomas);//,(char**)NULL,wxCHOICEDLG_STYLE,wxDefaultPosition);
+	dialogo->SetSelection(idiomaAntes);
+	if(dialogo->ShowModal()==wxID_OK)
+	{
+		wxDELETE(MiLocale);
+		wxString strLocale="";
+		strLocale << wxGetCwd() << "/locale/";
+		int idioma=dialogo->GetSelection();
+		switch(idioma)
+		{
+			case 0 :	MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								languageAlias="es";
+								break;
+			case 1 :	MiLocale =new wxLocale(wxLANGUAGE_ENGLISH);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("en");
+								languageAlias="en";
+								break;
+			default:	MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+								MiLocale->AddCatalogLookupPathPrefix(strLocale);
+								MiLocale->AddCatalog("es");
+								languageAlias="es";
+								break;
+		}
+		setlocale (LC_NUMERIC,"C");
+
+		NotebookImagenes->DeleteAllPages();
+		crearPaneles();
+		crearMenu();
+		nombrarBotones();
+	}
+}
+

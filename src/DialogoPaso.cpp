@@ -9,7 +9,7 @@ BEGIN_EVENT_TABLE(DialogoPaso, wxDialog)
 END_EVENT_TABLE()
 
 DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_T("Cálculo paso a paso")))
+:wxDialog(parent,wxID_ANY,wxString(_("Cálculo paso a paso")))
 {
 	SLD=sld;
 	sale=new float[SLD->salidas->numeroVariables()];
@@ -50,7 +50,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	rows = 0;
 	cols = SLD->motor->numeroEntradas() + SLD->motor->numeroSalidas();
 
-	staticSalida     = new wxStaticText(this,wxID_ANY,_T("                 "));
+	staticSalida     = new wxStaticText(this,wxID_ANY,_("                 "));
 	choiceEntradas   = new wxChoice(this,DLG_PASO_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_PASO_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
 	gridTabla = new wxGrid(this,DLG_PASO_TABLA, wxDefaultPosition, wxSize(600,200), wxFULL_REPAINT_ON_RESIZE);
@@ -63,7 +63,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 		maxi=SLD->entradas->variable(i)->rangoMaximo();
 		medi=0.5*(mini+maxi);
 		incr=0.01*(maxi-mini);
-		valoresEntradas[i]=new wxSpinCtrlDouble(this,DLG_PASO_SPINENTRA_BASE+i,_T("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
+		valoresEntradas[i]=new wxSpinCtrlDouble(this,DLG_PASO_SPINENTRA_BASE+i,_("X"),wxDefaultPosition,wxDefaultSize, wxSP_ARROW_KEYS, mini,maxi,medi,incr);
 		Bind(wxEVT_SPINCTRLDOUBLE, &DialogoPaso::OnCambioSpinEntra, this, DLG_PASO_SPINENTRA_BASE+i);
 
 		wxStaticText *stText;
@@ -279,7 +279,7 @@ void DialogoPaso::llenarTabla()
 			gridTabla->AppendRows();
 			int regla=gridTabla->GetNumberRows()-1;
 			celda ="";
-			celda << _T("Regla ") << (i+1);
+			celda << _("Regla ") << (i+1);
 
 			gridTabla->SetRowLabelValue(regla,celda);
 			for(int e=0;e<SLD->motor->numeroEntradas();e++)
@@ -289,7 +289,7 @@ void DialogoPaso::llenarTabla()
 
 				if(SLD->motor->modificador(i,e)!=1.0)
 				{
-					celda << _T("(") << SLD->motor->modificador(i,e) << _T(")");
+					celda << _("(") << SLD->motor->modificador(i,e) << _(")");
 				}
 
 				gridTabla->SetCellValue(regla,e,celda);

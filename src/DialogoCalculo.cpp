@@ -7,7 +7,7 @@ BEGIN_EVENT_TABLE(DialogoCalculo, wxDialog)
 END_EVENT_TABLE()
 
 DialogoCalculo::DialogoCalculo(wxWindow* parent)
-:wxDialog::wxDialog(parent,wxID_ANY,wxString(wxT("Cálculo individual")))
+:wxDialog::wxDialog(parent,wxID_ANY,wxString(_("Cálculo individual")))
 {
 }
 
@@ -34,7 +34,7 @@ void DialogoCalculo::iniciar()
 	  float maxX=rangoMaximoEntrada(i);
 	  float dx=(maxX-minX)/100;
 
-	  wxSpinCtrlDouble *ct=new wxSpinCtrlDouble(this, wxID_ANY, _T(""),wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT, minX, maxX, 0, dx);
+	  wxSpinCtrlDouble *ct=new wxSpinCtrlDouble(this, wxID_ANY, "",wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT, minX, maxX, 0, dx);
 		Bind(wxEVT_SPINCTRLDOUBLE, &DialogoCalculo::OnCalcular, this, wxID_ANY);
 	  ValoresEntradas.Add(ct);
 	  sizerEntradas->Add(ct, 0, wxALL, 0);
@@ -48,7 +48,7 @@ void DialogoCalculo::iniciar()
 	  sizerSalidas->Add(st, 0, wxALL, 0);
 	}
 
-	buttonCalcular   = new wxButton(this, DLG_CALCULO_CALCULAR      , wxT("=>")      , wxDefaultPosition, wxSize(35,35), 0);
+	buttonCalcular   = new wxButton(this, DLG_CALCULO_CALCULAR      , _("=>")      , wxDefaultPosition, wxSize(35,35), 0);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancelar"));
 
@@ -94,7 +94,7 @@ void DialogoCalculo::OnCalcular(wxCommandEvent&   event)
 	for(int i=0;i < numeroSalidas();i++)
 	{
 		wxString str=nombreSalida(i);
-		str << _T(" : ") << sale[i];
+		str << _(" : ") << sale[i];
 		NombresSalidas.dato(i)->SetLabel(str);
 	}
 }

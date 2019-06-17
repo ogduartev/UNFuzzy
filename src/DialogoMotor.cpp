@@ -10,7 +10,7 @@ BEGIN_EVENT_TABLE(DialogoMotor, wxDialog)
 END_EVENT_TABLE()
 
 DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(wxT("Parametros del motor de inferencia")))
+:wxDialog(parent,wxID_ANY,wxString(_("Parametros del motor de inferencia")))
 {
 	Motor = SLD->motor;
 	Concreto = SLD->concreto;
@@ -23,14 +23,14 @@ DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
   sizerControles   = new wxFlexGridSizer(2,4,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticImplicacion = new wxStaticText(this,wxID_ANY,_T("Implicación"));
-  staticComposicion = new wxStaticText(this,wxID_ANY,_T("Composición"));
-  staticAnd         = new wxStaticText(this,wxID_ANY,_T("And"));
-  staticConjuncion  = new wxStaticText(this,wxID_ANY,_T("Conjunción"));
-  comboImplicacion  = new wxComboBox(this,DLG_MOTOR_IMPLICACION,_T(""),wxDefaultPosition,wxSize(150,25));
-  comboComposicion  = new wxComboBox(this,DLG_MOTOR_COMPOSICION,_T(""),wxDefaultPosition,wxSize(150,25));
-  comboAnd          = new wxComboBox(this,DLG_MOTOR_AND        ,_T(""),wxDefaultPosition,wxSize(150,25));
-  comboConjuncion   = new wxComboBox(this,DLG_MOTOR_CONJUNCION ,_T(""),wxDefaultPosition,wxSize(150,25));
+  staticImplicacion = new wxStaticText(this,wxID_ANY,_("Implicación"));
+  staticComposicion = new wxStaticText(this,wxID_ANY,_("Composición"));
+  staticAnd         = new wxStaticText(this,wxID_ANY,_("And"));
+  staticConjuncion  = new wxStaticText(this,wxID_ANY,_("Conjunción"));
+  comboImplicacion  = new wxComboBox(this,DLG_MOTOR_IMPLICACION,"",wxDefaultPosition,wxSize(150,25));
+  comboComposicion  = new wxComboBox(this,DLG_MOTOR_COMPOSICION,"",wxDefaultPosition,wxSize(150,25));
+  comboAnd          = new wxComboBox(this,DLG_MOTOR_AND        ,"",wxDefaultPosition,wxSize(150,25));
+  comboConjuncion   = new wxComboBox(this,DLG_MOTOR_CONJUNCION ,"",wxDefaultPosition,wxSize(150,25));
 
   llenarCombos();
   seleccionarCombos();
@@ -82,53 +82,53 @@ void DialogoMotor::OnOK(wxCommandEvent&   event)
 
 void DialogoMotor::llenarCombos()
 {
-	comboImplicacion->Append(_T(IDS_IMPLICA_TN_TIPO_1));
-	comboImplicacion->Append(_T(IDS_IMPLICA_TN_TIPO_0));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_2));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_3));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_4));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_5));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_6));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_7));
-	comboImplicacion->Append(_T(IDS_IMPLICA_IF_TIPO_8));
+	comboImplicacion->Append(_(IDS_IMPLICA_TN_TIPO_1));
+	comboImplicacion->Append(_(IDS_IMPLICA_TN_TIPO_0));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_2));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_3));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_4));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_5));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_6));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_7));
+	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_8));
 
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_1));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_0));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_2));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_3));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_4));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_5));
-//	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_6));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_7));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_8));
-	comboComposicion->Append(_T(IDS_T_NORMA_TIPO_9));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_1));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_0));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_2));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_3));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_4));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_5));
+//	comboComposicion->Append(_(IDS_T_NORMA_TIPO_6));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_7));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_8));
+	comboComposicion->Append(_(IDS_T_NORMA_TIPO_9));
 
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_1));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_0));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_2));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_3));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_4));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_5));
-//	comboAnd->Append(_T(IDS_T_NORMA_TIPO_6));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_7));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_8));
-	comboAnd->Append(_T(IDS_T_NORMA_TIPO_9));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_1));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_0));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_2));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_3));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_4));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_5));
+//	comboAnd->Append(_(IDS_T_NORMA_TIPO_6));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_7));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_8));
+	comboAnd->Append(_(IDS_T_NORMA_TIPO_9));
 
-	comboConjuncion->Append(_T(IDS_S_NORMA_TIPO_10));
-	comboConjuncion->Append(_T(IDS_S_NORMA_TIPO_11));
-	comboConjuncion->Append(_T(IDS_S_NORMA_TIPO_12));
-	comboConjuncion->Append(_T(IDS_S_NORMA_TIPO_6));
-	comboConjuncion->Append(_T("----------"));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_1));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_0));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_2));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_3));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_4));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_5));
-//	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_6));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_7));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_8));
-	comboConjuncion->Append(_T(IDS_T_NORMA_TIPO_9));
+	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_10));
+	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_11));
+	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_12));
+	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_6));
+	comboConjuncion->Append(_("----------"));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_1));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_0));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_2));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_3));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_4));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_5));
+//	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_6));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_7));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_8));
+	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_9));
 }
 
 void DialogoMotor::seleccionarCombos()
@@ -311,6 +311,7 @@ Norma* DialogoMotor::nuevaSNorma(int caso)
 					nor=new FamiliaSp(par);
 					break;
 	}
+	return nor;
 }
 
 Norma* DialogoMotor::nuevaTNorma(int caso)
@@ -363,8 +364,8 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 	wxTextValidator Validator(wxFILTER_NUMERIC);
 	wxString msg,val;
 	val << *par;
-	msg << _T("Ingrese el parámetro de la familia, entre ") << minimo << _T(" y ") << maximo;
-	wxTextEntryDialog dlg(this,msg,_T("Parámetro de la familia de norma"),val);
+	msg << _("Ingrese el parámetro de la familia, entre ") << minimo << _(" y ") << maximo;
+	wxTextEntryDialog dlg(this,msg,_("Parámetro de la familia de norma"),val);
 	if(dlg.ShowModal()==wxID_OK)
 	{
 	  dlg.GetValue().ToDouble(&tmp);
@@ -373,8 +374,8 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 	if(*par < minimo){*par=minimo;}
 	if(*par > maximo){*par=maximo;}
 	msg = "";
-	msg << _T("El parámetro aplicado será ") << *par;
-	wxMessageBox(msg,_T("Información"));
+	msg << _("El parámetro aplicado será ") << *par;
+	wxMessageBox(msg,_("Información"));
 }
 
 bool DialogoMotor::verificar()
@@ -389,14 +390,14 @@ bool DialogoMotor::verificar()
 		wxString str1,str2;
 		if(a==0.0)
 		{
-			str1 = _T("La Implicación seleccionada requiere una Conjunción del tipo 'Unión'. La que usted ha seleccionado es del tipo 'Intersección'");
-			str2 = _T(IDS_DIALOG_OPCION_IMPLICA2);
+			str1 = _("La Implicación seleccionada requiere una Conjunción del tipo 'Unión'. La que usted ha seleccionado es del tipo 'Intersección'");
+			str2 = _(IDS_DIALOG_OPCION_IMPLICA2);
 		}else
 		{
-			str1 = _T("La Implicación seleccionada requiere una Conjunción del tipo 'Intersección'. La que usted ha seleccionado es del tipo 'Unión'");
-			str2 = _T(IDS_DIALOG_OPCION_IMPLICA4);
+			str1 = _("La Implicación seleccionada requiere una Conjunción del tipo 'Intersección'. La que usted ha seleccionado es del tipo 'Unión'");
+			str2 = _(IDS_DIALOG_OPCION_IMPLICA4);
 		}
-		str1 << _T("\n¿Desea mantener esa elección?");
+		str1 << "\n" <<_("¿Desea mantener esa elección?");
 		if(wxMessageDialog(this, str1, str2, wxYES_NO|wxNO_DEFAULT).ShowModal() == wxID_YES)
 		{
 			flag=true;
