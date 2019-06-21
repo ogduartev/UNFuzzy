@@ -298,7 +298,7 @@ void Archivador::leerVariable      (wxXmlNode* parent, Variable *var, bool flagD
 	long tmpL;
 
 	strS=parent->GetAttribute(("Name"));
-	var->nombreVariable(strS.mb_str());
+	var->nombreVariable(std::string(strS.mb_str()));
 	parent->GetAttribute(("Minimum")).ToDouble(&tmpD);
 	var->rangoMinimo((float)tmpD);
 	parent->GetAttribute(("Maximum")).ToDouble(&tmpD);
@@ -341,10 +341,6 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 
 	int identificador;
 	int numeroPuntos;
-	int numeroPuntosClave;
-	float *puntosClave;
-	float minimo;
-	float maximo;
 	float centro;
 
 	parent->GetAttribute(("Type")).ToLong(&tmpL);
@@ -353,8 +349,6 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 	numeroPuntos = (int)tmpL;
 	parent->GetAttribute(("Center")).ToDouble(&tmpD);
 	centro = (float)tmpD;
-	minimo = var->rangoMinimo();
-	maximo = var->rangoMaximo();
 
 	float puntos[10];
 	wxXmlNode *NodeA=parent->GetChildren();
@@ -421,16 +415,16 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 	ConjuntoDifuso *cd;
 	switch(identificador)
 	{
-		case 0 :	cd=new ConjuntoL         (Nombre.mb_str(),minimo,puntos[0],puntos[1]);break;
-		case 1 :  cd=new ConjuntoTriangulo (Nombre.mb_str(),puntos[0],puntos[1],puntos[2]);break;
-		case 2 :  cd=new ConjuntoPi        (Nombre.mb_str(),puntos[0],puntos[1],puntos[2],puntos[3]);break;
-		case 3 :  cd=new ConjuntoGamma     (Nombre.mb_str(),puntos[0],puntos[1],maximo);break;
-		case 4 :  cd=new ConjuntoZ         (Nombre.mb_str(),minimo,puntos[0],puntos[1]);break;
-		case 5 :  cd=new ConjuntoCampana   (Nombre.mb_str(),puntos[0],puntos[1],puntos[2]);break;
-		case 6 :  cd=new ConjuntoPiCampana (Nombre.mb_str(),puntos[0],puntos[1],puntos[2],puntos[3]);break;
-		case 7 :  cd=new ConjuntoS         (Nombre.mb_str(),puntos[0],puntos[1],maximo);break;
-		case 8 :  cd=new ConjuntoSinglenton(Nombre.mb_str(),0.5*(puntos[0]+puntos[1]),(puntos[1]-puntos[0]));break;
-		default : cd=new ConjuntoTriangulo (Nombre.mb_str(),minimo,puntos[0],puntos[1]);break;
+		case 0 :	cd=new ConjuntoL         (std::string(Nombre.mb_str()),minimo,puntos[0],puntos[1]);break;
+		case 1 :  cd=new ConjuntoTriangulo (std::string(Nombre.mb_str()),puntos[0],puntos[1],puntos[2]);break;
+		case 2 :  cd=new ConjuntoPi        (std::string(Nombre.mb_str()),puntos[0],puntos[1],puntos[2],puntos[3]);break;
+		case 3 :  cd=new ConjuntoGamma     (std::string(Nombre.mb_str()),puntos[0],puntos[1],maximo);break;
+		case 4 :  cd=new ConjuntoZ         (std::string(Nombre.mb_str()),minimo,puntos[0],puntos[1]);break;
+		case 5 :  cd=new ConjuntoCampana   (std::string(Nombre.mb_str()),puntos[0],puntos[1],puntos[2]);break;
+		case 6 :  cd=new ConjuntoPiCampana (std::string(Nombre.mb_str()),puntos[0],puntos[1],puntos[2],puntos[3]);break;
+		case 7 :  cd=new ConjuntoS         (std::string(Nombre.mb_str()),puntos[0],puntos[1],maximo);break;
+		case 8 :  cd=new ConjuntoSinglenton(std::string(Nombre.mb_str()),0.5*(puntos[0]+puntos[1]),(puntos[1]-puntos[0]));break;
+		default : cd=new ConjuntoTriangulo (std::string(Nombre.mb_str()),minimo,puntos[0],puntos[1]);break;
 	}
 	return cd;
 }

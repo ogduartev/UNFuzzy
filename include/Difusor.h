@@ -92,7 +92,6 @@ public:
 	~Difusor()
 	{
 		delete[] Codigo_C;
-		delete[] Codigo_CPP;
 	}
 	void numeroPuntos(int num)
 	{
@@ -138,20 +137,19 @@ public:
 	virtual float maximo()=0;
 	virtual void minimo(float mn)=0;
 	virtual void maximo(float mx)=0;
-	virtual char *nombre()=0;
-	virtual char *tipo()=0;
+	virtual string nombre()=0;
+	virtual string tipo()=0;
 	virtual float var1()=0;
 	virtual float var2()=0;
 	virtual float var3()=0;
 	virtual float var4()=0;
 	virtual int identificador()=0;
-	char *codigoC(){return CodigoC;}
-	char *codigoCPP(){return CodigoCPP;}
-	virtual char *codigo_C(int i)=0;
-	virtual char *codigo_CPP()=0;
+	string codigoC(){return "";}
+	string codigoCPP(){return "";}
+	virtual string codigo_C(int i)=0;
+	virtual string codigo_CPP()=0;
 protected:
 	char *Codigo_C;
-	char *Codigo_CPP;
 	int NumeroPuntos;
 	float dx;
 	float Centro;
@@ -160,14 +158,13 @@ protected:
 class DifusorTriangulo:public virtual ConjuntoTriangulo,public virtual Difusor
 {
 public:
-	DifusorTriangulo(float x, float me, float ma):ConjuntoTriangulo(IDS_CONJUNTOS_TIPO_1,x-me,x,x+ma)
+	DifusorTriangulo(float x, float me, float ma):ConjuntoTriangulo("",x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
 		mas=ma;
 		NumeroPuntos=3;
 		Codigo_C=new char[2000];
-		Codigo_CPP=new char[2000];
 	}
 	~DifusorTriangulo()
 	{
@@ -215,11 +212,11 @@ public:
 	{
 		ConjuntoTriangulo::maximo(mx);
 	}
-	char *nombre()
+	string nombre()
 	{
 		return ConjuntoTriangulo::nombre();
 	}
-	char *tipo()
+	string tipo()
 	{
 		return ConjuntoTriangulo::tipo();
 	}
@@ -251,7 +248,7 @@ public:
 	{
 		return ConjuntoTriangulo::identificador();
 	}
-	char *codigo_C(int i)
+	string codigo_C(int i)
 	{
 		char cad[500];
 		delete[] Codigo_C;
@@ -275,15 +272,12 @@ public:
 		strcat(Codigo_C,cad);
 		return Codigo_C;
 	}
-	char *codigo_CPP()
+	string codigo_CPP()
 	{
-		char cad[500];
-		delete[] Codigo_CPP;
-		Codigo_CPP=new char[2000];
-		strcpy(Codigo_CPP,"");
-		sprintf(cad,"    dif=new DifusorTriangulo(%f,%f,%f);",centro(),menos,mas);
-		strcat(Codigo_CPP,cad);
-		return Codigo_CPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("    dif=new DifusorTriangulo(");
+		CodigoCPP << centro() << (",") << menos << (",") << mas << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 protected:
 	float mas;
@@ -293,7 +287,7 @@ protected:
 class DifusorPi:public virtual ConjuntoPi,public virtual Difusor
 {
 public:
-	DifusorPi(float x, float me1, float me2, float ma1, float ma2):ConjuntoPi(IDS_CONJUNTOS_TIPO_2,x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPi(float x, float me1, float me2, float ma1, float ma2):ConjuntoPi("",x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -302,7 +296,6 @@ public:
 		mas2=ma2;
 		NumeroPuntos=3;
 		Codigo_C=new char[2000];
-		Codigo_CPP=new char[2000];
 	}
 	~DifusorPi()
 	{
@@ -359,11 +352,11 @@ public:
 	{
 		ConjuntoPi::maximo(mx);
 	}
-	char *nombre()
+	string nombre()
 	{
 		return ConjuntoPi::nombre();
 	}
-	char *tipo()
+	string tipo()
 	{
 		return ConjuntoPi::tipo();
 	}
@@ -397,7 +390,7 @@ public:
 	{
 		return ConjuntoPi::identificador();
 	}
-	char *codigo_C(int i)
+	string codigo_C(int i)
 	{
 		char cad[500];
 		delete[] Codigo_C;
@@ -425,15 +418,12 @@ public:
 		strcat(Codigo_C,cad);
 		return Codigo_C;
 	}
-	char *codigo_CPP()
+	string codigo_CPP()
 	{
-		char cad[500];
-		delete[] Codigo_CPP;
-		Codigo_CPP=new char[2000];
-		strcpy(Codigo_CPP,"");
-		sprintf(cad,"    dif=new DifusorPi(%f,%f,%f,%f,%f);",centro(),menos1,menos2,mas1,mas2);
-		strcat(Codigo_CPP,cad);
-		return Codigo_CPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("    dif=new DifusorPi(");
+		CodigoCPP << centro() << (",") << menos1 << (",") << menos2 << (",") << mas1 << (",") << mas2 << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 protected:
 	float mas1;
@@ -445,14 +435,13 @@ protected:
 class DifusorCampana:public virtual ConjuntoCampana,public virtual Difusor
 {
 public:
-	DifusorCampana(float x, float me, float ma):ConjuntoCampana(IDS_CONJUNTOS_TIPO_5,x-me,x,x+ma)
+	DifusorCampana(float x, float me, float ma):ConjuntoCampana("",x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
 		mas=ma;
 		NumeroPuntos=5;
 		Codigo_C=new char[2000];
-		Codigo_CPP=new char[2000];
 	}
 	~DifusorCampana()
 	{
@@ -500,11 +489,11 @@ public:
 	{
 		ConjuntoCampana::maximo(mx);
 	}
-	char *nombre()
+	string nombre()
 	{
 		return ConjuntoCampana::nombre();
 	}
-	char *tipo()
+	string tipo()
 	{
 		return ConjuntoCampana::tipo();
 	}
@@ -536,7 +525,7 @@ public:
 	{
 		return ConjuntoCampana::identificador();
 	}
-	char *codigo_C(int i)
+	string codigo_C(int i)
 	{
 		char cad[500];
 		delete[] Codigo_C;
@@ -584,15 +573,12 @@ public:
 		strcat(Codigo_C,cad);
 		return Codigo_C;
 	}
-	char *codigo_CPP()
+	string codigo_CPP()
 	{
-		char cad[500];
-		delete[] Codigo_CPP;
-		Codigo_CPP=new char[2000];
-		strcpy(Codigo_CPP,"");
-		sprintf(cad,"    dif=new DifusorCampana(%f,%f,%f);",centro(),menos,mas);
-		strcat(Codigo_CPP,cad);
-		return Codigo_CPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("    dif=new DifusorCampana(");
+		CodigoCPP << centro() << (",") << menos << (",") << mas << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 protected:
 	float mas;
@@ -602,7 +588,7 @@ protected:
 class DifusorPiCampana:public virtual ConjuntoPiCampana,public virtual Difusor
 {
 public:
-	DifusorPiCampana(float x, float me1, float me2, float ma1, float ma2):ConjuntoPiCampana(IDS_CONJUNTOS_TIPO_6,x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPiCampana(float x, float me1, float me2, float ma1, float ma2):ConjuntoPiCampana("",x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -611,7 +597,6 @@ public:
 		mas2=ma2;
 		NumeroPuntos=5;
 		Codigo_C=new char[2000];
-		Codigo_CPP=new char[2000];
 	}
 	~DifusorPiCampana()
 	{
@@ -668,11 +653,11 @@ public:
 	{
 		ConjuntoPiCampana::maximo(mx);
 	}
-	char *nombre()
+	string nombre()
 	{
 		return ConjuntoPiCampana::nombre();
 	}
-	char *tipo()
+	string tipo()
 	{
 		return ConjuntoPiCampana::tipo();
 	}
@@ -706,7 +691,7 @@ public:
 	{
 		return ConjuntoPiCampana::identificador();
 	}
-	char *codigo_C(int i)
+	string codigo_C(int i)
 	{
 		char cad[500];
 		delete[] Codigo_C;
@@ -760,15 +745,12 @@ public:
 		strcat(Codigo_C,cad);
 		return Codigo_C;
 	}
-	char *codigo_CPP()
+	string codigo_CPP()
 	{
-		char cad[500];
-		delete[] Codigo_CPP;
-		Codigo_CPP=new char[2000];
-		strcpy(Codigo_CPP,"");
-		sprintf(cad,"    dif=new DifusorPiCampana(%f,%f,%f,%f,%f);",centro(),menos1,menos2,mas1,mas2);
-		strcat(Codigo_CPP,cad);
-		return Codigo_CPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("    dif=new DifusorPiCampana(");
+		CodigoCPP << centro() << (",") << menos1 << (",") << menos2 << (",") << mas1 << (",") << mas2 << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 protected:
 	float mas1;
@@ -781,12 +763,11 @@ protected:
 class DifusorSinglenton:public virtual ConjuntoSinglenton, public virtual Difusor
 {
 public:
-	DifusorSinglenton(float x, float de):ConjuntoSinglenton(IDS_CONJUNTOS_TIPO_8,x,de)
+	DifusorSinglenton(float x, float de):ConjuntoSinglenton("",x,de)
 	{
 		Centro=x;
 		NumeroPuntos=1;
 		Codigo_C=new char[2000];
-		Codigo_CPP=new char[2000];
 	}
 	~DifusorSinglenton()
 	{
@@ -825,11 +806,11 @@ public:
 	{
 		ConjuntoSinglenton::maximo(mx);
 	}
-	char *nombre()
+	string nombre()
 	{
 		return ConjuntoSinglenton::nombre();
 	}
-	char *tipo()
+	string tipo()
 	{
 		return ConjuntoSinglenton::tipo();
 	}
@@ -861,7 +842,7 @@ public:
 	{
 		return ConjuntoSinglenton::identificador();
 	}
-	char *codigo_C(int i)
+	string codigo_C(int i)
 	{
 		char cad[500];
 		delete[] Codigo_C;
@@ -881,15 +862,12 @@ public:
 		strcat(Codigo_C,cad);
 		return Codigo_C;
 	}
-	char *codigo_CPP()
+	string codigo_CPP()
 	{
-		char cad[500];
-		delete[] Codigo_CPP;
-		Codigo_CPP=new char[2000];
-		strcpy(Codigo_CPP,"");
-		sprintf(cad,"    dif=new DifusorSinglenton(%f,%f);",centro(),ConjuntoSinglenton::delta());
-		strcat(Codigo_CPP,cad);
-		return Codigo_CPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("    dif=new DifusorSinglenton(");
+		CodigoCPP << centro() << (",") << ConjuntoSinglenton::delta() << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 protected:
 };

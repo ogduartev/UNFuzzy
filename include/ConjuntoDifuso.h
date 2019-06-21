@@ -2,10 +2,12 @@
 #define CONJUNTODIFUSO_H
 
 #include <cstdio>
+#include <iostream>
+#include <string>
+#include <wx/wx.h>
 
-#ifndef __IDIOMAS_H
-#include "Idiomas.h"
-#endif
+using namespace std;
+
 
 typedef int BOOL;
 
@@ -65,33 +67,25 @@ class ConjuntoDifuso
 public:
 	ConjuntoDifuso()
 	{
-		Nombre = 0;
-		Tipo=0;
 	  CodigoC=0;
-	  CodigoCPP=0;
 	}
 	virtual ~ConjuntoDifuso()
 	{
-		delete[] Nombre;
-		delete[] Tipo;
 		delete[] CodigoC;
-		delete[] CodigoCPP;
 	}
-	char* nombre() const
+	string nombre() const
 	{
 		return Nombre;
 	}
-	char* nombre(const char* s)
+	void nombre(string s)
 	{
-		delete[] Nombre;
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		return Nombre;
+		Nombre=s;
 	}
-	char* tipo()
+	string tipo()
 	{
-		return Tipo;
+		return tipo(Identificador);
 	}
+	static string tipo(int caso);
 	void minimo(float min)
 	{
 		Minimo=min;
@@ -122,11 +116,11 @@ public:
 	virtual float pertenencia(float x)=0;
 	virtual void ajustar(float nuevoMinimo, float nuevoMaximo)=0;
 	virtual float centroAltura()=0;
-	virtual char* codigoC()=0;
-	virtual char* codigoCPP()=0;
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
 	BOOL operator==(const ConjuntoDifuso& other)
 	{
-		return ( strcmp( Nombre,other.Nombre)&
+		return ( ( Nombre == other.Nombre)&
 		( Minimo == other.Minimo)&
 		( Maximo == other.Maximo) );
 	}
@@ -144,10 +138,8 @@ public:
 		Identificador      = other.Identificador;
 	}*/
 protected:
-	char* Nombre;
-	char* Tipo;
+	string Nombre;
 	char* CodigoC;
-	char* CodigoCPP;
 	float Minimo;
 	float Maximo;
 	int NumeroPuntosClaves;
@@ -175,18 +167,14 @@ atributos:
 class ConjuntoL: public ConjuntoDifuso
 {
 public:
-	ConjuntoL(const char* s, float min, float pcor, float max)
+	ConjuntoL(string s, float min, float pcor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_0);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=0;
 	}
 	~ConjuntoL()
@@ -215,8 +203,8 @@ public:
     cen=(minimo()+primerCorte())/2.0;
     return cen;
   }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -253,18 +241,14 @@ atributos:
 class ConjuntoTriangulo: public ConjuntoDifuso
 {
 public:
-	ConjuntoTriangulo(const char* s, float min_, float pcor, float max_)
+	ConjuntoTriangulo(string s, float min_, float pcor, float max_)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_1);
+		Nombre=s;
 		Minimo=min_;
 		PrimerCorte=pcor;
 		Maximo=max_;
 		NumeroPuntosClaves=3;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=1;
 	}
 	~ConjuntoTriangulo()
@@ -293,8 +277,8 @@ public:
     {
         return primerCorte();
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -332,19 +316,15 @@ atributos:
 class ConjuntoPi: public ConjuntoDifuso
 {
 public:
-	ConjuntoPi(const char* s, float min, float pcor, float scor, float max)
+	ConjuntoPi(string s, float min, float pcor, float scor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_2);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		SegundoCorte=scor;
 		Maximo=max;
 		NumeroPuntosClaves=4;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=2;
 	}
 	~ConjuntoPi()
@@ -378,8 +358,8 @@ public:
         cen=(primerCorte()+segundoCorte())/2.0;
         return cen;
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	float SegundoCorte;
@@ -423,18 +403,14 @@ atributos:
 class ConjuntoGamma: public ConjuntoDifuso
 {
 public:
-	ConjuntoGamma(const char* s, float min, float pcor,  float max)
+	ConjuntoGamma(string s, float min, float pcor,  float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_3);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=3;
 	}
 	~ConjuntoGamma()
@@ -464,8 +440,8 @@ public:
         cen=(primerCorte()+maximo())/2.0;
         return cen;
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -503,18 +479,14 @@ atributos:
 class ConjuntoZ: public ConjuntoDifuso
 {
 public:
-	ConjuntoZ(const char* s, float min, float pcor, float max)
+	ConjuntoZ(string s, float min, float pcor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_4);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=4;
 	}
 	~ConjuntoZ()
@@ -544,8 +516,8 @@ public:
         cen=(minimo()+primerCorte())/2.0;
         return cen;
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -584,18 +556,14 @@ atributos:
 class ConjuntoCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoCampana(const char* s, float min, float pcor, float max)
+	ConjuntoCampana(string s, float min, float pcor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_5);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=3;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=5;
 	}
 	~ConjuntoCampana()
@@ -624,8 +592,8 @@ public:
     {
         return primerCorte();
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -666,19 +634,15 @@ atributos:
 class ConjuntoPiCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoPiCampana(const char* s, float min, float pcor, float scor, float max)
+	ConjuntoPiCampana(string s, float min, float pcor, float scor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_6);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		SegundoCorte=scor;
 		Maximo=max;
 		NumeroPuntosClaves=4;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=6;
 	}
 	~ConjuntoPiCampana()
@@ -712,8 +676,8 @@ public:
         cen=(minimo()+primerCorte()+segundoCorte())/2.0;
         return cen;
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	float SegundoCorte;
@@ -760,18 +724,14 @@ atributos:
 class ConjuntoS: public ConjuntoDifuso
 {
 public:
-	ConjuntoS(const char* s, float min, float pcor, float max)
+	ConjuntoS(string s, float min, float pcor, float max)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_7);
+		Nombre=s;
 		Minimo=min;
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=7;
 	}
 	~ConjuntoS()
@@ -801,8 +761,8 @@ public:
         cen=(primerCorte()+maximo())/2.0;
         return cen;
     }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float PrimerCorte;
 	void primerCorte(float pcor)
@@ -837,19 +797,15 @@ atributos:
 class ConjuntoSinglenton: public ConjuntoDifuso
 {
 public:
-	ConjuntoSinglenton(const char* s, float pi, float de)
+	ConjuntoSinglenton(string s, float pi, float de)
 	{
-		Nombre=new char[strlen(s)+1];
-		strcpy(Nombre,s);
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_CONJUNTOS_TIPO_8);
+		Nombre=s;
 		Pico=pi;
 		Delta=de;
 		Minimo=Pico-Delta/2;
 		Maximo=Pico+Delta/2;
 		NumeroPuntosClaves=2;
 		CodigoC=new char[2000];
-		CodigoCPP=new char[2000];
 		Identificador=8;
 	}
 	~ConjuntoSinglenton()
@@ -879,8 +835,8 @@ public:
 	 {
 		  return Pico;
 	 }
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 	float Delta;
 	float Pico;

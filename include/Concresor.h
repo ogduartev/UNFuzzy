@@ -60,16 +60,12 @@ public:
 		Motor=maq;
 		NumeroVariable=numVar;
 		Conjuncion=nor;
-		Nombre=new char[30];
 		CodigoC=new char[1000];
-		CodigoCPP=new char[1000];
 	}
 	~Concresor()
 	{
 		Conjuncion=NULL;
-		delete[] Nombre;
 		delete[] CodigoC;
-		delete[] CodigoCPP;
 	}
 	int numeroVariable()
 	{
@@ -91,10 +87,11 @@ public:
 	{
 		return Motor->implicacion()->defecto();
 	}
-	char *nombre()
+	string nombre()
 	{
-		return Nombre;
+		return nombre(Identificador);
 	}
+	static string nombre(int caso);
 	Norma *conjuncion()
 	{
 		return Conjuncion;
@@ -108,19 +105,17 @@ public:
 		return Identificador;
 	}
 	virtual float salidaConcreta(float *ent)=0;
-	virtual char* codigoC()=0;
-	virtual char* codigoCPP()=0;
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
 	BOOL operator==(const Concresor& other)
 	{
-		return ( strcmp( Nombre,other.Nombre)&
+		return (
 		( Motor == other.Motor)&
 		( NumeroVariable == other.NumeroVariable)&
 		( Conjuncion == other.Conjuncion) );
 	}
 protected:
-	char *Nombre;
 	char *CodigoC;
-	char *CodigoCPP;
 	MaquinaInferencia *Motor;
 	int NumeroVariable;
 	Norma *Conjuncion;
@@ -139,13 +134,12 @@ class PrimerMaximo:public Concresor
 public:
 	PrimerMaximo(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{
-		strcpy(Nombre,IDS_CONCRESOR_TIPO_0);
 		Identificador=0;
 	}
 	~PrimerMaximo(){}
 	float salidaConcreta(float *ent);
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 };
 
@@ -161,13 +155,12 @@ class UltimoMaximo:public Concresor
 public:
 	UltimoMaximo(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{
-		strcpy(Nombre,IDS_CONCRESOR_TIPO_1);
 		Identificador=1;
 	}
 	~UltimoMaximo(){}
 	float salidaConcreta(float *ent);
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 };
 
@@ -183,13 +176,12 @@ class MediaDeMaximos:public Concresor
 public:
 	MediaDeMaximos(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{
-		strcpy(Nombre,IDS_CONCRESOR_TIPO_2);
 		Identificador=2;
 	}
 	~MediaDeMaximos(){}
 	float salidaConcreta(float *ent);
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 };
 
@@ -205,13 +197,12 @@ class CentroDeGravedad:public Concresor
 public:
 	CentroDeGravedad(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{
-		strcpy(Nombre,IDS_CONCRESOR_TIPO_3);
 		Identificador=3;
 	}
 	~CentroDeGravedad(){}
 	float salidaConcreta(float *ent);
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 };
 
@@ -227,13 +218,12 @@ class Altura:public Concresor
 public:
 	Altura(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{
-		strcpy(Nombre,IDS_CONCRESOR_TIPO_4);
 		Identificador=4;
 	}
 	~Altura(){}
 	float salidaConcreta(float *ent);
-	char* codigoC();
-	char* codigoCPP();
+	string codigoC();
+	string codigoCPP();
 protected:
 };
 

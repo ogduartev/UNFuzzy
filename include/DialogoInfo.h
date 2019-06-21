@@ -8,14 +8,14 @@
 class DialogoInfo : public wxDialog
 {
 	public:
-		DialogoInfo(wxString *N, wxString *D, wxWindow *parent);
+		DialogoInfo(wxString N, wxString D, wxWindow *parent);
 		virtual ~DialogoInfo();
 		void OnClose       (wxCloseEvent&   event);
 		void OnOK          (wxCommandEvent&   event);
 
+		wxString Nombre;
+		wxString Descripcion;
 	protected:
-		wxString *Nombre;
-		wxString *Descripcion;
 
 		wxStaticText*  staticNombre;
 		wxStaticText*  staticDescribe;

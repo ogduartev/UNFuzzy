@@ -91,11 +91,11 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 		sizerBotonesDifConc->Add(staticAnchoDif       , 1, wxALIGN_RIGHT|wxALL, 1);
 		sizerBotonesDifConc->Add(spinDifAncho         , 1, wxALIGN_LEFT |wxALL, 1);
 
-		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_1));
-		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_2));
-		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_5));
-		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_6));
-		comboTipoDifusor->Append(_(IDS_CONJUNTOS_TIPO_8));
+		comboTipoDifusor->Append(ConjuntoDifuso::tipo(1));
+		comboTipoDifusor->Append(ConjuntoDifuso::tipo(2));
+		comboTipoDifusor->Append(ConjuntoDifuso::tipo(5));
+		comboTipoDifusor->Append(ConjuntoDifuso::tipo(6));
+		comboTipoDifusor->Append(ConjuntoDifuso::tipo(8));
 	}else
 	{
 	  canvasDif         = new wxSizerItem(1,200);
@@ -112,11 +112,10 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 		sizerStaticDifConc  = new wxStaticBoxSizer(wxVERTICAL,this,_("Defuzzyfier"));
 		sizerBotonesDifConc->Add(comboTipoConcresor     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 
-		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_0));
-		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_1));
-		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_2));
-		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_3));
-		comboTipoConcresor->Append(_(IDS_CONCRESOR_TIPO_4));
+		for(int i=0;i<5;i++)
+		{
+			comboTipoConcresor->Append(Concresor::nombre(i));
+		}
 	}
 
 	buttonEditarVar      = new wxButton(this,DLG_VARIABLE_VAREDITAR      ,_("Edit"));
@@ -130,15 +129,10 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
   buttonCancel         = new wxButton(this,wxID_CANCEL,_("Cancel"));
 	comboTipoCon         = new wxComboBox(this,DLG_VARIABLE_CONTIPO);
 
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_0));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_1));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_2));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_3));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_4));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_5));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_6));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_7));
-	comboTipoCon->Append(_(IDS_CONJUNTOS_TIPO_8));
+	for(int i=0;i<9;i++)
+	{
+		comboTipoCon->Append(ConjuntoDifuso::tipo(i));
+	}
 
 ///////////////////
 	sizerBotonesVariable->Add(buttonEditarVar     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
@@ -428,7 +422,7 @@ void DialogoVariable::OnAdicionarVar   (wxCommandEvent&   event)
 	Variable *Var;
 	Var=new Variable();
 	wxString name=_("Without name");
-	Var->nombreVariable(name.c_str());
+	Var->nombreVariable(std::string(name.mb_str()));
 	Var->autodefinirConjuntosRectos(3);
 	dial=new  DialogoEditarVariable(Var,this);
 	if(dial->ShowModal() == wxID_OK)
@@ -532,8 +526,8 @@ void DialogoVariable::OnTipoCon        (wxCommandEvent&   event)
 {
 	int nuevoTipo=comboTipoCon->GetSelection();
 
-	char nombre[100];
-	strcpy(nombre,U->variable(NumVar)->conjunto(NumCon)->nombre());
+	string nombre;
+	nombre=U->variable(NumVar)->conjunto(NumCon)->nombre();
 	float mn,a,b,mx;
 	mn=U->variable(NumVar)->rangoMinimo();
 	a=U->variable(NumVar)->conjunto(NumCon)->minimo();

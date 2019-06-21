@@ -82,53 +82,45 @@ void DialogoMotor::OnOK(wxCommandEvent&   event)
 
 void DialogoMotor::llenarCombos()
 {
-	comboImplicacion->Append(_(IDS_IMPLICA_TN_TIPO_1));
-	comboImplicacion->Append(_(IDS_IMPLICA_TN_TIPO_0));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_2));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_3));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_4));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_5));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_6));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_7));
-	comboImplicacion->Append(_(IDS_IMPLICA_IF_TIPO_8));
+	for(int i=0;i<9;i++)
+	{
+		comboImplicacion->Append(Implicacion::tipo(i));
+	}
 
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_1));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_0));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_2));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_3));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_4));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_5));
-//	comboComposicion->Append(_(IDS_T_NORMA_TIPO_6));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_7));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_8));
-	comboComposicion->Append(_(IDS_T_NORMA_TIPO_9));
+	comboComposicion->Append(Norma::tipo(1));
+	comboComposicion->Append(Norma::tipo(0));
+	comboComposicion->Append(Norma::tipo(2));
+	comboComposicion->Append(Norma::tipo(3));
+	comboComposicion->Append(Norma::tipo(4));
+	comboComposicion->Append(Norma::tipo(7));
+	comboComposicion->Append(Norma::tipo(8));
+	comboComposicion->Append(Norma::tipo(9));
 
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_1));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_0));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_2));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_3));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_4));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_5));
-//	comboAnd->Append(_(IDS_T_NORMA_TIPO_6));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_7));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_8));
-	comboAnd->Append(_(IDS_T_NORMA_TIPO_9));
+	comboAnd->Append(Norma::tipo(1));
+	comboAnd->Append(Norma::tipo(0));
+	comboAnd->Append(Norma::tipo(2));
+	comboAnd->Append(Norma::tipo(3));
+	comboAnd->Append(Norma::tipo(4));
+	comboAnd->Append(Norma::tipo(5));
+	comboAnd->Append(Norma::tipo(6));
+	comboAnd->Append(Norma::tipo(8));
+	comboAnd->Append(Norma::tipo(9));
 
-	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_10));
-	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_11));
-	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_12));
-	comboConjuncion->Append(_(IDS_S_NORMA_TIPO_6));
-	comboConjuncion->Append(_("----------"));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_1));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_0));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_2));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_3));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_4));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_5));
-//	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_6));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_7));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_8));
-	comboConjuncion->Append(_(IDS_T_NORMA_TIPO_9));
+	comboConjuncion->Append(Norma::tipo(10));
+	comboConjuncion->Append(Norma::tipo(11));
+	comboConjuncion->Append(Norma::tipo(12));
+	comboConjuncion->Append(Norma::tipo(6));
+	comboConjuncion->Append(Norma::tipo(10));
+	comboConjuncion->Append("----------");
+	comboConjuncion->Append(Norma::tipo(1));
+	comboConjuncion->Append(Norma::tipo(0));
+	comboConjuncion->Append(Norma::tipo(2));
+	comboConjuncion->Append(Norma::tipo(3));
+	comboConjuncion->Append(Norma::tipo(4));
+	comboConjuncion->Append(Norma::tipo(5));
+	comboConjuncion->Append(Norma::tipo(7));
+	comboConjuncion->Append(Norma::tipo(8));
+	comboConjuncion->Append(Norma::tipo(9));
 }
 
 void DialogoMotor::seleccionarCombos()
@@ -136,18 +128,7 @@ void DialogoMotor::seleccionarCombos()
 	int tipo,sel;
 
 	tipo=Motor->implicacion()->identificador();
-	switch(tipo)
-	{
-		case 0 : sel = 1; break;
-		case 1 : sel = 0; break;
-		case 2 : sel = 2; break;
-		case 3 : sel = 3; break;
-		case 4 : sel = 4; break;
-		case 5 : sel = 5; break;
-		case 6 : sel = 6; break;
-		case 7 : sel = 7; break;
-		case 8 : sel = 8; break;
-	}
+	sel=tipo;
 	comboImplicacion->SetSelection(sel);
 
 	tipo=Motor->composicion()->identificador();

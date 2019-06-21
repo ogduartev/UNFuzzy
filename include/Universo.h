@@ -50,13 +50,13 @@ public:
 		var=variable(numVar);
 		return pertenenciaDifusor(var,x);
 	}
-	char *nombreVariable(int numVar)
+	 string nombreVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return nombreVariable(var);
 	}
-	void nombreVariable(char *nom,int numVar)
+	void nombreVariable(string nom,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -176,11 +176,11 @@ private:
 	{
 		return var->pertenenciaDifusor(x);
 	}
-	char *nombreVariable(Variable *var)
+	string nombreVariable(Variable *var)
 	{
 		return var->nombreVariable();
 	}
-	void nombreVariable(char *nom,Variable *var)
+	void nombreVariable(string nom,Variable *var)
 	{
 		var->nombreVariable(nom);
 	}

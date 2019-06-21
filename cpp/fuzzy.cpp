@@ -109,7 +109,6 @@ Variable::~Variable()
 	limpiarListaConjuntos();
 	delete Conjuntos;
 	delete DifusorEntrada;
-	delete[] NombreVariable;
 }
 
 ConjuntoDifuso* Variable::conjunto(int conj)
@@ -799,4 +798,352 @@ void BloqueConcrecion::conjuncion(Norma *nor)
 		concresor(i)->conjuncion(nor);
 	}
 }
+
+/////////////////////////
+
+void nodo::calcularNodo()
+{
+	actualizarEntradas();
+	float entra[Entradas.GetItemsInContainer()];
+	float sale [Salidas .GetItemsInContainer()];
+	for(int i=0;i<Entradas.GetItemsInContainer();i++)
+	{
+		entra[i]=Entradas.dato(i)->valor();
+	}
+	calcular(entra,sale);
+	for(int i=0;i<Salidas.GetItemsInContainer();i++)
+	{
+		Salidas.dato(i)->valor(sale[i]);
+	}
+}
+
+void nodo::actualizarEntradas()
+{
+	for(int i=0;i<Entradas.GetItemsInContainer();i++)
+	{
+		pin* pinPtr= Entradas.dato(i)->contacto();
+		if(pinPtr)
+		{
+			Entradas.dato(i)->valor(pinPtr->valor());
+		}
+	}
+}
+
+void nodo::calcular(float* entra, float* sale)
+{
+	SLD->calcular(entra,sale);
+}
+
+void nodo::ajustarPinesAsld()
+{
+	for(int i=Entradas.GetItemsInContainer();i<SLD->entradas->numeroVariables();i++)
+	{
+		pin* P=new pin();
+		Entradas.Add(P);
+	}
+	for(int i=Salidas.GetItemsInContainer();i<SLD->salidas->numeroVariables();i++)
+	{
+		pin* P=new pin();
+		Salidas.Add(P);
+	}
+	while(Entradas.GetItemsInContainer()>SLD->entradas->numeroVariables())
+	{
+		Entradas.Destroy(Entradas.GetItemsInContainer()-1);
+	}
+	while(Salidas.GetItemsInContainer()>SLD->salidas->numeroVariables())
+	{
+		Salidas.Destroy(Salidas.GetItemsInContainer()-1);
+	}
+}
+
+////////////////////////////
+
+bool red::conectar(int capa1, int nodo1, int pin1,int capa2, int nodo2, int pin2)
+{
+	if(capa1<0)                            {return false;}
+	if(capa1!=(capa2-1))                   {return false;}
+	if(!buscarPinSalida(capa1,nodo1,pin1)) {return false;}
+	if(!buscarPinEntrada(capa2,nodo2,pin2)){return false;}
+	pin* ptr1;
+	pin* ptr2;
+	ptr1=Capas.dato(capa1)->nodos()->dato(nodo1)->salidas() ->dato(pin1);
+	ptr2=Capas.dato(capa2)->nodos()->dato(nodo2)->entradas()->dato(pin2);
+	ptr2->contacto(ptr1);
+}
+
+bool red::buscarCapa(int numCapa)
+{
+	if(numCapa>=Capas.GetItemsInContainer()){return false;}
+	return true;
+}
+
+bool red::buscarNodo(int numCapa, int numNodo)
+{
+	if(numCapa>=Capas.GetItemsInContainer())                                                   {return false;}
+	if(numNodo>=Capas.dato(numCapa)->nodos()->GetItemsInContainer())                           {return false;}
+	return true;
+}
+
+bool red::buscarPinEntrada(int numCapa, int numNodo, int numPin)
+{
+	if(numCapa>=Capas.GetItemsInContainer())                                                   {return false;}
+	if(numNodo>=Capas.dato(numCapa)->nodos()->GetItemsInContainer())                           {return false;}
+	if(numPin >=Capas.dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer()){return false;}
+	return true;
+}
+
+bool red::buscarPinSalida(int numCapa, int numNodo, int numPin)
+{
+	if(numCapa>=Capas.GetItemsInContainer())                                                   {return false;}
+	if(numNodo>=Capas.dato(numCapa)->nodos()->GetItemsInContainer())                           {return false;}
+	if(numPin >=Capas.dato(numCapa)->nodos()->dato(numNodo)->salidas()->GetItemsInContainer()){return false;}
+	return true;
+}
+
+float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
+{
+	float V=0.0;
+	if(!buscarPinEntrada(numCapa,numNodo,numPin))
+	{
+		return V;
+	}
+	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->entradas()->dato(numPin)->valor();
+}
+
+float red::valorPinSalida(int numCapa, int numNodo, int numPin)
+{
+	float V=0.0;
+	if(!buscarPinSalida(numCapa,numNodo,numPin))
+	{
+		return V;
+	}
+	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->salidas()->dato(numPin)->valor();
+}
+
+void red::calcularRed()
+{
+	for(int numCapa=0;numCapa<Capas.GetItemsInContainer();numCapa++)
+	{
+		for(int numNodo=0;numNodo<Capas.dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+		{
+		  Capas.dato(numCapa)->nodos()->dato(numNodo)->calcularNodo();
+		}
+	}
+}
+
+void red::valorEntrada(int numNodo, int numPin, float Valor)
+{
+  if(!buscarPinEntrada(0,numNodo,numPin))
+	{
+		return;
+	}
+	Capas.dato(0)->nodos()->dato(numNodo)->entradas()->dato(numPin)->valor(Valor);
+}
+
+nodo* red::ptrNodo(int numCapa, int numNodo)
+{
+	if(!buscarNodo(numCapa,numNodo))
+	{
+		return NULL;
+	}
+	return Capas.dato(numCapa)->nodos()->dato(numNodo);
+}
+
+pin* red::ptrPinEntrada(int numCapa, int numNodo, int numPin)
+{
+	if(!buscarPinEntrada(numCapa,numNodo,numPin)) {return NULL;}
+	pin* Pin=capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->dato(numPin);
+	return Pin;
+}
+
+pin* red::ptrPinSalida(int numCapa, int numNodo, int numPin)
+{
+	if(!buscarPinSalida(numCapa,numNodo,numPin)) {return NULL;}
+	pin* Pin=capas()->dato(numCapa)->nodos()->dato(numNodo)->salidas()->dato(numPin);
+	return Pin;
+}
+
+void red::desconectarSalida(int numCapa, int numNodo, int numPin)
+{
+	pin* PinSalida=ptrPinSalida(numCapa, numNodo, numPin);
+	if(!PinSalida){return;}
+	for(int i=0;i<capas()->GetItemsInContainer();i++)
+	{
+		for(int j=0;j<capas()->dato(i)->nodos()->GetItemsInContainer();j++)
+		{
+			for(int k=0;k<capas()->dato(i)->nodos()->dato(j)->entradas()->GetItemsInContainer();k++)
+			{
+			  pin* PinEntrada=ptrPinEntrada(i, j, k);
+			  if(PinEntrada->contacto() == PinSalida)
+				{
+					PinEntrada->contacto(NULL);
+				}
+			}
+		}
+	}
+}
+
+void red::desconectarEntradasNodo(int numCapa, int numNodo)
+{
+	nodo* Nodo=ptrNodo(numCapa, numNodo);
+	if(!Nodo){return;}
+	for(int i=0;i<Nodo->entradas()->GetItemsInContainer();i++)
+	{
+		Nodo->entradas()->dato(i)->contacto(NULL);
+	}
+}
+
+void red::desconectarSalidasNodo(int numCapa, int numNodo)
+{
+	nodo* Nodo=ptrNodo(numCapa, numNodo);
+	if(!Nodo){return;}
+	for(int i=0;i<Nodo->salidas()->GetItemsInContainer();i++)
+	{
+		desconectarSalida(numCapa, numNodo, i);
+	}
+}
+
+void red::eliminarNodo(int numCapa, int numNodo)
+{
+	if(!buscarNodo(numCapa, numNodo)){return;}
+	desconectarEntradasNodo(numCapa, numNodo);
+	desconectarSalidasNodo(numCapa, numNodo);
+	capas()->dato(numCapa)->nodos()->Destroy(numNodo);
+}
+
+void red::eliminarCapa(int numCapa)
+{
+	if(!buscarCapa(numCapa)){return;}
+	while(capas()->dato(numCapa)->nodos()->GetItemsInContainer() > 0)
+	{
+		eliminarNodo(numCapa, 0);
+	}
+	capas()->Destroy(numCapa);
+}
+
+void red::eliminarCapas()
+{
+	while(capas()->GetItemsInContainer() > 0)
+	{
+		eliminarCapa(0);
+	}
+}
+
+void red::adicionarCapa()
+{
+	capa* C=new capa();
+	Capas.Add(C);
+}
+
+void red::adicionarNodo(int numCapa)
+{
+	if(!buscarCapa(numCapa)){return;}
+	nodo* N=new nodo();
+	capas()->dato(numCapa)->nodos()->Add(N);
+}
+
+bool red::buscarPinEntrada(pin* Pin, int *numCapa, int *numNodo, int *numPin)
+{
+	if(!Pin){return false;}
+	for(int i=0;i<capas()->GetItemsInContainer();i++)
+	{
+		for(int j=0;j<capas()->dato(i)->nodos()->GetItemsInContainer();j++)
+		{
+			for(int k=0;k<capas()->dato(i)->nodos()->dato(j)->entradas()->GetItemsInContainer();k++)
+			{
+			  pin* PinEntrada=ptrPinEntrada(i, j, k);
+			  if(PinEntrada == Pin)
+				{
+					*numCapa=i;
+					*numNodo=j;
+					*numPin=k;
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool red::buscarPinSalida(pin* Pin, int *numCapa, int *numNodo, int *numPin)
+{
+	if(!Pin){return false;}
+	for(int i=0;i<capas()->GetItemsInContainer();i++)
+	{
+		for(int j=0;j<capas()->dato(i)->nodos()->GetItemsInContainer();j++)
+		{
+			for(int k=0;k<capas()->dato(i)->nodos()->dato(j)->entradas()->GetItemsInContainer();k++)
+			{
+			  pin* PinEntrada=ptrPinSalida(i, j, k);
+			  if(PinEntrada == Pin)
+				{
+					*numCapa=i;
+					*numNodo=j;
+					*numPin=k;
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+
+int red::numeroEntradas()
+{
+	int num=0;
+	int numCapa=0;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer();
+	}
+	return num;
+}
+
+int red::numeroSalidas()
+{
+	int num=0;
+	int numCapa=capas()->GetItemsInContainer()-1;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		num+=capas()->dato(numCapa)->nodos()->dato(numNodo)->salidas()->GetItemsInContainer();
+	}
+	return num;
+}
+
+void red::asignarEntradas(float* entra)
+{
+	int cnt=0;
+	int numCapa=0;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		for(int numPin=0; numPin < capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer(); numPin++)
+		{
+			valorEntrada(numNodo, numPin, entra[cnt]);
+			cnt++;
+		}
+	}
+}
+
+void red::leerSalidas(float* sale)
+{
+	int cnt=0;
+	int numCapa=capas()->GetItemsInContainer()-1;
+	for(int numNodo=0;numNodo < capas()->dato(numCapa)->nodos()->GetItemsInContainer();numNodo++)
+	{
+		for(int numPin=0; numPin < capas()->dato(numCapa)->nodos()->dato(numNodo)->entradas()->GetItemsInContainer(); numPin++)
+		{
+			sale[cnt]=valorPinSalida(numCapa, numNodo,numPin);
+			cnt++;
+		}
+	}
+}
+
+void red::calcular(float* entra, float* sale)
+{
+	asignarEntradas(entra);
+	calcularRed();
+	leerSalidas(sale);
+}
+
 

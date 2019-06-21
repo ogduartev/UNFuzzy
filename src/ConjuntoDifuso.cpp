@@ -21,6 +21,25 @@ entra (a+b)/2 y b
 
 
 //////////////////////////////////////////////*/
+string ConjuntoDifuso::tipo(int caso)
+{
+	wxString str;
+	switch(caso)
+	{
+		case 0: str= _("Type L");break;
+		case 1: str= _("Triangle");break;
+		case 2: str= _("Type PI");break;
+		case 3: str= _("Type Gamma");break;
+		case 4: str= _("Type Z");break;
+		case 5: str= _("Bell");break;
+		case 6: str= _("PI-Bell");break;
+		case 7: str= _("Type S");break;
+		case 8: str= _("Singleton");break;
+		default: str= "";break;
+	}
+	return string(str.mb_str());
+}
+
 
 float ConjuntoDifuso::verificarPuntoClave(int i,float x)
 {
@@ -343,42 +362,31 @@ void ConjuntoSinglenton::nuevoPuntoClave(int punto, float x)
 ///////////////////////////////////////////////
 
 
-char* ConjuntoL::codigoC()
+string ConjuntoL::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=((%f)-x)/((%f)-(%f));\r\n",maximo(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << "                        if(x<(" << minimo() << "))\n" ;
+	CodigoC << "                            ux=1;\n";
+	CodigoC << "                        if(x<(" << primerCorte() << ")&&x>=(" << minimo() << "))\n";
+	CodigoC << "                            ux=1;\n";
+	CodigoC << "                        if(x<(" << maximo() << ")&&x>=(" << primerCorte() << "))\n";
+	CodigoC << "                            ux=((" << maximo() << ")-x)/((" << maximo() << ")-(" << primerCorte() << "));\n";
+	CodigoC << "                        if(x>=(" << maximo() << "))\n";
+	CodigoC << "                            ux=0;\n";
+	CodigoC << "                        if(ux<0.0001)\n";
+	CodigoC << "                            ux=0;";
+	return std::string(CodigoC.mb_str());
 }
 
-char* ConjuntoL::codigoCPP()
+string ConjuntoL::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoL(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP;
+	CodigoCPP=("    cd=new ConjuntoL(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoTriangulo::codigoC()
+string ConjuntoTriangulo::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -403,18 +411,15 @@ char* ConjuntoTriangulo::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoTriangulo::codigoCPP()
+string ConjuntoTriangulo::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoTriangulo(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP;
+	CodigoCPP=("    cd=new ConjuntoTriangulo(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoPi::codigoC()
+string ConjuntoPi::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -443,18 +448,15 @@ char* ConjuntoPi::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoPi::codigoCPP()
+string ConjuntoPi::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoPi(%f,%f,%f,%f);",minimo(),primerCorte(),segundoCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoPi(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << segundoCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoGamma::codigoC()
+string ConjuntoGamma::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -475,18 +477,15 @@ char* ConjuntoGamma::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoGamma::codigoCPP()
+string ConjuntoGamma::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoGamma(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoGamma(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoZ::codigoC()
+string ConjuntoZ::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -520,18 +519,15 @@ char* ConjuntoZ::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoZ::codigoCPP()
+string ConjuntoZ::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoZ(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoZ(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoCampana::codigoC()
+string ConjuntoCampana::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -576,18 +572,15 @@ char* ConjuntoCampana::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoCampana::codigoCPP()
+string ConjuntoCampana::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoCampana(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoCampana(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoS::codigoC()
+string ConjuntoS::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -618,18 +611,15 @@ char* ConjuntoS::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoS::codigoCPP()
+string ConjuntoS::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoS(%f,%f,%f);",minimo(),primerCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoS(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoPiCampana::codigoC()
+string ConjuntoPiCampana::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -677,18 +667,15 @@ char* ConjuntoPiCampana::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoPiCampana::codigoCPP()
+string ConjuntoPiCampana::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoPiCampana(%f,%f,%f,%f);",minimo(),primerCorte(),segundoCorte(),maximo());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoPiCampana(");
+	CodigoCPP << minimo() << (",")  << primerCorte() << (",") << segundoCorte() << (",") << maximo() << (");");
+	return std::string(CodigoCPP.mb_str());
 }
 
-char* ConjuntoSinglenton::codigoC()
+string ConjuntoSinglenton::codigoC()
 {
 	char cad[1000];
 	delete[] CodigoC;
@@ -709,13 +696,10 @@ char* ConjuntoSinglenton::codigoC()
 	return CodigoC;
 }
 
-char* ConjuntoSinglenton::codigoCPP()
+string ConjuntoSinglenton::codigoCPP()
 {
-	char cad[1000];
-	delete[] CodigoCPP;
-	CodigoCPP=new char[5000];
-	strcpy(CodigoCPP,"");
-	sprintf(   cad,"    cd=new ConjuntoSinglenton(%f,%f);",pico(),delta());
-	strcat(CodigoCPP,cad);
-	return CodigoCPP;
+	wxString CodigoCPP="";
+	CodigoCPP=("    cd=new ConjuntoSinglenton(");
+	CodigoCPP << pico() << (",") << delta() << (");");
+	return std::string(CodigoCPP.mb_str());
 }

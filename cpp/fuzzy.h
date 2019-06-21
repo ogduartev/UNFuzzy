@@ -6,7 +6,7 @@
 #include <iostream>
 #endif
 
-#ifndef __STRIGN_H
+#ifndef __STRING_H
 #include<string.h>
 #endif
 
@@ -18,6 +18,7 @@
 #include<math.h>
 #endif
 
+using namespace std;
 
 template<class T>
 class Arreglo
@@ -1044,7 +1045,7 @@ public:
 	{
 		Conjuntos = new ListaConjuntos(num);
 		DifusorEntrada= new DifusorTriangulo(0.0,0.1,0.1);
-		NombreVariable=0;
+		NombreVariable="";
 	}
 	~Variable();
 	Difusor *difusorEntrada()
@@ -1056,16 +1057,13 @@ public:
 		delete DifusorEntrada;
 		DifusorEntrada=dif;
 	}
-	char* nombreVariable()
+	string nombreVariable()
 	{
 		return NombreVariable;
 	}
-	char* nombreVariable(const char* s)
+	void nombreVariable(string s)
 	{
-		delete[] NombreVariable;
-		NombreVariable=new char[strlen(s)+1];
-		strcpy(NombreVariable,s);
-		return NombreVariable;
+		NombreVariable=s;
 	}
 	void adicionarConjuntos(ConjuntoDifuso* cd)
 	{
@@ -1104,7 +1102,7 @@ public:
 	void rangoMaximo(float rm){RangoMaximo=rm;}
 	BOOL operator==(const Variable& other)
 	{
-		return ( strcmp( NombreVariable,other.NombreVariable)&
+		return ( (NombreVariable == other.NombreVariable)&
 		( RangoMinimo == other.RangoMinimo)&
 		( RangoMaximo == other.RangoMaximo)&
 		( DifusorEntrada == other.DifusorEntrada)&
@@ -1119,7 +1117,7 @@ protected:
 	float RangoMaximo;
 	int NumeroIntervalos;
 	float Intervalo;
-	char *NombreVariable;
+	string NombreVariable;
 };
 
 class Universo
@@ -1169,13 +1167,13 @@ public:
 		var=variable(numVar);
 		return pertenenciaDifusor(var,x);
 	}
-	char *nombreVariable(int numVar)
+	string nombreVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return nombreVariable(var);
 	}
-	void nombreVariable(char *nom,int numVar)
+	void nombreVariable(string nom,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -1293,11 +1291,11 @@ private:
 	{
 		return var->pertenenciaDifusor(x);
 	}
-	char *nombreVariable(Variable *var)
+	string nombreVariable(Variable *var)
 	{
 		return var->nombreVariable();
 	}
-	void nombreVariable(char *nom,Variable *var)
+	void nombreVariable(string nom,Variable *var)
 	{
 		var->nombreVariable(nom);
 	}
@@ -2358,11 +2356,11 @@ public:
 	{
 		return salidas->numeroVariables();
 	}
-	char *nombreVariableEntrada(int numVar)
+	string nombreVariableEntrada(int numVar)
 	{
 		return entradas->nombreVariable(numVar);
 	}
-	char *nombreVariableSalida(int numVar)
+	string nombreVariableSalida(int numVar)
 	{
 		return salidas->nombreVariable(numVar);
 	}
@@ -2380,11 +2378,147 @@ public:
 		motor->EntrenaUniversoVariable(antecedente,consecuente);
 	}
 
-protected:
 	Universo *entradas;
 	Universo *salidas;
 	MaquinaInferencia *motor;
 	BloqueConcrecion *concreto;
+};
+
+class pin
+{
+	public:
+		pin()
+		{
+			Contacto=NULL;
+			Valor=0.0;
+		}
+		virtual ~pin(){}
+		pin* contacto() const
+		{
+			return Contacto;
+		}
+		void contacto(pin* c)
+		{
+			Contacto=c;
+		}
+		float valor()
+		{
+			return Valor;
+		}
+		void valor(float V)
+		{
+			Valor=V;
+		}
+
+	protected:
+
+	private:
+		pin* Contacto;
+		float Valor;
+
+};
+
+
+typedef Arreglo<pin> ListaPines;
+
+class nodo
+{
+	public:
+		nodo(){}
+		virtual ~nodo(){}
+		ListaPines* entradas()
+		{
+			return &Entradas;
+		}
+		ListaPines* salidas()
+		{
+			return &Salidas;
+		}
+		SistemaLogicaDifusa* sld()
+		{
+			return SLD;
+		}
+		void sld(SistemaLogicaDifusa* sld)
+		{
+			SLD=sld;
+		}
+		void calcularNodo();
+		void actualizarEntradas();
+		void calcular(float* entra, float* sale); // =0 para hacer virtual y heredar de SLD
+		void ajustarPinesAsld();
+
+	protected:
+
+	private:
+  SistemaLogicaDifusa *SLD;
+	ListaPines Entradas;
+	ListaPines Salidas;
+};
+
+	typedef Arreglo<nodo> ListaNodos;
+
+class capa
+{
+	public:
+		capa(){}
+		virtual ~capa(){}
+
+		ListaNodos* nodos()
+		{
+			return &Nodos;
+		}
+	protected:
+
+
+	ListaNodos Nodos;
+};
+
+
+typedef Arreglo<capa> ListaCapas;
+
+class red
+{
+	public:
+		red(){}
+		virtual ~red(){}
+		bool conectar(int capa1, int nodo1, int pin1,int capa2, int nodo2, int pin2);
+		bool buscarCapa(int numCapa);
+		bool buscarNodo(int numCapa, int numNodo);
+		bool buscarPinEntrada(int numCapa, int numNodo, int numPin);
+		bool buscarPinSalida(int numCapa, int numNodo, int numPin);
+		float valorPinEntrada(int numCapa, int numNodo, int numPin);
+		float valorPinSalida(int numCapa, int numNodo, int numPin);
+		void valorEntrada(int numNodo, int numPin, float Valor);
+		nodo* ptrNodo(int numCapa, int numNodo);
+		pin* ptrPinEntrada(int numCapa, int numNodo, int numPin);
+		pin* ptrPinSalida (int numCapa, int numNodo, int numPin);
+		void desconectarSalida(int numCapa, int numNodo, int numPin);
+		void desconectarEntradasNodo(int numCapa, int numNodo);
+		void desconectarSalidasNodo (int numCapa, int numNodo);
+		void eliminarNodo(int numCapa, int numNodo);
+		void eliminarCapa(int numCapa);
+		void eliminarCapas();
+		void adicionarCapa();
+		void adicionarNodo(int numCapa);
+		bool buscarPinEntrada(pin* Pin, int *numCapa, int *numNodo, int *numPin);
+		bool buscarPinSalida(pin* Pin, int *numCapa, int *numNodo, int *numPin);
+		int numeroEntradas();
+		int numeroSalidas();
+		void asignarEntradas(float* entra);
+		void leerSalidas(float* sale);
+		void calcular(float* entra, float* sale);
+
+		void calcularRed();
+
+		ListaCapas* capas()
+		{
+			return &Capas;
+		}
+
+	protected:
+	private:
+
+	ListaCapas Capas;
 };
 
 

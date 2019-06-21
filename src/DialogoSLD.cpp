@@ -234,9 +234,11 @@ void DialogoSLD::OnGuardar    (wxCommandEvent& event)
 void DialogoSLD::OnDescripcion(wxCommandEvent& event)
 {
 	DialogoInfo *dlg;
-	dlg=new DialogoInfo(&(SLD->nombre),&(SLD->descripcion), this);
+	dlg=new DialogoInfo(wxString(SLD->nombre),wxString(SLD->descripcion), this);
 	if(dlg->ShowModal() == wxID_OK)
 	{
+		SLD->nombre=dlg->Nombre;
+		SLD->descripcion=dlg->Descripcion;
 		llenarTexto();
 	}
 	delete dlg;
@@ -287,7 +289,7 @@ void DialogoSLD::OnCodigo    (wxCommandEvent& event)
 {
 	wxString extensiones="";
 	extensiones << _("CPP files (*.cpp)|*.cpp");
-	extensiones << _("C files (*.c)|*.c");
+	extensiones << _("|C files (*.c)|*.c");
 
 	wxFileDialog dial(this, _("Source code generated"), "", "",extensiones,
 											wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -362,8 +364,33 @@ void DialogoSLD::llenarTexto()
 	wxString str="";
 	str << SLD->nombre << _("\n");
 	str << SLD->entradas->numeroVariables() << _(" inputs, ");
-	str << SLD->salidas->numeroVariables() << _(" ouputs, ");
+	str << SLD->salidas->numeroVariables() << _(" outputs, ");
 	str << SLD->motor->numeroReglas() << _(" rules.");
 	staticTextDescripcion->SetLabel(str);
+
+	llenarButton(buttonEntradas,  _("Inputs"));
+	llenarButton(buttonSalidas,   _("Outputs"));
+	llenarButton(buttonReglas,    _("Rules"));
+	llenarButton(buttonInferencia,_("Engine"));
+}
+
+void DialogoSLD::llenarButton(wxButton* button, wxString label)
+{
+  wxBitmap bmp;
+  bmp=button->GetBitmap();
+	wxMemoryDC dc(bmp);
+
+	int tamPt=10;
+	dc.SetFont(wxFont(tamPt,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL));
+	wxSize sz=dc.GetTextExtent(label);
+	int x,y;
+	x=0.5*(bmp.GetWidth() - sz.GetWidth());
+	y=bmp.GetHeight()- sz.GetHeight() - 3;
+	dc.SetPen(*wxWHITE_PEN);
+	dc.SetBrush(*wxWHITE_BRUSH);
+	dc.DrawRectangle(0,bmp.GetHeight()-20,bmp.GetWidth(),20);
+	dc.DrawText(label,x,y);
+
+	button->SetBitmap(bmp);
 }
 

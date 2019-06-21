@@ -4,9 +4,7 @@ Variable::Variable(int num)
 {
 	Conjuntos = new ListaConjuntos(num);
 	DifusorEntrada= new DifusorSinglenton(0.5,0.01);
-	NombreVariable=0;
-  char str[40];sprintf(str,"--");
-  nombreVariable(str);
+	NombreVariable="---";
   numeroIntervalos(20);
   rangoMinimo(-1.0);
   rangoMaximo(1.0);
@@ -18,7 +16,6 @@ Variable::~Variable()
 	limpiarListaConjuntos();
 	delete Conjuntos;
 	delete DifusorEntrada;
-	delete[] NombreVariable;
 }
 
 ConjuntoDifuso* Variable::conjunto(int conj) const
@@ -242,7 +239,7 @@ void Variable::ajustar(float minimo, float maximo)
 
 void Variable::operator=(const Variable& other)
 {
-	strcpy(NombreVariable,other.NombreVariable);
+	NombreVariable=other.NombreVariable;
 	ajustar(other.RangoMinimo,other.RangoMaximo);
 	RangoMinimo = other.RangoMinimo;
 	RangoMaximo = other.RangoMaximo;

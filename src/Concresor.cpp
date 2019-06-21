@@ -1,5 +1,19 @@
 #include "Concresor.h"
 
+string Concresor::nombre(int caso)
+{
+	wxString str;
+	switch(caso)
+	{
+		case 0 : str=_("First of maximums"); break;
+		case 1 : str=_("Last of maximums"); break;
+		case 2 : str=_("Medio of maximums"); break;
+		case 3 : str=_("Center of gravity"); break;
+		case 4 : str=_("Height"); break;
+		default : str=""; break;
+	}
+	return string(str.mb_str());
+}
 
 float PrimerMaximo::salidaConcreta(float *ent)
 {
@@ -162,7 +176,7 @@ float Altura::salidaConcreta(float *ent)
 
 //////////////////////////
 
-char * PrimerMaximo::codigoC()
+string PrimerMaximo::codigoC()
 {
 	char cad[100];
 	delete[] CodigoC;
@@ -204,16 +218,16 @@ char * PrimerMaximo::codigoC()
 	return CodigoC;
 }
 
-char * PrimerMaximo::codigoCPP()
+string PrimerMaximo::codigoCPP()
 {
-	delete[] CodigoCPP;
+	char* CodigoCPP;
 	CodigoCPP=new char [1000];
 	strcpy(CodigoCPP,"");
 	sprintf(CodigoCPP,"    conc=new PrimerMaximo(motor,%d,Conjuncion);",NumeroVariable);
 	return CodigoCPP;
 }
 
-char * UltimoMaximo::codigoC()
+string UltimoMaximo::codigoC()
 {
 	char cad[100];
 	delete[] CodigoC;
@@ -255,17 +269,16 @@ char * UltimoMaximo::codigoC()
 	return CodigoC;
 }
 
-char * UltimoMaximo::codigoCPP()
+string UltimoMaximo::codigoCPP()
 {
-	delete[] CodigoCPP;
+	char* CodigoCPP;
 	CodigoCPP=new char [1000];
 	strcpy(CodigoCPP,"");
 	sprintf(CodigoCPP,"    conc=new UltimoMaximo(motor,%d,Conjuncion);",NumeroVariable);
 	return CodigoCPP;
 }
 
-
-char * MediaDeMaximos::codigoC()
+string MediaDeMaximos::codigoC()
 {
 	char cad[100];
 	delete[] CodigoC;
@@ -317,17 +330,16 @@ char * MediaDeMaximos::codigoC()
 	return CodigoC;
 }
 
-char * MediaDeMaximos::codigoCPP()
+string MediaDeMaximos::codigoCPP()
 {
-	delete[] CodigoCPP;
+	char* CodigoCPP;
 	CodigoCPP=new char [1000];
 	strcpy(CodigoCPP,"");
 	sprintf(CodigoCPP,"    conc=new MediaDeMaximos(motor,%d,Conjuncion);",NumeroVariable);
 	return CodigoCPP;
 }
 
-
-char * CentroDeGravedad::codigoC()
+string CentroDeGravedad::codigoC()
 {
 	char cad[100];
 	delete[] CodigoC;
@@ -372,16 +384,16 @@ char * CentroDeGravedad::codigoC()
 	return CodigoC;
 }
 
-char * CentroDeGravedad::codigoCPP()
+string CentroDeGravedad::codigoCPP()
 {
-	delete[] CodigoCPP;
+	char* CodigoCPP;
 	CodigoCPP=new char [1000];
 	strcpy(CodigoCPP,"");
 	sprintf(CodigoCPP,"    conc=new CentroDeGravedad(motor,%d,Conjuncion);",NumeroVariable);
 	return CodigoCPP;
 }
 
-char * Altura::codigoC()
+string Altura::codigoC()
 {
 	char cad[100];
 	delete[] CodigoC;
@@ -420,9 +432,9 @@ char * Altura::codigoC()
 	return CodigoC;
 }
 
-char * Altura::codigoCPP()
+string Altura::codigoCPP()
 {
-	delete[] CodigoCPP;
+	char* CodigoCPP;
 	CodigoCPP=new char [1000];
 	strcpy(CodigoCPP,"");
 	sprintf(CodigoCPP,"    conc=new Altura(motor,%d,Conjuncion);",NumeroVariable);

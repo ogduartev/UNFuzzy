@@ -746,7 +746,8 @@ void MaquinaInferencia::limpiaAntesUniversoVariable()
 		{
 			entradas()->variable(i)->eliminarConjuntos(1);
 		}
-		entradas()->variable(i)->conjunto(0)->nombre(_("Set base"));
+		wxString nom=_("Set base");
+		entradas()->variable(i)->conjunto(0)->nombre(std::string(nom.mb_str()));
 	}
 	for(i=0;i<numeroSalidas();i++)
 	{
@@ -757,7 +758,8 @@ void MaquinaInferencia::limpiaAntesUniversoVariable()
 		{
 			salidas()->variable(i)->eliminarConjuntos(1);
 		}
-		salidas()->variable(i)->conjunto(0)->nombre(_("Set base"));
+		wxString nom=_("Set base");
+		salidas()->variable(i)->conjunto(0)->nombre(std::string(nom.mb_str()));
 	}
 
 }

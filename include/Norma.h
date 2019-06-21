@@ -1,9 +1,12 @@
 #ifndef NORMA_H
 #define NORMA_H
 
+#include <iostream>
+#include <string>
 #include <wx/wx.h>
+using namespace std;
+
 #include <math.h>
-#include <Idiomas.h>
 
 /*///////////////////////////////////////
 class Norma
@@ -36,32 +39,28 @@ public:
 	Norma()
 	{
 		CodigoC=0;
-		CodigoCPP=0;
-		Tipo=0;
 	}
 	virtual ~Norma()
 	{
-		delete[] Tipo;
 		delete[] CodigoC;
-		delete[] CodigoCPP;
 	}
-	char* tipo()
+	string tipo()
 	{
-		return Tipo;
+		return tipo(Identificador);
 	}
+	static string tipo(int caso);
 	int identificador()
 	{
 		return Identificador;
 	}
-	virtual char* codigoC()=0;
-	virtual char* codigoCPP()=0;
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
 	virtual float ToSNorm()=0;
 	virtual float opera(float, float)=0;
 	virtual float parametro()=0;
 protected:
 	char *Tipo;
 	char *CodigoC;
-	char *CodigoCPP;
 	int Identificador;
 };
 
@@ -80,8 +79,8 @@ public:
 	{
 		return 1.0;
 	}
-	virtual char* codigoC()=0;
-	virtual char* codigoCPP()=0;
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
 	virtual float opera(float, float)=0;
 protected:
 };
@@ -101,8 +100,8 @@ public:
 	{
 		return 0.0;
 	}
-	virtual char* codigoC()=0;
-	virtual char* codigoCPP()=0;
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
 	virtual float opera(float, float)=0;
 protected:
 };
@@ -123,10 +122,7 @@ class Producto:public T_Norma
 public:
 	Producto()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_0);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=0;
 	}
 	~Producto(){}
@@ -134,7 +130,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -142,9 +138,9 @@ public:
 		strcat(CodigoC,"    z=x*y;");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"Producto();");
@@ -173,10 +169,7 @@ class Minimo:public T_Norma
 public:
 	Minimo()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_1);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=1;
 	}
 	~Minimo(){}
@@ -184,7 +177,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -198,9 +191,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"Minimo();");
@@ -236,10 +229,7 @@ class ProductoAcotado:public T_Norma
 public:
 	ProductoAcotado()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_2);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=2;
 	}
 	~ProductoAcotado(){}
@@ -247,7 +237,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -259,9 +249,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"ProductoAcotado();");
@@ -295,10 +285,7 @@ class ProductoDrastico:public T_Norma
 public:
 	ProductoDrastico()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_3);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=3;
 	}
 	~ProductoDrastico(){}
@@ -306,7 +293,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -325,9 +312,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"ProductoDrastico();");
@@ -368,18 +355,15 @@ class FamiliaTp:public T_Norma
 public:
 	FamiliaTp(float parametro=1.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_4);
 		p=parametro;
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=4;
 	}
 	float parametro()
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -389,9 +373,9 @@ public:
 		strcat(CodigoC,"    z=1-pow(z,(1/p));");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaTp(%f);",p);
@@ -424,11 +408,8 @@ class FamiliaHp:public T_Norma
 public:
 	FamiliaHp(float parametro=1.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_5);
 		p=parametro;
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=5;
 	}
 	~FamiliaHp(){}
@@ -436,7 +417,7 @@ public:
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -446,9 +427,9 @@ public:
 		strcat(CodigoC,"    z=x*y/z;");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaHp(%f);",p);
@@ -481,18 +462,15 @@ class FamiliaFp:public T_Norma
 public:
 	FamiliaFp(float parametro=2.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_7);
 		p=parametro;
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=7;
 	}
 	float parametro()
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -502,9 +480,9 @@ public:
 		strcat(CodigoC,"    z=log(z)/log(p);");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaFp(%f);",p);
@@ -537,11 +515,8 @@ class FamiliaYp:public T_Norma
 public:
 	FamiliaYp(float parametro=1.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_8);
 		p=parametro;
 		CodigoC=new char[1000];
-		CodigoCPP=new char[200];
 		Identificador=8;
 	}
 	~FamiliaYp(){}
@@ -549,7 +524,7 @@ public:
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -564,9 +539,9 @@ public:
 		strcat(CodigoC,"    z=1-z;");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaYp(%f);",p);
@@ -603,11 +578,8 @@ class FamiliaAp:public T_Norma
 public:
 	FamiliaAp(float parametro=1.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_T_NORMA_TIPO_9);
 		p=parametro;
 		CodigoC=new char[1000];
-		CodigoCPP=new char[200];
 		Identificador=9;
 	}
 	~FamiliaAp(){}
@@ -615,7 +587,7 @@ public:
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -633,9 +605,9 @@ public:
 		strcat(CodigoC,"    z=x*y/z;");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaAp(%f);",p);
@@ -679,10 +651,7 @@ class Maximo:public S_Norma
 public:
 	Maximo()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_S_NORMA_TIPO_10);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=10;
 	}
 	~Maximo(){}
@@ -690,7 +659,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -704,9 +673,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"Maximo();");
@@ -742,10 +711,7 @@ class SumaAcotada:public S_Norma
 public:
 	SumaAcotada()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_S_NORMA_TIPO_11);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=11;
 	}
 	~SumaAcotada(){}
@@ -753,7 +719,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -765,9 +731,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"SumaAcotada();");
@@ -801,10 +767,7 @@ class SumaDrastica:public S_Norma
 public:
 	SumaDrastica()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_S_NORMA_TIPO_12);
 		CodigoC=new char[1000];
-		CodigoCPP=new char[200];
 		Identificador=12;
 	}
 	~SumaDrastica(){}
@@ -812,7 +775,7 @@ public:
 	{
 		return 0;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -831,9 +794,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		strcat(CodigoCPP,"SumaDrastica();");
@@ -873,11 +836,8 @@ class FamiliaSp:public S_Norma
 public:
 	FamiliaSp(float parametro=1.0)
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_S_NORMA_TIPO_6);
 		p=parametro;
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=6;
 	}
 	~FamiliaSp(){}
@@ -885,7 +845,7 @@ public:
 	{
 		return p;
 	}
-	char* codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[1000];
@@ -898,9 +858,9 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char* codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
+		char* CodigoCPP;
 		CodigoCPP=new char[200];
 		strcpy(CodigoCPP,"");
 		sprintf(CodigoCPP,"FamiliaSp(%f);",p);

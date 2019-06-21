@@ -88,6 +88,7 @@ class DialogoSLD: public wxDialog
 				void OnAbout     (wxCommandEvent& event);
 
 				void llenarTexto();
+				void llenarButton(wxButton* button, wxString label);
 
         DECLARE_EVENT_TABLE()
 };

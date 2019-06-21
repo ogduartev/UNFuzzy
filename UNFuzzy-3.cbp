@@ -62,9 +62,7 @@
 		<Unit filename="include/DialogoSLD.h" />
 		<Unit filename="include/DialogoVariable.h" />
 		<Unit filename="include/Difusor.h" />
-		<Unit filename="include/Espanol.h" />
 		<Unit filename="include/Graficador.h" />
-		<Unit filename="include/Idiomas.h" />
 		<Unit filename="include/Implicacion.h" />
 		<Unit filename="include/MaquinaInferencia.h" />
 		<Unit filename="include/Norma.h" />

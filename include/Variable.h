@@ -4,6 +4,10 @@
 #include<string.h>
 #include <wx/wx.h>
 
+#include <iostream>
+#include <string>
+using namespace std;
+
 #include "Arreglo.h"
 #include "Difusor.h"
 
@@ -21,16 +25,13 @@ public:
 		delete DifusorEntrada;
 		DifusorEntrada=dif;
 	}
-	char* nombreVariable()
+	string nombreVariable()
 	{
 		return NombreVariable;
 	}
-	char* nombreVariable(const char* s)
+	void nombreVariable(string s)
 	{
-		delete[] NombreVariable;
-		NombreVariable=new char[strlen(s)+1];
-		strcpy(NombreVariable,s);
-		return NombreVariable;
+		NombreVariable=s;
 	}
 	void adicionarConjuntos(ConjuntoDifuso* cd)
 	{
@@ -78,7 +79,7 @@ public:
 	void ajustar(float minimo, float maximo);
 	BOOL operator==(const Variable& other)
 	{
-		return ( strcmp( NombreVariable,other.NombreVariable)&
+		return ( (NombreVariable == other.NombreVariable)&
 		( RangoMinimo == other.RangoMinimo)&
 		( RangoMaximo == other.RangoMaximo)&
 		( DifusorEntrada == other.DifusorEntrada)&
@@ -95,7 +96,7 @@ protected:
 	float RangoMaximo;
 	int NumeroIntervalos;
 	float Intervalo;
-	char *NombreVariable;
+	string NombreVariable;
 };
 
 #endif // VARIABLE_H

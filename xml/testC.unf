@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FLS Name="Without name" Description="">
+  <INPUTS>
+    <VARIABLE Name="e1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="1" Points="3" Center="0.000000">
+        <POINT X="-0.400000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.400000"/>
+      </FUZZYFIER>
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="e2" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="2" Points="5" Center="0.000000">
+        <POINT X="-0.400000"/>
+        <POINT X="-0.200000"/>
+        <POINT X="0.200000"/>
+        <POINT X="0.400000"/>
+      </FUZZYFIER>
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="e3" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="5" Points="5" Center="0.000000">
+        <POINT X="-0.400000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.400000"/>
+      </FUZZYFIER>
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="e4" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="6" Points="5" Center="0.000000">
+        <POINT X="-0.400000"/>
+        <POINT X="-0.200000"/>
+        <POINT X="0.200000"/>
+        <POINT X="0.400000"/>
+      </FUZZYFIER>
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="e5" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="0.500000">
+        <POINT X="0.495000"/>
+        <POINT X="0.505000"/>
+      </FUZZYFIER>
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+    </VARIABLE>
+  </INPUTS>
+  <OUTPUTS>
+    <VARIABLE Name="Output 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <LABEL Name="Set 1" Type="0">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Set 2" Type="1">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Set 3" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </OUTPUTS>
+  <ENGINE>
+    <IMPLICATION Type="1"/>
+    <COMPOSITION Type="1" Parameter="0.000000"/>
+    <AND Type="1" Parameter="0.000000"/>
+    <BASE Inputs="5" Outputs="1">
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+    </BASE>
+  </ENGINE>
+  <DEFUZZYFIERS>
+    <DEFUZZYFIER Variable="0" Type="3"/>
+    <CONJUNCTION Type="10" Parameter="0.000000"/>
+  </DEFUZZYFIERS>
+</FLS>

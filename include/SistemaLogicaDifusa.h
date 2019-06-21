@@ -6,6 +6,10 @@
 #include <wx/progdlg.h>
 #include <wx/filename.h>
 
+#include <iostream>
+#include <string>
+using namespace std;
+
 #include "BloqueConcrecion.h"
 
 class SistemaLogicaDifusa
@@ -51,11 +55,11 @@ public:
 	{
 		return salidas->numeroVariables();
 	}
-	char *nombreVariableEntrada(int numVar)
+	string nombreVariableEntrada(int numVar)
 	{
 		return entradas->nombreVariable(numVar);
 	}
-	char *nombreVariableSalida(int numVar)
+	string nombreVariableSalida(int numVar)
 	{
 		return salidas->nombreVariable(numVar);
 	}
@@ -75,11 +79,18 @@ public:
 	void crearMinimoSLD(int numEnt,int numSal);
 	void crearArchivoTabla(wxString nombreArchivo);
 	void generarCodigo(wxString nombreArchivo,wxString nombreClase);
+
 	void generarCodigoCPP(wxString nombreArchivo,wxString nombreClase);
 	void generarCodigoCPPEncabezado(wxTextFile* codigoFile);
 	void generarCodigoCPPClase(wxTextFile* codigoFile,wxString nombreClase);
 	void generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase);
+
 	void generarCodigoC(wxString nombreArchivo);
+	void generarCodigoCEncabezado(wxTextFile* codigoFile);
+	void generarCodigoCDefs(wxTextFile* codigoFile);
+	void generarCodigoCMain(wxTextFile* codigoFile);
+	void generarCodigoCFunciones(wxTextFile* codigoFile);
+	void generarCodigoCSistema(wxTextFile* codigoFile);
 
 //protected:
 	Universo *entradas;
@@ -87,8 +98,8 @@ public:
 	MaquinaInferencia *motor;
 	BloqueConcrecion *concreto;
 
-	wxString nombre;
-	wxString descripcion;
+	string nombre;
+	string descripcion;
 };
 
 #endif // SISTEMALOGICADIFUSA_H

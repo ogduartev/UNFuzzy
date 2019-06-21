@@ -158,9 +158,11 @@ void UNFuzzyNetworkFrame::OnNuevo     (wxCommandEvent& event)
 void UNFuzzyNetworkFrame::OnDescripcion(wxCommandEvent& event)
 {
 	DialogoInfo *dlg;
-	dlg=new DialogoInfo(&Red.nombre,&Red.descripcion, this);
+	dlg=new DialogoInfo(Red.nombre,Red.descripcion, this);
 	if(dlg->ShowModal() == wxID_OK)
 	{
+		Red.nombre=dlg->Nombre;
+		Red.descripcion=dlg->Descripcion;
 		staticNombre->SetLabel(Red.nombre);
 	}
 	delete dlg;

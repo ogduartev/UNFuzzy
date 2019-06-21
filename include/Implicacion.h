@@ -1,9 +1,12 @@
 #ifndef IMPLICACION_H
 #define IMPLICACION_H
 
+#include <iostream>
+#include <string>
 #include <wx/wx.h>
+using namespace std;
+
 #include <math.h>
-#include <Idiomas.h>
 
 /*///////////////////////////////////////
 class Implicacion
@@ -35,34 +38,28 @@ class Implicacion
 public:
 	Implicacion()
 	{
-		Tipo=new char[20];
-		strcpy(Tipo,IDS_IMPLICA_TIPO);
 		CodigoC=0;
-		CodigoCPP=0;
 	}
 	virtual ~Implicacion()
 	{
-		delete[] Tipo;
 		delete[] CodigoC;
-		delete[] CodigoCPP;
 	}
 	virtual float implica(float,float)=0;
 	virtual float defecto()=0;
-	virtual char *codigoC()=0;
-	virtual char *codigoCPP()=0;
-	char *tipo()
+	virtual string codigoC()=0;
+	virtual string codigoCPP()=0;
+	string tipo()
 	{
-		return Tipo;
+		return tipo(Identificador);
 	}
+	static string tipo(int caso);
 	int identificador()
 	{
 		return Identificador;
 	}
 
 protected:
-	char *Tipo;
 	char *CodigoC;
-	char *CodigoCPP;
 	int Identificador;
 };
 
@@ -81,8 +78,8 @@ public:
 	{
 		return 0;
 	}
-	virtual char *codigoC()=0;
-	virtual char *codigoCPP()=0;
+	string codigoC()=0;
+	string codigoCPP()=0;
 	virtual float implica(float x, float y)=0;
 protected:
 };
@@ -104,8 +101,8 @@ public:
 		return 1;
 	}
 	virtual float implica(float x, float y)=0;
-	virtual char *codigoC()=0;
-	virtual char *codigoCPP()=0;
+	string codigoC()=0;
+	string codigoCPP()=0;
 protected:
 };
 
@@ -125,13 +122,11 @@ class ImplicacionProducto:public ImplicacionT_Norma
 public:
 	ImplicacionProducto()
 	{
-		strcpy(Tipo,IDS_IMPLICA_TN_TIPO_0);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=0;
 	}
 	~ImplicacionProducto(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -139,13 +134,11 @@ public:
 		strcat(CodigoC,"    	rel=x*y;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionProducto();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionProducto();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -170,13 +163,11 @@ class ImplicacionMinimo:public ImplicacionT_Norma
 public:
 	ImplicacionMinimo()
 	{
-		strcpy(Tipo,IDS_IMPLICA_TN_TIPO_1);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=1;
 	}
 	~ImplicacionMinimo(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -190,13 +181,11 @@ public:
 		strcat(CodigoC,"    }");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionMinimo();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionMinimo();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -224,13 +213,11 @@ class ImplicacionKleenDienes:public ImplicacionIf_Then
 public:
 	ImplicacionKleenDienes()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_2);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=2;
 	}
 	~ImplicacionKleenDienes(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -242,13 +229,11 @@ public:
 		strcat(CodigoC,"    	rel=y;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionKleenDienes();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionKleenDienes();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -278,13 +263,11 @@ class ImplicacionLukasiewicz:public ImplicacionIf_Then
 public:
 	ImplicacionLukasiewicz()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_3);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=3;
 	}
 	~ImplicacionLukasiewicz(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -298,13 +281,11 @@ public:
 		strcat(CodigoC,"    	rel=x;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionLukasiewicz();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionLukasiewicz();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -332,13 +313,11 @@ class ImplicacionZadeh:public ImplicacionIf_Then
 public:
 	ImplicacionZadeh()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_4);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=4;
 	}
 	~ImplicacionZadeh(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -352,13 +331,11 @@ public:
 		strcat(CodigoC,"    	rel=x;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionZadeh();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionZadeh();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -390,13 +367,11 @@ class ImplicacionEstocastica:public ImplicacionIf_Then
 public:
 	ImplicacionEstocastica()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_5);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=5;
 	}
 	~ImplicacionEstocastica(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -407,13 +382,11 @@ public:
 		strcat(CodigoC,"    	rel=x;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionEstocastica();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionEstocastica();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -442,13 +415,11 @@ class ImplicacionGoguen:public ImplicacionIf_Then
 public:
 	ImplicacionGoguen()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_6);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=6;
 	}
 	~ImplicacionGoguen(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -461,13 +432,11 @@ public:
 		strcat(CodigoC,"    	rel=1;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionGoguen();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionGoguen();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -498,13 +467,11 @@ class ImplicacionGodel:public ImplicacionIf_Then
 public:
 	ImplicacionGodel()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_7);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=7;
 	}
 	~ImplicacionGodel(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -515,13 +482,11 @@ public:
 		strcat(CodigoC,"    	rel=y;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionGodel();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionGodel();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
@@ -550,13 +515,11 @@ class ImplicacionAguda:public ImplicacionIf_Then
 public:
 	ImplicacionAguda()
 	{
-		strcpy(Tipo,IDS_IMPLICA_IF_TIPO_8);
 		CodigoC=new char[200];
-		CodigoCPP=new char[200];
 		Identificador=8;
 	}
 	~ImplicacionAguda(){}
-	char *codigoC()
+	string codigoC()
 	{
 		delete[] CodigoC;
 		CodigoC=new char[200];
@@ -567,13 +530,11 @@ public:
 		strcat(CodigoC,"    	rel=0;");
 		return CodigoC;
 	}
-	char *codigoCPP()
+	string codigoCPP()
 	{
-		delete[] CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ImplicacionAguda();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP=("ImplicacionAguda();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float implica(float x, float y)
 	{
