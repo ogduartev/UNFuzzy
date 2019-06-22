@@ -7,7 +7,7 @@ END_EVENT_TABLE()
 
 
 DialogoInfo::DialogoInfo(wxString N, wxString D, wxWindow *parent)
-:wxDialog(parent,wxID_ANY,wxString(_("Rule base")))
+:wxDialog(parent,wxID_ANY,wxString(_("System information")))
 {
 	Nombre=N;
 	Descripcion=D;

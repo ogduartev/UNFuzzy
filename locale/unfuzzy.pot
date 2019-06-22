@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 08:28-0500\n"
+"POT-Creation-Date: 2019-06-22 13:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -584,7 +584,6 @@ msgid "Rule "
 msgstr ""
 
 #: ../src/DialogoReglas.cpp:16 ../src/DialogoReglas.cpp:30
-#: ../src/DialogoInfo.cpp:10
 msgid "Rule base"
 msgstr ""
 
@@ -699,6 +698,10 @@ msgstr ""
 
 #: ../src/Norma.cpp:14
 msgid "Sugeno Family"
+msgstr ""
+
+#: ../src/DialogoInfo.cpp:10
+msgid "System information"
 msgstr ""
 
 #: ../src/DialogoEntrenamiento.cpp:13

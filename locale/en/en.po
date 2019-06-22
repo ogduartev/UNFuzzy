@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 08:28-0500\n"
-"PO-Revision-Date: 2019-06-21 08:29-0500\n"
+"POT-Creation-Date: 2019-06-22 13:17-0500\n"
+"PO-Revision-Date: 2019-06-22 13:18-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -490,7 +490,6 @@ msgid "Lukasiewicz"
 msgstr "Lukasiewicz"
 
 #: ../src/Norma.cpp:18
-#| msgid "Maximum value"
 msgid "Maximum"
 msgstr "Maximum"
 
@@ -503,7 +502,6 @@ msgid "Medio of maximums"
 msgstr "Medio of maximums"
 
 #: ../src/Implicacion.cpp:9 ../src/Norma.cpp:9
-#| msgid "Minimum value"
 msgid "Minimum"
 msgstr "Minimum"
 
@@ -589,7 +587,6 @@ msgid "Rule "
 msgstr "Rule "
 
 #: ../src/DialogoReglas.cpp:16 ../src/DialogoReglas.cpp:30
-#: ../src/DialogoInfo.cpp:10
 msgid "Rule base"
 msgstr "Rule base"
 
@@ -711,6 +708,11 @@ msgstr "Straight sets"
 msgid "Sugeno Family"
 msgstr "Sugeno Family"
 
+#: ../src/DialogoInfo.cpp:10
+#| msgid "Information"
+msgid "System information"
+msgstr "System information"
+
 #: ../src/DialogoEntrenamiento.cpp:13
 msgid "System training"
 msgstr "System training"
@@ -821,22 +823,18 @@ msgid "Type Gamma"
 msgstr "Type Gamma"
 
 #: ../src/ConjuntoDifuso.cpp:29
-#| msgid "Type"
 msgid "Type L"
 msgstr "Type L"
 
 #: ../src/ConjuntoDifuso.cpp:31
-#| msgid "Type"
 msgid "Type PI"
 msgstr "Type PI"
 
 #: ../src/ConjuntoDifuso.cpp:36
-#| msgid "Type"
 msgid "Type S"
 msgstr "Type S"
 
 #: ../src/ConjuntoDifuso.cpp:33
-#| msgid "Type"
 msgid "Type Z"
 msgstr "Type Z"
 
@@ -956,7 +954,6 @@ msgid "|All files (*.*)|*.*"
 msgstr "|All files (*.*)|*.*"
 
 #: ../src/DialogoSLD.cpp:292
-#| msgid "C files (*.c)|*.c"
 msgid "|C files (*.c)|*.c"
 msgstr "|C files (*.c)|*.c"
 

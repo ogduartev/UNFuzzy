@@ -1743,7 +1743,7 @@
 	"Implicacion.h"
 	"Regla.h"
 
-1561123417 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Concresor.cpp
+1561226247 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Concresor.cpp
 	"Concresor.h"
 
 1561225556 /home/ogduartev/Proyectos/UNFuzzy-3/include/Concresor.h
@@ -2188,7 +2188,7 @@
 	<wx/wx.h>
 	"SistemaLogicaDifusa.h"
 
-1560974064 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
+1561227443 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/DialogoInfo.cpp
 	"DialogoInfo.h"
 
 1560287908 /home/ogduartev/Proyectos/UNFuzzy-3/include/Archivador.h
