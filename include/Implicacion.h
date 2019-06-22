@@ -38,11 +38,9 @@ class Implicacion
 public:
 	Implicacion()
 	{
-		CodigoC=0;
 	}
 	virtual ~Implicacion()
 	{
-		delete[] CodigoC;
 	}
 	virtual float implica(float,float)=0;
 	virtual float defecto()=0;
@@ -59,7 +57,6 @@ public:
 	}
 
 protected:
-	char *CodigoC;
 	int Identificador;
 };
 
@@ -122,17 +119,14 @@ class ImplicacionProducto:public ImplicacionT_Norma
 public:
 	ImplicacionProducto()
 	{
-		CodigoC=new char[200];
 		Identificador=0;
 	}
 	~ImplicacionProducto(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    	rel=x*y;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    	rel=x*y;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -163,23 +157,20 @@ class ImplicacionMinimo:public ImplicacionT_Norma
 public:
 	ImplicacionMinimo()
 	{
-		CodigoC=new char[200];
 		Identificador=1;
 	}
 	~ImplicacionMinimo(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<y)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	rel=x;\r\n");
-		strcat(CodigoC,"    }else\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	rel=y;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<y)\r\n");
+		CodigoC << ("    {\r\n");
+		CodigoC << ("    	rel=x;\r\n");
+		CodigoC << ("    }else\r\n");
+		CodigoC << ("    {\r\n");
+		CodigoC << ("    	rel=y;\r\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -213,21 +204,18 @@ class ImplicacionKleenDienes:public ImplicacionIf_Then
 public:
 	ImplicacionKleenDienes()
 	{
-		CodigoC=new char[200];
 		Identificador=2;
 	}
 	~ImplicacionKleenDienes(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    x=1-x;\r\n");
-		strcat(CodigoC,"    if(x>y)\r\n");
-		strcat(CodigoC,"    	rel=x;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=y;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    x=1-x;\r\n");
+		CodigoC << ("    if(x>y)\r\n");
+		CodigoC << ("    	rel=x;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=y;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -263,23 +251,20 @@ class ImplicacionLukasiewicz:public ImplicacionIf_Then
 public:
 	ImplicacionLukasiewicz()
 	{
-		CodigoC=new char[200];
 		Identificador=3;
 	}
 	~ImplicacionLukasiewicz(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<y)\r\n");
-		strcat(CodigoC,"    	rel=x;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=y;\r\n");
-		strcat(CodigoC,"    x=1-x;\r\n");
-		strcat(CodigoC,"    if(rel<x)\r\n");
-		strcat(CodigoC,"    	rel=x;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<y)\r\n");
+		CodigoC << ("    	rel=x;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=y;\r\n");
+		CodigoC << ("    x=1-x;\r\n");
+		CodigoC << ("    if(rel<x)\r\n");
+		CodigoC << ("    	rel=x;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -313,23 +298,20 @@ class ImplicacionZadeh:public ImplicacionIf_Then
 public:
 	ImplicacionZadeh()
 	{
-		CodigoC=new char[200];
 		Identificador=4;
 	}
 	~ImplicacionZadeh(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<y)\r\n");
-		strcat(CodigoC,"    	rel=x;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=y;\r\n");
-		strcat(CodigoC,"    x=1-x;\r\n");
-		strcat(CodigoC,"    if(rel<x)\r\n");
-		strcat(CodigoC,"    	rel=x;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<y)\r\n");
+		CodigoC << ("    	rel=x;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=y;\r\n");
+		CodigoC << ("    x=1-x;\r\n");
+		CodigoC << ("    if(rel<x)\r\n");
+		CodigoC << ("    	rel=x;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -367,20 +349,17 @@ class ImplicacionEstocastica:public ImplicacionIf_Then
 public:
 	ImplicacionEstocastica()
 	{
-		CodigoC=new char[200];
 		Identificador=5;
 	}
 	~ImplicacionEstocastica(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    rel=x*y;\r\n");
-		strcat(CodigoC,"    x=1-x;\r\n");
-		strcat(CodigoC,"    if(rel<x)\r\n");
-		strcat(CodigoC,"    	rel=x;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    rel=x*y;\r\n");
+		CodigoC << ("    x=1-x;\r\n");
+		CodigoC << ("    if(rel<x)\r\n");
+		CodigoC << ("    	rel=x;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -415,22 +394,19 @@ class ImplicacionGoguen:public ImplicacionIf_Then
 public:
 	ImplicacionGoguen()
 	{
-		CodigoC=new char[200];
 		Identificador=6;
 	}
 	~ImplicacionGoguen(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x>0.00001)\r\n");
-		strcat(CodigoC,"    	rel=y/x;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=1000;\r\n");
-		strcat(CodigoC,"    if(rel>1)\r\n");
-		strcat(CodigoC,"    	rel=1;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x>0.00001)\r\n");
+		CodigoC << ("    	rel=y/x;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=1000;\r\n");
+		CodigoC << ("    if(rel>1)\r\n");
+		CodigoC << ("    	rel=1;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -467,20 +443,17 @@ class ImplicacionGodel:public ImplicacionIf_Then
 public:
 	ImplicacionGodel()
 	{
-		CodigoC=new char[200];
 		Identificador=7;
 	}
 	~ImplicacionGodel(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<=y)\r\n");
-		strcat(CodigoC,"    	rel=1;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=y;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<=y)\r\n");
+		CodigoC << ("    	rel=1;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=y;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
@@ -515,20 +488,17 @@ class ImplicacionAguda:public ImplicacionIf_Then
 public:
 	ImplicacionAguda()
 	{
-		CodigoC=new char[200];
 		Identificador=8;
 	}
 	~ImplicacionAguda(){}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<=y)\r\n");
-		strcat(CodigoC,"    	rel=1;\r\n");
-		strcat(CodigoC,"    else\r\n");
-		strcat(CodigoC,"    	rel=0;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<=y)\r\n");
+		CodigoC << ("    	rel=1;\r\n");
+		CodigoC << ("    else\r\n");
+		CodigoC << ("    	rel=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{

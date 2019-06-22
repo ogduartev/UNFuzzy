@@ -91,7 +91,6 @@ public:
 	}
 	~Difusor()
 	{
-		delete[] Codigo_C;
 	}
 	void numeroPuntos(int num)
 	{
@@ -149,7 +148,6 @@ public:
 	virtual string codigo_C(int i)=0;
 	virtual string codigo_CPP()=0;
 protected:
-	char *Codigo_C;
 	int NumeroPuntos;
 	float dx;
 	float Centro;
@@ -164,7 +162,6 @@ public:
 		menos=me;
 		mas=ma;
 		NumeroPuntos=3;
-		Codigo_C=new char[2000];
 	}
 	~DifusorTriangulo()
 	{
@@ -250,27 +247,16 @@ public:
 	}
 	string codigo_C(int i)
 	{
-		char cad[500];
-		delete[] Codigo_C;
-		Codigo_C=new char[2000];
-		strcpy(Codigo_C,"");
-		sprintf(cad,"            if(x<Difusores[%u].var1)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var2&&x>=Difusores[%u].var1)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var1)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var3&&x>=Difusores[%u].var2)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(Difusores[%u].var3-x)/(Difusores[%u].var3-Difusores[%u].var2);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x>=Difusores[%u].var3)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;");
-		strcat(Codigo_C,cad);
-		return Codigo_C;
+		wxString CodigoC="";
+		CodigoC << ("            if(x<Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=0;\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var2&&x>=Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var1)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var3&&x>=Difusores[") << i << ("].var2)\n");
+		CodigoC << ("            	ux=(Difusores[") << i << ("].var3-x)/(Difusores[") << i << ("].var3-Difusores[") << i << ("].var2);\n");
+		CodigoC << ("            if(x>=Difusores[") << i << ("].var3)\n");
+		CodigoC << ("            	ux=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigo_CPP()
 	{
@@ -295,7 +281,6 @@ public:
 		mas1=ma1;
 		mas2=ma2;
 		NumeroPuntos=3;
-		Codigo_C=new char[2000];
 	}
 	~DifusorPi()
 	{
@@ -392,31 +377,18 @@ public:
 	}
 	string codigo_C(int i)
 	{
-		char cad[500];
-		delete[] Codigo_C;
-		Codigo_C=new char[2000];
-		strcpy(Codigo_C,"");
-		sprintf(cad,"            if(x<Difusores[%u].var1)\r\n",1);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var2&&x>=Difusores[%u].var1)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var1)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var3&&x>=Difusores[%u].var2)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var4&&x>=Difusores[%u].var3)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(Difusores[%u].var4-x)/(Difusores[%u].var4-Difusores[%u].var3);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x>=Difusores[%u].var4)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;");
-		strcat(Codigo_C,cad);
-		return Codigo_C;
+		wxString CodigoC="";
+		CodigoC << ("            if(x<Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=0;\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var2&&x>=Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var1)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var3&&x>=Difusores[") << i << ("].var2)\n");
+		CodigoC << ("            	ux=1;\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var4&&x>=Difusores[") << i << ("].var3)\n");
+		CodigoC << ("            	ux=(Difusores[") << i << ("].var4-x)/(Difusores[") << i << ("].var4-Difusores[") << i << ("].var3);\n");
+		CodigoC << ("            if(x>=Difusores[") << i << ("].var4)\n");
+		CodigoC << ("            	ux=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigo_CPP()
 	{
@@ -441,7 +413,6 @@ public:
 		menos=me;
 		mas=ma;
 		NumeroPuntos=5;
-		Codigo_C=new char[2000];
 	}
 	~DifusorCampana()
 	{
@@ -527,51 +498,28 @@ public:
 	}
 	string codigo_C(int i)
 	{
-		char cad[500];
-		delete[] Codigo_C;
-		Codigo_C=new char[2000];
-		strcpy(Codigo_C,"");
-		sprintf(cad,"            if(x<Difusores[%u].var1)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<(Difusores[%u].var2+Difusores[%u].var1)/2&&x>=Difusores[%u].var1){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var1)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var2&&x>=(Difusores[%u].var2+Difusores[%u].var1)/2){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var2)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1-2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<(Difusores[%u].var2+Difusores[%u].var3)/2&&x>=Difusores[%u].var2){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var2)/(Difusores[%u].var3-Difusores[%u].var2);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1-2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var3&&x>=(Difusores[%u].var2+Difusores[%u].var3)/2){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var3)/(Difusores[%u].var3-Difusores[%u].var2);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x>=Difusores[%u].var3)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;");
-		strcat(Codigo_C,cad);
-		return Codigo_C;
+		wxString CodigoC="";
+		CodigoC << ("            if(x<Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=0;\n");
+		CodigoC << ("            if(x<(Difusores[") << i << ("].var2+Difusores[") << i << ("].var1)/2&&x>=Difusores[") << i << ("].var1){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var1)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            	ux=2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var2&&x>=(Difusores[") << i << ("].var2+Difusores[") << i << ("].var1)/2){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var2)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            	ux=1-2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<(Difusores[") << i << ("].var2+Difusores[") << i << ("].var3)/2&&x>=Difusores[") << i << ("].var2){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var2)/(Difusores[") << i << ("].var3-Difusores[") << i << ("].var2);\n");
+		CodigoC << ("            	ux=1-2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var3&&x>=(Difusores[") << i << ("].var2+Difusores[") << i << ("].var3)/2){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var3)/(Difusores[") << i << ("].var3-Difusores[") << i << ("].var2);\n");
+		CodigoC << ("            	ux=2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x>=Difusores[") << i << ("].var3)\n");
+		CodigoC << ("            	ux=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigo_CPP()
 	{
@@ -596,7 +544,6 @@ public:
 		mas1=ma1;
 		mas2=ma2;
 		NumeroPuntos=5;
-		Codigo_C=new char[2000];
 	}
 	~DifusorPiCampana()
 	{
@@ -693,57 +640,31 @@ public:
 	}
 	string codigo_C(int i)
 	{
-		char cad[500];
-		delete[] Codigo_C;
-		Codigo_C=new char[2000];
-		strcpy(Codigo_C,"");
-		sprintf(cad,"            if(x<Difusores[%u].var1)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<(Difusores[%u].var2+Difusores[%u].var1)/2&&x>=Difusores[%u].var1){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var1)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var2&&x>=(Difusores[%u].var2+Difusores[%u].var1)/2){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var2)/(Difusores[%u].var2-Difusores[%u].var1);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1-2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var3&&x>=Difusores[%u].var2){\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<(Difusores[%u].var3+Difusores[%u].var4)/2&&x>=Difusores[%u].var3){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var3)/(Difusores[%u].var4-Difusores[%u].var3);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1-2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var4&&x>=(Difusores[%u].var3+Difusores[%u].var2)/2){\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=(x-Difusores[%u].var4)/(Difusores[%u].var4-Difusores[%u].var3);\r\n",i,i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=2*ux*ux;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	}\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x>=Difusores[%u].var3)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;");
-		strcat(Codigo_C,cad);
-		return Codigo_C;
+		wxString CodigoC="";
+		CodigoC << ("            if(x<Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=0;\n");
+		CodigoC << ("            if(x<(Difusores[") << i << ("].var2+Difusores[") << i << ("].var1)/2&&x>=Difusores[") << i << ("].var1){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var1)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            	ux=2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var2&&x>=(Difusores[") << i << ("].var2+Difusores[") << i << ("].var1)/2){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var2)/(Difusores[") << i << ("].var2-Difusores[") << i << ("].var1);\n");
+		CodigoC << ("            	ux=1-2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var3&&x>=Difusores[") << i << ("].var2){\n");
+		CodigoC << ("            	ux=1;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<(Difusores[") << i << ("].var3+Difusores[") << i << ("].var4)/2&&x>=Difusores[") << i << ("].var3){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var3)/(Difusores[") << i << ("].var4-Difusores[") << i << ("].var3);\n");
+		CodigoC << ("            	ux=1-2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var4&&x>=(Difusores[") << i << ("].var3+Difusores[") << i << ("].var2)/2){\n");
+		CodigoC << ("            	ux=(x-Difusores[") << i << ("].var4)/(Difusores[") << i << ("].var4-Difusores[") << i << ("].var3);\n");
+		CodigoC << ("            	ux=2*ux*ux;\n");
+		CodigoC << ("            	}\n");
+		CodigoC << ("            if(x>=Difusores[") << i << ("].var3)\n");
+		CodigoC << ("            	ux=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigo_CPP()
 	{
@@ -767,7 +688,6 @@ public:
 	{
 		Centro=x;
 		NumeroPuntos=1;
-		Codigo_C=new char[2000];
 	}
 	~DifusorSinglenton()
 	{
@@ -844,23 +764,14 @@ public:
 	}
 	string codigo_C(int i)
 	{
-		char cad[500];
-		delete[] Codigo_C;
-		Codigo_C=new char[2000];
-		strcpy(Codigo_C,"");
-		sprintf(cad,"            if(x<Difusores[%u].var1)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x<Difusores[%u].var2&&x>=Difusores[%u].var1)\r\n",i,i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=1;\r\n");
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            if(x>=Difusores[%u].var2)\r\n",i);
-		strcat(Codigo_C,cad);
-		sprintf(cad,"            	ux=0;");
-		strcat(Codigo_C,cad);
-		return Codigo_C;
+		wxString CodigoC="";
+		CodigoC << ("            if(x<Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=0;\n");
+		CodigoC << ("            if(x<Difusores[") << i << ("].var2&&x>=Difusores[") << i << ("].var1)\n");
+		CodigoC << ("            	ux=1;\n");
+		CodigoC << ("            if(x>=Difusores[") << i << ("].var2)\n");
+		CodigoC << ("            	ux=0;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigo_CPP()
 	{

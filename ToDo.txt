@@ -1,0 +1,8 @@
+
+Help y videos
+superficie de control 3d
+
+=========== makes
+
+./cbp2make -in UNFuzzy3.cbp
+./cbp2make -in UNFuzzyNetwork.cbp

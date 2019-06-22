@@ -67,11 +67,9 @@ class ConjuntoDifuso
 public:
 	ConjuntoDifuso()
 	{
-	  CodigoC=0;
 	}
 	virtual ~ConjuntoDifuso()
 	{
-		delete[] CodigoC;
 	}
 	string nombre() const
 	{
@@ -139,7 +137,6 @@ public:
 	}*/
 protected:
 	string Nombre;
-	char* CodigoC;
 	float Minimo;
 	float Maximo;
 	int NumeroPuntosClaves;
@@ -174,7 +171,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
-		CodigoC=new char[2000];
 		Identificador=0;
 	}
 	~ConjuntoL()
@@ -248,7 +244,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max_;
 		NumeroPuntosClaves=3;
-		CodigoC=new char[2000];
 		Identificador=1;
 	}
 	~ConjuntoTriangulo()
@@ -324,7 +319,6 @@ public:
 		SegundoCorte=scor;
 		Maximo=max;
 		NumeroPuntosClaves=4;
-		CodigoC=new char[2000];
 		Identificador=2;
 	}
 	~ConjuntoPi()
@@ -410,7 +404,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
-		CodigoC=new char[2000];
 		Identificador=3;
 	}
 	~ConjuntoGamma()
@@ -486,7 +479,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
-		CodigoC=new char[2000];
 		Identificador=4;
 	}
 	~ConjuntoZ()
@@ -563,7 +555,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=3;
-		CodigoC=new char[2000];
 		Identificador=5;
 	}
 	~ConjuntoCampana()
@@ -642,7 +633,6 @@ public:
 		SegundoCorte=scor;
 		Maximo=max;
 		NumeroPuntosClaves=4;
-		CodigoC=new char[2000];
 		Identificador=6;
 	}
 	~ConjuntoPiCampana()
@@ -731,7 +721,6 @@ public:
 		PrimerCorte=pcor;
 		Maximo=max;
 		NumeroPuntosClaves=2;
-		CodigoC=new char[2000];
 		Identificador=7;
 	}
 	~ConjuntoS()
@@ -805,7 +794,6 @@ public:
 		Minimo=Pico-Delta/2;
 		Maximo=Pico+Delta/2;
 		NumeroPuntosClaves=2;
-		CodigoC=new char[2000];
 		Identificador=8;
 	}
 	~ConjuntoSinglenton()

@@ -1,122 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FLS Name="Without name" Description="">
   <INPUTS>
-    <VARIABLE Name="e1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="1" Points="3" Center="0.000000">
-        <POINT X="-0.400000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.400000"/>
+    <VARIABLE Name="Input 1" Minimum="-1.000000" Maximum="1.000000" Intervals="25">
+      <FUZZYFIER Type="8" Points="1" Center="1.000000">
+        <POINT X="0.995000"/>
+        <POINT X="1.005000"/>
       </FUZZYFIER>
-      <LABEL Name="Set 1" Type="0">
-        <POINT X="-1.000000"/>
-        <POINT X="0.000000"/>
+      <LABEL Name="Set 1" Type="4">
+        <POINT X="-0.600000"/>
+        <POINT X="-0.200000"/>
       </LABEL>
-      <LABEL Name="Set 2" Type="1">
-        <POINT X="-1.000000"/>
-        <POINT X="0.000000"/>
-        <POINT X="1.000000"/>
-      </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="1.000000"/>
-      </LABEL>
-    </VARIABLE>
-    <VARIABLE Name="e2" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="2" Points="5" Center="0.000000">
-        <POINT X="-0.400000"/>
+      <LABEL Name="Set 2" Type="5">
+        <POINT X="-0.600000"/>
         <POINT X="-0.200000"/>
         <POINT X="0.200000"/>
-        <POINT X="0.400000"/>
-      </FUZZYFIER>
-      <LABEL Name="Set 1" Type="0">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
       </LABEL>
-      <LABEL Name="Set 2" Type="1">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-    </VARIABLE>
-    <VARIABLE Name="e3" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="5" Points="5" Center="0.000000">
-        <POINT X="-0.400000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.400000"/>
-      </FUZZYFIER>
-      <LABEL Name="Set 1" Type="0">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-      </LABEL>
-      <LABEL Name="Set 2" Type="1">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-    </VARIABLE>
-    <VARIABLE Name="e4" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="6" Points="5" Center="0.000000">
-        <POINT X="-0.400000"/>
+      <LABEL Name="Set 3" Type="6">
         <POINT X="-0.200000"/>
+        <POINT X="0.066667"/>
+        <POINT X="0.333333"/>
+        <POINT X="0.600000"/>
+      </LABEL>
+      <LABEL Name="Set 4" Type="7">
         <POINT X="0.200000"/>
-        <POINT X="0.400000"/>
-      </FUZZYFIER>
-      <LABEL Name="Set 1" Type="0">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-      </LABEL>
-      <LABEL Name="Set 2" Type="1">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-    </VARIABLE>
-    <VARIABLE Name="e5" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="8" Points="1" Center="0.500000">
-        <POINT X="0.495000"/>
-        <POINT X="0.505000"/>
-      </FUZZYFIER>
-      <LABEL Name="Set 1" Type="0">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-      </LABEL>
-      <LABEL Name="Set 2" Type="1">
-        <POINT X="-0.500000"/>
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
-      </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="0.500000"/>
+        <POINT X="0.600000"/>
       </LABEL>
     </VARIABLE>
   </INPUTS>
   <OUTPUTS>
-    <VARIABLE Name="Output 1" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+    <VARIABLE Name="Output 1" Minimum="-1.000000" Maximum="1.000000" Intervals="25">
       <LABEL Name="Set 1" Type="0">
-        <POINT X="-1.000000"/>
-        <POINT X="0.000000"/>
+        <POINT X="-0.600000"/>
+        <POINT X="-0.200000"/>
       </LABEL>
       <LABEL Name="Set 2" Type="1">
-        <POINT X="-1.000000"/>
-        <POINT X="0.000000"/>
-        <POINT X="1.000000"/>
+        <POINT X="-0.600000"/>
+        <POINT X="-0.200000"/>
+        <POINT X="0.200000"/>
       </LABEL>
-      <LABEL Name="Set 3" Type="3">
-        <POINT X="0.000000"/>
-        <POINT X="1.000000"/>
+      <LABEL Name="Set 3" Type="2">
+        <POINT X="-0.200000"/>
+        <POINT X="0.066667"/>
+        <POINT X="0.333333"/>
+        <POINT X="0.600000"/>
+      </LABEL>
+      <LABEL Name="Set 4" Type="3">
+        <POINT X="0.200000"/>
+        <POINT X="0.600000"/>
       </LABEL>
     </VARIABLE>
   </OUTPUTS>
@@ -124,30 +54,22 @@
     <IMPLICATION Type="1"/>
     <COMPOSITION Type="1" Parameter="0.000000"/>
     <AND Type="1" Parameter="0.000000"/>
-    <BASE Inputs="5" Outputs="1">
+    <BASE Inputs="1" Outputs="1">
       <RULE Certainty="1.000000">
         <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
         <CONSEQUENT Variable="0" Label="0"/>
       </RULE>
       <RULE Certainty="1.000000">
         <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
-        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
         <CONSEQUENT Variable="0" Label="1"/>
       </RULE>
       <RULE Certainty="1.000000">
         <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
-        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="2" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="3" Label="0" Modifier="1.000000"/>
-        <ANTECEDENT Variable="4" Label="0" Modifier="1.000000"/>
         <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="3" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="3"/>
       </RULE>
     </BASE>
   </ENGINE>

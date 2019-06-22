@@ -38,11 +38,9 @@ class Norma
 public:
 	Norma()
 	{
-		CodigoC=0;
 	}
 	virtual ~Norma()
 	{
-		delete[] CodigoC;
 	}
 	string tipo()
 	{
@@ -59,8 +57,6 @@ public:
 	virtual float opera(float, float)=0;
 	virtual float parametro()=0;
 protected:
-	char *Tipo;
-	char *CodigoC;
 	int Identificador;
 };
 
@@ -122,7 +118,6 @@ class Producto:public T_Norma
 public:
 	Producto()
 	{
-		CodigoC=new char[200];
 		Identificador=0;
 	}
 	~Producto(){}
@@ -132,19 +127,15 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[200];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    z=x*y;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    z=x*y;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"Producto();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("Producto();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -169,7 +160,6 @@ class Minimo:public T_Norma
 public:
 	Minimo()
 	{
-		CodigoC=new char[200];
 		Identificador=1;
 	}
 	~Minimo(){}
@@ -179,25 +169,21 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x<y)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=x;\r\n");
-		strcat(CodigoC,"    }else\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=y;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x<y)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=x;\n");
+		CodigoC << ("    }else\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=y;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"Minimo();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("Minimo();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -229,7 +215,6 @@ class ProductoAcotado:public T_Norma
 public:
 	ProductoAcotado()
 	{
-		CodigoC=new char[200];
 		Identificador=2;
 	}
 	~ProductoAcotado(){}
@@ -239,23 +224,19 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    z=x+y-1;\r\n");
-		strcat(CodigoC,"    if(z<0)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=0;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    z=x+y-1;\n");
+		CodigoC << ("    if(z<0)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=0;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ProductoAcotado();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("ProductoAcotado();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -285,7 +266,6 @@ class ProductoDrastico:public T_Norma
 public:
 	ProductoDrastico()
 	{
-		CodigoC=new char[200];
 		Identificador=3;
 	}
 	~ProductoDrastico(){}
@@ -295,30 +275,26 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(y==1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=x;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    if(x==1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=y;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    if(x<1&&y<1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=0;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(y==1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=x;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    if(x==1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=y;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    if(x<1&&y<1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=0;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"ProductoDrastico();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("ProductoDrastico();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -356,7 +332,6 @@ public:
 	FamiliaTp(float parametro=1.0)
 	{
 		p=parametro;
-		CodigoC=new char[200];
 		Identificador=4;
 	}
 	float parametro()
@@ -365,21 +340,17 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=pow(1-x,p)+pow(1-y,p)-pow(1-x,p)*pow(1-y,p);\r\n");
-		strcat(CodigoC,"    z=1-pow(z,(1/p));");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=pow(1-x,p)+pow(1-y,p)-pow(1-x,p)*pow(1-y,p);\n");
+		CodigoC << ("    z=1-pow(z,(1/p));");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaTp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaTp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	~FamiliaTp(){}
 	float opera(float x, float y)
@@ -409,7 +380,6 @@ public:
 	FamiliaHp(float parametro=1.0)
 	{
 		p=parametro;
-		CodigoC=new char[200];
 		Identificador=5;
 	}
 	~FamiliaHp(){}
@@ -419,21 +389,17 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=p-(1-p)*(x+y-x*y);\r\n");
-		strcat(CodigoC,"    z=x*y/z;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=p-(1-p)*(x+y-x*y);\n");
+		CodigoC << ("    z=x*y/z;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaHp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaHp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -463,7 +429,6 @@ public:
 	FamiliaFp(float parametro=2.0)
 	{
 		p=parametro;
-		CodigoC=new char[200];
 		Identificador=7;
 	}
 	float parametro()
@@ -472,21 +437,17 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=1+(pow(p,x)-1)*(pow(p,y)-1)/(p-1);\r\n");
-		strcat(CodigoC,"    z=log(z)/log(p);");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=1+(pow(p,x)-1)*(pow(p,y)-1)/(p-1);\n");
+		CodigoC << ("    z=log(z)/log(p);");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaFp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaFp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	~FamiliaFp(){}
 	float opera(float x, float y)
@@ -516,7 +477,6 @@ public:
 	FamiliaYp(float parametro=1.0)
 	{
 		p=parametro;
-		CodigoC=new char[1000];
 		Identificador=8;
 	}
 	~FamiliaYp(){}
@@ -526,26 +486,22 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=pow(1-x,p)+pow(1-y,p);\r\n");
-		strcat(CodigoC,"    z=pow(z,(1/p));\r\n");
-		strcat(CodigoC,"    if(z>1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=1;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    z=1-z;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=pow(1-x,p)+pow(1-y,p);\n");
+		CodigoC << ("    z=pow(z,(1/p));\n");
+		CodigoC << ("    if(z>1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=1;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    z=1-z;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaYp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaYp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -579,7 +535,6 @@ public:
 	FamiliaAp(float parametro=1.0)
 	{
 		p=parametro;
-		CodigoC=new char[1000];
 		Identificador=9;
 	}
 	~FamiliaAp(){}
@@ -589,29 +544,25 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=x;\r\n");
-		strcat(CodigoC,"    if(y>z)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=y;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    if(p>z)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=p;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    z=x*y/z;");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=x;\n");
+		CodigoC << ("    if(y>z)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=y;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    if(p>z)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=p;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    z=x*y/z;");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaAp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaAp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -651,7 +602,6 @@ class Maximo:public S_Norma
 public:
 	Maximo()
 	{
-		CodigoC=new char[200];
 		Identificador=10;
 	}
 	~Maximo(){}
@@ -661,25 +611,21 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(x>y)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=x;\r\n");
-		strcat(CodigoC,"    }else\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=y;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(x>y)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=x;\n");
+		CodigoC << ("    }else\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=y;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"Maximo();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("Maximo();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -711,7 +657,6 @@ class SumaAcotada:public S_Norma
 public:
 	SumaAcotada()
 	{
-		CodigoC=new char[200];
 		Identificador=11;
 	}
 	~SumaAcotada(){}
@@ -721,23 +666,19 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    z=x+y;\r\n");
-		strcat(CodigoC,"    if(z>1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=1;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    z=x+y;\n");
+		CodigoC << ("    if(z>1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=1;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"SumaAcotada();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("SumaAcotada();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -767,7 +708,6 @@ class SumaDrastica:public S_Norma
 public:
 	SumaDrastica()
 	{
-		CodigoC=new char[1000];
 		Identificador=12;
 	}
 	~SumaDrastica(){}
@@ -777,30 +717,26 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		strcat(CodigoC,"    if(y==0)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=x;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    if(x==0)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=y;\r\n");
-		strcat(CodigoC,"    }\r\n");
-		strcat(CodigoC,"    if(x>0&&y>0)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=1;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    if(y==0)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=x;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    if(x==0)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=y;\n");
+		CodigoC << ("    }\n");
+		CodigoC << ("    if(x>0&&y>0)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=1;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		strcat(CodigoCPP,"SumaDrastica();");
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("SumaDrastica();");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{
@@ -837,7 +773,6 @@ public:
 	FamiliaSp(float parametro=1.0)
 	{
 		p=parametro;
-		CodigoC=new char[200];
 		Identificador=6;
 	}
 	~FamiliaSp(){}
@@ -847,24 +782,20 @@ public:
 	}
 	string codigoC()
 	{
-		delete[] CodigoC;
-		CodigoC=new char[1000];
-		strcpy(CodigoC,"");
-		sprintf(CodigoC,"    float p=%f;\r\n",p);
-		strcat(CodigoC,"    z=x+y+p*x*y;\r\n");
-		strcat(CodigoC,"    if(z>1)\r\n");
-		strcat(CodigoC,"    {\r\n");
-		strcat(CodigoC,"    	z=1;\r\n");
-		strcat(CodigoC,"    }");
-		return CodigoC;
+		wxString CodigoC="";
+		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    z=x+y+p*x*y;\n");
+		CodigoC << ("    if(z>1)\n");
+		CodigoC << ("    {\n");
+		CodigoC << ("    	z=1;\n");
+		CodigoC << ("    }");
+		return std::string(CodigoC.mb_str());
 	}
 	string codigoCPP()
 	{
-		char* CodigoCPP;
-		CodigoCPP=new char[200];
-		strcpy(CodigoCPP,"");
-		sprintf(CodigoCPP,"FamiliaSp(%f);",p);
-		return CodigoCPP;
+		wxString CodigoCPP="";
+		CodigoCPP << ("FamiliaSp(") << p << (");");
+		return std::string(CodigoCPP.mb_str());
 	}
 	float opera(float x, float y)
 	{

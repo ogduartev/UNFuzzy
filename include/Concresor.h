@@ -60,12 +60,10 @@ public:
 		Motor=maq;
 		NumeroVariable=numVar;
 		Conjuncion=nor;
-		CodigoC=new char[1000];
 	}
 	~Concresor()
 	{
 		Conjuncion=NULL;
-		delete[] CodigoC;
 	}
 	int numeroVariable()
 	{
@@ -115,7 +113,6 @@ public:
 		( Conjuncion == other.Conjuncion) );
 	}
 protected:
-	char *CodigoC;
 	MaquinaInferencia *Motor;
 	int NumeroVariable;
 	Norma *Conjuncion;

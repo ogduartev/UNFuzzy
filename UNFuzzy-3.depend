@@ -1678,10 +1678,10 @@
 
 1560469003 /home/ogduartev/Proyectos/UNFuzzy-3/include/Arreglo.h
 
-1561123199 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/ConjuntoDifuso.cpp
+1561222533 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/ConjuntoDifuso.cpp
 	"ConjuntoDifuso.h"
 
-1561123158 /home/ogduartev/Proyectos/UNFuzzy-3/include/ConjuntoDifuso.h
+1561222785 /home/ogduartev/Proyectos/UNFuzzy-3/include/ConjuntoDifuso.h
 	<cstdio>
 	<iostream>
 	<string>
@@ -1690,7 +1690,7 @@
 1560806635 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Difusor.cpp
 	"Difusor.h"
 
-1561042270 /home/ogduartev/Proyectos/UNFuzzy-3/include/Difusor.h
+1561223923 /home/ogduartev/Proyectos/UNFuzzy-3/include/Difusor.h
 	<cstdio>
 	<ConjuntoDifuso.h>
 
@@ -1714,7 +1714,7 @@
 1561123669 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Norma.cpp
 	"Norma.h"
 
-1561123669 /home/ogduartev/Proyectos/UNFuzzy-3/include/Norma.h
+1561225150 /home/ogduartev/Proyectos/UNFuzzy-3/include/Norma.h
 	<iostream>
 	<string>
 	<wx/wx.h>
@@ -1723,7 +1723,7 @@
 1561123551 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Implicacion.cpp
 	"Implicacion.h"
 
-1561123551 /home/ogduartev/Proyectos/UNFuzzy-3/include/Implicacion.h
+1561224367 /home/ogduartev/Proyectos/UNFuzzy-3/include/Implicacion.h
 	<iostream>
 	<string>
 	<wx/wx.h>
@@ -1746,7 +1746,7 @@
 1561123417 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/Concresor.cpp
 	"Concresor.h"
 
-1561123417 /home/ogduartev/Proyectos/UNFuzzy-3/include/Concresor.h
+1561225556 /home/ogduartev/Proyectos/UNFuzzy-3/include/Concresor.h
 	"MaquinaInferencia.h"
 
 1560806635 source:/home/ogduartev/Proyectos/UNFuzzy-3/src/BloqueConcrecion.cpp

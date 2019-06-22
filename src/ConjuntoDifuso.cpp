@@ -97,7 +97,6 @@ inline float ConjuntoTriangulo::pertenencia(float x)
 	return ux ;
 }
 
-
 inline float ConjuntoPi::pertenencia(float x)
 {
 	float ux;
@@ -388,27 +387,18 @@ string ConjuntoL::codigoCPP()
 
 string ConjuntoTriangulo::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=((%f)-x)/((%f)-(%f));\r\n",maximo(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;\r\n");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=((") << maximo() << (")-x)/((") << maximo() << (")-(") << primerCorte() << ("));\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;\n");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoTriangulo::codigoCPP()
@@ -421,31 +411,20 @@ string ConjuntoTriangulo::codigoCPP()
 
 string ConjuntoPi::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),segundoCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=1;\r\n");
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),segundoCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=((%f)-x)/((%f)-(%f));\r\n",maximo(),maximo(),segundoCorte());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                        if(x<(") << segundoCorte() << (")&&x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << segundoCorte() << ("))\n");
+	CodigoC << ("                            ux=((") << maximo() << (")-x)/((") << maximo() << (")-(") << segundoCorte() << ("));\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoPi::codigoCPP()
@@ -458,23 +437,16 @@ string ConjuntoPi::codigoCPP()
 
 string ConjuntoGamma::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x>=(%f))\r\n",primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                        if(x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=1;\r\n");
+	CodigoC << ("                        if(ux<0.0001)\r\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoGamma::codigoCPP()
@@ -487,36 +459,26 @@ string ConjuntoGamma::codigoCPP()
 
 string ConjuntoZ::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	sprintf(   cad,"                        if(x<(%f))\r\n",primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(primerCorte()+maximo())/2,primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",primerCorte(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),(primerCorte()+maximo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",maximo(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(x<(") << (primerCorte()+maximo())/2 << (")&&x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << primerCorte() << ("))/((") << maximo() << (")-(") << primerCorte() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << (primerCorte()+maximo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << maximo() << ("))/((") << maximo() << (")-(") << primerCorte() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoZ::codigoCPP()
@@ -529,47 +491,34 @@ string ConjuntoZ::codigoCPP()
 
 string ConjuntoCampana::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(primerCorte()+minimo())/2,minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),(primerCorte()+minimo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",primerCorte(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(primerCorte()+maximo())/2,primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",primerCorte(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),(primerCorte()+maximo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",maximo(),maximo(),primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << (primerCorte()+minimo())/2 << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << (primerCorte()+minimo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << primerCorte() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << (primerCorte()+maximo())/2 << (")&&x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << primerCorte() << ("))/((") << maximo() << (")-(") << primerCorte() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << (primerCorte()+maximo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << maximo() << ("))/((") << maximo() << (")-(") << primerCorte() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoCampana::codigoCPP()
@@ -582,33 +531,24 @@ string ConjuntoCampana::codigoCPP()
 
 string ConjuntoS::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(primerCorte()+minimo())/2,minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),(primerCorte()+minimo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",primerCorte(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x>=(%f))\r\n",primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << (primerCorte()+minimo())/2 << (")&&x>=(") << minimo() << ("))\r\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << (primerCorte()+minimo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << primerCorte() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoS::codigoCPP()
@@ -621,50 +561,36 @@ string ConjuntoS::codigoCPP()
 
 string ConjuntoPiCampana::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(primerCorte()+minimo())/2,minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",minimo(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",primerCorte(),(primerCorte()+minimo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",primerCorte(),primerCorte(),minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",segundoCorte(),primerCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=1;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",(segundoCorte()+maximo())/2,segundoCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",segundoCorte(),maximo(),segundoCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=1-2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),(segundoCorte()+maximo())/2);
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            {\r\n");
-	sprintf(   cad,"                                ux=(x-(%f))/((%f)-(%f));\r\n",maximo(),maximo(),segundoCorte());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                                ux=2*ux*ux;\r\n");
-	strcat(CodigoC,"                            }\r\n");
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << (primerCorte()+minimo())/2 << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << minimo() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << primerCorte() << (")&&x>=(") << (primerCorte()+minimo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << primerCorte() << ("))/((") << primerCorte() << (")-(") << minimo() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << segundoCorte() << (")&&x>=(") << primerCorte() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(x<(") << (segundoCorte()+maximo())/2 << (")&&x>=(") << segundoCorte() << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << segundoCorte() << ("))/((") << maximo() << (")-(") << segundoCorte() << ("));\n");
+	CodigoC << ("                                ux=1-2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << (segundoCorte()+maximo())/2 << ("))\n");
+	CodigoC << ("                            {\n");
+	CodigoC << ("                                ux=(x-(") << maximo() << ("))/((") << maximo() << (")-(") << segundoCorte() << ("));\n");
+	CodigoC << ("                                ux=2*ux*ux;\n");
+	CodigoC << ("                            }\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoPiCampana::codigoCPP()
@@ -677,23 +603,16 @@ string ConjuntoPiCampana::codigoCPP()
 
 string ConjuntoSinglenton::codigoC()
 {
-	char cad[1000];
-	delete[] CodigoC;
-	CodigoC=new char[5000];
-	strcpy(CodigoC,"");
-	sprintf(   cad,"                        if(x<(%f))\r\n",minimo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	sprintf(   cad,"                        if(x<(%f)&&x>=(%f))\r\n",maximo(),minimo());
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                            ux=1;\r\n");
-	strcat(CodigoC,cad);
-	sprintf(   cad,"                        if(x>=(%f))\r\n",maximo());
-	strcat(CodigoC,cad);
-	strcat(CodigoC,"                            ux=0;\r\n");
-	strcat(CodigoC,"                        if(ux<0.0001)\r\n");
-	strcat(CodigoC,"                            ux=0;");
-	return CodigoC;
+	wxString CodigoC="";
+	CodigoC << ("                        if(x<(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(x<(") << maximo() << (")&&x>=(") << minimo() << ("))\n");
+	CodigoC << ("                            ux=1;\n");
+	CodigoC << ("                        if(x>=(") << maximo() << ("))\n");
+	CodigoC << ("                            ux=0;\n");
+	CodigoC << ("                        if(ux<0.0001)\n");
+	CodigoC << ("                            ux=0;");
+	return std::string(CodigoC.mb_str());
 }
 
 string ConjuntoSinglenton::codigoCPP()
