@@ -16,11 +16,11 @@ class pin
 		{
 			Contacto=c;
 		}
-		float valor()
+		double valor()
 		{
 			return Valor;
 		}
-		void valor(float V)
+		void valor(double V)
 		{
 			Valor=V;
 		}
@@ -30,7 +30,7 @@ class pin
 
 	private:
 		pin* Contacto;
-		float Valor;
+		double Valor;
 
 };
 

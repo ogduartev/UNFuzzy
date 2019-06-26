@@ -3,7 +3,7 @@
 void Regla::adicionarEntrada()
 {
 	int* nuevoAntecedente=new int[NumeroEntradas+1];
-	float* nuevoModificadores=new float[NumeroEntradas+1];
+	double* nuevoModificadores=new double[NumeroEntradas+1];
 	for(int i=0;i<NumeroEntradas;i++)
 	{
 		nuevoAntecedente[i]=Antecedente[i];

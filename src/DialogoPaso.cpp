@@ -12,7 +12,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 :wxDialog(parent,wxID_ANY,wxString(_("Step by step calculus")))
 {
 	SLD=sld;
-	sale=new float[SLD->salidas->numeroVariables()];
+	sale=new double[SLD->salidas->numeroVariables()];
 
   wxFlexGridSizer*  sizerTotal;
   wxFlexGridSizer*  sizerBloqueA;
@@ -58,7 +58,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	valoresEntradas  = new wxSpinCtrlDouble*[SLD->entradas->numeroVariables()];
   for(int i=0;i<SLD->entradas->numeroVariables();i++)
 	{
-		float mini,maxi,medi,incr;
+		double mini,maxi,medi,incr;
 		mini=SLD->entradas->variable(i)->rangoMinimo();
 		maxi=SLD->entradas->variable(i)->rangoMaximo();
 		medi=0.5*(mini+maxi);
@@ -149,7 +149,7 @@ void DialogoPaso::OnCambioSpinEntra(wxSpinDoubleEvent&   event)
 
 void DialogoPaso::calcular()
 {
-	float entra[SLD->entradas->numeroVariables()];
+	double entra[SLD->entradas->numeroVariables()];
 	for(int i=0;i<SLD->entradas->numeroVariables();i++)
 	{
 		entra[i]=valoresEntradas[i]->GetValue();
@@ -203,7 +203,7 @@ void DialogoPaso::pintarRegla(int reglaInd)
 	wxClientDC dc(this);
 	wxRect canvas=canvasVarRegla->GetRect();
 
-	float mnx, mxx, mny, mxy;
+	double mnx, mxx, mny, mxy;
 	mnx=SLD->salidas->variable(numSalida)->rangoMinimo();
 	mxx=SLD->salidas->variable(numSalida)->rangoMaximo();
 	mny=0.0;
@@ -232,7 +232,7 @@ void DialogoPaso::pintarSalida()
 	wxClientDC dc(this);
 	wxRect canvas=canvasVarSalida->GetRect();
 
-	float mnx, mxx, mny, mxy;
+	double mnx, mxx, mny, mxy;
 	mnx=SLD->salidas->variable(numSalida)->rangoMinimo();
 	mxx=SLD->salidas->variable(numSalida)->rangoMaximo();
 	mny=0.0;

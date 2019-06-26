@@ -57,7 +57,7 @@ void DialogoFuncion::iniciar()
 	valoresEntradas  = new wxSpinCtrlDouble*[numeroEntradas()];
   for(int i=0;i<numeroEntradas();i++)
 	{
-		float mini,maxi,medi,incr;
+		double mini,maxi,medi,incr;
 		mini=rangoMinimoEntrada(i);
 		maxi=rangoMaximoEntrada(i);
 		medi=0.5*(mini+maxi);

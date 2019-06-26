@@ -15,12 +15,12 @@ string Concresor::nombre(int caso)
 	return string(str.mb_str());
 }
 
-float PrimerMaximo::salidaConcreta(float *ent)
+double PrimerMaximo::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto=0;
-	float y;
-	float ymax;
+	double con;
+	double concreto=0;
+	double y;
+	double ymax;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	Motor->actualizarEntradas(ent);
 	int i;
@@ -31,7 +31,7 @@ float PrimerMaximo::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -45,12 +45,12 @@ float PrimerMaximo::salidaConcreta(float *ent)
 }
 
 
-float UltimoMaximo::salidaConcreta(float *ent)
+double UltimoMaximo::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto=0;
-	float y;
-	float ymax;
+	double con;
+	double concreto=0;
+	double y;
+	double ymax;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	Motor->actualizarEntradas(ent);
 	int i;
@@ -61,7 +61,7 @@ float UltimoMaximo::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -75,14 +75,14 @@ float UltimoMaximo::salidaConcreta(float *ent)
 }
 
 
-float MediaDeMaximos::salidaConcreta(float *ent)
+double MediaDeMaximos::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto1=0;
-	float concreto2=0;
-	float y;
-	float ymax;
-	float ymax1,ymax2;
+	double con;
+	double concreto1=0;
+	double concreto2=0;
+	double y;
+	double ymax;
+	double ymax1,ymax2;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	ymax1=ymax;
 	ymax2=ymax;
@@ -95,7 +95,7 @@ float MediaDeMaximos::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -115,13 +115,13 @@ float MediaDeMaximos::salidaConcreta(float *ent)
 }
 
 
-float CentroDeGravedad::salidaConcreta(float *ent)
+double CentroDeGravedad::salidaConcreta(double *ent)
 {
-	float con;
-	float y;
-	float y1=0;
-	float y2=0;
-	float ymax;
+	double con;
+	double y;
+	double y1=0;
+	double y2=0;
+	double ymax;
 	Motor->actualizarEntradas(ent);
 	int i;
 	for(i=0;i<(Motor->salidas()->numeroIntervalosEnVariable(NumeroVariable)+1);i++)
@@ -131,7 +131,7 @@ float CentroDeGravedad::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -146,11 +146,11 @@ float CentroDeGravedad::salidaConcreta(float *ent)
 	return ymax;
 }
 
-float Altura::salidaConcreta(float *ent)
+double Altura::salidaConcreta(double *ent)
 {
-	float ymax;
-	float y;
-	 float y1,y2;
+	double ymax;
+	double y;
+	 double y1,y2;
 	Motor->actualizarEntradas(ent);
 	int j;
     y1=0;
@@ -159,7 +159,7 @@ float Altura::salidaConcreta(float *ent)
 	{
 		if(Motor->activarRegla(j))
 		{
-			float temp;
+			double temp;
 			y=Motor->conjuntoSalida(j,NumeroVariable)->centroAltura();
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			y1=y1+temp*y;
@@ -179,24 +179,24 @@ float Altura::salidaConcreta(float *ent)
 string PrimerMaximo::codigoC()
 {
 	wxString CodigoC="";
-	CodigoC << ("float salidaConcreta") << NumeroVariable << ("(float *ent)\n");
+	CodigoC << ("double salidaConcreta") << NumeroVariable << ("(double *ent)\n");
 	CodigoC << ("{\n");
 	CodigoC << ("    int NumeroSalida=") << NumeroVariable << (";\n");
-	CodigoC << ("    float con=") << defecto() << (";\n");
-	CodigoC << ("    float concreto=0;\n");
-	CodigoC << ("    float y;\n");
-	CodigoC << ("    float ymax;\n");
+	CodigoC << ("    double con=") << defecto() << (";\n");
+	CodigoC << ("    double concreto=0;\n");
+	CodigoC << ("    double y;\n");
+	CodigoC << ("    double ymax;\n");
 	CodigoC << ("    int i;\n");
 	CodigoC << ("    int j;\n");
 	CodigoC << ("    ymax=VariablesSalida[NumeroSalida].minimo;\n");
 	CodigoC << ("    actualizarEntradas(ent);\n");
 	CodigoC << ("    for(i=0;i<(VariablesSalida[NumeroSalida].intervalos+1);i++)\n");
 	CodigoC << ("    {\n");
-	CodigoC << ("        float con=") << defecto() << (";\n");
+	CodigoC << ("        double con=") << defecto() << (";\n");
 	CodigoC << ("        y=VariablesSalida[NumeroSalida].minimo+i*VariablesSalida[NumeroSalida].intervalo;\n");
 	CodigoC << ("        for(j=0;j<NUMEROREGLAS;j++)\n");
 	CodigoC << ("        {\n");
-	CodigoC << ("            float temp;\n");
+	CodigoC << ("            double temp;\n");
 	CodigoC << ("            temp=pertenenciaComposicion(NumeroSalida,j,y);\n");
 	CodigoC << ("            con=Conjuncion(con,temp);\n");
 	CodigoC << ("        }\n");
@@ -221,24 +221,24 @@ string PrimerMaximo::codigoCPP()
 string UltimoMaximo::codigoC()
 {
 	wxString CodigoC="";
-	CodigoC << ("float salidaConcreta") << NumeroVariable << ("(float *ent)\n");
+	CodigoC << ("double salidaConcreta") << NumeroVariable << ("(double *ent)\n");
 	CodigoC << ("{\n");
 	CodigoC << ("    int NumeroSalida=") << NumeroVariable << (";\n");
-	CodigoC << ("    float con=") << defecto() << (";\n");
-	CodigoC << ("    float concreto=0;\n");
-	CodigoC << ("    float y;\n");
-	CodigoC << ("    float ymax;\n");
+	CodigoC << ("    double con=") << defecto() << (";\n");
+	CodigoC << ("    double concreto=0;\n");
+	CodigoC << ("    double y;\n");
+	CodigoC << ("    double ymax;\n");
 	CodigoC << ("    int i;\n");
 	CodigoC << ("    int j;\n");
 	CodigoC << ("    ymax=VariablesSalida[NumeroSalida].minimo;\n");
 	CodigoC << ("    actualizarEntradas(ent);\n");
 	CodigoC << ("    for(i=0;i<(VariablesSalida[NumeroSalida].intervalos+1);i++)\n");
 	CodigoC << ("    {\n");
-	CodigoC << ("        float con=") << defecto() << (";\n");
+	CodigoC << ("        double con=") << defecto() << (";\n");
 	CodigoC << ("        y=VariablesSalida[NumeroSalida].minimo+i*VariablesSalida[NumeroSalida].intervalo;\n");
 	CodigoC << ("        for(j=0;j<NUMEROREGLAS;j++)\n");
 	CodigoC << ("        {\n");
-	CodigoC << ("            float temp;\n");
+	CodigoC << ("            double temp;\n");
 	CodigoC << ("            temp=pertenenciaComposicion(NumeroSalida,j,y);\n");
 	CodigoC << ("            con=Conjuncion(con,temp);\n");
 	CodigoC << ("        }\n");
@@ -263,15 +263,15 @@ string UltimoMaximo::codigoCPP()
 string MediaDeMaximos::codigoC()
 {
 	wxString CodigoC="";
-	CodigoC << ("float salidaConcreta") << NumeroVariable << ("(float *ent)\n");
+	CodigoC << ("double salidaConcreta") << NumeroVariable << ("(double *ent)\n");
 	CodigoC << ("{\n");
 	CodigoC << ("    int NumeroSalida=") << NumeroVariable << (";\n");
-	CodigoC << ("    float con=") << defecto() << (";\n");
-	CodigoC << ("    float concreto1=0;\n");
-	CodigoC << ("    float concreto2=0;\n");
-	CodigoC << ("    float y;\n");
-	CodigoC << ("    float ymax;\n");
-	CodigoC << ("    float ymax1,ymax2;\n");
+	CodigoC << ("    double con=") << defecto() << (";\n");
+	CodigoC << ("    double concreto1=0;\n");
+	CodigoC << ("    double concreto2=0;\n");
+	CodigoC << ("    double y;\n");
+	CodigoC << ("    double ymax;\n");
+	CodigoC << ("    double ymax1,ymax2;\n");
 	CodigoC << ("    int i;\n");
 	CodigoC << ("    int j;\n");
 	CodigoC << ("    ymax=VariablesSalida[NumeroSalida].minimo;\n");
@@ -280,11 +280,11 @@ string MediaDeMaximos::codigoC()
 	CodigoC << ("    actualizarEntradas(ent);\n");
 	CodigoC << ("    for(i=0;i<(VariablesSalida[NumeroSalida].intervalos+1);i++)\n");
 	CodigoC << ("    {\n");
-	CodigoC << ("        float con=") << defecto() << (";\n");
+	CodigoC << ("        double con=") << defecto() << (";\n");
 	CodigoC << ("        y=VariablesSalida[NumeroSalida].minimo+i*VariablesSalida[NumeroSalida].intervalo;\n");
 	CodigoC << ("        for(j=0;j<NUMEROREGLAS;j++)\n");
 	CodigoC << ("        {\n");
-	CodigoC << ("            float temp;\n");
+	CodigoC << ("            double temp;\n");
 	CodigoC << ("            temp=pertenenciaComposicion(NumeroSalida,j,y);\n");
 	CodigoC << ("            con=Conjuncion(con,temp);\n");
 	CodigoC << ("        }\n");
@@ -315,25 +315,25 @@ string MediaDeMaximos::codigoCPP()
 string CentroDeGravedad::codigoC()
 {
 	wxString CodigoC="";
-	CodigoC << ("float salidaConcreta") << NumeroVariable << ("(float *ent)\n");
+	CodigoC << ("double salidaConcreta") << NumeroVariable << ("(double *ent)\n");
 	CodigoC << ("{\n");
 	CodigoC << ("    int NumeroSalida=") << NumeroVariable << (";\n");
-	CodigoC << ("    float con=") << defecto() << (";\n");
-	CodigoC << ("    float y;\n");
-	CodigoC << ("    float y1=0;\n");
-	CodigoC << ("    float y2=0;\n");
-	CodigoC << ("    float ymax;\n");
+	CodigoC << ("    double con=") << defecto() << (";\n");
+	CodigoC << ("    double y;\n");
+	CodigoC << ("    double y1=0;\n");
+	CodigoC << ("    double y2=0;\n");
+	CodigoC << ("    double ymax;\n");
 	CodigoC << ("    int i;\n");
 	CodigoC << ("    int j;\n");
 	CodigoC << ("    ymax=VariablesSalida[NumeroSalida].minimo;\n");
 	CodigoC << ("    actualizarEntradas(ent);\n");
 	CodigoC << ("    for(i=0;i<(VariablesSalida[NumeroSalida].intervalos+1);i++)\n");
 	CodigoC << ("    {\n");
-	CodigoC << ("        float con=") << defecto() << (";\n");
+	CodigoC << ("        double con=") << defecto() << (";\n");
 	CodigoC << ("        y=VariablesSalida[NumeroSalida].minimo+i*VariablesSalida[NumeroSalida].intervalo;\n");
 	CodigoC << ("        for(j=0;j<NUMEROREGLAS;j++)\n");
 	CodigoC << ("        {\n");
-	CodigoC << ("            float temp;\n");
+	CodigoC << ("            double temp;\n");
 	CodigoC << ("            temp=pertenenciaComposicion(NumeroSalida,j,y);\n");
 	CodigoC << ("            con=Conjuncion(con,temp);\n");
 	CodigoC << ("        }\n");
@@ -360,13 +360,13 @@ string CentroDeGravedad::codigoCPP()
 string Altura::codigoC()
 {
 	wxString CodigoC="";
-	CodigoC << ("float salidaConcreta") << NumeroVariable << ("(float *ent)\n");
+	CodigoC << ("double salidaConcreta") << NumeroVariable << ("(double *ent)\n");
 	CodigoC << ("{\n");
 	CodigoC << ("    int NumeroSalida=") << NumeroVariable << (";\n");
-	CodigoC << ("    float y;\n");
-	CodigoC << ("    float y1=0;\n");
-	CodigoC << ("    float y2=0;\n");
-	CodigoC << ("    float ymax;\n");
+	CodigoC << ("    double y;\n");
+	CodigoC << ("    double y1=0;\n");
+	CodigoC << ("    double y2=0;\n");
+	CodigoC << ("    double ymax;\n");
 	CodigoC << ("    int j;\n");
 	CodigoC << ("    ymax=VariablesSalida[NumeroSalida].minimo;\n");
 	CodigoC << ("    actualizarEntradas(ent);\n");
@@ -374,7 +374,7 @@ string Altura::codigoC()
 	CodigoC << ("    {\n");
 	CodigoC << ("        if(activarRegla(j))\n");
 	CodigoC << ("        {\n");
-	CodigoC << ("            float temp;\n");
+	CodigoC << ("            double temp;\n");
 	CodigoC << ("            y=CentrosAltura[j][NumeroSalida];\n");
 	CodigoC << ("            temp=pertenenciaComposicion(NumeroSalida,j,y);\n");
 	CodigoC << ("            y1=y1+y*temp;\n");

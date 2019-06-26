@@ -29,8 +29,8 @@ DialogoCalcular::DialogoCalcular(SistemaLogicaDifusa *sld, wxWindow *parent)
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
-	float entra[numEntradas];
-	float sale[numEntradas];
+	double entra[numEntradas];
+	double sale[numEntradas];
 	for(int i=0;i<numEntradas;i++)
 	{
 	  wxStaticText *st=new wxStaticText(this,wxID_ANY,SLD->nombreVariableEntrada(i));
@@ -89,8 +89,8 @@ void DialogoCalcular::OnCalcular(wxCommandEvent&   event)
 {
 	int numEntradas=ValoresEntradas.GetItemsInContainer();
 	int numSalidas=NombresSalidas.GetItemsInContainer();
-	float entra[numEntradas];
-	float sale[numEntradas];
+	double entra[numEntradas];
+	double sale[numEntradas];
 	for(int i=0;i<numEntradas;i++)
 	{
 	  wxString str;

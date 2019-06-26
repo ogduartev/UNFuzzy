@@ -24,8 +24,6 @@ bool UNFuzzyNetworkApp::OnInit()
 {
 	wxInitAllImageHandlers();
 
-	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
-
   UNFuzzyNetworkFrame* frame = new UNFuzzyNetworkFrame(0L, _T("UNFuzzyNetwork - Design of Networks of Fuzzy Logic Systems"));
 
   frame->Show();

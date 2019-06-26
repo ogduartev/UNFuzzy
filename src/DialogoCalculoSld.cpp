@@ -31,17 +31,17 @@ wxString DialogoCalculoSld::nombreSalida (int i)
 	return SLD->salidas->variable(i)->nombreVariable();
 }
 
-float DialogoCalculoSld::rangoMinimoEntrada(int i)
+double DialogoCalculoSld::rangoMinimoEntrada(int i)
 {
 	return SLD->entradas->variable(i)->rangoMinimo();
 }
 
-float DialogoCalculoSld::rangoMaximoEntrada(int i)
+double DialogoCalculoSld::rangoMaximoEntrada(int i)
 {
 	return SLD->entradas->variable(i)->rangoMaximo();
 }
 
-void DialogoCalculoSld::calcular(float* entra, float* sale)
+void DialogoCalculoSld::calcular(double* entra, double* sale)
 {
 	SLD->calcular(entra,sale);
 }

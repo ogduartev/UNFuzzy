@@ -43,10 +43,10 @@ public:
 		return Motor;
 	}
 	Concresor *concresor(int numSal);
-	float salidaConcreta(int numSal,float *ent);
-	void salidaConcreta(float *ent,float *sal);
+	double salidaConcreta(int numSal,double *ent);
+	void salidaConcreta(double *ent,double *sal);
 	void autodefinirBloqueConcrecion(MaquinaInferencia* maq,Norma *conjuncion);
-	float pertenenciaConjuncion(int numSalida,float sal);
+	double pertenenciaConjuncion(int numSalida,double sal);
 	void adicionarSalida();
 	void eliminarSalida(int NumVar);
 

@@ -31,10 +31,10 @@ class DialogoFuncion : public wxDialog
 		virtual int numeroSalidas()=0;
 		virtual wxString nombreEntrada(int i)=0;
 		virtual wxString nombreSalida (int i)=0;
-		virtual float rangoMinimoEntrada(int i)=0;
-		virtual float rangoMaximoEntrada(int i)=0;
-		virtual float rangoMinimoSalida(int i)=0;
-		virtual float rangoMaximoSalida(int i)=0;
+		virtual double rangoMinimoEntrada(int i)=0;
+		virtual double rangoMaximoEntrada(int i)=0;
+		virtual double rangoMinimoSalida(int i)=0;
+		virtual double rangoMaximoSalida(int i)=0;
 
 	protected:
 		SistemaLogicaDifusa *SLD;

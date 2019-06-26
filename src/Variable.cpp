@@ -34,21 +34,21 @@ void Variable::limpiarListaConjuntos()
 	}
 }
 
-float Variable::pertenencia(int i, float x)
+double Variable::pertenencia(int i, double x)
 {
 	return pertenencia(this->conjunto(i), x);
 }
 
-float Variable::pertenencia(ConjuntoDifuso* cd, float x)
+double Variable::pertenencia(ConjuntoDifuso* cd, double x)
 {
-	float ux;
+	double ux;
 	ux=cd->pertenencia(x);
 	return ux;
 }
 
-float Variable::pertenenciaDifusor(float x)
+double Variable::pertenenciaDifusor(double x)
 {
-	float ux;
+	double ux;
 	ux=DifusorEntrada->pertenencia(x);
 	return ux;
 }
@@ -57,7 +57,7 @@ void Variable::autodefinirConjuntosRectos(int num)
 {
 	limpiarListaConjuntos();
 	ConjuntoDifuso *cd;
-	float dx;
+	double dx;
 			// esta variable ayuda a calcular los soportes
 			//de cada ConjuntoDifuso
 
@@ -94,7 +94,7 @@ void Variable::autodefinirConjuntosCurvos(int num)
 {
 	limpiarListaConjuntos();
 	ConjuntoDifuso *cd;
-	float dx;
+	double dx;
 			// esta variable ayuda a calcular los soportes
 			//de cada ConjuntoDifuso
 
@@ -133,7 +133,7 @@ void Variable::autodefinirConjuntosRectosCortos(int num)
 	if(num<2){return;}
 	limpiarListaConjuntos();
 	ConjuntoDifuso *cd;
-	float dx;
+	double dx;
 			// esta variable ayuda a calcular los soportes
 			//de cada ConjuntoDifuso
 
@@ -171,7 +171,7 @@ void Variable::autodefinirConjuntosCurvosCortos(int num)
 	if(num<2){return;}
 	limpiarListaConjuntos();
 	ConjuntoDifuso *cd;
-	float dx;
+	double dx;
 			// esta variable ayuda a calcular los soportes
 			//de cada ConjuntoDifuso
 
@@ -204,14 +204,14 @@ void Variable::autodefinirConjuntosCurvosCortos(int num)
 	adicionarConjuntos(cd);
 }
 
-void Variable::ajustar(float minimo, float maximo)
+void Variable::ajustar(double minimo, double maximo)
 {
 	if(maximo<=minimo){return;}
-	float minimoAntes=rangoMinimo();
-	float maximoAntes=rangoMaximo();
+	double minimoAntes=rangoMinimo();
+	double maximoAntes=rangoMaximo();
 	if(minimo!=minimoAntes||maximo!=maximoAntes)
 	{
-		float x,mn,mx;
+		double x,mn,mx;
 		ConjuntoDifuso *cd1;
 		Difusor *dif1;
 		int i;
@@ -255,7 +255,7 @@ void Variable::operator=(const Variable& other)
 	{
 		ConjuntoDifuso* otherCd;
 		otherCd=other.conjunto(i);
-		float puntos[10];
+		double puntos[10];
 		otherCd->puntosClaves(puntos);
 		int identificador=otherCd->identificador();
 
@@ -278,11 +278,11 @@ void Variable::operator=(const Variable& other)
 	}
 
 ////////// DIFUSOR
-	float puntos[10];
+	double puntos[10];
 	Difusor* otherDif;
 	otherDif=other.difusorEntrada();
 	int identificador=otherDif->identificador();
-	float centro=otherDif->centro();
+	double centro=otherDif->centro();
 	otherDif->puntosClaves(puntos);
 
 	Difusor *dif;

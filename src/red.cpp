@@ -2,13 +2,14 @@
 
 red::red()
 {
-	crearRedMinima();
-	nombre=_("Without name");
+	nombre="";
 	descripcion="";
 }
 
 void red::crearRedMinima()
 {
+	nombre=_("Without name");
+
 	eliminarCapas();
 	capa* C1=new capa();
 	capa* C2=new capa();
@@ -81,9 +82,9 @@ bool red::buscarPinSalida(int numCapa, int numNodo, int numPin)
 	return true;
 }
 
-float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
+double red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 {
-	float V=0.0;
+	double V=0.0;
 	if(!buscarPinEntrada(numCapa,numNodo,numPin))
 	{
 		return V;
@@ -92,9 +93,9 @@ float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 	return V;
 }
 
-float red::valorPinSalida(int numCapa, int numNodo, int numPin)
+double red::valorPinSalida(int numCapa, int numNodo, int numPin)
 {
-	float V=0.0;
+	double V=0.0;
 	if(!buscarPinSalida(numCapa,numNodo,numPin))
 	{
 		return V;
@@ -114,7 +115,7 @@ void red::calcularRed()
 	}
 }
 
-void red::valorEntrada(int numNodo, int numPin, float Valor)
+void red::valorEntrada(int numNodo, int numPin, double Valor)
 {
   if(!buscarPinEntrada(0,numNodo,numPin))
 	{
@@ -329,7 +330,7 @@ Variable* red::variableSalida(int i)
 	return NULL;
 }
 
-void red::asignarEntradas(float* entra)
+void red::asignarEntradas(double* entra)
 {
 	int cnt=0;
 	int numCapa=0;
@@ -343,7 +344,7 @@ void red::asignarEntradas(float* entra)
 	}
 }
 
-void red::leerSalidas(float* sale)
+void red::leerSalidas(double* sale)
 {
 	int cnt=0;
 	int numCapa=capas()->GetItemsInContainer()-1;
@@ -357,7 +358,7 @@ void red::leerSalidas(float* sale)
 	}
 }
 
-void red::calcular(float* entra, float* sale)
+void red::calcular(double* entra, double* sale)
 {
 	asignarEntradas(entra);
 	calcularRed();
@@ -545,8 +546,8 @@ void red::generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase)
 
 	Codigo=("int main()");codigoFile->AddLine(Codigo);
 	Codigo=("{");codigoFile->AddLine(Codigo);
-	Codigo=("    float *entra;");codigoFile->AddLine(Codigo);
-	Codigo=("    float *sale;");codigoFile->AddLine(Codigo);
+	Codigo=("    double *entra;");codigoFile->AddLine(Codigo);
+	Codigo=("    double *sale;");codigoFile->AddLine(Codigo);
 	Codigo=("    ");
 	Codigo << nombreClase << (" *Red;");codigoFile->AddLine(Codigo);
 	Codigo=("    int NumeroEntradas;");codigoFile->AddLine(Codigo);
@@ -555,8 +556,8 @@ void red::generarCodigoCPPMain(wxTextFile* codigoFile,wxString nombreClase)
 	Codigo << nombreClase << ("();");codigoFile->AddLine(Codigo);
 	Codigo=("    NumeroEntradas=Red->numeroEntradas();");codigoFile->AddLine(Codigo);
 	Codigo=("    NumeroSalidas=Red->numeroSalidas();");codigoFile->AddLine(Codigo);
-	Codigo=("    entra=new float[NumeroEntradas];");codigoFile->AddLine(Codigo);
-	Codigo=("    sale=new float[NumeroSalidas];");codigoFile->AddLine(Codigo);
+	Codigo=("    entra=new double[NumeroEntradas];");codigoFile->AddLine(Codigo);
+	Codigo=("    sale=new double[NumeroSalidas];");codigoFile->AddLine(Codigo);
 	Codigo=("    int i;");codigoFile->AddLine(Codigo);
 	Codigo=("    char q='s';");codigoFile->AddLine(Codigo);
 	Codigo=("    while(q=='s')");codigoFile->AddLine(Codigo);

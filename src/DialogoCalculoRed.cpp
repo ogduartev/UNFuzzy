@@ -32,17 +32,17 @@ wxString DialogoCalculoRed::nombreSalida (int i)
 	return Red->variableSalida(i)->nombreVariable();
 }
 
-float DialogoCalculoRed::rangoMinimoEntrada(int i)
+double DialogoCalculoRed::rangoMinimoEntrada(int i)
 {
 	return Red->variableEntrada(i)->rangoMinimo();
 }
 
-float DialogoCalculoRed::rangoMaximoEntrada(int i)
+double DialogoCalculoRed::rangoMaximoEntrada(int i)
 {
 	return Red->variableEntrada(i)->rangoMaximo();
 }
 
-void DialogoCalculoRed::calcular(float* entra, float* sale)
+void DialogoCalculoRed::calcular(double* entra, double* sale)
 {
 	Red->calcular(entra,sale);
 }

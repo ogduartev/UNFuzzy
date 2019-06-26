@@ -275,7 +275,7 @@ void DialogoVariable::OnLeftUp(wxMouseEvent& event)
 	{
 		int X=event.GetX();
 		int Xo,Xf;
-		float xo,xf;
+		double xo,xf;
 		Xo=puntosArrastre[0].x;
 		Xf=puntosArrastre[numeroPuntosArrastre+1].x;
 		xo=Var->rangoMinimo();
@@ -284,7 +284,7 @@ void DialogoVariable::OnLeftUp(wxMouseEvent& event)
 		ConjuntoDifuso *CD;
 		CD=Var->conjunto(NumCon);
 
-		float x;
+		double x;
 		x=xo+(X-Xo)*(xf-xo)/(Xf-Xo);
 		if(x<xo){x=xo;}
 		if(x>xf){x=xf;}
@@ -341,8 +341,8 @@ void DialogoVariable::llenarDatos()
 	  	case 8 : comboTipoDifusor->SetSelection(4);break;
 	  }
 
-	  float mn,mx,dx;
-	  float difMn,difMx;
+	  double mn,mx,dx;
+	  double difMn,difMx;
 	  mn=U->variable(NumVar)->rangoMinimo();
 	  mx=U->variable(NumVar)->rangoMaximo();
 	  dx=(mx-mn)/100.0;
@@ -364,7 +364,7 @@ void DialogoVariable::llenarDatos()
 	pintarVariable(NumVar,NumCon);
 	if(flagDifusor)
 	{
-		float x=0.5*(U->variable(NumVar)->rangoMinimo() + U->variable(NumVar)->rangoMaximo() );
+		double x=0.5*(U->variable(NumVar)->rangoMinimo() + U->variable(NumVar)->rangoMaximo() );
 		U->variable(NumVar)->difusorEntrada()->entrada(x);
 		pintarDifusor(NumVar,NumCon);
 	}
@@ -505,8 +505,8 @@ void DialogoVariable::OnAdicionarCon   (wxCommandEvent&   event)
 	{
 		wxString nom=dial->GetValue();
 		const char* ascii_str = (const char*)nom.mb_str(wxConvUTF8);
-		float mn,mx;
-		float x1,x2,x3;
+		double mn,mx;
+		double x1,x2,x3;
 		mn=U->variable(NumVar)->rangoMinimo();
 		mx=U->variable(NumVar)->rangoMaximo();
 		x1=mn + (mx-mn)*3/8;
@@ -528,7 +528,7 @@ void DialogoVariable::OnTipoCon        (wxCommandEvent&   event)
 
 	string nombre;
 	nombre=U->variable(NumVar)->conjunto(NumCon)->nombre();
-	float mn,a,b,mx;
+	double mn,a,b,mx;
 	mn=U->variable(NumVar)->rangoMinimo();
 	a=U->variable(NumVar)->conjunto(NumCon)->minimo();
 	b=U->variable(NumVar)->conjunto(NumCon)->maximo();
@@ -555,7 +555,7 @@ void DialogoVariable::OnTipoCon        (wxCommandEvent&   event)
 				break;
 		case 8 : conj=new ConjuntoSinglenton(nombre,a,(mx-mn)/100); //pico,delta
 				break;
-		case 9 :// conj=new ConjuntoPorPuntos(nombre,,,); //min,max,float *dt, int puntos
+		case 9 :// conj=new ConjuntoPorPuntos(nombre,,,); //min,max,double *dt, int puntos
 				break;
 		default:break;
 	}
@@ -574,7 +574,7 @@ void DialogoVariable::OnRightClick (wxMouseEvent& event)
 		wxRect rect(puntosArrastre[i].x-tamArrastre,puntosArrastre[i].y-tamArrastre,tamArrastre*2,tamArrastre*2);
 		if(rect.Contains(tp))
 		{
-			float arrastre[10];
+			double arrastre[10];
 
 			wxTextEntryDialog *dial;
 			ConjuntoDifuso *CD;
@@ -596,9 +596,9 @@ void DialogoVariable::OnRightClick (wxMouseEvent& event)
 
 				if(x<U->variable(NumVar)->rangoMinimo()){x=U->variable(NumVar)->rangoMinimo();}
 				if(x>U->variable(NumVar)->rangoMaximo()){x=U->variable(NumVar)->rangoMaximo();}
-				x=CD->verificarPuntoClave(puntoArrastrado-1,(float)x);
+				x=CD->verificarPuntoClave(puntoArrastrado-1,(double)x);
 
-				CD->nuevoPuntoClave(puntoArrastrado-1,(float)x);
+				CD->nuevoPuntoClave(puntoArrastrado-1,(double)x);
 				CD=NULL;
 				llenarDatos();
 			}
@@ -611,7 +611,7 @@ void DialogoVariable::cambiaDifusor(wxCommandEvent&   event)
 {
   if(!flagDifusor) return;
 
-	float mn,mx,x,dx;
+	double mn,mx,x,dx;
 	mn=U->rangoMinimoVariable(NumVar);
 	mx=U->rangoMaximoVariable(NumVar);
 	x=(mn+mx)/2;
@@ -681,8 +681,8 @@ void DialogoVariable::OnSpinAncho      (wxSpinDoubleEvent&   event)
 {
   if(!flagDifusor) return;
 
-  float ancho=spinDifAncho->GetValue();
-  float mn,mx;
+  double ancho=spinDifAncho->GetValue();
+  double mn,mx;
   mn=U->variable(NumVar)->difusorEntrada()->centro() - ancho/2.0;
   mx=U->variable(NumVar)->difusorEntrada()->centro() + ancho/2.0;
   U->variable(NumVar)->difusorEntrada()->ajustar(mn,mx);

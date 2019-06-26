@@ -25,11 +25,11 @@ Las funciones virtual=0 deben ser redefinidas por los hijos
                         entrega el texto necesario para generar Codigo C (ver DialogGenerarCodigo)
 	virtual char* codigoCPP()=0;
 								entrega el texto necesario para generar Codigo C++ (ver DialogGenerarCodigo)
-	virtual float ToSNorm()=0;
+	virtual double ToSNorm()=0;
                     determina si la Norma es T_Norma ó S_Norma
-	virtual float opera(float, float)=0;
+	virtual double opera(double, double)=0;
                     efectúa la operación matemática
-	virtual float parametro()=0;
+	virtual double parametro()=0;
                     algunas Normas tienen un parámetro; este es el consultor
 //////////////////////////////////////////*/
 
@@ -53,9 +53,9 @@ public:
 	}
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
-	virtual float ToSNorm()=0;
-	virtual float opera(float, float)=0;
-	virtual float parametro()=0;
+	virtual double ToSNorm()=0;
+	virtual double opera(double, double)=0;
+	virtual double parametro()=0;
 protected:
 	int Identificador;
 };
@@ -71,13 +71,13 @@ class T_Norma:public Norma
 public:
 	T_Norma(){}
 	~T_Norma(){}
-	float ToSNorm()
+	double ToSNorm()
 	{
 		return 1.0;
 	}
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
-	virtual float opera(float, float)=0;
+	virtual double opera(double, double)=0;
 protected:
 };
 
@@ -92,13 +92,13 @@ class S_Norma:public Norma
 public:
 	S_Norma(){}
 	~S_Norma(){}
-	float ToSNorm()
+	double ToSNorm()
 	{
 		return 0.0;
 	}
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
-	virtual float opera(float, float)=0;
+	virtual double opera(double, double)=0;
 protected:
 };
 
@@ -121,7 +121,7 @@ public:
 		Identificador=0;
 	}
 	~Producto(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -137,9 +137,9 @@ public:
 		CodigoCPP << ("Producto();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x*y;
 		return z;
 	}
@@ -163,7 +163,7 @@ public:
 		Identificador=1;
 	}
 	~Minimo(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -185,9 +185,9 @@ public:
 		CodigoCPP << ("Minimo();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(x<y)
 		{
 			z=x;
@@ -218,7 +218,7 @@ public:
 		Identificador=2;
 	}
 	~ProductoAcotado(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -238,9 +238,9 @@ public:
 		CodigoCPP << ("ProductoAcotado();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y-1;
 		if(z<0)
 		{
@@ -269,7 +269,7 @@ public:
 		Identificador=3;
 	}
 	~ProductoDrastico(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -296,9 +296,9 @@ public:
 		CodigoCPP << ("ProductoDrastico();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(y==1)
 		{
 			z=x;
@@ -329,19 +329,19 @@ class FamiliaTp:public T_Norma
 class FamiliaTp:public T_Norma
 {
 public:
-	FamiliaTp(float parametro=1.0)
+	FamiliaTp(double parametro=1.0)
 	{
 		p=parametro;
 		Identificador=4;
 	}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=pow(1-x,p)+pow(1-y,p)-pow(1-x,p)*pow(1-y,p);\n");
 		CodigoC << ("    z=1-pow(z,(1/p));");
 		return std::string(CodigoC.mb_str());
@@ -353,15 +353,15 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 	~FamiliaTp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=pow(1-x,p)+pow(1-y,p)-pow(1-x,p)*pow(1-y,p);
 		z=1-pow(z,(1/p));
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -377,20 +377,20 @@ class FamiliaHp:public T_Norma
 class FamiliaHp:public T_Norma
 {
 public:
-	FamiliaHp(float parametro=1.0)
+	FamiliaHp(double parametro=1.0)
 	{
 		p=parametro;
 		Identificador=5;
 	}
 	~FamiliaHp(){}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=p-(1-p)*(x+y-x*y);\n");
 		CodigoC << ("    z=x*y/z;");
 		return std::string(CodigoC.mb_str());
@@ -401,15 +401,15 @@ public:
 		CodigoCPP << ("FamiliaHp(") << p << (");");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=p-(1-p)*(x+y-x*y);
 		z=x*y/z;
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -426,19 +426,19 @@ class FamiliaFp:public T_Norma
 class FamiliaFp:public T_Norma
 {
 public:
-	FamiliaFp(float parametro=2.0)
+	FamiliaFp(double parametro=2.0)
 	{
 		p=parametro;
 		Identificador=7;
 	}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=1+(pow(p,x)-1)*(pow(p,y)-1)/(p-1);\n");
 		CodigoC << ("    z=log(z)/log(p);");
 		return std::string(CodigoC.mb_str());
@@ -450,15 +450,15 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 	~FamiliaFp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=1+(pow(p,x)-1)*(pow(p,y)-1)/(p-1);
 		z=log(z)/log(p);
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -474,20 +474,20 @@ class FamiliaYp:public T_Norma
 class FamiliaYp:public T_Norma
 {
 public:
-	FamiliaYp(float parametro=1.0)
+	FamiliaYp(double parametro=1.0)
 	{
 		p=parametro;
 		Identificador=8;
 	}
 	~FamiliaYp(){}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=pow(1-x,p)+pow(1-y,p);\n");
 		CodigoC << ("    z=pow(z,(1/p));\n");
 		CodigoC << ("    if(z>1)\n");
@@ -503,9 +503,9 @@ public:
 		CodigoCPP << ("FamiliaYp(") << p << (");");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=pow(1-x,p)+pow(1-y,p);
 		z=pow(z,(1/p));
 		if(z>1)
@@ -516,7 +516,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -532,20 +532,20 @@ class FamiliaAp:public T_Norma
 class FamiliaAp:public T_Norma
 {
 public:
-	FamiliaAp(float parametro=1.0)
+	FamiliaAp(double parametro=1.0)
 	{
 		p=parametro;
 		Identificador=9;
 	}
 	~FamiliaAp(){}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=x;\n");
 		CodigoC << ("    if(y>z)\n");
 		CodigoC << ("    {\n");
@@ -564,9 +564,9 @@ public:
 		CodigoCPP << ("FamiliaAp(") << p << (");");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x;
 		if(y>z)
 		{
@@ -580,7 +580,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -605,7 +605,7 @@ public:
 		Identificador=10;
 	}
 	~Maximo(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -627,9 +627,9 @@ public:
 		CodigoCPP << ("Maximo();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(x>y)
 		{
 			z=x;
@@ -660,7 +660,7 @@ public:
 		Identificador=11;
 	}
 	~SumaAcotada(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -680,9 +680,9 @@ public:
 		CodigoCPP << ("SumaAcotada();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y;
 		if(z>1)
 		{
@@ -711,7 +711,7 @@ public:
 		Identificador=12;
 	}
 	~SumaDrastica(){}
-	float parametro()
+	double parametro()
 	{
 		return 0;
 	}
@@ -738,9 +738,9 @@ public:
 		CodigoCPP << ("SumaDrastica();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(y==0)
 		{
 			z=x;
@@ -770,20 +770,20 @@ class FamiliaSp:public S_Norma
 class FamiliaSp:public S_Norma
 {
 public:
-	FamiliaSp(float parametro=1.0)
+	FamiliaSp(double parametro=1.0)
 	{
 		p=parametro;
 		Identificador=6;
 	}
 	~FamiliaSp(){}
-	float parametro()
+	double parametro()
 	{
 		return p;
 	}
 	string codigoC()
 	{
 		wxString CodigoC="";
-		CodigoC << ("    float p=") << p << (";\n");
+		CodigoC << ("    double p=") << p << (";\n");
 		CodigoC << ("    z=x+y+p*x*y;\n");
 		CodigoC << ("    if(z>1)\n");
 		CodigoC << ("    {\n");
@@ -797,9 +797,9 @@ public:
 		CodigoCPP << ("FamiliaSp(") << p << (");");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y+p*x*y;
 		if(z>1)
 		{
@@ -808,7 +808,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 

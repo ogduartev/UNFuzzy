@@ -55,7 +55,7 @@ public:
 	{
 		return NumeroIntervalos;
 	}
-	float intervalo()
+	double intervalo()
 	{
 		return Intervalo;
 	}
@@ -65,18 +65,18 @@ public:
 	}
 
 	ConjuntoDifuso* conjunto(int conj) const;
-	float pertenencia(ConjuntoDifuso*, float);
-	float pertenencia(int, float);
-	float pertenenciaDifusor(float);
-	float rangoMinimo(){return RangoMinimo;}
-	void rangoMinimo(float rm){RangoMinimo=rm;}
-	float rangoMaximo(){return RangoMaximo;}
-	void rangoMaximo(float rm){RangoMaximo=rm;}
+	double pertenencia(ConjuntoDifuso*, double);
+	double pertenencia(int, double);
+	double pertenenciaDifusor(double);
+	double rangoMinimo(){return RangoMinimo;}
+	void rangoMinimo(double rm){RangoMinimo=rm;}
+	double rangoMaximo(){return RangoMaximo;}
+	void rangoMaximo(double rm){RangoMaximo=rm;}
 	void autodefinirConjuntosRectos(int num);
 	void autodefinirConjuntosCurvos(int num);
 	void autodefinirConjuntosRectosCortos(int num);
 	void autodefinirConjuntosCurvosCortos(int num);
-	void ajustar(float minimo, float maximo);
+	void ajustar(double minimo, double maximo);
 	BOOL operator==(const Variable& other)
 	{
 		return ( (NombreVariable == other.NombreVariable)&
@@ -92,10 +92,10 @@ protected:
 	ListaConjuntos *Conjuntos;
 	Difusor *DifusorEntrada;
 
-	float RangoMinimo;
-	float RangoMaximo;
+	double RangoMinimo;
+	double RangoMaximo;
 	int NumeroIntervalos;
-	float Intervalo;
+	double Intervalo;
 	string NombreVariable;
 };
 

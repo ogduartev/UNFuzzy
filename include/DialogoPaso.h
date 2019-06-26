@@ -32,7 +32,7 @@ class DialogoPaso : public wxDialog
 
 	protected:
 		SistemaLogicaDifusa *SLD;
-		float* sale;
+		double* sale;
 		wxArrayInt reglasActivas;
 
 	  wxStaticText* staticSalida;

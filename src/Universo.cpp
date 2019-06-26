@@ -26,7 +26,7 @@ void Universo::limpiarListaVariables()
 	}
 }
 
-void Universo::entradaReal(float *ent)
+void Universo::entradaReal(double *ent)
 {
 	int i;
 	for(i=0;i<numeroVariables();i++)

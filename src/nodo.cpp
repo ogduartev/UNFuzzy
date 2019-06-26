@@ -24,8 +24,8 @@ nodo::~nodo()
 void nodo::calcularNodo()
 {
 	actualizarEntradas();
-	float entra[Entradas.GetItemsInContainer()];
-	float sale [Salidas .GetItemsInContainer()];
+	double entra[Entradas.GetItemsInContainer()];
+	double sale [Salidas .GetItemsInContainer()];
 	for(int i=0;i<Entradas.GetItemsInContainer();i++)
 	{
 		entra[i]=Entradas.dato(i)->valor();
@@ -49,7 +49,7 @@ void nodo::actualizarEntradas()
 	}
 }
 
-void nodo::calcular(float* entra, float* sale)
+void nodo::calcular(double* entra, double* sale)
 {
 	SLD.calcular(entra,sale);
 }

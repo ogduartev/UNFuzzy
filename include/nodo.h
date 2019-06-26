@@ -25,7 +25,7 @@ class nodo
 		}
 		void calcularNodo();
 		void actualizarEntradas();
-		void calcular(float* entra, float* sale); // =0 para hacer virtual y heredar de SLD
+		void calcular(double* entra, double* sale); // =0 para hacer virtual y heredar de SLD
 		void ajustarPinesAsld();
 
 	protected:

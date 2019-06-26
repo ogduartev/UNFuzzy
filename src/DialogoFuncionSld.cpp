@@ -34,22 +34,22 @@ wxString DialogoFuncionSld::nombreSalida (int i)
 	return str;
 }
 
-float DialogoFuncionSld::rangoMinimoEntrada(int i)
+double DialogoFuncionSld::rangoMinimoEntrada(int i)
 {
 	return SLD->entradas->variable(i)->rangoMinimo();
 }
 
-float DialogoFuncionSld::rangoMaximoEntrada(int i)
+double DialogoFuncionSld::rangoMaximoEntrada(int i)
 {
 	return SLD->entradas->variable(i)->rangoMaximo();
 }
 
-float DialogoFuncionSld::rangoMinimoSalida(int i)
+double DialogoFuncionSld::rangoMinimoSalida(int i)
 {
 	return SLD->salidas->variable(i)->rangoMinimo();
 }
 
-float DialogoFuncionSld::rangoMaximoSalida(int i)
+double DialogoFuncionSld::rangoMaximoSalida(int i)
 {
 	return SLD->salidas->variable(i)->rangoMaximo();
 }
@@ -61,7 +61,7 @@ void DialogoFuncionSld::pintarFuncion(bool flagFondo, bool flagCurva, int numEnt
 	wxRect canvas=canvasFuncion->GetRect();
 	Grafica = new Graficador(&dc,canvas);
 
-	float mnx, mxx, mny, mxy;
+	double mnx, mxx, mny, mxy;
 	mnx=rangoMinimoEntrada(numEntra);
 	mxx=rangoMaximoEntrada(numEntra);
 	mny=rangoMinimoSalida(numSale);
@@ -75,7 +75,7 @@ void DialogoFuncionSld::pintarFuncion(bool flagFondo, bool flagCurva, int numEnt
 	}
 	if(!flagCurva){return;}
 
-	float entra[numeroEntradas()];
+	double entra[numeroEntradas()];
 	for(int i=0;i<numeroEntradas();i++)
 	{
 		entra[i]=valoresEntradas[i]->GetValue();

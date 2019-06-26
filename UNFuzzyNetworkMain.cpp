@@ -54,11 +54,12 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
 	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
 	wxString strLocale(f.GetPath());
 	strLocale << "/locale/";
-  MiLocale =new wxLocale(wxLANGUAGE_DEFAULT);
+  MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
 	MiLocale->AddCatalogLookupPathPrefix(strLocale);
-	MiLocale->AddCatalog("en");
+	MiLocale->AddCatalog("es");
 	setlocale (LC_NUMERIC,"C");
 
+	Red.crearRedMinima();
 	wxFlexGridSizer*  sizerGrafico;
 	wxFlexGridSizer*  sizerIconos;
 

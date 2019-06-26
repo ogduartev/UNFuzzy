@@ -14,9 +14,9 @@ class DialogoCalculoRed : public DialogoCalculo
 		int numeroSalidas();
 		wxString nombreEntrada(int i);
 		wxString nombreSalida (int i);
-		float rangoMinimoEntrada(int i);
-		float rangoMaximoEntrada(int i);
-		void calcular(float* entra, float* sale);
+		double rangoMinimoEntrada(int i);
+		double rangoMaximoEntrada(int i);
+		void calcular(double* entra, double* sale);
 
 	protected:
 

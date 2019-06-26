@@ -31,7 +31,7 @@ procedimientos:
 	void numeroVariable(int numVar)		Modificador de NumeroVariable
 	MaquinaInferencia *motor()				Consultor de Motor
 	void motor(MaquinaInferencia *maq)	Modificador de Motor
-	float defecto()							calcula la función defecto de la Implicación de Motor
+	double defecto()							calcula la función defecto de la Implicación de Motor
 	char *nombre()								Consultor de Nombre
 	Norma *conjuncion()						Consultor de Conjuncion
 	void conjuncion(Norma *nor)			Modificador de Conjuncion
@@ -39,7 +39,7 @@ procedimientos:
 
 Las funciones virtual=0 deben ser redefinidas por los hijos
 
-	virtual float salidaConcreta(float *ent)=0;
+	virtual double salidaConcreta(double *ent)=0;
 			efectúa el algoritmo de Concreción cuando las entradas Concretas
 			al Sistema de Lógica Difusa están almacenadas en el vector ent;
 			Esta función encapsula todo el comportamiento del Sistema de
@@ -81,7 +81,7 @@ public:
 	{
 		Motor=maq;
 	}
-	float defecto()
+	double defecto()
 	{
 		return Motor->implicacion()->defecto();
 	}
@@ -102,7 +102,7 @@ public:
 	{
 		return Identificador;
 	}
-	virtual float salidaConcreta(float *ent)=0;
+	virtual double salidaConcreta(double *ent)=0;
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
 	BOOL operator==(const Concresor& other)
@@ -134,7 +134,7 @@ public:
 		Identificador=0;
 	}
 	~PrimerMaximo(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 	string codigoC();
 	string codigoCPP();
 protected:
@@ -155,7 +155,7 @@ public:
 		Identificador=1;
 	}
 	~UltimoMaximo(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 	string codigoC();
 	string codigoCPP();
 protected:
@@ -176,7 +176,7 @@ public:
 		Identificador=2;
 	}
 	~MediaDeMaximos(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 	string codigoC();
 	string codigoCPP();
 protected:
@@ -197,7 +197,7 @@ public:
 		Identificador=3;
 	}
 	~CentroDeGravedad(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 	string codigoC();
 	string codigoCPP();
 protected:
@@ -218,7 +218,7 @@ public:
 		Identificador=4;
 	}
 	~Altura(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 	string codigoC();
 	string codigoCPP();
 protected:

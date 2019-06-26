@@ -116,7 +116,7 @@ void DialogoEntrenamiento::OnInsertar    (wxCommandEvent&   event)
 
 	for(int e=0;e<Motor->numeroEntradas();e++)
 	{
-		float minimo,maximo,valor;
+		double minimo,maximo,valor;
 		minimo=Motor->entradas()->variable(e)->rangoMinimo();
 		maximo=Motor->entradas()->variable(e)->rangoMaximo();
 		valor=0.5*(minimo+maximo);
@@ -131,7 +131,7 @@ void DialogoEntrenamiento::OnInsertar    (wxCommandEvent&   event)
 	}
 	for(int s=0;s<Motor->numeroSalidas();s++)
 	{
-		float minimo,maximo,valor;
+		double minimo,maximo,valor;
 		minimo=Motor->salidas()->variable(s)->rangoMinimo();
 		maximo=Motor->salidas()->variable(s)->rangoMaximo();
 		valor=0.5*(minimo+maximo);
@@ -171,7 +171,7 @@ void DialogoEntrenamiento::OnEliminar    (wxCommandEvent&   event)
 void DialogoEntrenamiento::verificarDatos()
 {
 	int numArreglos=0;
-	float minimo,maximo,valor;
+	double minimo,maximo,valor;
 	double valorD;
 	wxString celda="";
 	int offsetX=Motor->entradas()->numeroVariables();
@@ -185,7 +185,7 @@ void DialogoEntrenamiento::verificarDatos()
 			minimo=Motor->entradas()->variable(e)->rangoMinimo();
 			maximo=Motor->entradas()->variable(e)->rangoMaximo();
 			gridTabla->GetCellValue(patron,e).ToDouble(&valorD);
-			valor=(float)valorD;
+			valor=(double)valorD;
 			if(valor<minimo)
 			{
 				valor=minimo;
@@ -211,7 +211,7 @@ void DialogoEntrenamiento::verificarDatos()
 			minimo=Motor->salidas()->variable(s)->rangoMinimo();
 			maximo=Motor->salidas()->variable(s)->rangoMaximo();
 			gridTabla->GetCellValue(patron,offsetX+s).ToDouble(&valorD);
-			valor=(float)valorD;
+			valor=(double)valorD;
 			if(valor<minimo)
 			{
 				valor=minimo;
@@ -332,18 +332,18 @@ void DialogoEntrenamiento::OnEntrenar    (wxCommandEvent&   event)
 	int offsetX=Motor->entradas()->numeroVariables();
 	for(int patron=0;patron<gridTabla->GetNumberRows();patron++)
 	{
-		float antecedentes[Motor->entradas()->numeroVariables()];
-		float consecuentes[Motor->salidas()->numeroVariables()];
+		double antecedentes[Motor->entradas()->numeroVariables()];
+		double consecuentes[Motor->salidas()->numeroVariables()];
 
 		for(int e=0;e<Motor->numeroEntradas();e++)
 		{
 			gridTabla->GetCellValue(patron,e).ToDouble(&valorD);
-			antecedentes[e]=(float)valorD;
+			antecedentes[e]=(double)valorD;
 		}
 		for(int s=0;s<Motor->numeroSalidas();s++)
 		{
 			gridTabla->GetCellValue(patron,offsetX+s).ToDouble(&valorD);
-			consecuentes[s]=(float)valorD;
+			consecuentes[s]=(double)valorD;
 		}
 
 		switch(tipoAlgoritmo)

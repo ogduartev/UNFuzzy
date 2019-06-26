@@ -30,9 +30,9 @@ void DialogoCalculo::iniciar()
 	  wxStaticText *st=new wxStaticText(this,wxID_ANY,nombreEntrada(i));
 	  sizerEntradas->Add(st, 0, wxALL, 0);
 
-	  float minX=rangoMinimoEntrada(i);
-	  float maxX=rangoMaximoEntrada(i);
-	  float dx=(maxX-minX)/100;
+	  double minX=rangoMinimoEntrada(i);
+	  double maxX=rangoMaximoEntrada(i);
+	  double dx=(maxX-minX)/100;
 
 	  wxSpinCtrlDouble *ct=new wxSpinCtrlDouble(this, wxID_ANY, "",wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT, minX, maxX, 0, dx);
 		Bind(wxEVT_SPINCTRLDOUBLE, &DialogoCalculo::OnCalcular, this, wxID_ANY);
@@ -84,8 +84,8 @@ void DialogoCalculo::OnOK(wxCommandEvent&   event)
 
 void DialogoCalculo::OnCalcular(wxCommandEvent&   event)
 {
-	float entra[numeroEntradas()];
-	float sale[numeroEntradas()];
+	double entra[numeroEntradas()];
+	double sale[numeroEntradas()];
 	for(int i=0;i < numeroEntradas();i++)
 	{
 		entra[i]=ValoresEntradas.dato(i)->GetValue();

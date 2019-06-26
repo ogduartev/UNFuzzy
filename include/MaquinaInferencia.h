@@ -54,11 +54,11 @@ public:
 	{
 		return regla(numRegla)->conjuntoEntrada(numVar);
 	}
-	void modificador(int numRegla, int numVar, float modif)
+	void modificador(int numRegla, int numVar, double modif)
 	{
 		regla(numRegla)->modificador(numVar,modif);
 	}
-	float modificador(int numRegla, int numVar)
+	double modificador(int numRegla, int numVar)
 	{
 		return regla(numRegla)->modificador(numVar);
 	}
@@ -117,19 +117,19 @@ public:
 	void adicionarSalida();
 	void eliminarEntrada(int NumVar);
 	void eliminarSalida(int NumVar);
-	void actualizarEntradas(float *ent);
-	float pertenenciaDifusores(float *ent);
-	float pertenenciaImplicacion(int numSal,int numRegla, float *ent,float sal);
-	float pertenenciaConsecuente(int numSal,int numRegla,float sal);
-	float pertenenciaAntecedente(int numRegla,float *ent);
-	float pertenenciaComposicion(int numVar, int numRegla,float sal);
+	void actualizarEntradas(double *ent);
+	double pertenenciaDifusores(double *ent);
+	double pertenenciaImplicacion(int numSal,int numRegla, double *ent,double sal);
+	double pertenenciaConsecuente(int numSal,int numRegla,double sal);
+	double pertenenciaAntecedente(int numRegla,double *ent);
+	double pertenenciaComposicion(int numVar, int numRegla,double sal);
 	int activarRegla(int numregla);
 	void desocuparBaseReglas();
 	void limpiaAntesUniversoFijo();
 	void limpiaAntesUniversoVariable();
-	void EntrenaUniversoFijo(float *antecedente, float *consecuente);
-	void EntrenaUniversoVariable(float *antecedente, float *consecuente);
-	void llenarRegla(Regla *rg,float *antec, float *consec);
+	void EntrenaUniversoFijo(double *antecedente, double *consecuente);
+	void EntrenaUniversoVariable(double *antecedente, double *consecuente);
+	void llenarRegla(Regla *rg,double *antec, double *consec);
 	int compararAntec(Regla *rg1, Regla *rg2);
 
 	void llenarEntradasBase();

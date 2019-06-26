@@ -15,10 +15,10 @@ class DialogoFuncionRed : public DialogoFuncion
 		int numeroSalidas();
 		wxString nombreEntrada(int i);
 		wxString nombreSalida (int i);
-		float rangoMinimoEntrada(int i);
-		float rangoMaximoEntrada(int i);
-		float rangoMinimoSalida(int i);
-		float rangoMaximoSalida(int i);
+		double rangoMinimoEntrada(int i);
+		double rangoMaximoEntrada(int i);
+		double rangoMinimoSalida(int i);
+		double rangoMaximoSalida(int i);
 
 
 	protected:

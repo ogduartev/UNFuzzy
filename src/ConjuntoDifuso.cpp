@@ -41,10 +41,10 @@ string ConjuntoDifuso::tipo(int caso)
 }
 
 
-float ConjuntoDifuso::verificarPuntoClave(int i,float x)
+double ConjuntoDifuso::verificarPuntoClave(int i,double x)
 {
-	float xVer=x;
-	float puntos[10];
+	double xVer=x;
+	double puntos[10];
 	puntosClaves(puntos);
 	if(i>0)
 	{
@@ -64,9 +64,9 @@ float ConjuntoDifuso::verificarPuntoClave(int i,float x)
 }
 
 
-inline float ConjuntoL::pertenencia(float x)
+inline double ConjuntoL::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=1;
 	if(x<primerCorte()&&x>=minimo())
@@ -81,9 +81,9 @@ inline float ConjuntoL::pertenencia(float x)
 }
 
 
-inline float ConjuntoTriangulo::pertenencia(float x)
+inline double ConjuntoTriangulo::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -97,9 +97,9 @@ inline float ConjuntoTriangulo::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoPi::pertenencia(float x)
+inline double ConjuntoPi::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -116,9 +116,9 @@ inline float ConjuntoPi::pertenencia(float x)
 }
 
 
-inline float ConjuntoGamma::pertenencia(float x)
+inline double ConjuntoGamma::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -132,9 +132,9 @@ inline float ConjuntoGamma::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoZ::pertenencia(float x)
+inline double ConjuntoZ::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=1;
 	if(x<primerCorte())
@@ -156,9 +156,9 @@ inline float ConjuntoZ::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoCampana::pertenencia(float x)
+inline double ConjuntoCampana::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -189,9 +189,9 @@ inline float ConjuntoCampana::pertenencia(float x)
 }
 
 
-inline float ConjuntoS::pertenencia(float x)
+inline double ConjuntoS::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -211,9 +211,9 @@ inline float ConjuntoS::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoPiCampana::pertenencia(float x)
+inline double ConjuntoPiCampana::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -246,9 +246,9 @@ inline float ConjuntoPiCampana::pertenencia(float x)
 }
 
 
-inline float ConjuntoSinglenton::pertenencia(float x)
+inline double ConjuntoSinglenton::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<maximo()&&x>=minimo())
@@ -260,7 +260,7 @@ inline float ConjuntoSinglenton::pertenencia(float x)
 	return ux ;
 }
 
-void ConjuntoL::nuevoPuntoClave(int punto, float x)
+void ConjuntoL::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -270,7 +270,7 @@ void ConjuntoL::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoTriangulo::nuevoPuntoClave(int punto, float x)
+void ConjuntoTriangulo::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -281,7 +281,7 @@ void ConjuntoTriangulo::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoPi::nuevoPuntoClave(int punto, float x)
+void ConjuntoPi::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -293,7 +293,7 @@ void ConjuntoPi::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoGamma::nuevoPuntoClave(int punto, float x)
+void ConjuntoGamma::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -303,7 +303,7 @@ void ConjuntoGamma::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoZ::nuevoPuntoClave(int punto, float x)
+void ConjuntoZ::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -313,7 +313,7 @@ void ConjuntoZ::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoCampana::nuevoPuntoClave(int punto, float x)
+void ConjuntoCampana::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -324,7 +324,7 @@ void ConjuntoCampana::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoPiCampana::nuevoPuntoClave(int punto, float x)
+void ConjuntoPiCampana::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -336,7 +336,7 @@ void ConjuntoPiCampana::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoS::nuevoPuntoClave(int punto, float x)
+void ConjuntoS::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -346,7 +346,7 @@ void ConjuntoS::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoSinglenton::nuevoPuntoClave(int punto, float x)
+void ConjuntoSinglenton::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{

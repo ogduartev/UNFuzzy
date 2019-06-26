@@ -38,12 +38,12 @@ void graficadorRed::pintarNodo(nodo *Nodo, wxRect canvasSLD)
 	dc->DrawText(str,xo,yo);
   int numEntradas=Nodo->sld()->entradas->numeroVariables();
   int numSalidas =Nodo->sld()->salidas->numeroVariables();
-  float offset;
+  double offset;
 
  	wxBrush brushPinEntra(wxColour(0xFF,0xF6,0xBA));
 	dc->SetBrush(brushPinEntra);
 
-  offset=(float)height/(float)numEntradas;
+  offset=(double)height/(double)numEntradas;
   for(int i=0;i<numEntradas;i++)
 	{
 		xo=Xo;
@@ -60,7 +60,7 @@ void graficadorRed::pintarNodo(nodo *Nodo, wxRect canvasSLD)
  	wxBrush brushPinSale(wxColour(0xDC,0xEF,0xF7));
 	dc->SetBrush(brushPinSale);
 
-  offset=(float)height/(float)numSalidas;
+  offset=(double)height/(double)numSalidas;
   for(int i=0;i<numSalidas;i++)
 	{
 		xo=Xo + width - tamPunto;
@@ -95,16 +95,16 @@ void graficadorRed::ubicarEnlaces(red *Red, wxRect***	botonesSLD)
 
 			int numEntradas=Nodo->sld()->entradas->numeroVariables();
 			int numSalidas =Nodo->sld()->salidas->numeroVariables();
-			float offset;
+			double offset;
 
-			offset=(float)(heightSLD)/(float)numEntradas;
+			offset=(double)(heightSLD)/(double)numEntradas;
 			for(int i=0;i<numEntradas;i++)
 			{
 				int xo=pt.x;
 				int yo=pt.y + offset/2 + offset*i;
 				Nodo->entradas()->dato(i)->Posicion = wxPoint(xo,yo);
 			}
-			offset=(float)(heightSLD)/(float)numSalidas;
+			offset=(double)(heightSLD)/(double)numSalidas;
 			for(int i=0;i<numSalidas;i++)
 			{
 				int xo=pt.x + widthSLD;

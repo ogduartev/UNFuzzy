@@ -63,16 +63,16 @@ public:
 	{
 		return salidas->nombreVariable(numVar);
 	}
-	void calcular(float *entra,float *sale)
+	void calcular(double *entra,double *sale)
 	{
 		concreto->salidaConcreta(entra,sale);
 	}
 	MaquinaInferencia *Motor(){return motor;}
-	void EntrenaUniversoFijo(float *antecedente, float *consecuente)
+	void EntrenaUniversoFijo(double *antecedente, double *consecuente)
 	{
 		motor->EntrenaUniversoFijo(antecedente,consecuente);
 	}
-	void EntrenaUniversoVariable(float *antecedente, float *consecuente)
+	void EntrenaUniversoVariable(double *antecedente, double *consecuente)
 	{
 		motor->EntrenaUniversoVariable(antecedente,consecuente);
 	}

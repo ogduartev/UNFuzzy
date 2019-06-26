@@ -137,7 +137,7 @@ void DialogoReglas::llenarTabla()
 		celda ="";
 		celda << _("Rule ") << (regla+1);
 
-		float certeza = Motor->regla(regla)->certeza();
+		double certeza = Motor->regla(regla)->certeza();
 		if(certeza!=1.0)
 		{
 			celda << _("(") << certeza << _(")");
@@ -226,7 +226,7 @@ void DialogoReglas::OnModificador    (wxCommandEvent&   event)
 		wxMessageBox(_("The value provided is not a valid one"),_("Warning"));
 		return;
 	}
-	float modifica=(float)modificaD;
+	double modifica=(double)modificaD;
 	if(modifica < 0.0){modifica=0.0;}
 	if(modifica > 5.0){modifica=5.0;}
 	int offsetX=Motor->entradas()->numeroVariables();
@@ -335,7 +335,7 @@ void DialogoReglas::OnCerteza    (wxCommandEvent&   event)
 		wxMessageBox(_("The value provided is not a valid one"),_("Warning"));
 		return;
 	}
-	float certeza=(float)certezaD;
+	double certeza=(double)certezaD;
 	if(certeza < 0.0){certeza=0.0;}
 	if(certeza > 1.0){certeza=1.0;}
 

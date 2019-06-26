@@ -18,12 +18,12 @@ atributos:
 				Vector de NumeroSalida elementos,
 				que hace referencia a los Valores Lingüísticos
 				del Consecuente
-	float *Modificadores;
+	double *Modificadores;
 				Vector de NumeroEntrada elementos,
 				que hace referencia a los modificadores de los
 				Valores Lingüísticos del Antecedente
 
-	float Certeza;		parametro útil para entrenamiento de Sistemas de Lógica Difusa
+	double Certeza;		parametro útil para entrenamiento de Sistemas de Lógica Difusa
 
 procedimientos:
 	int conjuntoEntrada(int numVar)
@@ -34,13 +34,13 @@ procedimientos:
 			Consultor de Consecuente
 	void conjuntoSalida(int numVar,int numCon)
 			Modificador de Consecuente
-	float modificador(int numVar)
+	double modificador(int numVar)
 			Consultor de Modificadores
-	void modificador(int numVar,float modif)
+	void modificador(int numVar,double modif)
 			Modificador de Modificadores
-	void certeza(float cer)
+	void certeza(double cer)
 			Modificador de Certeza
-	float certeza()
+	double certeza()
 			Consultor de Certeza
 	BOOL operator==(const Regla& other)
 		operador definido para poder hacer listas de Reglas
@@ -55,7 +55,7 @@ public:
 		NumeroSalidas=numSalidas;
 		Antecedente=new int[numEntradas];
 		Consecuente=new int[numSalidas];
-		Modificadores=new float[numEntradas];
+		Modificadores=new double[numEntradas];
 		for(int i=0;i<NumeroEntradas;i++)
 		{
 			Antecedente[i]=0;
@@ -89,19 +89,19 @@ public:
 	{
 		Consecuente[numVar]=numCon;
 	}
-	float modificador(int numVar)
+	double modificador(int numVar)
 	{
 		return Modificadores[numVar];
 	}
-	void modificador(int numVar,float modif)
+	void modificador(int numVar,double modif)
 	{
 		Modificadores[numVar]=modif;
 	}
-	void certeza(float cer)
+	void certeza(double cer)
 	{
 		Certeza=cer;
 	}
-	float certeza()
+	double certeza()
 	{
 		return Certeza;
 	}
@@ -122,9 +122,9 @@ protected:
 
 	int *Antecedente;
 	int *Consecuente;
-	float *Modificadores;
+	double *Modificadores;
 
-	float Certeza;
+	double Certeza;
 
 };
 

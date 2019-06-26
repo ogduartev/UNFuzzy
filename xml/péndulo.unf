@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FLS Name="Control de péndulo invertido" Description="Controlador para un péndulo invertido">
+  <INPUTS>
+    <VARIABLE Name="Ángulo" Minimum="-1.000000" Maximum="1.000000" Intervals="30">
+      <FUZZYFIER Type="8" Points="1" Center="1.000000">
+        <POINT X="0.995000"/>
+        <POINT X="1.005000"/>
+      </FUZZYFIER>
+      <LABEL Name="Negativo Mediano" Type="0">
+        <POINT X="-0.666667"/>
+        <POINT X="-0.333333"/>
+      </LABEL>
+      <LABEL Name="Negativo Pequeño" Type="1">
+        <POINT X="-0.666667"/>
+        <POINT X="-0.333333"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Cero" Type="1">
+        <POINT X="-0.333333"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.333333"/>
+      </LABEL>
+      <LABEL Name="Positivo Pequeño" Type="1">
+        <POINT X="0.000000"/>
+        <POINT X="0.333333"/>
+        <POINT X="0.666667"/>
+      </LABEL>
+      <LABEL Name="Positivo Mediano" Type="3">
+        <POINT X="0.333333"/>
+        <POINT X="0.666667"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="Delta Ángulo" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="0.500000">
+        <POINT X="0.495000"/>
+        <POINT X="0.505000"/>
+      </FUZZYFIER>
+      <LABEL Name="Negativo" Type="0">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Cero" Type="1">
+        <POINT X="-0.500000"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+      <LABEL Name="Positivo" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="0.500000"/>
+      </LABEL>
+    </VARIABLE>
+  </INPUTS>
+  <OUTPUTS>
+    <VARIABLE Name="Control" Minimum="-1.000000" Maximum="1.000000" Intervals="30">
+      <LABEL Name="Negativo Mediano" Type="0">
+        <POINT X="-0.666667"/>
+        <POINT X="-0.333333"/>
+      </LABEL>
+      <LABEL Name="Negativo Pequeño" Type="1">
+        <POINT X="-0.666667"/>
+        <POINT X="-0.333333"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Cero" Type="1">
+        <POINT X="-0.333333"/>
+        <POINT X="0.000000"/>
+        <POINT X="0.333333"/>
+      </LABEL>
+      <LABEL Name="Positivo Pequeño" Type="1">
+        <POINT X="0.000000"/>
+        <POINT X="0.333333"/>
+        <POINT X="0.666667"/>
+      </LABEL>
+      <LABEL Name="Positivo Mediano" Type="3">
+        <POINT X="0.333333"/>
+        <POINT X="0.666667"/>
+      </LABEL>
+    </VARIABLE>
+  </OUTPUTS>
+  <ENGINE>
+    <IMPLICATION Type="1"/>
+    <COMPOSITION Type="1" Parameter="0.000000"/>
+    <AND Type="1" Parameter="0.000000"/>
+    <BASE Inputs="2" Outputs="1">
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="3" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="3" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="3"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="3" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="3"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="4" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="3"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="4" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="4"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="4" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="4"/>
+      </RULE>
+    </BASE>
+  </ENGINE>
+  <DEFUZZYFIERS>
+    <DEFUZZYFIER Variable="0" Type="3"/>
+    <CONJUNCTION Type="10" Parameter="0.000000"/>
+  </DEFUZZYFIERS>
+</FLS>

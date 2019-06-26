@@ -27,26 +27,26 @@ atributos
 	char *Codigo_C;
 	char *Codigo_CPP;
 	int NumeroPuntos;
-	float dx;
-	float Centro;
+	double dx;
+	double Centro;
 
 procedimientos
 	void numeroPuntos(int num)          modificador de NumeroPuntos, tambien cambia dx
-	void ancho(float soporte)           permite editar el ancho del Difusor
+	void ancho(double soporte)           permite editar el ancho del Difusor
 	int numeroPuntos()                  consultor de NumeroPuntos
-	float intervalo()                   consultor de dx
-	float centro()                      consultor de Centro
+	double intervalo()                   consultor de dx
+	double centro()                      consultor de Centro
 
 procedimiento sin utilidad, que debe definirse por heredar virtual de ConjuntoDifuso
 
-    float centroAltura()
-	void nuevoPuntoClave(int, float )
+    double centroAltura()
+	void nuevoPuntoClave(int, double )
 	char *codigoC()
 	char *codigoCPP()
 
 Las funciones virtual=0 deben ser redefinidas por los hijos
 
-	virtual void entrada(float)=0;      Cambia el centro del Difusor,
+	virtual void entrada(double)=0;      Cambia el centro del Difusor,
 													 movienndo todos los parámetros
 													 del padre, para cambiar su
 													 función de pertenencia
@@ -55,21 +55,21 @@ estas funciones llaman a las del padre adecuado
 	 para resolver las ambiguedades de tener herencia múltiple
 	 pero con el mismo "abuelo"
 
-	virtual void puntosClaves(float* )=0;
+	virtual void puntosClaves(double* )=0;
 	virtual int numeroPuntosClaves()=0;
-	virtual void ajustar(float nuevoMinimo,float nuevoMaximo)=0;
-	virtual void recibirDatos(TWindow *parent, float mn, float mx)=0;
-	virtual float pertenencia(float)=0;
-	virtual float minimo()=0;
-	virtual float maximo()=0;
-	virtual void minimo(float mn)=0;
-	virtual void maximo(float mx)=0;
+	virtual void ajustar(double nuevoMinimo,double nuevoMaximo)=0;
+	virtual void recibirDatos(TWindow *parent, double mn, double mx)=0;
+	virtual double pertenencia(double)=0;
+	virtual double minimo()=0;
+	virtual double maximo()=0;
+	virtual void minimo(double mn)=0;
+	virtual void maximo(double mx)=0;
 	virtual char *nombre()=0;
 	virtual char *tipo()=0;
-	virtual float var1()=0;
-	virtual float var2()=0;
-	virtual float var3()=0;
-	virtual float var4()=0;
+	virtual double var1()=0;
+	virtual double var2()=0;
+	virtual double var3()=0;
+	virtual double var4()=0;
 	virtual int identificador()=0;
 
 
@@ -99,9 +99,9 @@ public:
 		NumeroPuntos=num;
 		dx=(maximo()-minimo())/(num+1);
 	}
-	void ancho(float soporte)
+	void ancho(double soporte)
 	{
-		float centro,mn,mx;
+		double centro,mn,mx;
 		centro=(maximo()+minimo())/2;
 		mn=centro-soporte/2;
 		mx=centro+soporte/2;
@@ -113,35 +113,35 @@ public:
 	{
 		return NumeroPuntos;
 	}
-	float intervalo()
+	double intervalo()
 	{
 		return dx;
 	}
-	float centro()
+	double centro()
 	{
 		return Centro;
 	}
-	float centroAltura()
+	double centroAltura()
   {
       return 0.0;
   }
-	virtual void puntosClaves(float* x)=0;
+	virtual void puntosClaves(double* x)=0;
 	virtual int numeroPuntosClaves()=0;
-	void nuevoPuntoClave(int, float ){}
-	virtual void entrada(float)=0;
-	virtual void ajustar(float nuevoMinimo,float nuevoMaximo)=0;
-//	virtual void recibirDatos(TWindow *parent, float mn, float mx)=0;
-	virtual float pertenencia(float)=0;
-	virtual float minimo()=0;
-	virtual float maximo()=0;
-	virtual void minimo(float mn)=0;
-	virtual void maximo(float mx)=0;
+	void nuevoPuntoClave(int, double ){}
+	virtual void entrada(double)=0;
+	virtual void ajustar(double nuevoMinimo,double nuevoMaximo)=0;
+//	virtual void recibirDatos(TWindow *parent, double mn, double mx)=0;
+	virtual double pertenencia(double)=0;
+	virtual double minimo()=0;
+	virtual double maximo()=0;
+	virtual void minimo(double mn)=0;
+	virtual void maximo(double mx)=0;
 	virtual string nombre()=0;
 	virtual string tipo()=0;
-	virtual float var1()=0;
-	virtual float var2()=0;
-	virtual float var3()=0;
-	virtual float var4()=0;
+	virtual double var1()=0;
+	virtual double var2()=0;
+	virtual double var3()=0;
+	virtual double var4()=0;
 	virtual int identificador()=0;
 	string codigoC(){return "";}
 	string codigoCPP(){return "";}
@@ -149,14 +149,14 @@ public:
 	virtual string codigo_CPP()=0;
 protected:
 	int NumeroPuntos;
-	float dx;
-	float Centro;
+	double dx;
+	double Centro;
 };
 
 class DifusorTriangulo:public virtual ConjuntoTriangulo,public virtual Difusor
 {
 public:
-	DifusorTriangulo(float x, float me, float ma):ConjuntoTriangulo("",x-me,x,x+ma)
+	DifusorTriangulo(double x, double me, double ma):ConjuntoTriangulo("",x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
@@ -166,7 +166,7 @@ public:
 	~DifusorTriangulo()
 	{
 	}
-	void puntosClaves(float *x)
+	void puntosClaves(double *x)
 	{
 		ConjuntoTriangulo::puntosClaves(x);
 	}
@@ -174,38 +174,38 @@ public:
 	{
 		return ConjuntoTriangulo::numeroPuntosClaves();
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoTriangulo::minimo(x1-menos);
 		ConjuntoTriangulo::maximo(x1+mas);
 		ConjuntoTriangulo::primerCorte(x1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoTriangulo::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoTriangulo::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoTriangulo::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoTriangulo::primerCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoTriangulo::primerCorte(pc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoTriangulo::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoTriangulo::maximo(mx);
 	}
@@ -217,27 +217,27 @@ public:
 	{
 		return ConjuntoTriangulo::tipo();
 	}
-//	void recibirDatos(TWindow *parent,float mn,float mx);
-	void ajustar(float nuevoMinimo, float nuevoMaximo)
+//	void recibirDatos(TWindow *parent,double mn,double mx);
+	void ajustar(double nuevoMinimo, double nuevoMaximo)
 	{
 		ConjuntoTriangulo::ajustar(nuevoMinimo,nuevoMaximo);
 		menos=primerCorte()-minimo();
 		mas=maximo()-primerCorte();
 		dx=(maximo()-minimo())/(NumeroPuntos+1);
 	}
-	float var1()
+	double var1()
 	{
 		return minimo();
 	}
-	float var2()
+	double var2()
 	{
 		return primerCorte();
 	}
-	float var3()
+	double var3()
 	{
 		return maximo();
 	}
-	float var4()
+	double var4()
 	{
 		return 0;
 	}
@@ -266,14 +266,14 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 protected:
-	float mas;
-	float menos;
+	double mas;
+	double menos;
 };
 
 class DifusorPi:public virtual ConjuntoPi,public virtual Difusor
 {
 public:
-	DifusorPi(float x, float me1, float me2, float ma1, float ma2):ConjuntoPi("",x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPi(double x, double me1, double me2, double ma1, double ma2):ConjuntoPi("",x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -285,7 +285,7 @@ public:
 	~DifusorPi()
 	{
 	}
-	void puntosClaves(float *x)
+	void puntosClaves(double *x)
 	{
 		ConjuntoPi::puntosClaves(x);
 	}
@@ -293,7 +293,7 @@ public:
 	{
 		return ConjuntoPi::numeroPuntosClaves();
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoPi::minimo(x1-menos1);
 		ConjuntoPi::maximo(x1+mas2);
@@ -301,39 +301,39 @@ public:
 		ConjuntoPi::segundoCorte(x1+mas1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoPi::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoPi::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoPi::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoPi::primerCorte();
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return ConjuntoPi::segundoCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoPi::primerCorte(pc);
 	}
-	void segundoCorte(float sc)
+	void segundoCorte(double sc)
 	{
 		ConjuntoPi::segundoCorte(sc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoPi::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoPi::maximo(mx);
 	}
@@ -345,8 +345,8 @@ public:
 	{
 		return ConjuntoPi::tipo();
 	}
-//	void recibirDatos(TWindow *parent,float mn,float mx);
-	void ajustar(float nuevoMinimo, float nuevoMaximo)
+//	void recibirDatos(TWindow *parent,double mn,double mx);
+	void ajustar(double nuevoMinimo, double nuevoMaximo)
 	{
 		ConjuntoPi::ajustar(nuevoMinimo,nuevoMaximo);
 		menos1=centro()-minimo();
@@ -355,19 +355,19 @@ public:
 		mas2=maximo()-centro();
 		dx=(maximo()-minimo())/(NumeroPuntos+1);
 	}
-	float var1()
+	double var1()
 	{
 		return minimo();
 	}
-	float var2()
+	double var2()
 	{
 		return primerCorte();
 	}
-	float var3()
+	double var3()
 	{
 		return segundoCorte();
 	}
-	float var4()
+	double var4()
 	{
 		return maximo();
 	}
@@ -398,16 +398,16 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 protected:
-	float mas1;
-	float mas2;
-	float menos1;
-	float menos2;
+	double mas1;
+	double mas2;
+	double menos1;
+	double menos2;
 };
 
 class DifusorCampana:public virtual ConjuntoCampana,public virtual Difusor
 {
 public:
-	DifusorCampana(float x, float me, float ma):ConjuntoCampana("",x-me,x,x+ma)
+	DifusorCampana(double x, double me, double ma):ConjuntoCampana("",x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
@@ -417,7 +417,7 @@ public:
 	~DifusorCampana()
 	{
 	}
-	void puntosClaves(float *x)
+	void puntosClaves(double *x)
 	{
 		ConjuntoCampana::puntosClaves(x);
 	}
@@ -425,38 +425,38 @@ public:
 	{
 		return ConjuntoCampana::numeroPuntosClaves();
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoCampana::minimo(x1-menos);
 		ConjuntoCampana::maximo(x1+mas);
 		ConjuntoCampana::primerCorte(x1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoCampana::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoCampana::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoCampana::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoCampana::primerCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoCampana::primerCorte(pc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoCampana::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoCampana::maximo(mx);
 	}
@@ -468,27 +468,27 @@ public:
 	{
 		return ConjuntoCampana::tipo();
 	}
-//	void recibirDatos(TWindow *parent,float mn,float mx);
-	void ajustar(float nuevoMinimo, float nuevoMaximo)
+//	void recibirDatos(TWindow *parent,double mn,double mx);
+	void ajustar(double nuevoMinimo, double nuevoMaximo)
 	{
 		ConjuntoCampana::ajustar(nuevoMinimo,nuevoMaximo);
 		menos=primerCorte()-minimo();
 		mas=maximo()-primerCorte();
 		dx=(maximo()-minimo())/(NumeroPuntos+1);
 	}
-	float var1()
+	double var1()
 	{
 		return minimo();
 	}
-	float var2()
+	double var2()
 	{
 		return primerCorte();
 	}
-	float var3()
+	double var3()
 	{
 		return maximo();
 	}
-	float var4()
+	double var4()
 	{
 		return 0;
 	}
@@ -529,14 +529,14 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 protected:
-	float mas;
-	float menos;
+	double mas;
+	double menos;
 };
 
 class DifusorPiCampana:public virtual ConjuntoPiCampana,public virtual Difusor
 {
 public:
-	DifusorPiCampana(float x, float me1, float me2, float ma1, float ma2):ConjuntoPiCampana("",x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPiCampana(double x, double me1, double me2, double ma1, double ma2):ConjuntoPiCampana("",x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -548,7 +548,7 @@ public:
 	~DifusorPiCampana()
 	{
 	}
-	void puntosClaves(float *x)
+	void puntosClaves(double *x)
 	{
 		ConjuntoPiCampana::puntosClaves(x);
 	}
@@ -556,7 +556,7 @@ public:
 	{
 		return ConjuntoPiCampana::numeroPuntosClaves();
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoPiCampana::minimo(x1-menos1);
 		ConjuntoPiCampana::maximo(x1+mas2);
@@ -564,39 +564,39 @@ public:
 		ConjuntoPiCampana::segundoCorte(x1+mas1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoPiCampana::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoPiCampana::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoPiCampana::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoPiCampana::primerCorte();
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return ConjuntoPiCampana::segundoCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoPiCampana::primerCorte(pc);
 	}
-	void segundoCorte(float sc)
+	void segundoCorte(double sc)
 	{
 		ConjuntoPiCampana::segundoCorte(sc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoPiCampana::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoPiCampana::maximo(mx);
 	}
@@ -608,8 +608,8 @@ public:
 	{
 		return ConjuntoPiCampana::tipo();
 	}
-//	void recibirDatos(TWindow *parent,float mn,float mx);
-	void ajustar(float nuevoMinimo, float nuevoMaximo)
+//	void recibirDatos(TWindow *parent,double mn,double mx);
+	void ajustar(double nuevoMinimo, double nuevoMaximo)
 	{
 		ConjuntoPiCampana::ajustar(nuevoMinimo,nuevoMaximo);
 		menos1=centro()-minimo();
@@ -618,19 +618,19 @@ public:
 		mas2=maximo()-centro();
 		dx=(maximo()-minimo())/(NumeroPuntos+1);
 	}
-	float var1()
+	double var1()
 	{
 		return minimo();
 	}
-	float var2()
+	double var2()
 	{
 		return primerCorte();
 	}
-	float var3()
+	double var3()
 	{
 		return segundoCorte();
 	}
-	float var4()
+	double var4()
 	{
 		return maximo();
 	}
@@ -674,17 +674,17 @@ public:
 		return std::string(CodigoCPP.mb_str());
 	}
 protected:
-	float mas1;
-	float mas2;
-	float menos1;
-	float menos2;
+	double mas1;
+	double mas2;
+	double menos1;
+	double menos2;
 };
 
 
 class DifusorSinglenton:public virtual ConjuntoSinglenton, public virtual Difusor
 {
 public:
-	DifusorSinglenton(float x, float de):ConjuntoSinglenton("",x,de)
+	DifusorSinglenton(double x, double de):ConjuntoSinglenton("",x,de)
 	{
 		Centro=x;
 		NumeroPuntos=1;
@@ -692,7 +692,7 @@ public:
 	~DifusorSinglenton()
 	{
 	}
-	void puntosClaves(float *x)
+	void puntosClaves(double *x)
 	{
 		ConjuntoSinglenton::puntosClaves(x);
 	}
@@ -700,29 +700,29 @@ public:
 	{
 		return ConjuntoSinglenton::numeroPuntosClaves();
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoSinglenton::minimo(x1-delta()/2);
 		ConjuntoSinglenton::maximo(x1+delta()/2);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoSinglenton::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoSinglenton::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoSinglenton::maximo();
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoSinglenton::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoSinglenton::maximo(mx);
 	}
@@ -734,27 +734,27 @@ public:
 	{
 		return ConjuntoSinglenton::tipo();
 	}
-//	void recibirDatos(TWindow *parent,float mn,float mx);
-	void ajustar(float nuevoMinimo, float nuevoMaximo)
+//	void recibirDatos(TWindow *parent,double mn,double mx);
+	void ajustar(double nuevoMinimo, double nuevoMaximo)
 	{
 		ConjuntoSinglenton::ajustar(nuevoMinimo,nuevoMaximo);
 		Pico=(maximo()+minimo())/2;
 		Delta=maximo()-minimo();
 		dx=(maximo()-minimo())/(NumeroPuntos+1);
 	}
-	float var1()
+	double var1()
 	{
 		return minimo();
 	}
-	float var2()
+	double var2()
 	{
 		return maximo();
 	}
-	float var3()
+	double var3()
 	{
 		return 0;
 	}
-	float var4()
+	double var4()
 	{
 		return 0;
 	}

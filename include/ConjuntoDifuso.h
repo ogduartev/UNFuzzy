@@ -23,8 +23,8 @@ atributos:
 	char* Tipo;             Identificador de tipo (Ej. "Tipo L" ) ver hijos
 	char* CodigoC;          Texto necesario para generar Código C
 	char* CodigoCPP;        Texto necesario para generar Código C++
-	float Minimo;           límite inferior del Soporte
-	float Maximo;           límite superior del Soporte
+	double Minimo;           límite inferior del Soporte
+	double Maximo;           límite superior del Soporte
 	int NumeroPuntosClaves; Número de puntos que se pueden editar gráficamente (ver DialogVariableEntrada)
 	int Identificador;      identificador de Tipo, necesario para crear el hijo adecuado al leer un archivo
 
@@ -32,26 +32,26 @@ procedimientos
 	char* nombre()          consultor de Nombre
 	char* nombre(char* s)   modificador de Nombre
 	char* tipo()            consultor de Tipo
-	void minimo(float min)  modificador de Minimo
-	float minimo()          consultor de Minimo
-	void maximo(float max)  modificador de Maximo
-	float maximo()          consultor de Maximo
+	void minimo(double min)  modificador de Minimo
+	double minimo()          consultor de Minimo
+	void maximo(double max)  modificador de Maximo
+	double maximo()          consultor de Maximo
 	int identificador()     consultor de Identificador
 	int numeroPuntosClaves()  consultor de NumeroPuntosClaves
 
 Las funciones virtual=0 deben ser redefinidas por los hijos
 
-	virtual void puntosClaves(float *puntos)=0;
+	virtual void puntosClaves(double *puntos)=0;
                         en el arreglo puntos retorna los valores de los puntos editables gráficamente (ver DialogVariableEntrada)
-	virtual void nuevoPuntoClave(int punto, float x)=0;
+	virtual void nuevoPuntoClave(int punto, double x)=0;
                         reasigna el valor de un punto que ha sido editado gráficamente (ver DialogVariableEntrada)
-	virtual float pertenencia(float x)=0;
+	virtual double pertenencia(double x)=0;
                         calcula la función de pertenencia para x
-	virtual void recibirDatos(TWindow *parent,float mn,float mx)=0;
+	virtual void recibirDatos(TWindow *parent,double mn,double mx)=0;
                         muestra un cuador de dialogo para editar el ConjuntoDifuso no graficamente
-	virtual void ajustar(float nuevoMinimo, float nuevoMaximo)=0;
+	virtual void ajustar(double nuevoMinimo, double nuevoMaximo)=0;
                         redefine el ConjuntoDifuso cuando cambia el Universo de Discurso de la Variable a la cual pertenece
-    virtual float centroAltura()=0;
+    virtual double centroAltura()=0;
                         devuelve el centro del ConjuntoDifuso, definido para calcular la Concrecion de Altura
 	virtual char* codigoC()=0;
                         entrega el texto necesario para generar Codigo C (ver DialogGenerarCodigo)
@@ -84,19 +84,19 @@ public:
 		return tipo(Identificador);
 	}
 	static string tipo(int caso);
-	void minimo(float min)
+	void minimo(double min)
 	{
 		Minimo=min;
 	}
-	float minimo()
+	double minimo()
 	{
 		return Minimo;
 	}
-	void maximo(float max)
+	void maximo(double max)
 	{
 		Maximo=max;
 	}
-	float maximo()
+	double maximo()
 	{
 		return Maximo;
 	}
@@ -108,12 +108,12 @@ public:
 	{
 		return NumeroPuntosClaves;
 	}
-	float verificarPuntoClave(int i,float x);
-	virtual void puntosClaves(float *puntos)=0;
-	virtual void nuevoPuntoClave(int punto, float x)=0;
-	virtual float pertenencia(float x)=0;
-	virtual void ajustar(float nuevoMinimo, float nuevoMaximo)=0;
-	virtual float centroAltura()=0;
+	double verificarPuntoClave(int i,double x);
+	virtual void puntosClaves(double *puntos)=0;
+	virtual void nuevoPuntoClave(int punto, double x)=0;
+	virtual double pertenencia(double x)=0;
+	virtual void ajustar(double nuevoMinimo, double nuevoMaximo)=0;
+	virtual double centroAltura()=0;
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
 	BOOL operator==(const ConjuntoDifuso& other)
@@ -137,8 +137,8 @@ public:
 	}*/
 protected:
 	string Nombre;
-	float Minimo;
-	float Maximo;
+	double Minimo;
+	double Maximo;
 	int NumeroPuntosClaves;
 	int Identificador;
 };
@@ -157,14 +157,14 @@ class ConjuntoL
     NumeroPuntosClaves : 2
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
 class ConjuntoL: public ConjuntoDifuso
 {
 public:
-	ConjuntoL(string s, float min, float pcor, float max)
+	ConjuntoL(string s, double min, double pcor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -176,10 +176,10 @@ public:
 	~ConjuntoL()
 	{
 	}
-	float pertenencia(float);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -187,27 +187,27 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=primerCorte();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
   {
-    float cen;
+    double cen;
     cen=(minimo()+primerCorte())/2.0;
     return cen;
   }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -229,7 +229,7 @@ class ConjuntoTriangulo
     NumeroPuntosClaves : 3
     centroAltura:        En el pico del Triangulo
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -237,7 +237,7 @@ atributos:
 class ConjuntoTriangulo: public ConjuntoDifuso
 {
 public:
-	ConjuntoTriangulo(string s, float min_, float pcor, float max_)
+	ConjuntoTriangulo(string s, double min_, double pcor, double max_)
 	{
 		Nombre=s;
 		Minimo=min_;
@@ -249,11 +249,11 @@ public:
 	~ConjuntoTriangulo()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -261,26 +261,26 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
         return primerCorte();
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -302,8 +302,8 @@ class ConjuntoPi
     NumeroPuntosClaves : 4
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
-    float SegundoCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
+    double SegundoCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -311,7 +311,7 @@ atributos:
 class ConjuntoPi: public ConjuntoDifuso
 {
 public:
-	ConjuntoPi(string s, float min, float pcor, float scor, float max)
+	ConjuntoPi(string s, double min, double pcor, double scor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -324,11 +324,11 @@ public:
 	~ConjuntoPi()
 	{
 	}
-	float pertenencia(float x);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double x);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c,d;
+		double a,b,c,d;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMinimo+(segundoCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
@@ -338,38 +338,38 @@ public:
       segundoCorte(c);
 		maximo(d);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=segundoCorte();
 		puntos[3]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
-        float cen;
+        double cen;
         cen=(primerCorte()+segundoCorte())/2.0;
         return cen;
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	float SegundoCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	double SegundoCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
-	void segundoCorte(float scor)
+	void segundoCorte(double scor)
 	{
 		SegundoCorte=scor;
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return SegundoCorte;
 	}
@@ -389,7 +389,7 @@ class ConjuntoGamma
     NumeroPuntosClaves : 2
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -397,7 +397,7 @@ atributos:
 class ConjuntoGamma: public ConjuntoDifuso
 {
 public:
-	ConjuntoGamma(string s, float min, float pcor,  float max)
+	ConjuntoGamma(string s, double min, double pcor,  double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -409,11 +409,11 @@ public:
 	~ConjuntoGamma()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -421,27 +421,27 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
-        float cen;
+        double cen;
         cen=(primerCorte()+maximo())/2.0;
         return cen;
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -464,7 +464,7 @@ class ConjuntoZ
     NumeroPuntosClaves : 2
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -472,7 +472,7 @@ atributos:
 class ConjuntoZ: public ConjuntoDifuso
 {
 public:
-	ConjuntoZ(string s, float min, float pcor, float max)
+	ConjuntoZ(string s, double min, double pcor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -484,11 +484,11 @@ public:
 	~ConjuntoZ()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -496,27 +496,27 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=primerCorte();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
-        float cen;
+        double cen;
         cen=(minimo()+primerCorte())/2.0;
         return cen;
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -540,7 +540,7 @@ class ConjuntoCampana
     NumeroPuntosClaves : 3
     centroAltura:        En el pico de la campana
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -548,7 +548,7 @@ atributos:
 class ConjuntoCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoCampana(string s, float min, float pcor, float max)
+	ConjuntoCampana(string s, double min, double pcor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -560,11 +560,11 @@ public:
 	~ConjuntoCampana()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -572,26 +572,26 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
         return primerCorte();
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -616,8 +616,8 @@ class ConjuntoPiCampana
     NumeroPuntosClaves : 4
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
-    float SegundoCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
+    double SegundoCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -625,7 +625,7 @@ atributos:
 class ConjuntoPiCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoPiCampana(string s, float min, float pcor, float scor, float max)
+	ConjuntoPiCampana(string s, double min, double pcor, double scor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -638,11 +638,11 @@ public:
 	~ConjuntoPiCampana()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c,d;
+		double a,b,c,d;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMinimo+(segundoCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
@@ -652,38 +652,38 @@ public:
 		segundoCorte(c);
 		maximo(d);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=segundoCorte();
 		puntos[3]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
-        float cen;
+        double cen;
         cen=(minimo()+primerCorte()+segundoCorte())/2.0;
         return cen;
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	float SegundoCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	double SegundoCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
-	void segundoCorte(float scor)
+	void segundoCorte(double scor)
 	{
 		SegundoCorte=scor;
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return SegundoCorte;
 	}
@@ -706,7 +706,7 @@ class ConjuntoS
     NumeroPuntosClaves : 2
     centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-    float PrimerCorte       parámetro de la función de pertenencia
+    double PrimerCorte       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -714,7 +714,7 @@ atributos:
 class ConjuntoS: public ConjuntoDifuso
 {
 public:
-	ConjuntoS(string s, float min, float pcor, float max)
+	ConjuntoS(string s, double min, double pcor, double max)
 	{
 		Nombre=s;
 		Minimo=min;
@@ -726,11 +726,11 @@ public:
 	~ConjuntoS()
 	{
 	}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b,c;
+		double a,b,c;
 		a=nuevoMinimo;
 		b=nuevoMinimo+(primerCorte()-minimo())*(nuevoMaximo-nuevoMinimo)/(maximo()-minimo());
 		c=nuevoMaximo;
@@ -738,27 +738,27 @@ public:
 		primerCorte(b);
 		maximo(c);
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 	}
-	void nuevoPuntoClave(int punto, float x);
-    float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+    double centroAltura()
     {
-        float cen;
+        double cen;
         cen=(primerCorte()+maximo())/2.0;
         return cen;
     }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -777,8 +777,8 @@ class ConjuntoSinglenton
 	 NumeroPuntosClaves : 2
 	 centroAltura:        En la mitad de la recta de valor 1.0
 atributos:
-	 float Delta       parámetro de la función de pertenencia
-	 float Pico       parámetro de la función de pertenencia
+	 double Delta       parámetro de la función de pertenencia
+	 double Pico       parámetro de la función de pertenencia
 
 ////////////////////////////////////////*/
 
@@ -786,7 +786,7 @@ atributos:
 class ConjuntoSinglenton: public ConjuntoDifuso
 {
 public:
-	ConjuntoSinglenton(string s, float pi, float de)
+	ConjuntoSinglenton(string s, double pi, double de)
 	{
 		Nombre=s;
 		Pico=pi;
@@ -799,13 +799,13 @@ public:
 	~ConjuntoSinglenton()
 	{
 	}
-	float pico(){return Pico;}
-	float delta(){return Delta;}
-	float pertenencia(float);
-//	void recibirDatos(TWindow *parent, float mn, float mx);
-	void ajustar(float nuevoMinimo,float nuevoMaximo)
+	double pico(){return Pico;}
+	double delta(){return Delta;}
+	double pertenencia(double);
+//	void recibirDatos(TWindow *parent, double mn, double mx);
+	void ajustar(double nuevoMinimo,double nuevoMaximo)
 	{
-		float a,b;
+		double a,b;
 		a=nuevoMinimo;
 		b=nuevoMaximo;
 		minimo(a);
@@ -813,21 +813,21 @@ public:
 		Pico=(a+b)/2;
       Delta=b-a;
 	}
-	void puntosClaves(float *puntos)
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	 float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	 double centroAltura()
 	 {
 		  return Pico;
 	 }
 	string codigoC();
 	string codigoCPP();
 protected:
-	float Delta;
-	float Pico;
+	double Delta;
+	double Pico;
 };
 
 

@@ -26,9 +26,9 @@ Concresor* BloqueConcrecion::concresor(int numSal)
 	return Concresores->dato(numSal);
 }
 
-float BloqueConcrecion::salidaConcreta(int numSal,float *ent)
+double BloqueConcrecion::salidaConcreta(int numSal,double *ent)
 {
-	float sale=0.0;
+	double sale=0.0;
 	Concresor *conc;
 	conc=concresor(numSal);
 	if(conc)
@@ -38,7 +38,7 @@ float BloqueConcrecion::salidaConcreta(int numSal,float *ent)
 	return sale;
 }
 
-void BloqueConcrecion::salidaConcreta(float *ent,float *sal)
+void BloqueConcrecion::salidaConcreta(double *ent,double *sal)
 {
 	int numSal;
 	numSal=Concresores->GetItemsInContainer();
@@ -92,13 +92,13 @@ void BloqueConcrecion::autodefinirBloqueConcrecion(MaquinaInferencia *maq,Norma 
 	}
 }
 
-float BloqueConcrecion::pertenenciaConjuncion(int numSalida,float sal)
+double BloqueConcrecion::pertenenciaConjuncion(int numSalida,double sal)
 {
-  float con;
+  double con;
 	con=concresor(numSalida)->defecto();
 	for(int k=0;k<Motor->numeroReglas();k++)
 	{
-		float temp;
+		double temp;
 		temp=Motor->pertenenciaComposicion(numSalida,k,sal);
 		con=conjuncion()->opera(con,temp);
 	}

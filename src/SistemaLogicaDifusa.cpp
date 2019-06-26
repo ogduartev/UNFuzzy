@@ -48,8 +48,8 @@ void SistemaLogicaDifusa::crearMinimoSLD(int numEnt,int numSal)
   concreto=new BloqueConcrecion(motor);
   concreto->autodefinirBloqueConcrecion(motor,Conjuncion);
 
-  float *entra=new float[numeroEntradas()];
-  float *sale =new float[numeroSalidas()];
+  double *entra=new double[numeroEntradas()];
+  double *sale =new double[numeroSalidas()];
   for(int i=0;i<numeroEntradas();i++)
 	{
 		entra[i]=0.5*(entradas->variable(i)->rangoMinimo() + entradas->variable(i)->rangoMaximo());
@@ -70,18 +70,18 @@ void SistemaLogicaDifusa::crearArchivoTabla(wxString nombreArchivo)
 	int numSalidas;
 	int *contadorIntervalos;
 	int *numIntervalos;
-	float *minimoEntradas;
-	float *intervalosEntradas;
-	float *entra;
-	float *sale;
+	double *minimoEntradas;
+	double *intervalosEntradas;
+	double *entra;
+	double *sale;
 	numEntradas=concreto->motor()->entradas()->numeroVariables();
 	numSalidas =concreto->motor()->salidas()->numeroVariables();
 	contadorIntervalos=new int[numEntradas];
 	numIntervalos=new int[numEntradas];
-	minimoEntradas=new float[numEntradas];
-	intervalosEntradas=new float[numEntradas];
-	entra=new float[numEntradas];
-	sale =new float[numSalidas];
+	minimoEntradas=new double[numEntradas];
+	intervalosEntradas=new double[numEntradas];
+	entra=new double[numEntradas];
+	sale =new double[numSalidas];
 
 	int i;
 
@@ -384,8 +384,8 @@ void SistemaLogicaDifusa::generarCodigoCPPMain(wxTextFile* codigoFile,wxString n
 
 	Codigo=("int main()");codigoFile->AddLine(Codigo);
 	Codigo=("{");codigoFile->AddLine(Codigo);
-	Codigo=("    float *entra;");codigoFile->AddLine(Codigo);
-	Codigo=("    float *sale;");codigoFile->AddLine(Codigo);
+	Codigo=("    double *entra;");codigoFile->AddLine(Codigo);
+	Codigo=("    double *sale;");codigoFile->AddLine(Codigo);
 	Codigo=("    ");
 	Codigo << nombreClase << (" *sistema;");codigoFile->AddLine(Codigo);
 	Codigo=("    int NumeroEntradas;");codigoFile->AddLine(Codigo);
@@ -394,8 +394,8 @@ void SistemaLogicaDifusa::generarCodigoCPPMain(wxTextFile* codigoFile,wxString n
 	Codigo << nombreClase << ("();");codigoFile->AddLine(Codigo);
 	Codigo=("    NumeroEntradas=sistema->numeroEntradas();");codigoFile->AddLine(Codigo);
 	Codigo=("    NumeroSalidas=sistema->numeroSalidas();");codigoFile->AddLine(Codigo);
-	Codigo=("    entra=new float[NumeroEntradas];");codigoFile->AddLine(Codigo);
-	Codigo=("    sale=new float[NumeroSalidas];");codigoFile->AddLine(Codigo);
+	Codigo=("    entra=new double[NumeroEntradas];");codigoFile->AddLine(Codigo);
+	Codigo=("    sale=new double[NumeroSalidas];");codigoFile->AddLine(Codigo);
 	Codigo=("    int i;");codigoFile->AddLine(Codigo);
 	Codigo=("    char q='s';");codigoFile->AddLine(Codigo);
 	Codigo=("    while(q=='s')");codigoFile->AddLine(Codigo);
@@ -478,35 +478,35 @@ void SistemaLogicaDifusa::generarCodigoCDefs(wxTextFile* codigoFile)
 
 	Codigo="struct conjunto{";codigoFile->AddLine(Codigo);
 	Codigo="	string nombre;";codigoFile->AddLine(Codigo);
-	Codigo="	float minimo;";codigoFile->AddLine(Codigo);
-	Codigo="	float maximo;";codigoFile->AddLine(Codigo);
+	Codigo="	double minimo;";codigoFile->AddLine(Codigo);
+	Codigo="	double maximo;";codigoFile->AddLine(Codigo);
 	Codigo="};\r\n";codigoFile->AddLine(Codigo);
 	Codigo="struct variable{";codigoFile->AddLine(Codigo);
 	Codigo="	string nombre;";codigoFile->AddLine(Codigo);
-	Codigo="	float minimo;";codigoFile->AddLine(Codigo);
-	Codigo="	float maximo;";codigoFile->AddLine(Codigo);
+	Codigo="	double minimo;";codigoFile->AddLine(Codigo);
+	Codigo="	double maximo;";codigoFile->AddLine(Codigo);
 	Codigo="	int intervalos;";codigoFile->AddLine(Codigo);
-	Codigo="	float intervalo;";codigoFile->AddLine(Codigo);
+	Codigo="	double intervalo;";codigoFile->AddLine(Codigo);
 	Codigo="	int numeroConjuntos;";codigoFile->AddLine(Codigo);
 	Codigo="};\r\n";codigoFile->AddLine(Codigo);
 	Codigo="struct difusor{";codigoFile->AddLine(Codigo);
-	Codigo="	float minimo;";codigoFile->AddLine(Codigo);
-	Codigo="	float maximo;";codigoFile->AddLine(Codigo);
-	Codigo="	float centro;";codigoFile->AddLine(Codigo);
-	Codigo="	float var1;";codigoFile->AddLine(Codigo);
-	Codigo="	float var2;";codigoFile->AddLine(Codigo);
-	Codigo="	float var3;";codigoFile->AddLine(Codigo);
-	Codigo="	float var4;";codigoFile->AddLine(Codigo);
+	Codigo="	double minimo;";codigoFile->AddLine(Codigo);
+	Codigo="	double maximo;";codigoFile->AddLine(Codigo);
+	Codigo="	double centro;";codigoFile->AddLine(Codigo);
+	Codigo="	double var1;";codigoFile->AddLine(Codigo);
+	Codigo="	double var2;";codigoFile->AddLine(Codigo);
+	Codigo="	double var3;";codigoFile->AddLine(Codigo);
+	Codigo="	double var4;";codigoFile->AddLine(Codigo);
 	Codigo="	int puntos;";codigoFile->AddLine(Codigo);
-	Codigo="	float intervalo;";codigoFile->AddLine(Codigo);
+	Codigo="	double intervalo;";codigoFile->AddLine(Codigo);
 	Codigo="};\r\n";codigoFile->AddLine(Codigo);
 	Codigo="struct variable VariablesEntrada[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
 	Codigo="struct variable VariablesSalida[NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
 	Codigo="struct conjunto Entradas[NUMEROTOTALCONJUNTOSENTRADA];";codigoFile->AddLine(Codigo);
 	Codigo="struct difusor Difusores[NUMEROTOTALCONJUNTOSENTRADA];";codigoFile->AddLine(Codigo);
 	Codigo="int Reglas[NUMEROREGLAS][NUMEROVARIABLESENTRADA+NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
-	Codigo="float Modificadores[NUMEROREGLAS][NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
-	Codigo="float CentrosAltura[NUMEROREGLAS][NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
+	Codigo="double Modificadores[NUMEROREGLAS][NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
+	Codigo="double CentrosAltura[NUMEROREGLAS][NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
 	Codigo="void llenarDatos();";codigoFile->AddLine(Codigo);
 	Codigo="void llenarVariablesEntrada();";codigoFile->AddLine(Codigo);
 	Codigo="void llenarVariablesSalida();";codigoFile->AddLine(Codigo);
@@ -515,29 +515,29 @@ void SistemaLogicaDifusa::generarCodigoCDefs(wxTextFile* codigoFile)
 	Codigo="void llenarReglas();";codigoFile->AddLine(Codigo);
 	Codigo="void llenarModificadores();";codigoFile->AddLine(Codigo);
 	Codigo="void llenarCentrosAltura();";codigoFile->AddLine(Codigo);
-	Codigo="void calcular(float *ent,float *sal);";codigoFile->AddLine(Codigo);
-	Codigo="float salidaConcreta(int NumeroSalida, float *entra);";codigoFile->AddLine(Codigo);
+	Codigo="void calcular(double *ent,double *sal);";codigoFile->AddLine(Codigo);
+	Codigo="double salidaConcreta(int NumeroSalida, double *entra);";codigoFile->AddLine(Codigo);
 	for(i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
 	{
-		Codigo=("float salidaConcreta");
-		Codigo << i <<("(float *entra);");codigoFile->AddLine(Codigo);
+		Codigo=("double salidaConcreta");
+		Codigo << i <<("(double *entra);");codigoFile->AddLine(Codigo);
 	}
 	Codigo="";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaComposicion(int numVar, int numRegla, float sal);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaDifusores(float *ent);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaImplicacion(int numSal, int numRegla,float *ent, float sal);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaConsecuente(int numSal, int numRegla, float sal);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaAntecedente(int numRegla, float *ent);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaComposicion(int numVar, int numRegla, double sal);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaDifusores(double *ent);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaImplicacion(int numSal, int numRegla,double *ent, double sal);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaConsecuente(int numSal, int numRegla, double sal);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaAntecedente(int numRegla, double *ent);";codigoFile->AddLine(Codigo);
 	Codigo="int activarRegla(int numRegla);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaDifusor(int numVar, float x);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaVariableEntrada(int numVar,int numConj, float x);";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaVariableSalida(int numVar,int numConj, float x);\r\n";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaDifusor(int numVar, double x);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaVariableEntrada(int numVar,int numConj, double x);";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaVariableSalida(int numVar,int numConj, double x);\r\n";codigoFile->AddLine(Codigo);
 	Codigo="int indiceEntradas(int numRegla,int numVar);";codigoFile->AddLine(Codigo);
-	Codigo="void actualizarEntradas(float *ent);";codigoFile->AddLine(Codigo);
-	Codigo="float Implicacion(float x,float y);";codigoFile->AddLine(Codigo);
-	Codigo="float Composicion(float x,float y);";codigoFile->AddLine(Codigo);
-	Codigo="float Conjuncion(float x,float y);";codigoFile->AddLine(Codigo);
-	Codigo="float And(float x,float y);";codigoFile->AddLine(Codigo);
+	Codigo="void actualizarEntradas(double *ent);";codigoFile->AddLine(Codigo);
+	Codigo="double Implicacion(double x,double y);";codigoFile->AddLine(Codigo);
+	Codigo="double Composicion(double x,double y);";codigoFile->AddLine(Codigo);
+	Codigo="double Conjuncion(double x,double y);";codigoFile->AddLine(Codigo);
+	Codigo="double And(double x,double y);";codigoFile->AddLine(Codigo);
 	Codigo="";codigoFile->AddLine(Codigo);
 }
 
@@ -547,8 +547,8 @@ void SistemaLogicaDifusa::generarCodigoCMain(wxTextFile* codigoFile)
 
 	Codigo="int main()";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float entra[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
-	Codigo="    float sale[NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
+	Codigo="    double entra[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
+	Codigo="    double sale[NUMEROVARIABLESSALIDA];";codigoFile->AddLine(Codigo);
 	Codigo="    char q='s';";codigoFile->AddLine(Codigo);
 	Codigo="    llenarDatos();";codigoFile->AddLine(Codigo);
 	Codigo="    while(q=='s')";codigoFile->AddLine(Codigo);
@@ -556,16 +556,16 @@ void SistemaLogicaDifusa::generarCodigoCMain(wxTextFile* codigoFile)
 	Codigo="        int i;";codigoFile->AddLine(Codigo);
 	Codigo="        for(i=0;i<NUMEROVARIABLESENTRADA;i++)";codigoFile->AddLine(Codigo);
 	Codigo="        {";codigoFile->AddLine(Codigo);
-	Codigo="            float e;";codigoFile->AddLine(Codigo);
+	Codigo="            double e;";codigoFile->AddLine(Codigo);
 	Codigo="            printf(\"%s : \",VariablesEntrada[i].nombre.c_str());";codigoFile->AddLine(Codigo);
-	Codigo="            scanf(\"%f\",&e);";codigoFile->AddLine(Codigo);
+	Codigo="            scanf(\"%lf\",&e);";codigoFile->AddLine(Codigo);
 	Codigo="            entra[i]=e;";codigoFile->AddLine(Codigo);
 	Codigo="        }";codigoFile->AddLine(Codigo);
 	Codigo="        calcular(entra,sale);";codigoFile->AddLine(Codigo);
 	Codigo="        for(i=0;i<NUMEROVARIABLESSALIDA;i++)";codigoFile->AddLine(Codigo);
 	Codigo="        {";codigoFile->AddLine(Codigo);
 	Codigo="            printf(\"%s : \",VariablesSalida[i].nombre.c_str());";codigoFile->AddLine(Codigo);
-	Codigo="            printf(\"%f : \\n\",sale[i]);";codigoFile->AddLine(Codigo);
+	Codigo="            printf(\"%lf : \\n\",sale[i]);";codigoFile->AddLine(Codigo);
 	Codigo="        }";codigoFile->AddLine(Codigo);
 	Codigo="        printf(\"";
 	Codigo+=_("Do you want another calculus? (s/n)");
@@ -590,7 +590,7 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    llenarModificadores();";codigoFile->AddLine(Codigo);
 	Codigo="    llenarCentrosAltura();";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="void calcular(float *entra, float *sale)";codigoFile->AddLine(Codigo);
+	Codigo="void calcular(double *entra, double *sale)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
 	Codigo="    int i;";codigoFile->AddLine(Codigo);
 	Codigo="    for(i=0;i<NUMEROVARIABLESSALIDA;i++)";codigoFile->AddLine(Codigo);
@@ -598,9 +598,9 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="        sale[i]=salidaConcreta(i,entra);";codigoFile->AddLine(Codigo);
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="void actualizarEntradas(float *ent)";codigoFile->AddLine(Codigo);
+	Codigo="void actualizarEntradas(double *ent)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float dx;";codigoFile->AddLine(Codigo);
+	Codigo="    double dx;";codigoFile->AddLine(Codigo);
 	Codigo="    int i;";codigoFile->AddLine(Codigo);
 	Codigo="    for(i=0;i<NUMEROVARIABLESENTRADA;i++)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
@@ -625,13 +625,13 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    contador=contador+numConj;";codigoFile->AddLine(Codigo);
 	Codigo="    return contador;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaComposicion(int numVar,int numRegla, float sal)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaComposicion(int numVar,int numRegla, double sal)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float ux;";codigoFile->AddLine(Codigo);
-	Codigo="    float uxa;";codigoFile->AddLine(Codigo);
-	Codigo="    float uxab;";codigoFile->AddLine(Codigo);
-	Codigo="    float comp=0;";codigoFile->AddLine(Codigo);
-	Codigo="    float x[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
+	Codigo="    double ux;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxa;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxab;";codigoFile->AddLine(Codigo);
+	Codigo="    double comp=0;";codigoFile->AddLine(Codigo);
+	Codigo="    double x[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
 	Codigo="    int inter[NUMEROVARIABLESENTRADA];";codigoFile->AddLine(Codigo);
 	Codigo="    if(!activarRegla(numRegla))";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
@@ -668,9 +668,9 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return comp;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaDifusores(float *ent)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaDifusores(double *ent)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float uxd;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxd;";codigoFile->AddLine(Codigo);
 	Codigo="    int j=0;";codigoFile->AddLine(Codigo);
 	Codigo="    uxd=pertenenciaDifusor(j,ent[j]);";codigoFile->AddLine(Codigo);
 	Codigo="    for(j=0;j<NUMEROVARIABLESENTRADA;j++)";codigoFile->AddLine(Codigo);
@@ -679,25 +679,25 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return uxd;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaImplicacion(int numSal,int numRegla,float *ent,float sal)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaImplicacion(int numSal,int numRegla,double *ent,double sal)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float uxa,uxb;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxa,uxb;";codigoFile->AddLine(Codigo);
 	Codigo="    uxa=pertenenciaAntecedente(numRegla,ent);";codigoFile->AddLine(Codigo);
 	Codigo="    uxb=pertenenciaConsecuente(numSal,numRegla,sal);";codigoFile->AddLine(Codigo);
 	Codigo="    return Implicacion(uxa,uxb);";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaConsecuente(int numSal,int numRegla,float sal)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaConsecuente(int numSal,int numRegla,double sal)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float uxc;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxc;";codigoFile->AddLine(Codigo);
 	Codigo="    int conj;";codigoFile->AddLine(Codigo);
 	Codigo="    conj=Reglas[numRegla][NUMEROVARIABLESENTRADA+numSal];";codigoFile->AddLine(Codigo);
 	Codigo="    uxc=pertenenciaVariableSalida(numSal,conj,sal);";codigoFile->AddLine(Codigo);
 	Codigo="    return uxc;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaAntecedente(int numRegla,float *ent)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaAntecedente(int numRegla,double *ent)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float ux;";codigoFile->AddLine(Codigo);
-	Codigo="    float uxa;";codigoFile->AddLine(Codigo);
+	Codigo="    double ux;";codigoFile->AddLine(Codigo);
+	Codigo="    double uxa;";codigoFile->AddLine(Codigo);
 	Codigo="    int conj;";codigoFile->AddLine(Codigo);
 	Codigo="    int j=0;";codigoFile->AddLine(Codigo);
 	Codigo="    conj=Reglas[numRegla][0];";codigoFile->AddLine(Codigo);
@@ -729,7 +729,7 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    int i;";codigoFile->AddLine(Codigo);
 	Codigo="    for(i=0;i<NUMEROVARIABLESENTRADA;i++)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
-	Codigo="        float bmn,bmx,cmn,cmx;";codigoFile->AddLine(Codigo);
+	Codigo="        double bmn,bmx,cmn,cmx;";codigoFile->AddLine(Codigo);
 	Codigo="        int numCon;";codigoFile->AddLine(Codigo);
 	Codigo="        int indice;";codigoFile->AddLine(Codigo);
 	Codigo="        numCon=Reglas[numRegla][i];";codigoFile->AddLine(Codigo);
@@ -743,9 +743,9 @@ void SistemaLogicaDifusa::generarCodigoCFunciones(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return 1;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float salidaConcreta(int NumeroSalida,float *ent)";codigoFile->AddLine(Codigo);
+	Codigo="double salidaConcreta(int NumeroSalida,double *ent)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float respuesta;";codigoFile->AddLine(Codigo);
+	Codigo="    double respuesta;";codigoFile->AddLine(Codigo);
 	Codigo="    switch(NumeroSalida)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
 	for(int i=0;i<concreto->motor()->salidas()->numeroVariables();i++)
@@ -889,9 +889,9 @@ void SistemaLogicaDifusa::generarCodigoCSistema(wxTextFile* codigoFile)
 		}
 	}
 	Codigo="}\r\n";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaDifusor(int numVar, float x)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaDifusor(int numVar, double x)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float ux=0;";codigoFile->AddLine(Codigo);
+	Codigo="    double ux=0;";codigoFile->AddLine(Codigo);
 	Codigo="    switch(numVar)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
 	for(int i=0;i<numEntradas;i++)
@@ -905,9 +905,9 @@ void SistemaLogicaDifusa::generarCodigoCSistema(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return ux;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaVariableEntrada(int numVar,int numConj, float x)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaVariableEntrada(int numVar,int numConj, double x)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float ux=0;";codigoFile->AddLine(Codigo);
+	Codigo="    double ux=0;";codigoFile->AddLine(Codigo);
 	Codigo="    switch(numVar)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
 	for(int i=0;i<numEntradas;i++)
@@ -930,9 +930,9 @@ void SistemaLogicaDifusa::generarCodigoCSistema(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return ux;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float pertenenciaVariableSalida(int numVar,int numConj, float x)";codigoFile->AddLine(Codigo);
+	Codigo="double pertenenciaVariableSalida(int numVar,int numConj, double x)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float ux=0;";codigoFile->AddLine(Codigo);
+	Codigo="    double ux=0;";codigoFile->AddLine(Codigo);
 	Codigo="    switch(numVar)";codigoFile->AddLine(Codigo);
 	Codigo="    {";codigoFile->AddLine(Codigo);
 	for(int i=0;i<numSalidas;i++)
@@ -955,27 +955,27 @@ void SistemaLogicaDifusa::generarCodigoCSistema(wxTextFile* codigoFile)
 	Codigo="    }";codigoFile->AddLine(Codigo);
 	Codigo="    return ux;";codigoFile->AddLine(Codigo);
 	Codigo="}";codigoFile->AddLine(Codigo);
-	Codigo="float Implicacion(float x,float y)";codigoFile->AddLine(Codigo);
+	Codigo="double Implicacion(double x,double y)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float rel;";codigoFile->AddLine(Codigo);
+	Codigo="    double rel;";codigoFile->AddLine(Codigo);
 	Codigo=concreto->motor()->implicacion()->codigoC();codigoFile->AddLine(Codigo);
 	Codigo="    return rel;";codigoFile->AddLine(Codigo);
 	Codigo="}\r\n";codigoFile->AddLine(Codigo);
-	Codigo="float Composicion(float x,float y)";codigoFile->AddLine(Codigo);
+	Codigo="double Composicion(double x,double y)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float z;";codigoFile->AddLine(Codigo);
+	Codigo="    double z;";codigoFile->AddLine(Codigo);
 	Codigo=concreto->motor()->composicion()->codigoC();codigoFile->AddLine(Codigo);
 	Codigo="    return z;";codigoFile->AddLine(Codigo);
 	Codigo="}\r\n";codigoFile->AddLine(Codigo);
-	Codigo="float Conjuncion(float x,float y)";codigoFile->AddLine(Codigo);
+	Codigo="double Conjuncion(double x,double y)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float z;";codigoFile->AddLine(Codigo);
+	Codigo="    double z;";codigoFile->AddLine(Codigo);
 	Codigo=concreto->conjuncion()->codigoC();codigoFile->AddLine(Codigo);
 	Codigo="    return z;";codigoFile->AddLine(Codigo);
 	Codigo="}\r\n";codigoFile->AddLine(Codigo);
-	Codigo="float And(float x,float y)";codigoFile->AddLine(Codigo);
+	Codigo="double And(double x,double y)";codigoFile->AddLine(Codigo);
 	Codigo="{";codigoFile->AddLine(Codigo);
-	Codigo="    float z;";codigoFile->AddLine(Codigo);
+	Codigo="    double z;";codigoFile->AddLine(Codigo);
 	Codigo=concreto->motor()->and_()->codigoC();codigoFile->AddLine(Codigo);
 	Codigo="    return z;";codigoFile->AddLine(Codigo);
 	Codigo="}\r\n";codigoFile->AddLine(Codigo);

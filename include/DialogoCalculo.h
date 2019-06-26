@@ -18,9 +18,9 @@ class DialogoCalculo : public wxDialog
 		virtual int numeroSalidas()=0;
 		virtual wxString nombreEntrada(int i)=0;
 		virtual wxString nombreSalida (int i)=0;
-		virtual float rangoMinimoEntrada(int i)=0;
-		virtual float rangoMaximoEntrada(int i)=0;
-		virtual void calcular(float* entra, float* sale)=0;
+		virtual double rangoMinimoEntrada(int i)=0;
+		virtual double rangoMaximoEntrada(int i)=0;
+		virtual void calcular(double* entra, double* sale)=0;
 
 
 		void OnClose      (wxCloseEvent&   event);

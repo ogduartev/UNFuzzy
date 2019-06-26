@@ -26,7 +26,7 @@ public:
 	Variable *variable(int numVar) const;
 	void limpiarListaVariables();
 	Difusor *difusor(int num);
-	float intervaloDifusor(int numVar)
+	double intervaloDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
@@ -44,7 +44,7 @@ public:
 		dif=difusor(numVar);
 		return dif->numeroPuntos();
 	}
-	float pertenenciaDifusor(int numVar, float x)
+	double pertenenciaDifusor(int numVar, double x)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -62,13 +62,13 @@ public:
 		var=variable(numVar);
 		nombreVariable(nom,var);
 	}
-	void entradaReal(int numVar, float x)
+	void entradaReal(int numVar, double x)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		entradaReal(dif,x);
 	}
-	void entradaReal(float *ent);
+	void entradaReal(double *ent);
 	int numeroConjuntosEnVariable(int numVar)
 	{
 		Variable *var;
@@ -87,7 +87,7 @@ public:
 		var=variable(numVar);
 		var->numeroIntervalos(intervalos);
 	}
-	float intervaloEnVariable(int numVar)
+	double intervaloEnVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -99,63 +99,63 @@ public:
 		var=variable(numVar);
 		return var->conjunto(numCon);
 	}
-	float rangoMinimoVariable(int numVar)
+	double rangoMinimoVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return rangoMinimoVariable(var);
 	}
-	void rangoMinimoVariable(float rm,int numVar)
+	void rangoMinimoVariable(double rm,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		rangoMinimoVariable(rm,var);
 	}
-	float rangoMaximoVariable(int numVar)
+	double rangoMaximoVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return rangoMaximoVariable(var);
 	}
-	void rangoMaximoVariable(float rm,int numVar)
+	void rangoMaximoVariable(double rm,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		rangoMaximoVariable(rm,var);
 	}
-	float minimoEnConjunto(int numVar, int numCon)
+	double minimoEnConjunto(int numVar, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return minimoEnConjunto(cd);
 	}
-	float maximoEnConjunto(int numVar, int numCon)
+	double maximoEnConjunto(int numVar, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return maximoEnConjunto(cd);
 	}
-	float minimoEnDifusor(int numVar)
+	double minimoEnDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		return minimoEnDifusor(dif);
 	}
-	float maximoEnDifusor(int numVar)
+	double maximoEnDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		return maximoEnDifusor(dif);
 	}
-	float pertenenciaVariable(int numVar, int numCon, float x)
+	double pertenenciaVariable(int numVar, int numCon, double x)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return pertenenciaVariable(cd,x);
 	}
-	float centroEnDifusor(int numVar)
+	double centroEnDifusor(int numVar)
 	{
-		float x;
+		double x;
 		x=difusor(numVar)->centro();;
 		return x;
 	}
@@ -172,7 +172,7 @@ private:
 	{
 		return var->difusorEntrada();
 	}
-	float pertenenciaDifusor(Variable *var, float x)
+	double pertenenciaDifusor(Variable *var, double x)
 	{
 		return var->pertenenciaDifusor(x);
 	}
@@ -184,11 +184,11 @@ private:
 	{
 		var->nombreVariable(nom);
 	}
-	void entradaReal(Difusor *dif, float x)
+	void entradaReal(Difusor *dif, double x)
 	{
 		dif->entrada(x);
 	}
-	void entradaReal(Variable *var,float x)
+	void entradaReal(Variable *var,double x)
 	{
 		Difusor *dif;
 		dif=var->difusorEntrada();
@@ -202,7 +202,7 @@ private:
 	{
 		return var->numeroIntervalos();
 	}
-	float intervaloEnVariable(Variable *var)
+	double intervaloEnVariable(Variable *var)
 	{
 		return var->intervalo();
 	}
@@ -210,69 +210,69 @@ private:
 	{
 		return var->conjunto(numCon);
 	}
-	float rangoMinimoVariable(Variable *var)
+	double rangoMinimoVariable(Variable *var)
 	{
 		return var->rangoMinimo();
 	}
-	void rangoMinimoVariable(float rm,Variable *var)
+	void rangoMinimoVariable(double rm,Variable *var)
 	{
 		var->rangoMinimo(rm);
 	}
-	float rangoMaximoVariable(Variable *var)
+	double rangoMaximoVariable(Variable *var)
 	{
 		return var->rangoMaximo();
 	}
-	void rangoMaximoVariable(float rm,Variable *var)
+	void rangoMaximoVariable(double rm,Variable *var)
 	{
 		var->rangoMaximo(rm);
 	}
-	float minimoEnConjunto(Variable *var, int numCon)
+	double minimoEnConjunto(Variable *var, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return minimoEnConjunto(cd);
 	}
-	float minimoEnConjunto(ConjuntoDifuso *cd)
+	double minimoEnConjunto(ConjuntoDifuso *cd)
 	{
 		return cd->minimo();
 	}
-	float maximoEnConjunto(Variable *var, int numCon)
+	double maximoEnConjunto(Variable *var, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return maximoEnConjunto(cd);
 	}
-	float maximoEnConjunto(ConjuntoDifuso *cd)
+	double maximoEnConjunto(ConjuntoDifuso *cd)
 	{
 		return cd->maximo();
 	}
-	float minimoEnDifusor(Variable *var)
+	double minimoEnDifusor(Variable *var)
 	{
 		Difusor *dif;
 		dif=difusor(var);
 		return minimoEnDifusor(dif);
 	}
-	float minimoEnDifusor(Difusor *dif)
+	double minimoEnDifusor(Difusor *dif)
 	{
 		return dif->minimo();
 	}
-	float maximoEnDifusor(Variable *var)
+	double maximoEnDifusor(Variable *var)
 	{
 		Difusor *dif;
 		dif=difusor(var);
 		return maximoEnDifusor(dif);
 	}
-	float maximoEnDifusor(Difusor *dif)
+	double maximoEnDifusor(Difusor *dif)
 	{
 		return dif->maximo();
 	}
-	float pertenenciaVariable(Variable *var, int numCon, float x)
+	double pertenenciaVariable(Variable *var, int numCon, double x)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return pertenenciaVariable(cd,x);
 	}
-	float pertenenciaVariable(ConjuntoDifuso *cd,float x)
+	double pertenenciaVariable(ConjuntoDifuso *cd,double x)
 	{
 		return cd->pertenencia(x);
 	}

@@ -22,7 +22,7 @@ class DialogoMotor : public wxDialog
 		void nuevaConjuncion  ();
 		Norma *nuevaSNorma(int caso);
 		Norma *nuevaTNorma(int caso);
-		void getParametro(float *par,float minimo=0,float maximo=10.0);
+		void getParametro(double *par,double minimo=0,double maximo=10.0);
 
 		void llenarCombos();
 		void seleccionarCombos();

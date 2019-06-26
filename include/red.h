@@ -17,9 +17,9 @@ class red
 		bool buscarNodo(int numCapa, int numNodo);
 		bool buscarPinEntrada(int numCapa, int numNodo, int numPin);
 		bool buscarPinSalida(int numCapa, int numNodo, int numPin);
-		float valorPinEntrada(int numCapa, int numNodo, int numPin);
-		float valorPinSalida(int numCapa, int numNodo, int numPin);
-		void valorEntrada(int numNodo, int numPin, float Valor);
+		double valorPinEntrada(int numCapa, int numNodo, int numPin);
+		double valorPinSalida(int numCapa, int numNodo, int numPin);
+		void valorEntrada(int numNodo, int numPin, double Valor);
 		nodo* ptrNodo(int numCapa, int numNodo);
 		pin* ptrPinEntrada(int numCapa, int numNodo, int numPin);
 		pin* ptrPinSalida (int numCapa, int numNodo, int numPin);
@@ -37,9 +37,9 @@ class red
 		int numeroSalidas();
 		Variable* variableEntrada(int i);
 		Variable* variableSalida(int i);
-		void asignarEntradas(float* entra);
-		void leerSalidas(float* sale);
-		void calcular(float* entra, float* sale);
+		void asignarEntradas(double* entra);
+		void leerSalidas(double* sale);
+		void calcular(double* entra, double* sale);
 		void calcularRed();
 
 		ListaCapas* capas()

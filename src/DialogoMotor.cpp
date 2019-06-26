@@ -277,7 +277,7 @@ void DialogoMotor::nuevaConjuncion()
 Norma* DialogoMotor::nuevaSNorma(int caso)
 {
 	Norma *nor=NULL;
-	float par;
+	double par;
 	switch(caso)
 	{
 			case 0:nor=new Maximo();
@@ -298,7 +298,7 @@ Norma* DialogoMotor::nuevaSNorma(int caso)
 Norma* DialogoMotor::nuevaTNorma(int caso)
 {
 	Norma *nor=NULL;
-	float par;
+	double par;
 	switch(caso)
 	{
 		case 0:nor=new Minimo();
@@ -339,7 +339,7 @@ Norma* DialogoMotor::nuevaTNorma(int caso)
 	return nor;
 }
 
-void DialogoMotor::getParametro(float *par,float minimo,float maximo)
+void DialogoMotor::getParametro(double *par,double minimo,double maximo)
 {
 	double tmp=(double)(*par);
 	wxTextValidator Validator(wxFILTER_NUMERIC);
@@ -350,7 +350,7 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 	if(dlg.ShowModal()==wxID_OK)
 	{
 	  dlg.GetValue().ToDouble(&tmp);
-	  *par=(float)tmp;
+	  *par=(double)tmp;
 	}
 	if(*par < minimo){*par=minimo;}
 	if(*par > maximo){*par=maximo;}
@@ -362,7 +362,7 @@ void DialogoMotor::getParametro(float *par,float minimo,float maximo)
 bool DialogoMotor::verificar()
 {
 	bool flag=true;
-	float a,b;
+	double a,b;
 	a=Motor->implicacion()->defecto();
 	b=Concreto->conjuncion()->ToSNorm();
 	if(a!=b)

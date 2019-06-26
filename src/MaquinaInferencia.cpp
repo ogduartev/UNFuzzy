@@ -107,14 +107,14 @@ void MaquinaInferencia::limpiarMaquinaInferencia()
 
 }
 
-void MaquinaInferencia::actualizarEntradas(float *ent)
+void MaquinaInferencia::actualizarEntradas(double *ent)
 {
 	Entradas->entradaReal(ent);
 }
 
-float MaquinaInferencia::pertenenciaDifusores(float *ent)
+double MaquinaInferencia::pertenenciaDifusores(double *ent)
 {
-	float uxd;
+	double uxd;
 	int j;
 	j=0;
 	uxd=Entradas->pertenenciaDifusor(j,ent[j]);
@@ -125,27 +125,27 @@ float MaquinaInferencia::pertenenciaDifusores(float *ent)
 	return uxd;
 }
 
-float MaquinaInferencia::pertenenciaImplicacion(int numSal,int numRegla, float *ent,float sal)
+double MaquinaInferencia::pertenenciaImplicacion(int numSal,int numRegla, double *ent,double sal)
 {
-	float uxa,uxb;
+	double uxa,uxb;
 	uxa=pertenenciaAntecedente(numRegla,ent);
 	uxb=pertenenciaConsecuente(numSal,numRegla,sal);
 	return Implicaciones->implica(uxa,uxb);
 }
 
-float MaquinaInferencia::pertenenciaConsecuente(int numSal,int numRegla,float sal)
+double MaquinaInferencia::pertenenciaConsecuente(int numSal,int numRegla,double sal)
 {
-	float uxc;
+	double uxc;
 	int conj;
 	conj=numConjuntoSalida(numRegla,numSal);
 	uxc=Salidas->pertenenciaVariable(numSal,conj,sal);
 	return uxc;
 }
 
-float MaquinaInferencia::pertenenciaAntecedente(int numRegla,float *ent)
+double MaquinaInferencia::pertenenciaAntecedente(int numRegla,double *ent)
 {
-	float ux;
-	float uxa;
+	double ux;
+	double uxa;
 	int conj;
 	int j;
 	j=0;
@@ -174,14 +174,14 @@ float MaquinaInferencia::pertenenciaAntecedente(int numRegla,float *ent)
 	return uxa;
 }
 
-float MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,float sal)
+double MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,double sal)
 {
-	float ux;
-	float uxa;
-	float uxab;
-	float comp=0;
-	float *x;
-	x=new float[NumeroEntradas];
+	double ux;
+	double uxa;
+	double uxab;
+	double comp=0;
+	double *x;
+	x=new double[NumeroEntradas];
 	int *inter;
 	inter= new int[NumeroEntradas];
 	if(!activarRegla(numRegla))
@@ -227,7 +227,7 @@ int MaquinaInferencia::activarRegla(int numRegla)
 	int i;
 	for(i=0;i<NumeroEntradas;i++)
 	{
-		float bmn,bmx,cmn,cmx;
+		double bmn,bmx,cmn,cmx;
 		int numCon;
 		numCon=numConjuntoEntrada(numRegla,i);
 		bmn=Entradas->minimoEnConjunto(i,numCon);
@@ -263,7 +263,7 @@ void MaquinaInferencia::desocuparBaseReglas()
 	 NumeroReglas=1;
 }
 
-void MaquinaInferencia::EntrenaUniversoFijo(float *antecedente, float *consecuente)
+void MaquinaInferencia::EntrenaUniversoFijo(double *antecedente, double *consecuente)
 {
 	Regla *ReglaTemporal;
 	ReglaTemporal=new Regla(NumeroEntradas,NumeroSalidas);
@@ -289,10 +289,10 @@ void MaquinaInferencia::EntrenaUniversoFijo(float *antecedente, float *consecuen
 	}
 }
 
-void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *consec)
+void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, double *antec, double *consec)
 {
 	int i;
-	float certeza=1.0;
+	double certeza=1.0;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		if(antec[i]>Entradas->rangoMaximoVariable(i))
@@ -303,11 +303,11 @@ void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *c
 		{
 			antec[i]=Entradas->rangoMinimoVariable(i);
 		}
-		float maxPerAnte=0;
+		double maxPerAnte=0;
 		int j;
 		for(j=0;j<Entradas->numeroConjuntosEnVariable(i);j++)
 		{
-			float Per;
+			double Per;
 			Per=Entradas->pertenenciaVariable(i,j,antec[i]);
 			if(maxPerAnte<Per)
 			{
@@ -328,11 +328,11 @@ void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *c
 		{
 			consec[i]=Salidas->rangoMinimoVariable(i);
 		}
-		float maxPerCons=0;
+		double maxPerCons=0;
 		int j;
 		for(j=0;j<Salidas->numeroConjuntosEnVariable(i);j++)
 		{
-			float Per;
+			double Per;
 			Per=Salidas->pertenenciaVariable(i,j,consec[i]);
 			if(maxPerCons<Per)
 			{
@@ -360,7 +360,7 @@ int MaquinaInferencia::compararAntec(Regla *rg1, Regla *rg2)
 	return resultado;
 }
 
-void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *consecuente)
+void MaquinaInferencia::EntrenaUniversoVariable(double *antecedente, double *consecuente)
 {
 	ConjuntoDifuso* conj;
 	int i;
@@ -370,8 +370,8 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		tipoConjunto=Entradas->variable(i)->conjunto(0)->identificador();
 		int numeroPuntos;
 		numeroPuntos=Entradas->variable(i)->conjunto(0)->numeroPuntosClaves();
-		float *puntos;
-		puntos=new float[numeroPuntos];
+		double *puntos;
+		puntos=new double[numeroPuntos];
 		Entradas->variable(i)->conjunto(0)->puntosClaves(puntos);
 		char cad[200];
 		wxString n=_("Set ");
@@ -397,11 +397,11 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 						break;
 			case 8 : conj=new ConjuntoSinglenton(cad,puntos[0],puntos[1]);
 						break;
-			case 9 :// conj=new ConjuntoPorPuntos(cad,,,); //min,max,float *dt, int puntos
+			case 9 :// conj=new ConjuntoPorPuntos(cad,,,); //min,max,double *dt, int puntos
 					break;
 			default:break;
 		}
-		float delta;
+		double delta;
 		delta=*(antecedente+i)-conj->centroAltura();
 		int j;
 		for(j=0;j<numeroPuntos;j++)
@@ -417,8 +417,8 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		tipoConjunto=Salidas->variable(i)->conjunto(0)->identificador();
 		int numeroPuntos;
 		numeroPuntos=Salidas->variable(i)->conjunto(0)->numeroPuntosClaves();
-		float *puntos;
-		puntos=new float[numeroPuntos];
+		double *puntos;
+		puntos=new double[numeroPuntos];
 		Salidas->variable(i)->conjunto(0)->puntosClaves(puntos);
 		char cad[200];
 		wxString n=_("Set ");
@@ -444,11 +444,11 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 						break;
 			case 8 : conj=new ConjuntoSinglenton(cad,puntos[0],puntos[1]);
 						break;
-			case 9 :// conj=new ConjuntoPorPuntos(cad,,,); //min,max,float *dt, int puntos
+			case 9 :// conj=new ConjuntoPorPuntos(cad,,,); //min,max,double *dt, int puntos
 					break;
 			default:break;
 		}
-		float delta;
+		double delta;
 		delta=*(consecuente+i)-conj->centroAltura();
 		int j;
 		for(j=0;j<numeroPuntos;j++)
@@ -592,14 +592,14 @@ void MaquinaInferencia::llenarSalidasBaseCreciente()
 utiliza el número de los conjuntos de antecedente en relación al nùmero
 máximo de Valores Linguisticos*/
 	int i,j,numConj;
-	float NumeroConj=1;
+	double NumeroConj=1;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		NumeroConj=NumeroConj+Entradas->numeroConjuntosEnVariable(i);
 	}
 	for(j=0;j<NumeroReglas;j++)
 	{
-		float factor=1;
+		double factor=1;
 		for(i=0;i<NumeroEntradas;i++)
 		{
 			factor=factor+numConjuntoEntrada(j,i);
@@ -617,14 +617,14 @@ void MaquinaInferencia::llenarSalidasBaseDecreciente()
 {
 /*El algoritmo es similar al de base Creciente*/
 	int i,j,numConj;
-	float NumeroConj=1;
+	double NumeroConj=1;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		NumeroConj=NumeroConj+Entradas->numeroConjuntosEnVariable(i);
 	}
 	for(j=0;j<NumeroReglas;j++)
 	{
-		float factor=1;
+		double factor=1;
 		for(i=0;i<NumeroEntradas;i++)
 		{
 			factor=factor+numConjuntoEntrada(j,i);
@@ -643,14 +643,14 @@ void MaquinaInferencia::llenarSalidasBaseDecreciente()
 void MaquinaInferencia::llenarSalidaCreciente(int NumVar)
 {
 	int i,j,numConj;
-	float NumeroConj=1;
+	double NumeroConj=1;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		NumeroConj=NumeroConj+Entradas->numeroConjuntosEnVariable(i);
 	}
 	for(j=0;j<NumeroReglas;j++)
 	{
-		float factor=1;
+		double factor=1;
 		for(i=0;i<NumeroEntradas;i++)
 		{
 			factor=factor+numConjuntoEntrada(j,i);
@@ -665,14 +665,14 @@ void MaquinaInferencia::llenarSalidaCreciente(int NumVar)
 void MaquinaInferencia::llenarSalidaDecreciente(int NumVar)
 {
 	int i,j,numConj;
-	float NumeroConj=1;
+	double NumeroConj=1;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		NumeroConj=NumeroConj+Entradas->numeroConjuntosEnVariable(i);
 	}
 	for(j=0;j<NumeroReglas;j++)
 	{
-		float factor=1;
+		double factor=1;
 		for(i=0;i<NumeroEntradas;i++)
 		{
 			factor=factor+numConjuntoEntrada(j,i);

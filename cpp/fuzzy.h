@@ -129,19 +129,19 @@ class ConjuntoDifuso
 public:
 	ConjuntoDifuso(){}
 	virtual ~ConjuntoDifuso(){}
-	void minimo(float min)
+	void minimo(double min)
 	{
 		Minimo=min;
 	}
-	float minimo()
+	double minimo()
 	{
 		return Minimo;
 	}
-	void maximo(float max)
+	void maximo(double max)
 	{
 		Maximo=max;
 	}
-	float maximo()
+	double maximo()
 	{
 		return Maximo;
 	}
@@ -153,18 +153,18 @@ public:
 	{
 		return NumeroPuntosClaves;
 	}
-	virtual void puntosClaves(float *puntos)=0;
-	virtual void nuevoPuntoClave(int punto, float x)=0;
-	virtual float pertenencia(float x)=0;
-	virtual float centroAltura()=0;
+	virtual void puntosClaves(double *puntos)=0;
+	virtual void nuevoPuntoClave(int punto, double x)=0;
+	virtual double pertenencia(double x)=0;
+	virtual double centroAltura()=0;
 	BOOL operator==(const ConjuntoDifuso& other)
 	{
 		return (( Minimo == other.Minimo)&
 		( Maximo == other.Maximo) );
 	}
 protected:
-	float Minimo;
-	float Maximo;
+	double Minimo;
+	double Maximo;
 	int NumeroPuntosClaves;
 	int Identificador;
 };
@@ -173,7 +173,7 @@ protected:
 class ConjuntoL: public ConjuntoDifuso
 {
 public:
-	ConjuntoL(float min, float pcor, float max)
+	ConjuntoL(double min, double pcor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -182,24 +182,24 @@ public:
 		Identificador=0;
 	}
 	~ConjuntoL(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=primerCorte();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((Minimo+PrimerCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -208,7 +208,7 @@ protected:
 class ConjuntoTriangulo: public ConjuntoDifuso
 {
 public:
-	ConjuntoTriangulo(float min, float pcor, float max)
+	ConjuntoTriangulo(double min, double pcor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -217,25 +217,25 @@ public:
 		Identificador=1;
 	}
 	~ConjuntoTriangulo(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return(PrimerCorte);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -244,7 +244,7 @@ protected:
 class ConjuntoPi: public ConjuntoDifuso
 {
 public:
-	ConjuntoPi(float min, float pcor, float scor, float max)
+	ConjuntoPi(double min, double pcor, double scor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -254,35 +254,35 @@ public:
 		Identificador=2;
 	}
 	~ConjuntoPi(){}
-	float pertenencia(float x);
-	void puntosClaves(float *puntos)
+	double pertenencia(double x);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=segundoCorte();
 		puntos[3]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((PrimerCorte+SegundoCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	float SegundoCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	double SegundoCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
-	void segundoCorte(float scor)
+	void segundoCorte(double scor)
 	{
 		SegundoCorte=scor;
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return SegundoCorte;
 	}
@@ -291,7 +291,7 @@ protected:
 class ConjuntoGamma: public ConjuntoDifuso
 {
 public:
-	ConjuntoGamma(float min, float pcor,  float max)
+	ConjuntoGamma(double min, double pcor,  double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -300,24 +300,24 @@ public:
 		Identificador=3;
 	}
 	~ConjuntoGamma(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((Maximo+PrimerCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -326,7 +326,7 @@ protected:
 class ConjuntoZ: public ConjuntoDifuso
 {
 public:
-	ConjuntoZ(float min, float pcor, float max)
+	ConjuntoZ(double min, double pcor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -335,24 +335,24 @@ public:
 		Identificador=4;
 	}
 	~ConjuntoZ(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=primerCorte();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((Minimo+PrimerCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -361,7 +361,7 @@ protected:
 class ConjuntoCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoCampana(float min, float pcor, float max)
+	ConjuntoCampana(double min, double pcor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -370,25 +370,25 @@ public:
 		Identificador=5;
 	}
 	~ConjuntoCampana(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return(PrimerCorte);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -397,7 +397,7 @@ protected:
 class ConjuntoS: public ConjuntoDifuso
 {
 public:
-	ConjuntoS(float min, float pcor, float max)
+	ConjuntoS(double min, double pcor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -406,24 +406,24 @@ public:
 		Identificador=6;
 	}
 	~ConjuntoS(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((Maximo+PrimerCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
@@ -432,7 +432,7 @@ protected:
 class ConjuntoPiCampana: public ConjuntoDifuso
 {
 public:
-	ConjuntoPiCampana(float min, float pcor, float scor, float max)
+	ConjuntoPiCampana(double min, double pcor, double scor, double max)
 	{
 		Minimo=min;
 		PrimerCorte=pcor;
@@ -442,35 +442,35 @@ public:
 		Identificador=7;
 	}
 	~ConjuntoPiCampana(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=primerCorte();
 		puntos[2]=segundoCorte();
 		puntos[3]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return((PrimerCorte+SegundoCorte)/2.0);
 	}
 protected:
-	float PrimerCorte;
-	float SegundoCorte;
-	void primerCorte(float pcor)
+	double PrimerCorte;
+	double SegundoCorte;
+	void primerCorte(double pcor)
 	{
 		PrimerCorte=pcor;
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return PrimerCorte;
 	}
-	void segundoCorte(float scor)
+	void segundoCorte(double scor)
 	{
 		SegundoCorte=scor;
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return SegundoCorte;
 	}
@@ -480,7 +480,7 @@ protected:
 class ConjuntoSinglenton: public ConjuntoDifuso
 {
 public:
-	ConjuntoSinglenton(float pi, float de)
+	ConjuntoSinglenton(double pi, double de)
 	{
 		Pico=pi;
 		Delta=de;
@@ -490,27 +490,27 @@ public:
 		Identificador=8;
 	}
 	~ConjuntoSinglenton(){}
-	float pertenencia(float);
-	void puntosClaves(float *puntos)
+	double pertenencia(double);
+	void puntosClaves(double *puntos)
 	{
 		puntos[0]=minimo();
 		puntos[1]=maximo();
 	}
-	void nuevoPuntoClave(int punto, float x);
-	float centroAltura()
+	void nuevoPuntoClave(int punto, double x);
+	double centroAltura()
 	{
 		return(Pico);
 	}
 protected:
-	float pico(){return Pico;}
-	float delta(){return Delta;}
-	float Delta;
-	float Pico;
+	double pico(){return Pico;}
+	double delta(){return Delta;}
+	double Delta;
+	double Pico;
 };
 
-inline float ConjuntoL::pertenencia(float x)
+inline double ConjuntoL::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=1;
 	if(x<primerCorte()&&x>=minimo())
@@ -525,9 +525,9 @@ inline float ConjuntoL::pertenencia(float x)
 }
 
 
-inline float ConjuntoTriangulo::pertenencia(float x)
+inline double ConjuntoTriangulo::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -542,9 +542,9 @@ inline float ConjuntoTriangulo::pertenencia(float x)
 }
 
 
-inline float ConjuntoPi::pertenencia(float x)
+inline double ConjuntoPi::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -561,9 +561,9 @@ inline float ConjuntoPi::pertenencia(float x)
 }
 
 
-inline float ConjuntoGamma::pertenencia(float x)
+inline double ConjuntoGamma::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<primerCorte()&&x>=minimo())
@@ -577,9 +577,9 @@ inline float ConjuntoGamma::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoZ::pertenencia(float x)
+inline double ConjuntoZ::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=1;
 	if(x<primerCorte())
@@ -601,9 +601,9 @@ inline float ConjuntoZ::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoCampana::pertenencia(float x)
+inline double ConjuntoCampana::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -634,9 +634,9 @@ inline float ConjuntoCampana::pertenencia(float x)
 }
 
 
-inline float ConjuntoS::pertenencia(float x)
+inline double ConjuntoS::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -656,9 +656,9 @@ inline float ConjuntoS::pertenencia(float x)
 	return ux ;
 }
 
-inline float ConjuntoPiCampana::pertenencia(float x)
+inline double ConjuntoPiCampana::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<(primerCorte()+minimo())/2&&x>=minimo())
@@ -691,9 +691,9 @@ inline float ConjuntoPiCampana::pertenencia(float x)
 }
 
 
-inline float ConjuntoSinglenton::pertenencia(float x)
+inline double ConjuntoSinglenton::pertenencia(double x)
 {
-	float ux;
+	double ux;
 	if(x<minimo())
 		ux=0;
 	if(x<maximo()&&x>=minimo())
@@ -725,9 +725,9 @@ public:
 		NumeroPuntos=num;
 		dx=(maximo()-minimo())/(num+1);
 	}
-	void ancho(float soporte)
+	void ancho(double soporte)
 	{
-		float centro,mn,mx;
+		double centro,mn,mx;
 		centro=(maximo()+minimo())/2;
 		mn=centro-soporte/2;
 		mx=centro+soporte/2;
@@ -739,33 +739,33 @@ public:
 	{
 		return NumeroPuntos;
 	}
-	float intervalo()
+	double intervalo()
 	{
 		return dx;
 	}
-	float centro()
+	double centro()
 	{
 		return Centro;
 	}
-	float centroAltura(){return 0.0;}
-	virtual float pertenencia(float)=0;
-	virtual float minimo()=0;
-	virtual float maximo()=0;
-	virtual void minimo(float mn)=0;
-	virtual void maximo(float mx)=0;
-	virtual void entrada(float)=0;
-	void puntosClaves(float* ){}
-	void nuevoPuntoClave(int, float ){}
+	double centroAltura(){return 0.0;}
+	virtual double pertenencia(double)=0;
+	virtual double minimo()=0;
+	virtual double maximo()=0;
+	virtual void minimo(double mn)=0;
+	virtual void maximo(double mx)=0;
+	virtual void entrada(double)=0;
+	void puntosClaves(double* ){}
+	void nuevoPuntoClave(int, double ){}
 protected:
 	int NumeroPuntos;
-	float dx;
-	float Centro;
+	double dx;
+	double Centro;
 };
 
 class DifusorTriangulo:public virtual ConjuntoTriangulo,public virtual Difusor
 {
 public:
-	DifusorTriangulo(float x, float me, float ma):ConjuntoTriangulo(x-me,x,x+ma)
+	DifusorTriangulo(double x, double me, double ma):ConjuntoTriangulo(x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
@@ -774,50 +774,50 @@ public:
 	~DifusorTriangulo()
 	{
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoTriangulo::minimo(x1-menos);
 		ConjuntoTriangulo::maximo(x1+mas);
 		ConjuntoTriangulo::primerCorte(x1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoTriangulo::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoTriangulo::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoTriangulo::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoTriangulo::primerCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoTriangulo::primerCorte(pc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoTriangulo::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoTriangulo::maximo(mx);
 	}
 protected:
-	float mas;
-	float menos;
+	double mas;
+	double menos;
 };
 
 class DifusorPi:public virtual ConjuntoPi,public virtual Difusor
 {
 public:
-	DifusorPi(float x, float me1, float me2, float ma1, float ma2):ConjuntoPi(x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPi(double x, double me1, double me2, double ma1, double ma2):ConjuntoPi(x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -828,7 +828,7 @@ public:
 	~DifusorPi()
 	{
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoPi::minimo(x1-menos1);
 		ConjuntoPi::maximo(x1+mas2);
@@ -836,53 +836,53 @@ public:
 		ConjuntoPi::segundoCorte(x1+mas1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoPi::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoPi::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoPi::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoPi::primerCorte();
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return ConjuntoPi::segundoCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoPi::primerCorte(pc);
 	}
-	void segundoCorte(float sc)
+	void segundoCorte(double sc)
 	{
 		ConjuntoPi::segundoCorte(sc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoPi::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoPi::maximo(mx);
 	}
 protected:
-	float mas1;
-	float mas2;
-	float menos1;
-	float menos2;
+	double mas1;
+	double mas2;
+	double menos1;
+	double menos2;
 };
 
 class DifusorCampana:public virtual ConjuntoCampana,public virtual Difusor
 {
 public:
-	DifusorCampana(float x, float me, float ma):ConjuntoCampana(x-me,x,x+ma)
+	DifusorCampana(double x, double me, double ma):ConjuntoCampana(x-me,x,x+ma)
 	{
 		Centro=x;
 		menos=me;
@@ -891,50 +891,50 @@ public:
 	~DifusorCampana()
 	{
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoCampana::minimo(x1-menos);
 		ConjuntoCampana::maximo(x1+mas);
 		ConjuntoCampana::primerCorte(x1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoCampana::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoCampana::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoCampana::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoCampana::primerCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoCampana::primerCorte(pc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoCampana::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoCampana::maximo(mx);
 	}
 protected:
-	float mas;
-	float menos;
+	double mas;
+	double menos;
 };
 
 class DifusorPiCampana:public virtual ConjuntoPiCampana,public virtual Difusor
 {
 public:
-	DifusorPiCampana(float x, float me1, float me2, float ma1, float ma2):ConjuntoPiCampana(x-me1,x-me2,x+ma1,x+ma2)
+	DifusorPiCampana(double x, double me1, double me2, double ma1, double ma2):ConjuntoPiCampana(x-me1,x-me2,x+ma1,x+ma2)
 	{
 		Centro=x;
 		menos1=me1;
@@ -945,7 +945,7 @@ public:
 	~DifusorPiCampana()
 	{
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoPiCampana::minimo(x1-menos1);
 		ConjuntoPiCampana::maximo(x1+mas2);
@@ -953,83 +953,83 @@ public:
 		ConjuntoPiCampana::segundoCorte(x1+mas1);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoPiCampana::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoPiCampana::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoPiCampana::maximo();
 	}
-	float primerCorte()
+	double primerCorte()
 	{
 		return ConjuntoPiCampana::primerCorte();
 	}
-	float segundoCorte()
+	double segundoCorte()
 	{
 		return ConjuntoPiCampana::segundoCorte();
 	}
-	void primerCorte(float pc)
+	void primerCorte(double pc)
 	{
 		ConjuntoPiCampana::primerCorte(pc);
 	}
-	void segundoCorte(float sc)
+	void segundoCorte(double sc)
 	{
 		ConjuntoPiCampana::segundoCorte(sc);
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoPiCampana::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoPiCampana::maximo(mx);
 	}
 protected:
-	float mas1;
-	float mas2;
-	float menos1;
-	float menos2;
+	double mas1;
+	double mas2;
+	double menos1;
+	double menos2;
 };
 
 
 class DifusorSinglenton:public virtual ConjuntoSinglenton, public virtual Difusor
 {
 public:
-	DifusorSinglenton(float x, float de):ConjuntoSinglenton(x,de)
+	DifusorSinglenton(double x, double de):ConjuntoSinglenton(x,de)
 	{
 		Centro=x;
 	}
 	~DifusorSinglenton()
 	{
 	}
-	void entrada(float x1)
+	void entrada(double x1)
 	{
 		ConjuntoSinglenton::minimo(x1-delta()/2);
 		ConjuntoSinglenton::maximo(x1+delta()/2);
 		Centro=x1;
 	}
-	float pertenencia(float x)
+	double pertenencia(double x)
 	{
 		return ConjuntoSinglenton::pertenencia(x);
 	}
-	float minimo()
+	double minimo()
 	{
 		return ConjuntoSinglenton::minimo();
 	}
-	float maximo()
+	double maximo()
 	{
 		return ConjuntoSinglenton::maximo();
 	}
-	void minimo(float mn)
+	void minimo(double mn)
 	{
 		ConjuntoSinglenton::minimo(mn);
 	}
-	void maximo(float mx)
+	void maximo(double mx)
 	{
 		ConjuntoSinglenton::maximo(mx);
 	}
@@ -1087,19 +1087,19 @@ public:
 	{
 		return NumeroIntervalos;
 	}
-	float intervalo()
+	double intervalo()
 	{
 		return Intervalo;
 	}
 
 	ConjuntoDifuso* conjunto(int conj);
-	float pertenencia(ConjuntoDifuso*, float);
-	float pertenencia(int, float);
-	float pertenenciaDifusor(float);
-	float rangoMinimo(){return RangoMinimo;}
-	void rangoMinimo(float rm){RangoMinimo=rm;}
-	float rangoMaximo(){return RangoMaximo;}
-	void rangoMaximo(float rm){RangoMaximo=rm;}
+	double pertenencia(ConjuntoDifuso*, double);
+	double pertenencia(int, double);
+	double pertenenciaDifusor(double);
+	double rangoMinimo(){return RangoMinimo;}
+	void rangoMinimo(double rm){RangoMinimo=rm;}
+	double rangoMaximo(){return RangoMaximo;}
+	void rangoMaximo(double rm){RangoMaximo=rm;}
 	BOOL operator==(const Variable& other)
 	{
 		return ( (NombreVariable == other.NombreVariable)&
@@ -1113,10 +1113,10 @@ protected:
 
 	ListaConjuntos *Conjuntos;
 	Difusor *DifusorEntrada;
-	float RangoMinimo;
-	float RangoMaximo;
+	double RangoMinimo;
+	double RangoMaximo;
 	int NumeroIntervalos;
-	float Intervalo;
+	double Intervalo;
 	string NombreVariable;
 };
 
@@ -1143,7 +1143,7 @@ public:
 	Variable *variable(int numVar);
 	void limpiarListaVariables();
 	Difusor *difusor(int num);
-	float intervaloDifusor(int numVar)
+	double intervaloDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
@@ -1161,7 +1161,7 @@ public:
 		dif=difusor(numVar);
 		return dif->numeroPuntos();
 	}
-	float pertenenciaDifusor(int numVar, float x)
+	double pertenenciaDifusor(int numVar, double x)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -1179,13 +1179,13 @@ public:
 		var=variable(numVar);
 		nombreVariable(nom,var);
 	}
-	void entradaReal(int numVar, float x)
+	void entradaReal(int numVar, double x)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		entradaReal(dif,x);
 	}
-	void entradaReal(float *ent);
+	void entradaReal(double *ent);
 	int numeroConjuntosEnVariable(int numVar)
 	{
 		Variable *var;
@@ -1204,7 +1204,7 @@ public:
 		var=variable(numVar);
 		var->numeroIntervalos(intervalos);
 	}
-	float intervaloEnVariable(int numVar)
+	double intervaloEnVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
@@ -1216,63 +1216,63 @@ public:
 		var=variable(numVar);
 		return conjuntoEnVariable(var,numCon);
 	}
-	float rangoMinimoVariable(int numVar)
+	double rangoMinimoVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return rangoMinimoVariable(var);
 	}
-	void rangoMinimoVariable(float rm,int numVar)
+	void rangoMinimoVariable(double rm,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		rangoMinimoVariable(rm,var);
 	}
-	float rangoMaximoVariable(int numVar)
+	double rangoMaximoVariable(int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		return rangoMaximoVariable(var);
 	}
-	void rangoMaximoVariable(float rm,int numVar)
+	void rangoMaximoVariable(double rm,int numVar)
 	{
 		Variable *var;
 		var=variable(numVar);
 		rangoMaximoVariable(rm,var);
 	}
-	float minimoEnConjunto(int numVar, int numCon)
+	double minimoEnConjunto(int numVar, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return minimoEnConjunto(cd);
 	}
-	float maximoEnConjunto(int numVar, int numCon)
+	double maximoEnConjunto(int numVar, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return maximoEnConjunto(cd);
 	}
-	float minimoEnDifusor(int numVar)
+	double minimoEnDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		return minimoEnDifusor(dif);
 	}
-	float maximoEnDifusor(int numVar)
+	double maximoEnDifusor(int numVar)
 	{
 		Difusor *dif;
 		dif=difusor(numVar);
 		return maximoEnDifusor(dif);
 	}
-	float pertenenciaVariable(int numVar, int numCon, float x)
+	double pertenenciaVariable(int numVar, int numCon, double x)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(numVar, numCon);
 		return pertenenciaVariable(cd,x);
 	}
-	float centroEnDifusor(int numVar)
+	double centroEnDifusor(int numVar)
 	{
-		float x;
+		double x;
 		x=difusor(numVar)->centro();;
 		return x;
 	}
@@ -1287,7 +1287,7 @@ private:
 	{
 		return var->difusorEntrada();
 	}
-	float pertenenciaDifusor(Variable *var, float x)
+	double pertenenciaDifusor(Variable *var, double x)
 	{
 		return var->pertenenciaDifusor(x);
 	}
@@ -1299,11 +1299,11 @@ private:
 	{
 		var->nombreVariable(nom);
 	}
-	void entradaReal(Difusor *dif, float x)
+	void entradaReal(Difusor *dif, double x)
 	{
 		dif->entrada(x);
 	}
-	void entradaReal(Variable *var,float x)
+	void entradaReal(Variable *var,double x)
 	{
 		Difusor *dif;
 		dif=var->difusorEntrada();
@@ -1317,7 +1317,7 @@ private:
 	{
 		return var->numeroIntervalos();
 	}
-	float intervaloEnVariable(Variable *var)
+	double intervaloEnVariable(Variable *var)
 	{
 		return var->intervalo();
 	}
@@ -1325,69 +1325,69 @@ private:
 	{
 		return var->conjunto(numCon);
 	}
-	float rangoMinimoVariable(Variable *var)
+	double rangoMinimoVariable(Variable *var)
 	{
 		return var->rangoMinimo();
 	}
-	void rangoMinimoVariable(float rm,Variable *var)
+	void rangoMinimoVariable(double rm,Variable *var)
 	{
 		var->rangoMinimo(rm);
 	}
-	float rangoMaximoVariable(Variable *var)
+	double rangoMaximoVariable(Variable *var)
 	{
 		return var->rangoMaximo();
 	}
-	void rangoMaximoVariable(float rm,Variable *var)
+	void rangoMaximoVariable(double rm,Variable *var)
 	{
 		var->rangoMaximo(rm);
 	}
-	float minimoEnConjunto(Variable *var, int numCon)
+	double minimoEnConjunto(Variable *var, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return minimoEnConjunto(cd);
 	}
-	float minimoEnConjunto(ConjuntoDifuso *cd)
+	double minimoEnConjunto(ConjuntoDifuso *cd)
 	{
 		return cd->minimo();
 	}
-	float maximoEnConjunto(Variable *var, int numCon)
+	double maximoEnConjunto(Variable *var, int numCon)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return maximoEnConjunto(cd);
 	}
-	float maximoEnConjunto(ConjuntoDifuso *cd)
+	double maximoEnConjunto(ConjuntoDifuso *cd)
 	{
 		return cd->maximo();
 	}
-	float minimoEnDifusor(Variable *var)
+	double minimoEnDifusor(Variable *var)
 	{
 		Difusor *dif;
 		dif=difusor(var);
 		return minimoEnDifusor(dif);
 	}
-	float minimoEnDifusor(Difusor *dif)
+	double minimoEnDifusor(Difusor *dif)
 	{
 		return dif->minimo();
 	}
-	float maximoEnDifusor(Variable *var)
+	double maximoEnDifusor(Variable *var)
 	{
 		Difusor *dif;
 		dif=difusor(var);
 		return maximoEnDifusor(dif);
 	}
-	float maximoEnDifusor(Difusor *dif)
+	double maximoEnDifusor(Difusor *dif)
 	{
 		return dif->maximo();
 	}
-	float pertenenciaVariable(Variable *var, int numCon, float x)
+	double pertenenciaVariable(Variable *var, int numCon, double x)
 	{
 		ConjuntoDifuso *cd;
 		cd=conjuntoEnVariable(var, numCon);
 		return pertenenciaVariable(cd,x);
 	}
-	float pertenenciaVariable(ConjuntoDifuso *cd,float x)
+	double pertenenciaVariable(ConjuntoDifuso *cd,double x)
 	{
 		return cd->pertenencia(x);
 	}
@@ -1403,8 +1403,8 @@ public:
 	~Norma()
 	{
 	}
-	virtual float ToSNorm()=0;
-	virtual float opera(float, float)=0;
+	virtual double ToSNorm()=0;
+	virtual double opera(double, double)=0;
 protected:
 };
 
@@ -1413,11 +1413,11 @@ class T_Norma:public Norma
 public:
 	T_Norma(){}
 	~T_Norma(){}
-	float ToSNorm()
+	double ToSNorm()
 	{
 		return 1.0;
 	}
-	virtual float opera(float, float)=0;
+	virtual double opera(double, double)=0;
 protected:
 };
 
@@ -1426,11 +1426,11 @@ class S_Norma:public Norma
 public:
 	S_Norma(){}
 	~S_Norma(){}
-	float ToSNorm()
+	double ToSNorm()
 	{
 		return 0.0;
 	}
-	virtual float opera(float, float)=0;
+	virtual double opera(double, double)=0;
 protected:
 };
 
@@ -1443,9 +1443,9 @@ public:
 	{
 	}
 	~Producto(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x*y;
 		return z;
 	}
@@ -1459,9 +1459,9 @@ public:
 	{
 	}
 	~Minimo(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(x<y)
 		{
 			z=x;
@@ -1481,9 +1481,9 @@ public:
 	{
 	}
 	~ProductoAcotado(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y-1;
 		if(z<0)
 		{
@@ -1501,9 +1501,9 @@ public:
 	{
 	}
 	~ProductoDrastico(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(y==1)
 		{
 			z=x;
@@ -1528,20 +1528,20 @@ public:
 	{
 		p=1;
 	}
-	FamiliaTp(float parametro)
+	FamiliaTp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaTp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=pow(1-x,p)+pow(1-y,p)-pow(1-x,p)*pow(1-y,p);
 		z=1-pow(z,(1/p));
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 class FamiliaHp:public T_Norma
@@ -1551,20 +1551,20 @@ public:
 	{
 		p=1;
 	}
-	FamiliaHp(float parametro)
+	FamiliaHp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaHp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=p-(1-p)*(x+y-x*y);
 		z=x*y/z;
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 class FamiliaFp:public T_Norma
@@ -1574,20 +1574,20 @@ public:
 	{
 		p=2;
 	}
-	FamiliaFp(float parametro)
+	FamiliaFp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaFp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=1+(pow(p,x)-1)*(pow(p,y)-1)/(p-1);
 		z=log(z)/log(p);
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 class FamiliaYp:public T_Norma
@@ -1597,14 +1597,14 @@ public:
 	{
 		p=1;
 	}
-	FamiliaYp(float parametro)
+	FamiliaYp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaYp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=pow(1-x,p)+pow(1-y,p);
 		z=pow(z,(1/p));
 		if(z>1)
@@ -1615,7 +1615,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 class FamiliaAp:public T_Norma
@@ -1625,14 +1625,14 @@ public:
 	{
 		p=1;
 	}
-	FamiliaAp(float parametro)
+	FamiliaAp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaAp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x;
 		if(y>z)
 		{
@@ -1646,7 +1646,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -1660,9 +1660,9 @@ public:
 	{
 	}
 	~Maximo(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(x>y)
 		{
 			z=x;
@@ -1682,9 +1682,9 @@ public:
 	{
 	}
 	~SumaAcotada(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y;
 		if(z>1)
 		{
@@ -1702,9 +1702,9 @@ public:
 	{
 	}
 	~SumaDrastica(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		if(y==0)
 		{
 			z=x;
@@ -1729,14 +1729,14 @@ public:
 	{
 		p=1;
 	}
-	FamiliaSp(float parametro)
+	FamiliaSp(double parametro)
 	{
 		p=parametro;
 	}
 	~FamiliaSp(){}
-	float opera(float x, float y)
+	double opera(double x, double y)
 	{
-		float z;
+		double z;
 		z=x+y+p*x*y;
 		if(z>1)
 		{
@@ -1745,7 +1745,7 @@ public:
 		return z;
 	}
 protected:
-	float p;
+	double p;
 };
 
 
@@ -1758,8 +1758,8 @@ public:
 	~Implicacion()
 	{
 	}
-	virtual float implica(float,float)=0;
-	virtual float defecto()=0;
+	virtual double implica(double,double)=0;
+	virtual double defecto()=0;
 protected:
 };
 
@@ -1768,11 +1768,11 @@ class ImplicacionT_Norma:public Implicacion
 public:
 	ImplicacionT_Norma(){}
 	~ImplicacionT_Norma(){}
-	float defecto()
+	double defecto()
 	{
 		return 0;
 	}
-	virtual float implica(float x, float y)=0;
+	virtual double implica(double x, double y)=0;
 protected:
 };
 
@@ -1781,11 +1781,11 @@ class ImplicacionIf_Then:public Implicacion
 public:
 	ImplicacionIf_Then(){}
 	~ImplicacionIf_Then(){}
-	float defecto()
+	double defecto()
 	{
 		return 1;
 	}
-	virtual float implica(float x, float y)=0;
+	virtual double implica(double x, double y)=0;
 protected:
 };
 
@@ -1799,9 +1799,9 @@ public:
 	~ImplicacionProducto()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float z;
+		double z;
 		z=x*y;
 		return z;
 	}
@@ -1817,9 +1817,9 @@ public:
 	~ImplicacionMinimo()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float z;
+		double z;
 		if(x<y)
 			z=x;
 		else
@@ -1838,9 +1838,9 @@ public:
 	~ImplicacionKleenDienes()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		x=1-x;
 		if(x>y)
 			rel=x;
@@ -1861,9 +1861,9 @@ public:
 	~ImplicacionLukasiewicz()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		rel=1-x+y;
 		if(rel>1)
 			rel=1;
@@ -1882,9 +1882,9 @@ public:
 	~ImplicacionZadeh()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<y)
 			rel=x;
 		else
@@ -1907,9 +1907,9 @@ public:
 	~ImplicacionEstocastica()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		rel=x*y;
 		x=1-x;
 		if(rel<x)
@@ -1929,9 +1929,9 @@ public:
 	~ImplicacionGoguen()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x>0.00001)
 			rel=y/x;
 		else
@@ -1953,9 +1953,9 @@ public:
 	~ImplicacionGodel()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<=y)
 			rel=1;
 		else
@@ -1975,9 +1975,9 @@ public:
 	~ImplicacionAguda()
 	{
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<=y)
 			rel=1;
 		else
@@ -1996,7 +1996,7 @@ public:
 	{
 		Antecedente=new int[numEntradas];
 		Consecuente=new int[numSalidas];
-		Modificadores=new float[numEntradas];
+		Modificadores=new double[numEntradas];
 	}
 	~Regla()
 	{
@@ -2020,19 +2020,19 @@ public:
 	{
 		Consecuente[numVar]=numCon;
 	}
-	float modificador(int numVar)
+	double modificador(int numVar)
 	{
 		return Modificadores[numVar];
 	}
-	void modificador(int numVar,float modif)
+	void modificador(int numVar,double modif)
 	{
 		Modificadores[numVar]=modif;
 	}
-	void certeza(float cer)
+	void certeza(double cer)
 	{
 		Certeza=cer;
 	}
-	float certeza()
+	double certeza()
 	{
 		return Certeza;
 	}
@@ -2046,9 +2046,9 @@ public:
 protected:
 	int *Antecedente;
 	int *Consecuente;
-	float *Modificadores;
+	double *Modificadores;
 
-   float Certeza;
+   double Certeza;
 };
 
 
@@ -2098,11 +2098,11 @@ public:
 	{
 		return regla(numRegla)->conjuntoEntrada(numVar);
 	}
-	void modificador(int numRegla, int numVar, float modif)
+	void modificador(int numRegla, int numVar, double modif)
 	{
 		regla(numRegla)->modificador(numVar,modif);
 	}
-	float modificador(int numRegla, int numVar)
+	double modificador(int numRegla, int numVar)
 	{
 		return regla(numRegla)->modificador(numVar);
 	}
@@ -2149,17 +2149,17 @@ public:
 		BaseReglas->Destroy(num);
 		NumeroReglas--;
 	}
-	void actualizarEntradas(float *ent);
-	float pertenenciaDifusores(float *ent);
-	float pertenenciaImplicacion(int numSal,int numRegla, float *ent,float sal);
-	float pertenenciaConsecuente(int numSal,int numRegla,float sal);
-	float pertenenciaAntecedente(int numRegla,float *ent);
-	float pertenenciaComposicion(int numVar, int numRegla,float sal);
+	void actualizarEntradas(double *ent);
+	double pertenenciaDifusores(double *ent);
+	double pertenenciaImplicacion(int numSal,int numRegla, double *ent,double sal);
+	double pertenenciaConsecuente(int numSal,int numRegla,double sal);
+	double pertenenciaAntecedente(int numRegla,double *ent);
+	double pertenenciaComposicion(int numVar, int numRegla,double sal);
 	int activarRegla(int numregla);
 	void desocuparBaseReglas();
-	void EntrenaUniversoFijo(float *antecedente, float *consecuente);
-	void EntrenaUniversoVariable(float *antecedente, float *consecuente);
-	void llenarRegla(Regla *rg,float *antec, float *consec);
+	void EntrenaUniversoFijo(double *antecedente, double *consecuente);
+	void EntrenaUniversoVariable(double *antecedente, double *consecuente);
+	void llenarRegla(Regla *rg,double *antec, double *consec);
 	int compararAntec(Regla *rg1, Regla *rg2);
 protected:
 	typedef Arreglo<Regla> ListaReglas;
@@ -2201,7 +2201,7 @@ public:
 	{
 		Motor=maq;
 	}
-	float defecto()
+	double defecto()
 	{
 		return Motor->implicacion()->defecto();
 	}
@@ -2213,7 +2213,7 @@ public:
 	{
 		Conjuncion=nor;
 	}
-	virtual float salidaConcreta(float *ent)=0;
+	virtual double salidaConcreta(double *ent)=0;
 	BOOL operator==(const Concresor& other)
 	{
 		return ( ( Motor == other.Motor)&
@@ -2232,7 +2232,7 @@ public:
 	PrimerMaximo(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{}
 	~PrimerMaximo(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 protected:
 };
 
@@ -2242,7 +2242,7 @@ public:
 	UltimoMaximo(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{}
 	~UltimoMaximo(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 protected:
 };
 
@@ -2252,7 +2252,7 @@ public:
 	MediaDeMaximos(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{}
 	~MediaDeMaximos(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 protected:
 };
 
@@ -2262,7 +2262,7 @@ public:
 	CentroDeGravedad(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{}
 	~CentroDeGravedad(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 protected:
 };
 
@@ -2273,7 +2273,7 @@ public:
 	Altura(MaquinaInferencia *maq, int numVar, Norma *nor):Concresor(maq,numVar,nor)
 	{}
 	~Altura(){}
-	float salidaConcreta(float *ent);
+	double salidaConcreta(double *ent);
 protected:
 };
 
@@ -2316,13 +2316,13 @@ public:
 		return Motor;
 	}
 	Concresor *concresor(int numSal);
-	float salidaConcreta(int numSal,float *ent)
+	double salidaConcreta(int numSal,double *ent)
 	{
 		Concresor *conc;
 		conc=concresor(numSal);
 		return conc->salidaConcreta(ent);
 	}
-	void salidaConcreta(float *ent,float *sal);
+	void salidaConcreta(double *ent,double *sal);
 	void autodefinirBloqueConcrecion(MaquinaInferencia* maq,Norma *conjuncion);
 protected:
 	typedef Arreglo<Concresor> ListaConcresores;
@@ -2364,16 +2364,16 @@ public:
 	{
 		return salidas->nombreVariable(numVar);
 	}
-	void calcular(float *entra,float *sale)
+	void calcular(double *entra,double *sale)
 	{
 		concreto->salidaConcreta(entra,sale);
 	}
 	MaquinaInferencia *Motor(){return motor;}
-	void EntrenaUniversoFijo(float *antecedente, float *consecuente)
+	void EntrenaUniversoFijo(double *antecedente, double *consecuente)
 	{
 		motor->EntrenaUniversoFijo(antecedente,consecuente);
 	}
-	void EntrenaUniversoVariable(float *antecedente, float *consecuente)
+	void EntrenaUniversoVariable(double *antecedente, double *consecuente)
 	{
 		motor->EntrenaUniversoVariable(antecedente,consecuente);
 	}
@@ -2401,11 +2401,11 @@ class pin
 		{
 			Contacto=c;
 		}
-		float valor()
+		double valor()
 		{
 			return Valor;
 		}
-		void valor(float V)
+		void valor(double V)
 		{
 			Valor=V;
 		}
@@ -2414,7 +2414,7 @@ class pin
 
 	private:
 		pin* Contacto;
-		float Valor;
+		double Valor;
 
 };
 
@@ -2444,7 +2444,7 @@ class nodo
 		}
 		void calcularNodo();
 		void actualizarEntradas();
-		void calcular(float* entra, float* sale); // =0 para hacer virtual y heredar de SLD
+		void calcular(double* entra, double* sale); // =0 para hacer virtual y heredar de SLD
 		void ajustarPinesAsld();
 
 	protected:
@@ -2486,9 +2486,9 @@ class red
 		bool buscarNodo(int numCapa, int numNodo);
 		bool buscarPinEntrada(int numCapa, int numNodo, int numPin);
 		bool buscarPinSalida(int numCapa, int numNodo, int numPin);
-		float valorPinEntrada(int numCapa, int numNodo, int numPin);
-		float valorPinSalida(int numCapa, int numNodo, int numPin);
-		void valorEntrada(int numNodo, int numPin, float Valor);
+		double valorPinEntrada(int numCapa, int numNodo, int numPin);
+		double valorPinSalida(int numCapa, int numNodo, int numPin);
+		void valorEntrada(int numNodo, int numPin, double Valor);
 		nodo* ptrNodo(int numCapa, int numNodo);
 		pin* ptrPinEntrada(int numCapa, int numNodo, int numPin);
 		pin* ptrPinSalida (int numCapa, int numNodo, int numPin);
@@ -2504,9 +2504,9 @@ class red
 		bool buscarPinSalida(pin* Pin, int *numCapa, int *numNodo, int *numPin);
 		int numeroEntradas();
 		int numeroSalidas();
-		void asignarEntradas(float* entra);
-		void leerSalidas(float* sale);
-		void calcular(float* entra, float* sale);
+		void asignarEntradas(double* entra);
+		void leerSalidas(double* sale);
+		void calcular(double* entra, double* sale);
 
 		void calcularRed();
 

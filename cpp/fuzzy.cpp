@@ -8,7 +8,7 @@
 #endif
 
 
-void ConjuntoL::nuevoPuntoClave(int punto, float x)
+void ConjuntoL::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -18,7 +18,7 @@ void ConjuntoL::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoTriangulo::nuevoPuntoClave(int punto, float x)
+void ConjuntoTriangulo::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -29,7 +29,7 @@ void ConjuntoTriangulo::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoPi::nuevoPuntoClave(int punto, float x)
+void ConjuntoPi::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -41,7 +41,7 @@ void ConjuntoPi::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoGamma::nuevoPuntoClave(int punto, float x)
+void ConjuntoGamma::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -51,7 +51,7 @@ void ConjuntoGamma::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoZ::nuevoPuntoClave(int punto, float x)
+void ConjuntoZ::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -61,7 +61,7 @@ void ConjuntoZ::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoCampana::nuevoPuntoClave(int punto, float x)
+void ConjuntoCampana::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -72,7 +72,7 @@ void ConjuntoCampana::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoPiCampana::nuevoPuntoClave(int punto, float x)
+void ConjuntoPiCampana::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -84,7 +84,7 @@ void ConjuntoPiCampana::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoS::nuevoPuntoClave(int punto, float x)
+void ConjuntoS::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -94,7 +94,7 @@ void ConjuntoS::nuevoPuntoClave(int punto, float x)
 	}
 }
 
-void ConjuntoSinglenton::nuevoPuntoClave(int punto, float x)
+void ConjuntoSinglenton::nuevoPuntoClave(int punto, double x)
 {
 	switch(punto)
 	{
@@ -127,21 +127,21 @@ void Variable::limpiarListaConjuntos()
 	}
 }
 
-float Variable::pertenencia(int i, float x)
+double Variable::pertenencia(int i, double x)
 {
 	return pertenencia(this->conjunto(i), x);
 }
 
-float Variable::pertenencia(ConjuntoDifuso* cd, float x)
+double Variable::pertenencia(ConjuntoDifuso* cd, double x)
 {
-	float ux;
+	double ux;
 	ux=cd->pertenencia(x);
 	return ux;
 }
 
-float Variable::pertenenciaDifusor(float x)
+double Variable::pertenenciaDifusor(double x)
 {
-	float ux;
+	double ux;
 	ux=DifusorEntrada->pertenencia(x);
 	return ux;
 }
@@ -172,7 +172,7 @@ void Universo::limpiarListaVariables()
 	}
 }
 
-void Universo::entradaReal(float *ent)
+void Universo::entradaReal(double *ent)
 {
 	int i;
 	for(i=0;i<numeroVariables();i++)
@@ -235,14 +235,14 @@ void MaquinaInferencia::limpiarMaquinaInferencia()
 
 }
 
-void MaquinaInferencia::actualizarEntradas(float *ent)
+void MaquinaInferencia::actualizarEntradas(double *ent)
 {
 	Entradas->entradaReal(ent);
 }
 
-float MaquinaInferencia::pertenenciaDifusores(float *ent)
+double MaquinaInferencia::pertenenciaDifusores(double *ent)
 {
-	float uxd;
+	double uxd;
 	int j;
 	j=0;
 	uxd=Entradas->pertenenciaDifusor(j,ent[j]);
@@ -253,27 +253,27 @@ float MaquinaInferencia::pertenenciaDifusores(float *ent)
 	return uxd;
 }
 
-float MaquinaInferencia::pertenenciaImplicacion(int numSal,int numRegla, float *ent,float sal)
+double MaquinaInferencia::pertenenciaImplicacion(int numSal,int numRegla, double *ent,double sal)
 {
-	float uxa,uxb;
+	double uxa,uxb;
 	uxa=pertenenciaAntecedente(numRegla,ent);
 	uxb=pertenenciaConsecuente(numSal,numRegla,sal);
 	return Implicaciones->implica(uxa,uxb);
 }
 
-float MaquinaInferencia::pertenenciaConsecuente(int numSal,int numRegla,float sal)
+double MaquinaInferencia::pertenenciaConsecuente(int numSal,int numRegla,double sal)
 {
-	float uxc;
+	double uxc;
 	int conj;
 	conj=numConjuntoSalida(numRegla,numSal);
 	uxc=Salidas->pertenenciaVariable(numSal,conj,sal);
 	return uxc;
 }
 
-float MaquinaInferencia::pertenenciaAntecedente(int numRegla,float *ent)
+double MaquinaInferencia::pertenenciaAntecedente(int numRegla,double *ent)
 {
-	float ux;
-	float uxa;
+	double ux;
+	double uxa;
 	int conj;
 	int j;
 	j=0;
@@ -302,14 +302,14 @@ float MaquinaInferencia::pertenenciaAntecedente(int numRegla,float *ent)
 	return uxa;
 }
 
-float MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,float sal)
+double MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,double sal)
 {
-	float ux;
-	float uxa;
-	float uxab;
-	float comp=0;
-	float *x;
-	x=new float[NumeroEntradas];
+	double ux;
+	double uxa;
+	double uxab;
+	double comp=0;
+	double *x;
+	x=new double[NumeroEntradas];
 	int *inter;
 	inter= new int[NumeroEntradas];
 	if(!activarRegla(numRegla))
@@ -355,7 +355,7 @@ int MaquinaInferencia::activarRegla(int numRegla)
 	int i;
 	for(i=0;i<NumeroEntradas;i++)
 	{
-		float bmn,bmx,cmn,cmx;
+		double bmn,bmx,cmn,cmx;
 		int numCon;
 		numCon=numConjuntoEntrada(numRegla,i);
 		bmn=Entradas->minimoEnConjunto(i,numCon);
@@ -391,7 +391,7 @@ void MaquinaInferencia::desocuparBaseReglas()
 	 NumeroReglas=1;
 }
 
-void MaquinaInferencia::EntrenaUniversoFijo(float *antecedente, float *consecuente)
+void MaquinaInferencia::EntrenaUniversoFijo(double *antecedente, double *consecuente)
 {
 	Regla *ReglaTemporal;
 	ReglaTemporal=new Regla(NumeroEntradas,NumeroSalidas);
@@ -417,10 +417,10 @@ void MaquinaInferencia::EntrenaUniversoFijo(float *antecedente, float *consecuen
 	}
 }
 
-void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *consec)
+void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, double *antec, double *consec)
 {
 	int i;
-	float certeza=1.0;
+	double certeza=1.0;
 	for(i=0;i<NumeroEntradas;i++)
 	{
 		if(antec[i]>Entradas->rangoMaximoVariable(i))
@@ -431,11 +431,11 @@ void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *c
 		{
 			antec[i]=Entradas->rangoMinimoVariable(i);
 		}
-		float maxPerAnte=0;
+		double maxPerAnte=0;
 		int j;
 		for(j=0;j<Entradas->numeroConjuntosEnVariable(i);j++)
 		{
-			float Per;
+			double Per;
 			Per=Entradas->pertenenciaVariable(i,j,antec[i]);
 			if(maxPerAnte<Per)
 			{
@@ -456,11 +456,11 @@ void MaquinaInferencia::llenarRegla(Regla *ReglaTemporal, float *antec, float *c
 		{
 			consec[i]=Salidas->rangoMinimoVariable(i);
 		}
-		float maxPerCons=0;
+		double maxPerCons=0;
 		int j;
 		for(j=0;j<Salidas->numeroConjuntosEnVariable(i);j++)
 		{
-			float Per;
+			double Per;
 			Per=Salidas->pertenenciaVariable(i,j,consec[i]);
 			if(maxPerCons<Per)
 			{
@@ -488,7 +488,7 @@ int MaquinaInferencia::compararAntec(Regla *rg1, Regla *rg2)
 	return resultado;
 }
 
-void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *consecuente)
+void MaquinaInferencia::EntrenaUniversoVariable(double *antecedente, double *consecuente)
 {
 	ConjuntoDifuso* conj;
 	int i;
@@ -498,8 +498,8 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		tipoConjunto=Entradas->variable(i)->conjunto(0)->identificador();
 		int numeroPuntos;
 		numeroPuntos=Entradas->variable(i)->conjunto(0)->numeroPuntosClaves();
-		float *puntos;
-		puntos=new float[numeroPuntos];
+		double *puntos;
+		puntos=new double[numeroPuntos];
 		Entradas->variable(i)->conjunto(0)->puntosClaves(puntos);
 		switch(tipoConjunto)
 		{
@@ -523,7 +523,7 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 						break;
 			default:break;
 		}
-		float delta;
+		double delta;
 		delta=*(antecedente+i)-conj->centroAltura();
 		int j;
 		for(j=0;j<numeroPuntos;j++)
@@ -539,8 +539,8 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 		tipoConjunto=Salidas->variable(i)->conjunto(0)->identificador();
 		int numeroPuntos;
 		numeroPuntos=Salidas->variable(i)->conjunto(0)->numeroPuntosClaves();
-		float *puntos;
-		puntos=new float[numeroPuntos];
+		double *puntos;
+		puntos=new double[numeroPuntos];
 		Salidas->variable(i)->conjunto(0)->puntosClaves(puntos);
 		switch(tipoConjunto)
 		{
@@ -564,7 +564,7 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 						break;
 			default:break;
 		}
-		float delta;
+		double delta;
 		delta=*(consecuente+i)-conj->centroAltura();
 		int j;
 		for(j=0;j<numeroPuntos;j++)
@@ -589,12 +589,12 @@ void MaquinaInferencia::EntrenaUniversoVariable(float *antecedente, float *conse
 }
 
 
-float PrimerMaximo::salidaConcreta(float *ent)
+double PrimerMaximo::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto=0;
-	float y;
-	float ymax;
+	double con;
+	double concreto=0;
+	double y;
+	double ymax;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	Motor->actualizarEntradas(ent);
 	int i;
@@ -605,7 +605,7 @@ float PrimerMaximo::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -619,12 +619,12 @@ float PrimerMaximo::salidaConcreta(float *ent)
 }
 
 
-float UltimoMaximo::salidaConcreta(float *ent)
+double UltimoMaximo::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto=0;
-	float y;
-	float ymax;
+	double con;
+	double concreto=0;
+	double y;
+	double ymax;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	Motor->actualizarEntradas(ent);
 	int i;
@@ -635,7 +635,7 @@ float UltimoMaximo::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -649,14 +649,14 @@ float UltimoMaximo::salidaConcreta(float *ent)
 }
 
 
-float MediaDeMaximos::salidaConcreta(float *ent)
+double MediaDeMaximos::salidaConcreta(double *ent)
 {
-	float con;
-	float concreto1=0;
-	float concreto2=0;
-	float y;
-	float ymax;
-	float ymax1,ymax2;
+	double con;
+	double concreto1=0;
+	double concreto2=0;
+	double y;
+	double ymax;
+	double ymax1,ymax2;
 	ymax=Motor->salidas()->rangoMinimoVariable(NumeroVariable);
 	ymax1=ymax;
 	ymax2=ymax;
@@ -669,7 +669,7 @@ float MediaDeMaximos::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -689,13 +689,13 @@ float MediaDeMaximos::salidaConcreta(float *ent)
 }
 
 
-float CentroDeGravedad::salidaConcreta(float *ent)
+double CentroDeGravedad::salidaConcreta(double *ent)
 {
-	float con;
-	float y;
-	float y1=0;
-	float y2=0;
-	float ymax;
+	double con;
+	double y;
+	double y1=0;
+	double y2=0;
+	double ymax;
 	Motor->actualizarEntradas(ent);
 	int i;
 	for(i=0;i<(Motor->salidas()->numeroIntervalosEnVariable(NumeroVariable)+1);i++)
@@ -705,7 +705,7 @@ float CentroDeGravedad::salidaConcreta(float *ent)
 		int j;
 		for(j=0;j<Motor->numeroReglas();j++)
 		{
-			float temp;
+			double temp;
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			con=Conjuncion->opera(con,temp);
 		}
@@ -720,11 +720,11 @@ float CentroDeGravedad::salidaConcreta(float *ent)
 	return ymax;
 }
 
-float Altura::salidaConcreta(float *ent)
+double Altura::salidaConcreta(double *ent)
 {
-	float ymax;
-	float y;
-	 float y1,y2;
+	double ymax;
+	double y;
+	 double y1,y2;
 	Motor->actualizarEntradas(ent);
 	int j;
     y1=0;
@@ -733,7 +733,7 @@ float Altura::salidaConcreta(float *ent)
 	{
 		if(Motor->activarRegla(j))
 		{
-			float temp;
+			double temp;
 			y=Motor->conjuntoSalida(j,NumeroVariable)->centroAltura();
 			temp=Motor->pertenenciaComposicion(NumeroVariable,j,y);
 			y1=y1+temp*y;
@@ -765,7 +765,7 @@ Concresor* BloqueConcrecion::concresor(int numSal)
 	return Concresores->dato(numSal);
 }
 
-void BloqueConcrecion::salidaConcreta(float *ent,float *sal)
+void BloqueConcrecion::salidaConcreta(double *ent,double *sal)
 {
 	int numSal;
 	numSal=Motor->numeroSalidas();
@@ -804,8 +804,8 @@ void BloqueConcrecion::conjuncion(Norma *nor)
 void nodo::calcularNodo()
 {
 	actualizarEntradas();
-	float entra[Entradas.GetItemsInContainer()];
-	float sale [Salidas .GetItemsInContainer()];
+	double entra[Entradas.GetItemsInContainer()];
+	double sale [Salidas .GetItemsInContainer()];
 	for(int i=0;i<Entradas.GetItemsInContainer();i++)
 	{
 		entra[i]=Entradas.dato(i)->valor();
@@ -829,7 +829,7 @@ void nodo::actualizarEntradas()
 	}
 }
 
-void nodo::calcular(float* entra, float* sale)
+void nodo::calcular(double* entra, double* sale)
 {
 	SLD->calcular(entra,sale);
 }
@@ -900,9 +900,9 @@ bool red::buscarPinSalida(int numCapa, int numNodo, int numPin)
 	return true;
 }
 
-float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
+double red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 {
-	float V=0.0;
+	double V=0.0;
 	if(!buscarPinEntrada(numCapa,numNodo,numPin))
 	{
 		return V;
@@ -910,9 +910,9 @@ float red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->entradas()->dato(numPin)->valor();
 }
 
-float red::valorPinSalida(int numCapa, int numNodo, int numPin)
+double red::valorPinSalida(int numCapa, int numNodo, int numPin)
 {
-	float V=0.0;
+	double V=0.0;
 	if(!buscarPinSalida(numCapa,numNodo,numPin))
 	{
 		return V;
@@ -931,7 +931,7 @@ void red::calcularRed()
 	}
 }
 
-void red::valorEntrada(int numNodo, int numPin, float Valor)
+void red::valorEntrada(int numNodo, int numPin, double Valor)
 {
   if(!buscarPinEntrada(0,numNodo,numPin))
 	{
@@ -1111,7 +1111,7 @@ int red::numeroSalidas()
 	return num;
 }
 
-void red::asignarEntradas(float* entra)
+void red::asignarEntradas(double* entra)
 {
 	int cnt=0;
 	int numCapa=0;
@@ -1125,7 +1125,7 @@ void red::asignarEntradas(float* entra)
 	}
 }
 
-void red::leerSalidas(float* sale)
+void red::leerSalidas(double* sale)
 {
 	int cnt=0;
 	int numCapa=capas()->GetItemsInContainer()-1;
@@ -1139,7 +1139,7 @@ void red::leerSalidas(float* sale)
 	}
 }
 
-void red::calcular(float* entra, float* sale)
+void red::calcular(double* entra, double* sale)
 {
 	asignarEntradas(entra);
 	calcularRed();

@@ -16,8 +16,8 @@ class DialogoEditarVariable : public wxDialog
 		void OnOK(wxCommandEvent&   event);
 
 		wxString nombre;
-		float min_;
-		float max_;
+		double min_;
+		double max_;
 		int intervalos;
 	protected:
 		Variable *Var;

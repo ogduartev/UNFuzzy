@@ -22,9 +22,9 @@ procedimientos:
 
 Las funciones virtual=0 deben ser redefinidas por los hijos
 
-	virtual float defecto()=0;
+	virtual double defecto()=0;
                     determina si la Implicacion es ImplicacionT_Norma ó ImplicacionIf_Then
-	virtual float implica(float, float)=0;
+	virtual double implica(double, double)=0;
                     efectúa la operación matemática
 	virtual char* codigoC()=0;
                         entrega el texto necesario para generar Codigo C (ver DialogGenerarCodigo)
@@ -42,8 +42,8 @@ public:
 	virtual ~Implicacion()
 	{
 	}
-	virtual float implica(float,float)=0;
-	virtual float defecto()=0;
+	virtual double implica(double,double)=0;
+	virtual double defecto()=0;
 	virtual string codigoC()=0;
 	virtual string codigoCPP()=0;
 	string tipo()
@@ -71,13 +71,13 @@ class ImplicacionT_Norma:public Implicacion
 public:
 	ImplicacionT_Norma(){}
 	~ImplicacionT_Norma(){}
-	float defecto()
+	double defecto()
 	{
 		return 0;
 	}
 	string codigoC()=0;
 	string codigoCPP()=0;
-	virtual float implica(float x, float y)=0;
+	virtual double implica(double x, double y)=0;
 protected:
 };
 
@@ -93,11 +93,11 @@ class ImplicacionIf_Then:public Implicacion
 public:
 	ImplicacionIf_Then(){}
 	~ImplicacionIf_Then(){}
-	float defecto()
+	double defecto()
 	{
 		return 1;
 	}
-	virtual float implica(float x, float y)=0;
+	virtual double implica(double x, double y)=0;
 	string codigoC()=0;
 	string codigoCPP()=0;
 protected:
@@ -134,9 +134,9 @@ public:
 		CodigoCPP=("ImplicacionProducto();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float z;
+		double z;
 		z=x*y;
 		return z;
 	}
@@ -178,9 +178,9 @@ public:
 		CodigoCPP=("ImplicacionMinimo();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float z;
+		double z;
 		if(x<y)
 			z=x;
 		else
@@ -223,9 +223,9 @@ public:
 		CodigoCPP=("ImplicacionKleenDienes();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		x=1-x;
 		if(x>y)
 			rel=x;
@@ -272,9 +272,9 @@ public:
 		CodigoCPP=("ImplicacionLukasiewicz();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		rel=1-x+y;
 		if(rel>1)
 			rel=1;
@@ -319,9 +319,9 @@ public:
 		CodigoCPP=("ImplicacionZadeh();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<y)
 			rel=x;
 		else
@@ -367,9 +367,9 @@ public:
 		CodigoCPP=("ImplicacionEstocastica();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		rel=x*y;
 		x=1-x;
 		if(rel<x)
@@ -414,9 +414,9 @@ public:
 		CodigoCPP=("ImplicacionGoguen();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x>0.00001)
 			rel=y/x;
 		else
@@ -461,9 +461,9 @@ public:
 		CodigoCPP=("ImplicacionGodel();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<=y)
 			rel=1;
 		else
@@ -506,9 +506,9 @@ public:
 		CodigoCPP=("ImplicacionAguda();");
 		return std::string(CodigoCPP.mb_str());
 	}
-	float implica(float x, float y)
+	double implica(double x, double y)
 	{
-		float rel;
+		double rel;
 		if(x<=y)
 			rel=1;
 		else

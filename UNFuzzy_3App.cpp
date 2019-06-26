@@ -22,6 +22,16 @@ IMPLEMENT_APP(UNFuzzy_3App);
 
 bool UNFuzzy_3App::OnInit()
 {
+		wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+		wxString strLocale(f.GetPath());
+		strLocale << "/locale/";
+   	wxLocale *MiLocale;
+		MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
+		MiLocale->AddCatalogLookupPathPrefix(strLocale);
+		MiLocale->AddCatalog("es");
+		setlocale (LC_NUMERIC,"C");
+
+
   	SLD.crearMinimoSLD(1,1);
 
     DialogoSLD* dlg = new DialogoSLD(0L, &SLD,true, _("UNFuzzy 3.0"));

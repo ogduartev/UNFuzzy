@@ -87,7 +87,7 @@ void Archivador::guardarDifusor(wxXmlNode* parent, Difusor *dif)
 	NodeA->AddAttribute(("Points")      ,  wxString::Format(("%d"),dif->numeroPuntos()));
 	NodeA->AddAttribute(("Center")      ,  wxString::Format(("%f"),dif->centro()));
 
-	float puntos[dif->numeroPuntosClaves()];
+	double puntos[dif->numeroPuntosClaves()];
 	dif->puntosClaves(puntos);
 	for(int i=dif->numeroPuntosClaves()-1;i>=0;i--)
 	{
@@ -104,7 +104,7 @@ void Archivador::guardarConjunto(wxXmlNode* parent, ConjuntoDifuso *cd)
 	NodeA->AddAttribute(("Name")      , cd->nombre());
 	NodeA->AddAttribute(("Type")        ,  wxString::Format(("%d"),cd->identificador()));
 
-	float puntos[cd->numeroPuntosClaves()];
+	double puntos[cd->numeroPuntosClaves()];
 	cd->puntosClaves(puntos);
 	for(int i=cd->numeroPuntosClaves()-1;i>=0;i--)
 	{
@@ -300,9 +300,9 @@ void Archivador::leerVariable      (wxXmlNode* parent, Variable *var, bool flagD
 	strS=parent->GetAttribute(("Name"));
 	var->nombreVariable(std::string(strS.mb_str()));
 	parent->GetAttribute(("Minimum")).ToDouble(&tmpD);
-	var->rangoMinimo((float)tmpD);
+	var->rangoMinimo((double)tmpD);
 	parent->GetAttribute(("Maximum")).ToDouble(&tmpD);
-	var->rangoMaximo((float)tmpD);
+	var->rangoMaximo((double)tmpD);
 	parent->GetAttribute(("Intervals")).ToLong(&tmpL);
 	var->numeroIntervalos((int)tmpL);
 
@@ -341,16 +341,16 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 
 	int identificador;
 	int numeroPuntos;
-	float centro;
+	double centro;
 
 	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador = (int)tmpL;
 	parent->GetAttribute(("Points")).ToLong(&tmpL);
 	numeroPuntos = (int)tmpL;
 	parent->GetAttribute(("Center")).ToDouble(&tmpD);
-	centro = (float)tmpD;
+	centro = (double)tmpD;
 
-	float puntos[10];
+	double puntos[10];
 	wxXmlNode *NodeA=parent->GetChildren();
 	int cnt=0;
 	while(NodeA)
@@ -358,7 +358,7 @@ Difusor* Archivador::leerDifusor      (wxXmlNode* parent, Variable *var)
 		if(NodeA->GetName()==("POINT"))
 		{
 			NodeA->GetAttribute(("X")).ToDouble(&tmpD);
-			puntos[cnt]=(float)tmpD;
+			puntos[cnt]=(double)tmpD;
 			cnt++;
 		}
 		NodeA=NodeA->GetNext();
@@ -388,9 +388,9 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 	wxString Nombre;
 	int identificador;
 	int numeroPuntosClave;
-	float *puntosClave;
-	float minimo;
-	float maximo;
+	double *puntosClave;
+	double minimo;
+	double maximo;
 
 	Nombre=parent->GetAttribute(("Name"));
 	parent->GetAttribute(("Type")).ToLong(&tmpL);
@@ -398,7 +398,7 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 	minimo = var->rangoMinimo();
 	maximo = var->rangoMaximo();
 
-	float puntos[10];
+	double puntos[10];
 	wxXmlNode *NodeA=parent->GetChildren();
 	int cnt=0;
 	while(NodeA)
@@ -406,7 +406,7 @@ ConjuntoDifuso* Archivador::leerConjunto      (wxXmlNode* parent, Variable *var)
 		if(NodeA->GetName()==("POINT"))
 		{
 			NodeA->GetAttribute(("X")).ToDouble(&tmpD);
-			puntos[cnt]=(float)tmpD;
+			puntos[cnt]=(double)tmpD;
 			cnt++;
 		}
 		NodeA=NodeA->GetNext();
@@ -491,10 +491,10 @@ void Archivador::leerRegla(wxXmlNode* parent, Regla *regla)
 
 	int numVar;
 	int numEt;
-	float mod;
+	double mod;
 
 	parent->GetAttribute(("Certainty")).ToDouble(&tmpD);
-	regla->certeza((float)tmpD);
+	regla->certeza((double)tmpD);
 
 	wxXmlNode *NodeA=parent->GetChildren();
 	while(NodeA)
@@ -506,7 +506,7 @@ void Archivador::leerRegla(wxXmlNode* parent, Regla *regla)
 			NodeA->GetAttribute(("Label")).ToLong(&tmpL);
 			numEt =(int)tmpL;
 			NodeA->GetAttribute(("Modifier")).ToDouble(&tmpD);
-			mod   =(float)tmpD;
+			mod   =(double)tmpD;
 			regla->conjuntoEntrada(numVar,numEt);
 			regla->modificador(numVar,mod);
 
@@ -528,12 +528,12 @@ Norma* Archivador::leerNorma(wxXmlNode* parent)
 	double tmpD;
 
 	int identificador;
-	float parametro;
+	double parametro;
 
 	parent->GetAttribute(("Type")).ToLong(&tmpL);
 	identificador=(int)tmpL;
 	parent->GetAttribute(("Parameter")).ToDouble(&tmpD);
-	parametro=(float)tmpD;
+	parametro=(double)tmpD;
 
 	Norma* norma;
 	switch(identificador)
