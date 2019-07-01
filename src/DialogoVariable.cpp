@@ -213,7 +213,7 @@ void DialogoVariable::pintarVariable(int numVar,int conj)
 
 	numeroPuntosArrastre=Grafica.numeroPuntosArrastre;
 	tamArrastre=Grafica.tamArrastre;
-	for(int i=0;i<=numeroPuntosArrastre+1;i++)
+	for(int i=1;i<=numeroPuntosArrastre+1;i++)
 	{
 		puntosArrastre[i]=Grafica.puntosArrastre[i];
 	}
@@ -252,7 +252,7 @@ void DialogoVariable::OnLeftDown(wxMouseEvent& event)
 {
 	wxPoint tp(event.GetX(),event.GetY());
 	puntoArrastrado=0;
-	for(int i=1;i<=numeroPuntosArrastre+1;i++)
+	for(int i=1;i<=numeroPuntosArrastre+0;i++)
 	{
 		wxRect rect(puntosArrastre[i].x-tamArrastre,puntosArrastre[i].y-tamArrastre,tamArrastre*2,tamArrastre*2);
 		if(rect.Contains(tp))

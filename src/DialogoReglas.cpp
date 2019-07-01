@@ -172,6 +172,7 @@ void DialogoReglas::llenarTabla()
 		}
 
 	}
+	gridTabla->SetRowLabelSize( wxGRID_AUTOSIZE );
 }
 
 void DialogoReglas::OnInsertar    (wxCommandEvent&   event)

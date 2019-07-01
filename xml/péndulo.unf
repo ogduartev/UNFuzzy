@@ -2,9 +2,9 @@
 <FLS Name="Control de péndulo invertido" Description="Controlador para un péndulo invertido">
   <INPUTS>
     <VARIABLE Name="Ángulo" Minimum="-1.000000" Maximum="1.000000" Intervals="30">
-      <FUZZYFIER Type="8" Points="1" Center="1.000000">
-        <POINT X="0.995000"/>
-        <POINT X="1.005000"/>
+      <FUZZYFIER Type="8" Points="1" Center="0.000000">
+        <POINT X="-0.005000"/>
+        <POINT X="0.005000"/>
       </FUZZYFIER>
       <LABEL Name="Negativo Mediano" Type="0">
         <POINT X="-0.666667"/>
@@ -30,10 +30,10 @@
         <POINT X="0.666667"/>
       </LABEL>
     </VARIABLE>
-    <VARIABLE Name="Delta Ángulo" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
-      <FUZZYFIER Type="8" Points="1" Center="0.500000">
-        <POINT X="0.495000"/>
-        <POINT X="0.505000"/>
+    <VARIABLE Name="Velocidad angular" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="0.000000">
+        <POINT X="-0.005000"/>
+        <POINT X="0.005000"/>
       </FUZZYFIER>
       <LABEL Name="Negativo" Type="0">
         <POINT X="-0.500000"/>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FLS Name="Sin nombre" Description="">
+  <INPUTS>
+    <VARIABLE Name="Presión" Minimum="10.000000" Maximum="40.000000" Intervals="20">
+      <FUZZYFIER Type="5" Points="5" Center="25.000000">
+        <POINT X="20.049999"/>
+        <POINT X="25.000000"/>
+        <POINT X="29.950001"/>
+      </FUZZYFIER>
+      <LABEL Name="Bajo" Type="0">
+        <POINT X="10.000000"/>
+        <POINT X="25.000000"/>
+      </LABEL>
+      <LABEL Name="Medio" Type="2">
+        <POINT X="10.000000"/>
+        <POINT X="20.000000"/>
+        <POINT X="30.000000"/>
+        <POINT X="40.000000"/>
+      </LABEL>
+      <LABEL Name="Alto" Type="3">
+        <POINT X="25.000000"/>
+        <POINT X="40.000000"/>
+      </LABEL>
+    </VARIABLE>
+    <VARIABLE Name="Temperatura" Minimum="0.000000" Maximum="10.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="5.000000">
+        <POINT X="4.975000"/>
+        <POINT X="5.025000"/>
+      </FUZZYFIER>
+      <LABEL Name="Baja" Type="4">
+        <POINT X="0.000000"/>
+        <POINT X="5.000000"/>
+      </LABEL>
+      <LABEL Name="Media" Type="5">
+        <POINT X="0.000000"/>
+        <POINT X="5.000000"/>
+        <POINT X="10.000000"/>
+      </LABEL>
+      <LABEL Name="Alta" Type="7">
+        <POINT X="5.000000"/>
+        <POINT X="10.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </INPUTS>
+  <OUTPUTS>
+    <VARIABLE Name="Control" Minimum="-1.000000" Maximum="1.000000" Intervals="20">
+      <LABEL Name="Bajo" Type="0">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+      </LABEL>
+      <LABEL Name="Medio" Type="1">
+        <POINT X="-1.000000"/>
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Alto" Type="3">
+        <POINT X="0.000000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </OUTPUTS>
+  <ENGINE>
+    <IMPLICATION Type="1"/>
+    <COMPOSITION Type="1" Parameter="0.000000"/>
+    <AND Type="1" Parameter="0.000000"/>
+    <BASE Inputs="2" Outputs="1">
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <ANTECEDENT Variable="1" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+    </BASE>
+  </ENGINE>
+  <DEFUZZYFIERS>
+    <DEFUZZYFIER Variable="0" Type="3"/>
+    <CONJUNCTION Type="10" Parameter="0.000000"/>
+  </DEFUZZYFIERS>
+</FLS>
