@@ -54,6 +54,7 @@ class UNFuzzyNetworkFrame: public wxFrame
         void OnPaint(wxPaintEvent& event);
         void OnMouseLeftDown(wxMouseEvent& event);
         void OnMouseLeftUp(wxMouseEvent& event);
+        void OnMouseRightDown(wxMouseEvent& event);
 
         void paintNow();
         void render(wxDC& dc);
@@ -74,6 +75,8 @@ class UNFuzzyNetworkFrame: public wxFrame
         void eliminarNodo(int numCapa,int numNodo);
         void eliminarCapa(int numCapa);
         void datoEntrada(int numNodo, int numPin);
+
+        void copiarAlClipboard();
 
     private:
     	red Red;

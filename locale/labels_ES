@@ -1,0 +1,19 @@
+Único
+Si,No
+Prohibido,Permitido
+Desfavorable,Favorable
+Inaceptable,Aceptable
+Bajo,Medio,Alto
+Baja,Media,Alta
+B,M,A
+Negativo,Cero,Positivo
+N,C,P
+Desfavorable,Neutro,Favorable
+Inaceptable,Neutro,Aceptable
+Muy bajo, Bajo, Medio, Alto, Muy alto
+MB,B,M,A,MA
+Negativo grande, Negativo pequeño, Cero, Positivo pequeño, Positivo grande
+NG,NP,C,PP,PG
+MMB,MB,B,M,A,MA,MMA
+
+

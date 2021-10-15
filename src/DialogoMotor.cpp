@@ -2,10 +2,11 @@
 
 BEGIN_EVENT_TABLE(DialogoMotor, wxDialog)
     EVT_CLOSE(DialogoMotor::OnClose)
-    EVT_COMBOBOX(DLG_MOTOR_IMPLICACION  , DialogoMotor::OnImplicacion)
-    EVT_COMBOBOX(DLG_MOTOR_COMPOSICION  , DialogoMotor::OnComposicion)
-    EVT_COMBOBOX(DLG_MOTOR_AND          , DialogoMotor::OnAnd)
-    EVT_COMBOBOX(DLG_MOTOR_CONJUNCION   , DialogoMotor::OnConjuncion)
+    EVT_COMBOBOX(DLG_MOTOR_IMPLICACION     , DialogoMotor::OnImplicacion)
+    EVT_COMBOBOX(DLG_MOTOR_MINCOMPOSICION  , DialogoMotor::OnMinComposicion)
+    EVT_COMBOBOX(DLG_MOTOR_MAXCOMPOSICION  , DialogoMotor::OnMaxComposicion)
+    EVT_COMBOBOX(DLG_MOTOR_AND             , DialogoMotor::OnAnd)
+    EVT_COMBOBOX(DLG_MOTOR_CONJUNCION      , DialogoMotor::OnConjuncion)
     EVT_BUTTON(wxID_OK   , DialogoMotor::OnOK)
 END_EVENT_TABLE()
 
@@ -20,17 +21,21 @@ DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
   wxFlexGridSizer* sizerOKCancel;
 
   sizerTotal       = new wxFlexGridSizer(1,2,0);
-  sizerControles   = new wxFlexGridSizer(2,4,0);
+  sizerControles   = new wxFlexGridSizer(3,4,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-  staticImplicacion = new wxStaticText(this,wxID_ANY,_("Implication"));
-  staticComposicion = new wxStaticText(this,wxID_ANY,_("Composition"));
-  staticAnd         = new wxStaticText(this,wxID_ANY,_("And"));
-  staticConjuncion  = new wxStaticText(this,wxID_ANY,_("Conjunction"));
-  comboImplicacion  = new wxComboBox(this,DLG_MOTOR_IMPLICACION,"",wxDefaultPosition,wxSize(150,25));
-  comboComposicion  = new wxComboBox(this,DLG_MOTOR_COMPOSICION,"",wxDefaultPosition,wxSize(150,25));
-  comboAnd          = new wxComboBox(this,DLG_MOTOR_AND        ,"",wxDefaultPosition,wxSize(150,25));
-  comboConjuncion   = new wxComboBox(this,DLG_MOTOR_CONJUNCION ,"",wxDefaultPosition,wxSize(150,25));
+  staticImplicacion    = new wxStaticText(this,wxID_ANY,_("Implication"));
+  staticMinComposicion = new wxStaticText(this,wxID_ANY,_("Composition-Min"));
+  staticMaxComposicion = new wxStaticText(this,wxID_ANY,_("Composition-Max"));
+  staticAnd            = new wxStaticText(this,wxID_ANY,_("And"));
+  staticConjuncion     = new wxStaticText(this,wxID_ANY,_("Rule Aggregation"));
+  wxStaticText *staticEmpty;
+  staticEmpty          = new wxStaticText(this,wxID_ANY,"");
+  comboImplicacion     = new wxComboBox(this,DLG_MOTOR_IMPLICACION   ,"",wxDefaultPosition,wxSize(150,25));
+  comboMinComposicion  = new wxComboBox(this,DLG_MOTOR_MINCOMPOSICION,"",wxDefaultPosition,wxSize(150,25));
+  comboMaxComposicion  = new wxComboBox(this,DLG_MOTOR_MAXCOMPOSICION,"",wxDefaultPosition,wxSize(150,25));
+  comboAnd             = new wxComboBox(this,DLG_MOTOR_AND           ,"",wxDefaultPosition,wxSize(150,25));
+  comboConjuncion      = new wxComboBox(this,DLG_MOTOR_CONJUNCION    ,"",wxDefaultPosition,wxSize(150,25));
 
   llenarCombos();
   seleccionarCombos();
@@ -39,11 +44,14 @@ DialogoMotor::DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent)
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 
 	sizerControles->Add(staticImplicacion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-	sizerControles->Add(staticComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerControles->Add(staticMinComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerControles->Add(staticMaxComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(comboImplicacion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-	sizerControles->Add(comboComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerControles->Add(comboMinComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerControles->Add(comboMaxComposicion, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(staticAnd        , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(staticConjuncion , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+	sizerControles->Add(staticEmpty , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(comboAnd        , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 	sizerControles->Add(comboConjuncion , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
@@ -87,14 +95,19 @@ void DialogoMotor::llenarCombos()
 		comboImplicacion->Append(Implicacion::tipo(i));
 	}
 
-	comboComposicion->Append(Norma::tipo(1));
-	comboComposicion->Append(Norma::tipo(0));
-	comboComposicion->Append(Norma::tipo(2));
-	comboComposicion->Append(Norma::tipo(3));
-	comboComposicion->Append(Norma::tipo(4));
-	comboComposicion->Append(Norma::tipo(7));
-	comboComposicion->Append(Norma::tipo(8));
-	comboComposicion->Append(Norma::tipo(9));
+	comboMinComposicion->Append(Norma::tipo(1));
+	comboMinComposicion->Append(Norma::tipo(0));
+	comboMinComposicion->Append(Norma::tipo(2));
+	comboMinComposicion->Append(Norma::tipo(3));
+	comboMinComposicion->Append(Norma::tipo(4));
+	comboMinComposicion->Append(Norma::tipo(7));
+	comboMinComposicion->Append(Norma::tipo(8));
+	comboMinComposicion->Append(Norma::tipo(9));
+
+	comboMaxComposicion->Append(Norma::tipo(10));
+	comboMaxComposicion->Append(Norma::tipo(11));
+	comboMaxComposicion->Append(Norma::tipo(12));
+	comboMaxComposicion->Append(Norma::tipo(6));
 
 	comboAnd->Append(Norma::tipo(1));
 	comboAnd->Append(Norma::tipo(0));
@@ -110,7 +123,6 @@ void DialogoMotor::llenarCombos()
 	comboConjuncion->Append(Norma::tipo(11));
 	comboConjuncion->Append(Norma::tipo(12));
 	comboConjuncion->Append(Norma::tipo(6));
-	comboConjuncion->Append(Norma::tipo(10));
 	comboConjuncion->Append("----------");
 	comboConjuncion->Append(Norma::tipo(1));
 	comboConjuncion->Append(Norma::tipo(0));
@@ -131,7 +143,7 @@ void DialogoMotor::seleccionarCombos()
 	sel=tipo;
 	comboImplicacion->SetSelection(sel);
 
-	tipo=Motor->composicion()->identificador();
+	tipo=Motor->minComposicion()->identificador();
 	switch(tipo)
 	{
 		case 0 : sel = 1; break;
@@ -144,7 +156,17 @@ void DialogoMotor::seleccionarCombos()
 		case 8 : sel = 8; break;
 		case 9 : sel = 9; break;
 	}
-	comboComposicion->SetSelection(sel);
+	comboMinComposicion->SetSelection(sel);
+
+	tipo=Motor->maxComposicion()->identificador();
+	switch(tipo)
+	{
+		case 10 : sel = 0; break;
+		case 11 : sel = 1; break;
+		case 12 : sel = 2; break;
+		case 6  : sel = 3; break;
+	}
+	comboMaxComposicion->SetSelection(sel);
 
 	tipo=Motor->and_()->identificador();
 	switch(tipo)
@@ -186,9 +208,14 @@ void DialogoMotor::OnImplicacion(wxCommandEvent& event)
 	nuevaImplicacion();
 }
 
-void DialogoMotor::OnComposicion(wxCommandEvent& event)
+void DialogoMotor::OnMinComposicion(wxCommandEvent& event)
 {
-	nuevaComposicion();
+	nuevaMinComposicion();
+}
+
+void DialogoMotor::OnMaxComposicion(wxCommandEvent& event)
+{
+	nuevaMaxComposicion();
 }
 
 void DialogoMotor::OnAnd(wxCommandEvent& event)
@@ -208,9 +235,9 @@ void DialogoMotor::nuevaImplicacion()
 	caso=comboImplicacion->GetSelection();
 	switch(caso)
 	{
-		case 0:imp=new ImplicacionMinimo();
+		case 0:imp=new ImplicacionProducto();
 				break;
-		case 1:imp=new ImplicacionProducto();
+		case 1:imp=new ImplicacionMinimo();
 				break;
 		case 2:imp=new ImplicacionKleenDienes();
 				break;
@@ -232,14 +259,25 @@ void DialogoMotor::nuevaImplicacion()
   /*FALTA VERIFICACION*/
 }
 
-void DialogoMotor::nuevaComposicion()
+void DialogoMotor::nuevaMinComposicion()
 {
 	int caso;
-	caso=comboComposicion->GetSelection();
+	caso=comboMinComposicion->GetSelection();
 	Norma* nor=nuevaTNorma(caso);
 	if(nor)
 	{
-		Motor->composicion(nor);
+		Motor->minComposicion(nor);
+	}
+}
+
+void DialogoMotor::nuevaMaxComposicion()
+{
+	int caso;
+	caso=comboMaxComposicion->GetSelection();
+	Norma* nor=nuevaSNorma(caso);
+	if(nor)
+	{
+		Motor->maxComposicion(nor);
 	}
 }
 
@@ -259,7 +297,11 @@ void DialogoMotor::nuevaConjuncion()
 	Norma *nor;
 	int caso;
 	caso=comboConjuncion->GetSelection();
-	if(caso==4){return;}
+	if(caso==4)
+	{
+    seleccionarCombos();
+		return;
+	}
 	if(caso<4)
 	{
 		nor=nuevaSNorma(caso);

@@ -4,8 +4,9 @@ Variable::Variable(int num)
 {
 	Conjuntos = new ListaConjuntos(num);
 	DifusorEntrada= new DifusorSinglenton(0.5,0.01);
+	DifusorEntrada->numeroPuntos(1);
 	NombreVariable="---";
-  numeroIntervalos(20);
+  numeroIntervalos(200);
   rangoMinimo(-1.0);
   rangoMaximo(1.0);
   autodefinirConjuntosRectos(num);

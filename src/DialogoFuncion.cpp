@@ -1,4 +1,7 @@
 #include "DialogoFuncion.h"
+#include <wx/arrimpl.cpp> // This is a magic incantation which must be done!
+WX_DEFINE_OBJARRAY(ArrayOfInputs);
+WX_DEFINE_OBJARRAY(ArrayOfColours);
 
 BEGIN_EVENT_TABLE(DialogoFuncion, wxDialog)
     EVT_PAINT(DialogoFuncion::OnPaint)
@@ -7,6 +10,7 @@ BEGIN_EVENT_TABLE(DialogoFuncion, wxDialog)
     EVT_BUTTON(DLG_FUNCION_BTNPINTAR  , DialogoFuncion::pintar)
     EVT_BUTTON(DLG_FUNCION_BTNLIMPIAR , DialogoFuncion::limpiar)
     EVT_BUTTON(DLG_FUNCION_BTNCOLOR ,   DialogoFuncion::OnColor)
+    EVT_RIGHT_DOWN(DialogoFuncion::OnRightClk)
     EVT_CHOICE(DLG_FUNCION_CHOICEENTRA, DialogoFuncion::limpiar)
     EVT_CHOICE(DLG_FUNCION_CHOICESALE , DialogoFuncion::limpiar)
 END_EVENT_TABLE()
@@ -34,7 +38,7 @@ void DialogoFuncion::iniciar()
 	sizerCentral     = new wxFlexGridSizer(2,2,0);
 	sizerControles   = new wxFlexGridSizer(1,4,0);
 	sizerChoices     = new wxFlexGridSizer(2,2,0);
-	sizerBotones     = new wxFlexGridSizer(2,1,0);
+	sizerBotones     = new wxFlexGridSizer(2,2,0);
 	sizerValores     = new wxFlexGridSizer(2,10,0);
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
@@ -81,6 +85,7 @@ void DialogoFuncion::iniciar()
 
   sizerBotones->Add(buttonPintar   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
   sizerBotones->Add(buttonLimpiar  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+  sizerBotones->Add(buttonColor  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
   sizerChoices->Add(staticEntradas , 1, wxALIGN_RIGHT|wxALIGN_CENTRE_VERTICAL|wxALL, 5);
   sizerChoices->Add(choiceEntradas , 1, wxALIGN_LEFT|wxALIGN_CENTRE_VERTICAL|wxALL, 5);
@@ -90,7 +95,7 @@ void DialogoFuncion::iniciar()
   sizerControles->Add(sizerChoices   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
   sizerControles->Add(sizerValores   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
   sizerControles->Add(sizerBotones   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
-  sizerControles->Add(buttonColor    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
+//  sizerControles->Add(buttonColor    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
   sizerCentral->Add(canvasFuncion);
   sizerCentral->Add(sizerControles , 1, wxALIGN_CENTRE_HORIZONTAL|wxALIGN_CENTRE_VERTICAL|wxALL, 5);
@@ -109,6 +114,9 @@ void DialogoFuncion::iniciar()
   this->SetSizer(sizerTotal);
   this->Layout();
   sizerTotal->Fit(this);
+
+	pintarFuncion(true,false,0,0);
+	mostrarControlesEntrada();
 }
 
 DialogoFuncion::~DialogoFuncion()
@@ -127,7 +135,12 @@ void DialogoFuncion::OnOK(wxCommandEvent&   event)
 
 void DialogoFuncion::OnPaint       (wxPaintEvent& event)
 {
-	limpiar((wxCommandEvent&) event);
+	int numEntra=0;
+	int numSale=0;
+	numEntra = choiceEntradas->GetSelection();
+	numSale  = choiceSalidas->GetSelection();
+	pintarFuncion(true,false,numEntra,numSale);
+  mostrarControlesEntrada();
 }
 
 void DialogoFuncion::pintar(wxCommandEvent&   event)
@@ -136,15 +149,36 @@ void DialogoFuncion::pintar(wxCommandEvent&   event)
 	int numSale=0;
 	numEntra = choiceEntradas->GetSelection();
 	numSale  = choiceSalidas->GetSelection();
-	pintarFuncion(false,true,numEntra,numSale);
+	pintarFuncion(true,true,numEntra,numSale);
 }
 
-void DialogoFuncion::limpiar (wxCommandEvent& event)
+void DialogoFuncion::copiarAlClipboard()
+{
+	if (wxTheClipboard->Open())
+	{
+		wxTheClipboard->Clear();
+
+		wxClientDC dcLocal(this);
+		wxRect canvas=canvasFuncion->GetRect();
+		int x = canvas.GetTopLeft().x;
+		int y = canvas.GetTopLeft().y;
+		int w = canvas.GetWidth();
+		int h = canvas.GetHeight();
+
+		wxBitmap bitmap(w,h);
+		wxMemoryDC memory;
+		memory.SelectObject(bitmap);
+		memory.Blit(0,0, w, h, &dcLocal, x, y);
+
+		wxTheClipboard->SetData( new wxBitmapDataObject(bitmap) );
+		wxTheClipboard->Close();
+	}
+}
+
+void DialogoFuncion::mostrarControlesEntrada()
 {
 	int numEntra=0;
-	int numSale=0;
 	numEntra = choiceEntradas->GetSelection();
-	numSale  = choiceSalidas->GetSelection();
 	for(int i=0;i<numeroEntradas();i++)
 	{
 		if(i==numEntra)
@@ -155,7 +189,19 @@ void DialogoFuncion::limpiar (wxCommandEvent& event)
 			valoresEntradas[i]->Show(true);
 		}
 	}
+}
+
+void DialogoFuncion::limpiar (wxCommandEvent& event)
+{
+	int numEntra=0;
+	int numSale=0;
+	numEntra = choiceEntradas->GetSelection();
+	numSale  = choiceSalidas->GetSelection();
+
+	entradasPintadas.Clear();
+	coloresPintados.Clear();
 	pintarFuncion(true,false,numEntra,numSale);
+	mostrarControlesEntrada();
 }
 
 void DialogoFuncion::OnColor (wxCommandEvent& event)
@@ -164,5 +210,16 @@ void DialogoFuncion::OnColor (wxCommandEvent& event)
 	if (dialog.ShowModal() == wxID_OK)
 	{
 			colorData = dialog.GetColourData();
+	}
+}
+
+void DialogoFuncion::OnRightClk(wxMouseEvent& event)
+{
+	wxRect canvas=canvasFuncion->GetRect();
+	wxPoint pos=wxPoint(event.GetX(),event.GetY());
+	if(canvas.Contains(pos))
+	{
+		copiarAlClipboard();
+    wxMessageBox(_("Image has been copied to clipboard"));
 	}
 }

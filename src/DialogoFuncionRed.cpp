@@ -73,15 +73,29 @@ void DialogoFuncionRed::pintarFuncion(bool flagFondo, bool flagCurva, int numEnt
 	if(flagFondo)
 	{
 		Grafica->pintarFondoFuncion(mnx,mxx,mny,mxy,nomEntra,nomSale);
+		long tam=entradasPintadas.Count();
+		for(long j=0;j<tam;j++)
+		{
+			double entra[numeroEntradas()];
+			for(int i=0;i<numeroEntradas();i++)
+			{
+				entra[i]=entradasPintadas[j][i];
+			}
+			Grafica->pintarCurvaFuncionES(Red, numEntra,numSale,entra,coloresPintados[j]);
+		}
 	}
 	if(!flagCurva){return;}
 
+	wxArrayDouble entradas;
 	double entra[numeroEntradas()];
 	for(int i=0;i<numeroEntradas();i++)
 	{
 		entra[i]=valoresEntradas[i]->GetValue();
+		entradas.Add(entra[i]);
 	}
 
 	Grafica->pintarCurvaFuncionES(Red, numEntra,numSale,entra,colorData.GetColour());
+	entradasPintadas.Add(entradas);
+	coloresPintados.Add(colorData.GetColour());
 
 }

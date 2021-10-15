@@ -3,7 +3,6 @@
 
 #include <DialogoFuncion.h>
 
-
 class DialogoFuncionSld : public DialogoFuncion
 {
 	public:
@@ -25,5 +24,6 @@ class DialogoFuncionSld : public DialogoFuncion
 
 	private:
 };
+
 
 #endif // DIALOGOFUNCIONSLD_H

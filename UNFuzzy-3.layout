@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
-	<ActiveTarget name="Debug" />
-	<File name="include/DialogoMotor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Release" />
+	<File name="include/pin.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="690" topLine="12" />
+			<Cursor1 position="0" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="include/DialogoCalcular.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Norma.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="722" topLine="19" />
+			<Cursor1 position="198" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="include/DialogoInfo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -17,104 +17,54 @@
 			<Cursor1 position="367" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/DialogoEditarVariable.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/BloqueConcrecion.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="361" topLine="0" />
+			<Cursor1 position="2204" topLine="96" />
 		</Cursor>
 	</File>
-	<File name="include/ConjuntoDifuso.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/DialogoSLD.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="20355" topLine="810" />
-		</Cursor>
-	</File>
-	<File name="src/Variable.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5945" topLine="229" />
-		</Cursor>
-	</File>
-	<File name="src/Archivador.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11914" topLine="405" />
-		</Cursor>
-	</File>
-	<File name="include/MaquinaInferencia.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2442" topLine="112" />
-		</Cursor>
-	</File>
-	<File name="include/DialogoSLD.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="749" topLine="19" />
+			<Cursor1 position="492" topLine="100" />
 		</Cursor>
 	</File>
 	<File name="include/DialogoAutodefinirVariable.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="385" topLine="0" />
+			<Cursor1 position="670" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="include/Implicacion.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5798" topLine="172" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoInfo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="875" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="UNFuzzy_3App.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="658" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="src/red.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="999" topLine="86" />
+		</Cursor>
+	</File>
+	<File name="src/MaquinaInferencia.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4854" topLine="239" />
 		</Cursor>
 	</File>
 	<File name="include/Variable.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2160" topLine="78" />
+			<Cursor1 position="1352" topLine="39" />
 		</Cursor>
 	</File>
-	<File name="include/DialogoVariable.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/DialogoMotor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1666" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoCalculo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="847" topLine="24" />
-		</Cursor>
-	</File>
-	<File name="UNFuzzy_3App.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="537" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="include/BloqueConcrecion.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1305" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoCalcular.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="370" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/Difusor.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="19040" topLine="754" />
-		</Cursor>
-	</File>
-	<File name="include/DialogoPaso.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/pin.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="include/Norma.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="13718" topLine="773" />
-		</Cursor>
-	</File>
-	<File name="src/Universo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/Archivador.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1990" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="include/Implicacion.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9924" topLine="500" />
+			<Cursor1 position="735" topLine="19" />
 		</Cursor>
 	</File>
 	<File name="src/Arreglo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -122,69 +72,219 @@
 			<Cursor1 position="981" topLine="54" />
 		</Cursor>
 	</File>
-	<File name="src/red.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17626" topLine="562" />
-		</Cursor>
-	</File>
-	<File name="include/SistemaLogicaDifusa.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2184" topLine="73" />
-		</Cursor>
-	</File>
 	<File name="UNFuzzy_3App.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="530" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Regla.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/Universo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2427" topLine="84" />
+			<Cursor1 position="22" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="src/DialogoInfo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DialogoMotor.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="875" topLine="12" />
+			<Cursor1 position="3338" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="src/Graficador.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DialogoFuncion.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10166" topLine="378" />
+			<Cursor1 position="4729" topLine="114" />
 		</Cursor>
 	</File>
-	<File name="src/Norma.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DialogoPaso.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="198" topLine="0" />
+			<Cursor1 position="2565" topLine="276" />
 		</Cursor>
 	</File>
-	<File name="include/DialogoReglas.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/SistemaLogicaDifusa.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="691" topLine="36" />
+			<Cursor1 position="640" topLine="31" />
 		</Cursor>
 	</File>
-	<File name="include/red.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/ConjuntoDifuso.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="42" />
+			<Cursor1 position="20355" topLine="813" />
 		</Cursor>
 	</File>
-	<File name="src/DialogoFuncion.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/DialogoReglas.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2866" topLine="96" />
+			<Cursor1 position="424" topLine="59" />
 		</Cursor>
 	</File>
-	<File name="src/DialogoMotor.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/nodo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4411" topLine="111" />
+			<Cursor1 position="0" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="src/Concresor.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include/Concresor.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10891" topLine="351" />
+			<Cursor1 position="0" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="include/Archivador.h" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1990" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Concresor.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3699" topLine="156" />
+		</Cursor>
+	</File>
+	<File name="include/MaquinaInferencia.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3259" topLine="111" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoAutodefinirVariable.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="394" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/Graficador.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1443" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="include/DialogoPaso.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1045" topLine="29" />
+		</Cursor>
+	</File>
+	<File name="include/Regla.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2012" topLine="74" />
+		</Cursor>
+	</File>
+	<File name="include/DialogoVariable.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2514" topLine="76" />
+		</Cursor>
+	</File>
+	<File name="src/SistemaLogicaDifusa.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15242" topLine="411" />
+		</Cursor>
+	</File>
+	<File name="src/Variable.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1019" topLine="111" />
+		</Cursor>
+	</File>
+	<File name="src/Regla.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoCalculoSld.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoCalculo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="847" topLine="24" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoEntrenamiento.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9366" topLine="303" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoReglas.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="193" topLine="39" />
+		</Cursor>
+	</File>
+	<File name="src/Archivador.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12987" topLine="466" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoSLD.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12855" topLine="369" />
+		</Cursor>
+	</File>
+	<File name="include/Difusor.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2766" topLine="87" />
+		</Cursor>
+	</File>
+	<File name="src/Graficador.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6694" topLine="238" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoEditarVariable.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1324" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="include/Norma.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1431" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="include/bmps.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1060" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoAsignarEtiquetas.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3562" topLine="122" />
+		</Cursor>
+	</File>
+	<File name="include/DialogoCalcular.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="722" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="include/DialogoFuncionSld.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="618" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/Implicacion.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="46" topLine="0" />
+			<Cursor1 position="46" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="include/BloqueConcrecion.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1305" topLine="39" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoVariable.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10958" topLine="271" />
+		</Cursor>
+	</File>
+	<File name="src/DialogoCalcular.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="370" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/Universo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1895" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="include/Arreglo.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1056" topLine="71" />
+		</Cursor>
+	</File>
+	<File name="include/DialogoFuncion.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="772" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="include/red.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="190" topLine="3" />
 		</Cursor>
 	</File>
 	<File name="src/ConjuntoDifuso.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -195,89 +295,14 @@
 			<Collapse line="412" />
 		</Folding>
 	</File>
-	<File name="include/Concresor.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DialogoFuncionSld.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoPaso.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3171" topLine="72" />
+			<Cursor1 position="1577" topLine="69" />
 		</Cursor>
 	</File>
 	<File name="include/DialogoEditarVariable.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="537" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoSLD.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4731" topLine="63" />
-		</Cursor>
-	</File>
-	<File name="include/bmps.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="515" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/nodo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="src/BloqueConcrecion.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2204" topLine="94" />
-		</Cursor>
-	</File>
-	<File name="src/SistemaLogicaDifusa.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="45760" topLine="954" />
-		</Cursor>
-	</File>
-	<File name="src/MaquinaInferencia.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="16766" topLine="741" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoAutodefinirVariable.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2490" topLine="45" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoReglas.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2339" topLine="47" />
-		</Cursor>
-	</File>
-	<File name="include/Graficador.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="290" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoVariable.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17476" topLine="541" />
-		</Cursor>
-	</File>
-	<File name="src/DialogoEntrenamiento.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="621" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/Universo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="168" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/DialogoFuncion.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="34" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="include/Arreglo.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

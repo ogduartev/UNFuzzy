@@ -197,14 +197,16 @@ MaquinaInferencia::MaquinaInferencia(Universo *ent,Universo *sal,int numReg)
 		BaseReglas->Add(rg);
 	}
 	Implicaciones=new ImplicacionMinimo();
-	Composicion=new Minimo();
+	MinComposicion=new Minimo();
+	MaxComposicion=new Maximo();
 	And=new Minimo();
 }
 
 MaquinaInferencia::~MaquinaInferencia()
 {
 	delete Implicaciones;
-	delete Composicion;
+	delete MinComposicion;
+	delete MaxComposicion;
 	delete BaseReglas;
 	delete And;
 }
@@ -338,11 +340,8 @@ double MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,double
 			}
 			uxab=pertenenciaImplicacion(numVar,numRegla,x,sal);
 			uxa=pertenenciaDifusores(x);
-			ux=Composicion->opera(uxa,uxab);
-			if(ux>comp)
-			{
-				comp=ux;
-			}
+			ux=MinComposicion->opera(uxa,uxab);
+			comp=MaxComposicion->opera(comp,ux);
 		}
 	}
 	delete[] x;
@@ -869,6 +868,7 @@ bool red::conectar(int capa1, int nodo1, int pin1,int capa2, int nodo2, int pin2
 	ptr1=Capas.dato(capa1)->nodos()->dato(nodo1)->salidas() ->dato(pin1);
 	ptr2=Capas.dato(capa2)->nodos()->dato(nodo2)->entradas()->dato(pin2);
 	ptr2->contacto(ptr1);
+	return true;
 }
 
 bool red::buscarCapa(int numCapa)
@@ -908,6 +908,7 @@ double red::valorPinEntrada(int numCapa, int numNodo, int numPin)
 		return V;
 	}
 	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->entradas()->dato(numPin)->valor();
+	return V;
 }
 
 double red::valorPinSalida(int numCapa, int numNodo, int numPin)
@@ -918,6 +919,7 @@ double red::valorPinSalida(int numCapa, int numNodo, int numPin)
 		return V;
 	}
 	V=Capas.dato(numCapa)->nodos()->dato(numNodo)->salidas()->dato(numPin)->valor();
+	return V;
 }
 
 void red::calcularRed()

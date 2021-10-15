@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=UNFuzzy
+Comment=Sistemas de Logica Difusa
+Exec="/home/ogduartev/Proyectos/UNFuzzy-3/bin/Release/UNFuzzy-3"
+Icon="/home/ogduartev/Proyectos/UNFuzzy-3/bmp/AboutIcon.png"
+Terminal=false
+Type=Application
+Categories=Utility;
+

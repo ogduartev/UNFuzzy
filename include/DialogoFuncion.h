@@ -5,10 +5,14 @@
 #include <wx/spinctrl.h>
 #include <wx/colordlg.h>
 #include <wx/colourdata.h>
+#include <wx/clipbrd.h>
 
 #include <SistemaLogicaDifusa.h>
 #include <Graficador.h>
+#include <wx/dynarray.h>
 
+WX_DECLARE_OBJARRAY(wxArrayDouble, ArrayOfInputs);
+WX_DECLARE_OBJARRAY(wxColour,      ArrayOfColours);
 
 class DialogoFuncion : public wxDialog
 {
@@ -22,9 +26,12 @@ class DialogoFuncion : public wxDialog
 		void OnPaint       (wxPaintEvent& event);
 		void limpiar (wxCommandEvent& event);
 		void OnColor (wxCommandEvent& event);
+		void OnRightClk (wxMouseEvent& event);
 
 		void crearGrafica();
 		void pintar(wxCommandEvent&   event);
+		void mostrarControlesEntrada();
+		void copiarAlClipboard();
 		virtual void pintarFuncion(bool flagFondo, bool flagCurva, int numEntra,int numSale)=0;
 
 		virtual int numeroEntradas()=0;
@@ -55,6 +62,9 @@ class DialogoFuncion : public wxDialog
 		wxButton* buttonColor;
 		wxButton* buttonOK;
 		wxButton* buttonCancel;
+
+		ArrayOfInputs entradasPintadas;
+		ArrayOfColours coloresPintados;
 
 		DECLARE_EVENT_TABLE()
 

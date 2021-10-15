@@ -4,6 +4,7 @@
 #include <wx/wx.h>
 #include <wx/grid.h>
 #include <wx/spinctrl.h>
+#include <wx/clipbrd.h>
 
 #include <SistemaLogicaDifusa.h>
 #include <Graficador.h>
@@ -20,7 +21,9 @@ class DialogoPaso : public wxDialog
 		void OnRegla(wxGridEvent& event);
 		void OnCambioEntra(wxCommandEvent&   event);
 		void OnCambioSale(wxCommandEvent&   event);
+		void OnCambioActivas(wxCommandEvent&   event);
 		void OnCambioSpinEntra(wxSpinDoubleEvent&   event);
+		void OnRightClick (wxMouseEvent& event);
 
 		void calcular();
 		void pintar();
@@ -29,6 +32,7 @@ class DialogoPaso : public wxDialog
 		void pintarSalida();
 		void llenarTabla();
 		void llenarSalida();
+		void copiarAlClipboard(int caso);
 
 	protected:
 		SistemaLogicaDifusa *SLD;
@@ -39,6 +43,7 @@ class DialogoPaso : public wxDialog
 		wxSizerItem* canvasVarEntrada;
 		wxSizerItem* canvasVarRegla;
 		wxSizerItem* canvasVarSalida;
+	  wxCheckBox* checkActivas;
 		wxGrid *gridTabla;
 	  wxChoice* choiceEntradas;
 	  wxChoice* choiceSalidas;
@@ -46,6 +51,7 @@ class DialogoPaso : public wxDialog
 
 		wxButton* buttonOK;
 		wxButton* buttonCancel;
+
 
 		DECLARE_EVENT_TABLE()
 	private:
@@ -56,6 +62,7 @@ enum
 	DLG_PASO_TABLA=1,
 	DLG_PASO_CHOICEENTRA,
 	DLG_PASO_CHOICESALE,
+	DLG_PASO_CHECKACTIVAS,
 	DLG_PASO_SPINENTRA_BASE
 };
 

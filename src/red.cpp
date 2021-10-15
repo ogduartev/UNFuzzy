@@ -46,11 +46,12 @@ bool red::conectar(int capa1, int nodo1, int pin1,int capa2, int nodo2, int pin2
 	if(capa1!=(capa2-1))                   {return false;}
 	if(!buscarPinSalida(capa1,nodo1,pin1)) {return false;}
 	if(!buscarPinEntrada(capa2,nodo2,pin2)){return false;}
-	pin* ptr1;
-	pin* ptr2;
-	ptr1=Capas.dato(capa1)->nodos()->dato(nodo1)->salidas() ->dato(pin1);
+	pin* ptr1=NULL;
+	pin* ptr2=NULL;
+	ptr1=Capas.dato(capa1)->nodos()->dato(nodo1)->salidas()->dato(pin1);
 	ptr2=Capas.dato(capa2)->nodos()->dato(nodo2)->entradas()->dato(pin2);
-	ptr2->contacto(ptr1);
+ 	ptr2->contacto(ptr1);
+ 	return true;
 }
 
 bool red::buscarCapa(int numCapa)

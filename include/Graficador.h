@@ -38,12 +38,12 @@ class Graficador
 		int numeroPuntosArrastre;
 		wxPoint puntosArrastre[10];
   	int tamArrastre;
+    wxClientDC *dc;
 
 	protected:
     wxRect marco;
     wxRect ejes;
     wxRect canvas;
-    wxClientDC *dc;
 
    	int margenIzq;
 		int margenDer;

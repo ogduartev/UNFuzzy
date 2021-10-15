@@ -121,7 +121,8 @@ void Archivador::guardarMaquina (wxXmlNode* parent)
 
 	guardarBase(NodeA);
 	guardarNorma(NodeA,SLD->motor->and_(),("AND"));
-	guardarNorma(NodeA,SLD->motor->composicion(),("COMPOSITION"));
+	guardarNorma(NodeA,SLD->motor->minComposicion(),("MINCOMPOSITION"));
+	guardarNorma(NodeA,SLD->motor->maxComposicion(),("MAXCOMPOSITION"));
 	guardarImplicacion(NodeA,SLD->motor->implicacion());
 }
 
@@ -440,10 +441,14 @@ void Archivador::leerMaquina(wxXmlNode* parent)
 		}else if(NodeA->GetName()==("IMPLICATION"))
 		{
 			leerImplicacion(NodeA);
-		}else if(NodeA->GetName()==("COMPOSITION"))
+		}else if(NodeA->GetName()==("COMPOSITION") || NodeA->GetName()==("MINCOMPOSITION"))
 		{
 			Norma* norma=leerNorma(NodeA);
-			SLD->motor->composicion(norma);
+			SLD->motor->minComposicion(norma);
+		}else if(NodeA->GetName()==("MAXCOMPOSITION"))
+		{
+			Norma* norma=leerNorma(NodeA);
+			SLD->motor->maxComposicion(norma);
 		}else if(NodeA->GetName()==("AND"))
 		{
 			Norma* norma=leerNorma(NodeA);
@@ -466,7 +471,6 @@ void Archivador::leerBase(wxXmlNode* parent)
 	numSal=(int)tmpL;
 
 	SLD->motor->desocuparBaseReglas();
-	SLD->motor->eliminarRegla(0);
 	SLD->motor->numeroEntradas(numEnt);
 	SLD->motor->numeroSalidas(numSal);
 

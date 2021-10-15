@@ -47,6 +47,7 @@
 		<Unit filename="include/BloqueConcrecion.h" />
 		<Unit filename="include/Concresor.h" />
 		<Unit filename="include/ConjuntoDifuso.h" />
+		<Unit filename="include/DialogoAsignarEtiquetas.h" />
 		<Unit filename="include/DialogoAutodefinirVariable.h" />
 		<Unit filename="include/DialogoCalcular.h" />
 		<Unit filename="include/DialogoCalculo.h" />
@@ -80,6 +81,7 @@
 		<Unit filename="src/BloqueConcrecion.cpp" />
 		<Unit filename="src/Concresor.cpp" />
 		<Unit filename="src/ConjuntoDifuso.cpp" />
+		<Unit filename="src/DialogoAsignarEtiquetas.cpp" />
 		<Unit filename="src/DialogoAutodefinirVariable.cpp" />
 		<Unit filename="src/DialogoCalcular.cpp" />
 		<Unit filename="src/DialogoCalculo.cpp" />
@@ -108,9 +110,6 @@
 		<Unit filename="src/pin.cpp" />
 		<Unit filename="src/red.cpp" />
 		<Extensions>
-			<envvars />
-			<code_completion />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

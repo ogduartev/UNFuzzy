@@ -25,7 +25,7 @@ DialogoAutodefinirVariable::DialogoAutodefinirVariable(Variable *var,wxWindow* p
 	formas.Add(_("Short curve sets"));
 
   staticNumero     = new wxStaticText(this,wxID_ANY, _("Number of sets"));
-  spinNumero       = new wxSpinCtrl(this,DLG_AUTOVAR_NUMERO,"",wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,1,15,3);
+  spinNumero       = new wxSpinCtrl(this,DLG_AUTOVAR_NUMERO,"",wxDefaultPosition,wxSize(100,25),0x4000|wxALIGN_RIGHT,1,15,3);
   radioForma       = new wxRadioBox(this,DLG_AUTOVAR_FORMA,_("Shape of the sets"),wxDefaultPosition,wxDefaultSize,formas,0,wxRA_SPECIFY_ROWS );
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));

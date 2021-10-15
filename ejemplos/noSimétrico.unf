@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FLS Name="Sin nombre" Description="">
+  <INPUTS>
+    <VARIABLE Name="Entrada 1" Minimum="0.000000" Maximum="1.000000" Intervals="20">
+      <FUZZYFIER Type="8" Points="1" Center="0.730000">
+        <POINT X="0.727500"/>
+        <POINT X="0.732500"/>
+      </FUZZYFIER>
+      <LABEL Name="Bajo" Type="4">
+        <POINT X="0.000000"/>
+        <POINT X="0.750000"/>
+      </LABEL>
+      <LABEL Name="Medio" Type="5">
+        <POINT X="0.000000"/>
+        <POINT X="0.744387"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Alto" Type="7">
+        <POINT X="0.750000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </INPUTS>
+  <OUTPUTS>
+    <VARIABLE Name="Salida 1" Minimum="0.000000" Maximum="1.000000" Intervals="20">
+      <LABEL Name="Bajo" Type="4">
+        <POINT X="0.000000"/>
+        <POINT X="0.250000"/>
+      </LABEL>
+      <LABEL Name="Medio" Type="5">
+        <POINT X="0.000000"/>
+        <POINT X="0.250000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+      <LABEL Name="Alto" Type="7">
+        <POINT X="0.250000"/>
+        <POINT X="1.000000"/>
+      </LABEL>
+    </VARIABLE>
+  </OUTPUTS>
+  <ENGINE>
+    <IMPLICATION Type="1"/>
+    <COMPOSITION Type="1" Parameter="0.000000"/>
+    <AND Type="1" Parameter="0.000000"/>
+    <BASE Inputs="1" Outputs="1">
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="0" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="0"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="1" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="1"/>
+      </RULE>
+      <RULE Certainty="1.000000">
+        <ANTECEDENT Variable="0" Label="2" Modifier="1.000000"/>
+        <CONSEQUENT Variable="0" Label="2"/>
+      </RULE>
+    </BASE>
+  </ENGINE>
+  <DEFUZZYFIERS>
+    <DEFUZZYFIER Variable="0" Type="3"/>
+    <CONJUNCTION Type="10" Parameter="0.000000"/>
+  </DEFUZZYFIERS>
+</FLS>

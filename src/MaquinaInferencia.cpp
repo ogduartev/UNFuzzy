@@ -32,14 +32,16 @@ MaquinaInferencia::MaquinaInferencia(Universo *ent,Universo *sal,int numReg)
 		BaseReglas->Add(rg);
 	}
 	Implicaciones=new ImplicacionMinimo();
-	Composicion=new Minimo();
+	MinComposicion=new Minimo();
+	MaxComposicion=new Maximo();
 	And=new Minimo();
 }
 
 MaquinaInferencia::~MaquinaInferencia()
 {
 	delete Implicaciones;
-	delete Composicion;
+	delete MinComposicion;
+	delete MaxComposicion;
 	delete BaseReglas;
 	delete And;
 }
@@ -210,11 +212,8 @@ double MaquinaInferencia::pertenenciaComposicion(int numVar, int numRegla,double
 			}
 			uxab=pertenenciaImplicacion(numVar,numRegla,x,sal);
 			uxa=pertenenciaDifusores(x);
-			ux=Composicion->opera(uxa,uxab);
-			if(ux>comp)
-			{
-				comp=ux;
-			}
+			ux=MinComposicion->opera(uxa,uxab);
+			comp=MaxComposicion->opera(comp,ux);
 		}
 	}
 	delete[] x;
@@ -244,10 +243,10 @@ void MaquinaInferencia::desocuparBaseReglas()
 {
 	int i,num;
 	 num=numeroReglas();
-	for(i=1;i<num;i++)
+	for(i=0;i<num;i++)
 	{
 		  eliminarRegla(0);
-	}
+	}/*
 	 for(i=0;i<numeroEntradas();i++)
 	 {
 		  conjuntoEntrada(0,i,0);
@@ -260,7 +259,7 @@ void MaquinaInferencia::desocuparBaseReglas()
 	 {
 		  conjuntoSalida(0,i,0);
 	 }
-	 NumeroReglas=1;
+	 NumeroReglas=1;*/
 }
 
 void MaquinaInferencia::EntrenaUniversoFijo(double *antecedente, double *consecuente)
@@ -399,7 +398,7 @@ void MaquinaInferencia::EntrenaUniversoVariable(double *antecedente, double *con
 						break;
 			case 9 :// conj=new ConjuntoPorPuntos(cad,,,); //min,max,double *dt, int puntos
 					break;
-			default:break;
+			default: break;
 		}
 		double delta;
 		delta=*(antecedente+i)-conj->centroAltura();
@@ -730,7 +729,6 @@ void MaquinaInferencia::etiquetaEliminada(bool flagEntrada,int NumVar,int NumCon
 void MaquinaInferencia::limpiaAntesUniversoFijo()
 {
 	desocuparBaseReglas();
-	eliminarRegla(0);
 }
 
 void MaquinaInferencia::limpiaAntesUniversoVariable()
@@ -761,5 +759,4 @@ void MaquinaInferencia::limpiaAntesUniversoVariable()
 		wxString nom=_("Set base");
 		salidas()->variable(i)->conjunto(0)->nombre(std::string(nom.mb_str()));
 	}
-
 }

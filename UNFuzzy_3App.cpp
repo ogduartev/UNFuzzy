@@ -30,7 +30,7 @@ bool UNFuzzy_3App::OnInit()
 		MiLocale->AddCatalogLookupPathPrefix(strLocale);
 		MiLocale->AddCatalog("es");
 		setlocale (LC_NUMERIC,"C");
-
+		wxImage::AddHandler(new wxPNGHandler);
 
   	SLD.crearMinimoSLD(1,1);
 

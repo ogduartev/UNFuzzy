@@ -11,4 +11,5 @@ pin::pin()
 pin::~pin()
 {
 	//dtor
+	Contacto=NULL;
 }

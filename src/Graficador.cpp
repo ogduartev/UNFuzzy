@@ -19,6 +19,7 @@ Graficador::Graficador(wxClientDC *Dc, wxRect R)
 
 Graficador::~Graficador()
 {
+	dc=NULL;
 	//dtor
 }
 
@@ -208,8 +209,6 @@ void Graficador::pintarDifusor(Variable *Var, bool flagEjes)
 		YO=canvas.GetBottomLeft().y;
 		dc->DrawLine(XO,YO,XF,YF);
 	}
-
-
 }
 
 void Graficador::pintarConjunto(Variable *Var,ConjuntoDifuso *C)
@@ -522,7 +521,7 @@ void Graficador::pintarConjuncion(SistemaLogicaDifusa* SLD, int numSale,double s
 	YO=MNY;
 	YF=MXY;
 	dc->DrawLine(XO,YO,XF,YF);
-	pintarTitle(_("Conjunction"));
+	pintarTitle(_("Rule Aggregation"));
 }
 
 void Graficador::calcularFuncion(double*entra, double* sale)

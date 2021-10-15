@@ -12,6 +12,8 @@ class DialogoReglas : public wxDialog
 		virtual ~DialogoReglas();
 		void OnClose       (wxCloseEvent&   event);
 		void OnOK          (wxCommandEvent&   event);
+		void OnCheck2D     (wxCommandEvent&   event);
+		void OnCheckCerteza(wxCommandEvent&   event);
 		void OnInsertar    (wxCommandEvent&   event);
 		void OnEliminar    (wxCommandEvent&   event);
 		void OnModificador (wxCommandEvent&   event);
@@ -23,12 +25,24 @@ class DialogoReglas : public wxDialog
 		void actualizarBase();
 
 		void llenarTabla();
+		void llenarCerteza();
+
+		bool tabla2D();
+		void actualizarBase2D();
+		void llenarTabla2D();
+		void insertar2D();
+		void eliminar2D();
+		wxGridCellCoordsArray getSelectedCells();
 
 	protected:
 		MaquinaInferencia *Motor;
+		bool flag2D;
+		bool flagCerteza;
 
 		wxGrid *gridTabla;
 
+		wxCheckBox* check2D;
+		wxCheckBox* checkCerteza;
 		wxButton* buttonInsertar;
 		wxButton* buttonEliminar;
 		wxButton* buttonModificador;
@@ -47,6 +61,8 @@ class DialogoReglas : public wxDialog
 enum
 {
 	DLG_REGLAS_TABLA = 1,
+	DLG_REGLAS_CHECK2D,
+	DLG_REGLAS_CHECKCERTEZA,
 	DLG_REGLAS_BTNINSERTAR,
 	DLG_REGLAS_BTNELIMINAR,
 	DLG_REGLAS_BTNMODIFICADOR,

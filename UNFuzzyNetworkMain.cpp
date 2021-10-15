@@ -24,6 +24,7 @@ BEGIN_EVENT_TABLE(UNFuzzyNetworkFrame, wxFrame)
     EVT_CLOSE(UNFuzzyNetworkFrame::OnClose)
     EVT_LEFT_DOWN(UNFuzzyNetworkFrame::OnMouseLeftDown)
     EVT_LEFT_UP(UNFuzzyNetworkFrame::OnMouseLeftUp)
+    EVT_RIGHT_DOWN(UNFuzzyNetworkFrame::OnMouseRightDown)
     EVT_BUTTON(DLG_FRONTALNET_NUEVO      , UNFuzzyNetworkFrame::OnNuevo)
     EVT_BUTTON(DLG_FRONTALNET_DESCRIPCION, UNFuzzyNetworkFrame::OnDescripcion)
     EVT_BUTTON(DLG_FRONTALNET_LEER       , UNFuzzyNetworkFrame::OnLeer)
@@ -285,10 +286,21 @@ void UNFuzzyNetworkFrame::OnClose(wxCloseEvent &event)
 void UNFuzzyNetworkFrame::OnAbout(wxCommandEvent &event)
 {
   wxAboutDialogInfo info;
+//ICON
+	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+	wxString strIcon(f.GetPath());
+	strIcon << "/bmp/AboutIconNetwork.png";
+  wxIconLocation iconLoc(strIcon);
+  wxIcon icon(iconLoc);
+  info.SetIcon(icon);
+
   info.SetName(_("UNFuzzyNetwork"));
   info.SetVersion(_("3.0.0. Beta"));
   info.SetDescription(_("Software for design of\nNetworks of Fuzzy Logic Systems.\nUniversidad Nacional de Colombia"));
   info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
+  info.SetWebSite(_("https://github.com/ogduartev/UNFuzzy"));
+  info.AddDeveloper(_("Oscar Duarte"));
+  info.AddTranslator(_("Oscar Duarte"));
   wxAboutBox(info);
 }
 
@@ -427,6 +439,17 @@ void UNFuzzyNetworkFrame::OnMouseLeftUp(wxMouseEvent& event)
 	wxSetCursor(wxCursor(*wxSTANDARD_CURSOR));
 	pinInicioArrastre=NULL;
 	flagArrastre=false;
+}
+
+void UNFuzzyNetworkFrame::OnMouseRightDown(wxMouseEvent& event)
+{
+	wxRect canvas=canvasRed->GetRect();
+	wxPoint pos=wxPoint(event.GetX(),event.GetY());
+	if(canvas.Contains(pos))
+	{
+		copiarAlClipboard();
+    wxMessageBox(_("Image has been copied to clipboard"));
+	}
 }
 
 bool UNFuzzyNetworkFrame::buscarPuntosEnPinEntrada(wxPoint punto)
@@ -709,5 +732,28 @@ void UNFuzzyNetworkFrame::datoEntrada(int numNodo, int numPin)
 		Red.calcularRed();
 	}
 	delete dial;
+}
+
+void UNFuzzyNetworkFrame::copiarAlClipboard()
+{
+	if (wxTheClipboard->Open())
+	{
+		wxTheClipboard->Clear();
+
+		wxClientDC dcLocal(this);
+		wxRect canvas=canvasRed->GetRect();
+		int x = canvas.GetTopLeft().x + 0.5*tamIconoPlus;
+		int y = canvas.GetTopLeft().y + 0.5*tamIconoPlus;
+		int w = canvas.GetWidth()     - 0.5*tamIconoPlus - sepXSLD;
+		int h = canvas.GetHeight()    - 2.5*tamIconoPlus;
+
+		wxBitmap bitmap(w,h);
+		wxMemoryDC memory;
+		memory.SelectObject(bitmap);
+		memory.Blit(0,0, w, h, &dcLocal, x, y);
+
+		wxTheClipboard->SetData( new wxBitmapDataObject(bitmap) );
+		wxTheClipboard->Close();
+	}
 }
 

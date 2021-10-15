@@ -77,6 +77,7 @@ public:
 		motor->EntrenaUniversoVariable(antecedente,consecuente);
 	}
 	void crearMinimoSLD(int numEnt,int numSal);
+	wxString crearEncabezadoTabla(wxString nombreArchivo);
 	void crearArchivoTabla(wxString nombreArchivo);
 	void generarCodigo(wxString nombreArchivo,wxString nombreClase);
 

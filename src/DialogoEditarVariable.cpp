@@ -22,10 +22,10 @@ DialogoEditarVariable::DialogoEditarVariable(Variable *var,wxWindow* parent)
   staticMinimo     = new wxStaticText(this,wxID_ANY, _("Minimum value"));
   staticMaximo     = new wxStaticText(this,wxID_ANY, _("Maximum value"));
   staticIntervalos = new wxStaticText(this,wxID_ANY, _("Number of evaluation intervals"));
-  textNombre       = new wxTextCtrl(this,DLG_EDITVAR_NOMBRE    ,"",wxDefaultPosition,wxSize(150,20));
-  textMinimo       = new wxTextCtrl(this,DLG_EDITVAR_MINIMO    ,"",wxDefaultPosition,wxSize(100,20));
-  textMaximo       = new wxTextCtrl(this,DLG_EDITVAR_MAXIMO    ,"",wxDefaultPosition,wxSize(100,20));
-  spinIntervalos   = new wxSpinCtrl(this,DLG_EDITVAR_INTERVALOS,"",wxDefaultPosition,wxSize(100,20),0x4000|wxALIGN_RIGHT,5,200,30);
+  textNombre       = new wxTextCtrl(this,DLG_EDITVAR_NOMBRE    ,"",wxDefaultPosition,wxSize(150,30));
+  textMinimo       = new wxTextCtrl(this,DLG_EDITVAR_MINIMO    ,"",wxDefaultPosition,wxSize(100,30));
+  textMaximo       = new wxTextCtrl(this,DLG_EDITVAR_MAXIMO    ,"",wxDefaultPosition,wxSize(100,30));
+  spinIntervalos   = new wxSpinCtrl(this,DLG_EDITVAR_INTERVALOS,"",wxDefaultPosition,wxSize(100,30),0x4000|wxALIGN_RIGHT,5,200,30);
   buttonOK         = new wxButton(this,wxID_OK,_("OK"));
   buttonCancel     = new wxButton(this,wxID_CANCEL,_("Cancel"));
 

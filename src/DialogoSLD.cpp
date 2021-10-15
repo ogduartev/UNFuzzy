@@ -109,7 +109,7 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStand
     sizerTotal->Add(sizerIconos          , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 0);
     sizerTotal->Add(staticTextDescripcion, 0,wxALIGN_CENTRE_HORIZONTAL|wxTOP, 5);
     sizerTotal->Add(sizerSLD             , 1, wxALIGN_CENTRE_HORIZONTAL|wxTOP|wxBOTTOM, 20);
-    sizerTotal->Add(sizerControles       , 1, wxALIGN_CENTRE_HORIZONTAL, 0);
+    sizerTotal->Add(sizerControles       , 1, wxALIGN_CENTRE_HORIZONTAL|wxBOTTOM, 20);
 
     this->SetSizer(sizerTotal);
     this->Layout();
@@ -352,10 +352,21 @@ void DialogoSLD::OnIdioma    (wxCommandEvent& event)
 void DialogoSLD::OnAbout(wxCommandEvent& event)
 {
   wxAboutDialogInfo info;
+//ICON
+	wxFileName f(wxStandardPaths::Get().GetExecutablePath());
+	wxString strIcon(f.GetPath());
+	strIcon << "/bmp/AboutIcon.png";
+  wxIconLocation iconLoc(strIcon);
+  wxIcon icon(iconLoc);
+  info.SetIcon(icon);
+
   info.SetName(_("UNFuzzy"));
   info.SetVersion(_("3.0.0. Beta"));
   info.SetDescription(_("Software for design of Fuzzy Logic Systems.\nUniversidad Nacional de Colombia"));
   info.SetCopyright(_("(C) 2019 Oscar Duarte <ogduartev@unal.edu.co>"));
+  info.SetWebSite(_("https://github.com/ogduartev/UNFuzzy"));
+  info.AddDeveloper(_("Oscar Duarte"));
+  info.AddTranslator(_("Oscar Duarte"));
   wxAboutBox(info);
 }
 

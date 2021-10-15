@@ -2075,14 +2075,23 @@ public:
 		delete And;
 		And=nor;
 	}
-	Norma *composicion()
+	Norma *minComposicion()
 	{
-		return Composicion;
+		return MinComposicion;
 	}
-	void composicion(Norma *nor)
+	void minComposicion(Norma *nor)
 	{
-		delete Composicion;
-		Composicion=nor;
+		delete MinComposicion;
+		MinComposicion=nor;
+	}
+	Norma *maxComposicion()
+	{
+		return MaxComposicion;
+	}
+	void maxComposicion(Norma *nor)
+	{
+		delete MaxComposicion;
+		MaxComposicion=nor;
 	}
 
 	Regla *regla(int numRegla);
@@ -2169,7 +2178,8 @@ protected:
 	Universo *Salidas;
 
 	Implicacion *Implicaciones;
-	Norma *Composicion;
+	Norma *MinComposicion;
+	Norma *MaxComposicion;
 	Norma *And;
 
 	int NumeroReglas;

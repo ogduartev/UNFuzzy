@@ -5,10 +5,13 @@
 #include <string>
 using namespace std;
 #include <wx/wx.h>
+#include <wx/clipbrd.h>
+
 #include <SistemaLogicaDifusa.h>
 #include <Graficador.h>
 #include <DialogoEditarVariable.h>
 #include <DialogoAutodefinirVariable.h>
+#include <DialogoAsignarEtiquetas.h>
 
 class DialogoVariable : public wxDialog
 {
@@ -31,11 +34,13 @@ class DialogoVariable : public wxDialog
 		void cambiaConjunto(wxCommandEvent&   event);
 		void cambiaDifusor(wxCommandEvent&   event);
 		void cambiaConcresor(wxCommandEvent&   event);
+		void copiarAlClipboard(int caso);
 
 		void OnEditarVar      (wxCommandEvent&   event);
 		void OnEliminarVar    (wxCommandEvent&   event);
 		void OnAdicionarVar   (wxCommandEvent&   event);
 		void OnAutodefinirVar (wxCommandEvent&   event);
+		void OnEtiquetarVar   (wxCommandEvent&   event);
 		void OnEditarCon      (wxCommandEvent&   event);
 		void OnEliminarCon    (wxCommandEvent&   event);
 		void OnAdicionarCon   (wxCommandEvent&   event);
@@ -65,6 +70,7 @@ class DialogoVariable : public wxDialog
 	  wxButton* buttonEliminarVar;
 	  wxButton* buttonAdicionarVar;
 	  wxButton* buttonAutodefinirVar;
+	  wxButton* buttonEtiquetarVar;
 
 	  wxButton* buttonEditarCon;
 	  wxButton* buttonEliminarCon;
@@ -100,6 +106,7 @@ enum
 	DLG_VARIABLE_VARELIMINAR,
 	DLG_VARIABLE_VARADICIONAR,
 	DLG_VARIABLE_VARAUTODEFINIR,
+	DLG_VARIABLE_VARETIQUETAR,
 	DLG_VARIABLE_CONEDITAR,
 	DLG_VARIABLE_CONELIMINAR,
 	DLG_VARIABLE_CONADICIONAR,

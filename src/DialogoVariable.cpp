@@ -13,6 +13,7 @@ BEGIN_EVENT_TABLE(DialogoVariable, wxDialog)
     EVT_BUTTON(DLG_VARIABLE_VARELIMINAR     , DialogoVariable::OnEliminarVar)
     EVT_BUTTON(DLG_VARIABLE_VARADICIONAR    , DialogoVariable::OnAdicionarVar)
     EVT_BUTTON(DLG_VARIABLE_VARAUTODEFINIR  , DialogoVariable::OnAutodefinirVar)
+    EVT_BUTTON(DLG_VARIABLE_VARETIQUETAR    , DialogoVariable::OnEtiquetarVar)
     EVT_BUTTON(DLG_VARIABLE_CONEDITAR       , DialogoVariable::OnEditarCon)
     EVT_BUTTON(DLG_VARIABLE_CONELIMINAR     , DialogoVariable::OnEliminarCon)
     EVT_BUTTON(DLG_VARIABLE_CONADICIONAR    , DialogoVariable::OnAdicionarCon)
@@ -55,7 +56,7 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
   sizerTotal             = new wxFlexGridSizer(1,4,0);
 	sizerControles         = new wxFlexGridSizer(3,1,0);
 	sizerControlesVariable = new wxFlexGridSizer(4,1,0);
-	sizerBotonesVariable   = new wxFlexGridSizer(1,4,0);
+	sizerBotonesVariable   = new wxFlexGridSizer(1,5,0);
 	sizerControlesConjunto = new wxFlexGridSizer(4,1,0);
 	sizerBotonesConjunto   = new wxFlexGridSizer(1,4,0);
 	sizerBotonesDifConc    = new wxFlexGridSizer(2,3,0);
@@ -65,8 +66,8 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	sizerStaticConjuntos   = new wxStaticBoxSizer(wxVERTICAL,this,_("Sets"));
   sizerOKCancel    = new wxFlexGridSizer(2,1,0);
 
-	listaVariables    = new wxListBox(this,DLG_VARIABLE_LISTAVAR,wxDefaultPosition,wxSize(150,150));
-	listaConjuntos    = new wxListBox(this,DLG_VARIABLE_LISTACON,wxDefaultPosition,wxSize(150,150));
+	listaVariables    = new wxListBox(this,DLG_VARIABLE_LISTAVAR,wxDefaultPosition,wxSize(150,180));
+	listaConjuntos    = new wxListBox(this,DLG_VARIABLE_LISTACON,wxDefaultPosition,wxSize(150,180));
   canvasVar         = new wxSizerItem(600,200);
   staticLabelVar    = new wxStaticText(this,wxID_ANY,_("Linguistic variable"));
 
@@ -122,6 +123,7 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	buttonEliminarVar    = new wxButton(this,DLG_VARIABLE_VARELIMINAR    ,_("Delete"));
 	buttonAdicionarVar   = new wxButton(this,DLG_VARIABLE_VARADICIONAR   ,_("Add"));
 	buttonAutodefinirVar = new wxButton(this,DLG_VARIABLE_VARAUTODEFINIR ,_("Selfdefinition"));
+	buttonEtiquetarVar   = new wxButton(this,DLG_VARIABLE_VARETIQUETAR   ,_("Labeling"));
 	buttonEditarCon      = new wxButton(this,DLG_VARIABLE_CONEDITAR      ,_("Label"));
 	buttonEliminarCon    = new wxButton(this,DLG_VARIABLE_CONELIMINAR    ,_("Delete"));
 	buttonAdicionarCon   = new wxButton(this,DLG_VARIABLE_CONADICIONAR   ,_("Add"));
@@ -139,6 +141,7 @@ DialogoVariable::DialogoVariable(Universo *u, SistemaLogicaDifusa *sld, bool fla
 	sizerBotonesVariable->Add(buttonEliminarVar   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 	sizerBotonesVariable->Add(buttonAdicionarVar  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 	sizerBotonesVariable->Add(buttonAutodefinirVar, 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
+	sizerBotonesVariable->Add(buttonEtiquetarVar  , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 
 	sizerBotonesConjunto->Add(buttonEditarCon     , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
 	sizerBotonesConjunto->Add(buttonEliminarCon   , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 1);
@@ -213,7 +216,7 @@ void DialogoVariable::pintarVariable(int numVar,int conj)
 
 	numeroPuntosArrastre=Grafica.numeroPuntosArrastre;
 	tamArrastre=Grafica.tamArrastre;
-	for(int i=1;i<=numeroPuntosArrastre+1;i++)
+	for(int i=0;i<=numeroPuntosArrastre+1;i++)
 	{
 		puntosArrastre[i]=Grafica.puntosArrastre[i];
 	}
@@ -457,6 +460,17 @@ void DialogoVariable::OnAutodefinirVar (wxCommandEvent&   event)
 	llenarDatos();
 }
 
+void DialogoVariable::OnEtiquetarVar (wxCommandEvent&   event)
+{
+	DialogoAsignarEtiquetas *dial;
+	dial=new  DialogoAsignarEtiquetas(U->variable(NumVar),this);
+	if(dial->ShowModal() == wxID_OK)
+	{
+	}
+	delete dial;
+	llenarDatos();
+}
+
 void DialogoVariable::OnEditarCon      (wxCommandEvent&   event)
 {
 	wxTextEntryDialog *dial;
@@ -603,7 +617,21 @@ void DialogoVariable::OnRightClick (wxMouseEvent& event)
 				llenarDatos();
 			}
 			delete dial;
+			return;
 		}
+	}
+	wxRect canvas;
+	canvas=canvasVar->GetRect();
+	if(canvas.Contains(tp))
+	{
+		copiarAlClipboard(1);
+    wxMessageBox(_("Image has been copied to clipboard"));
+	}
+	canvas=canvasDif->GetRect();
+	if(canvas.Contains(tp))
+	{
+		copiarAlClipboard(2);
+    wxMessageBox(_("Image has been copied to clipboard"));
 	}
 }
 
@@ -687,4 +715,33 @@ void DialogoVariable::OnSpinAncho      (wxSpinDoubleEvent&   event)
   mx=U->variable(NumVar)->difusorEntrada()->centro() + ancho/2.0;
   U->variable(NumVar)->difusorEntrada()->ajustar(mn,mx);
 	pintarDifusor(NumVar,NumCon);
+}
+
+void DialogoVariable::copiarAlClipboard(int caso)
+{
+	wxRect canvas;
+	switch(caso)
+	{
+	  case 1 : canvas=canvasVar->GetRect(); break;
+	  case 2 : canvas=canvasDif->GetRect(); break;
+	  default: return;
+	}
+	if (wxTheClipboard->Open())
+	{
+		wxTheClipboard->Clear();
+
+		wxClientDC dcLocal(this);
+		int x = canvas.GetTopLeft().x;
+		int y = canvas.GetTopLeft().y;
+		int w = canvas.GetWidth();
+		int h = canvas.GetHeight();
+
+		wxBitmap bitmap(w,h);
+		wxMemoryDC memory;
+		memory.SelectObject(bitmap);
+		memory.Blit(0,0, w, h, &dcLocal, x, y);
+
+		wxTheClipboard->SetData( new wxBitmapDataObject(bitmap) );
+		wxTheClipboard->Close();
+	}
 }

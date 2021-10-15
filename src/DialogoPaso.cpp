@@ -5,6 +5,8 @@ BEGIN_EVENT_TABLE(DialogoPaso, wxDialog)
     EVT_CLOSE(DialogoPaso::OnClose)
     EVT_CHOICE(DLG_PASO_CHOICEENTRA         , DialogoPaso::OnCambioEntra)
     EVT_CHOICE(DLG_PASO_CHOICESALE          , DialogoPaso::OnCambioSale)
+    EVT_CHECKBOX(DLG_PASO_CHECKACTIVAS        , DialogoPaso::OnCambioActivas)
+    EVT_RIGHT_DOWN(DialogoPaso::OnRightClick)
     EVT_GRID_LABEL_LEFT_CLICK( DialogoPaso::OnRegla)
 END_EVENT_TABLE()
 
@@ -20,13 +22,12 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
   wxFlexGridSizer*  sizerBloqueC;
   wxFlexGridSizer*  sizerControles;
   wxFlexGridSizer*  sizerChoices;
-  wxFlexGridSizer*  sizerBotones;
   wxFlexGridSizer*  sizerValores;
   wxFlexGridSizer*  sizerOKCancel;
 
   sizerTotal       = new wxFlexGridSizer(1,4,0);
 	sizerBloqueA     = new wxFlexGridSizer(4,1,0);
-	sizerBloqueB     = new wxFlexGridSizer(4,1,0);
+	sizerBloqueB     = new wxFlexGridSizer(1,2,0);
 	sizerBloqueC     = new wxFlexGridSizer(4,1,0);
 	sizerControles   = new wxFlexGridSizer(1,4,0);
 	sizerChoices     = new wxFlexGridSizer(1,2,0);
@@ -53,8 +54,14 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	staticSalida     = new wxStaticText(this,wxID_ANY,_("                 "));
 	choiceEntradas   = new wxChoice(this,DLG_PASO_CHOICEENTRA,wxDefaultPosition,wxDefaultSize,strEntra);
 	choiceSalidas    = new wxChoice(this,DLG_PASO_CHOICESALE,wxDefaultPosition,wxDefaultSize,strSale);
+	checkActivas     = new wxCheckBox(this,DLG_PASO_CHECKACTIVAS,_("Just active rules"),wxDefaultPosition,wxSize(200,20));
+	checkActivas->SetValue(true);
 	gridTabla = new wxGrid(this,DLG_PASO_TABLA, wxDefaultPosition, wxSize(600,200), wxFULL_REPAINT_ON_RESIZE);
 	gridTabla->CreateGrid(rows,cols);
+
+	gridTabla->SetDefaultCellBackgroundColour(GetBackgroundColour());
+	gridTabla->SetSelectionBackground(wxColour(0x4F,0x76,0xB9));
+
 	valoresEntradas  = new wxSpinCtrlDouble*[SLD->entradas->numeroVariables()];
   for(int i=0;i<SLD->entradas->numeroVariables();i++)
 	{
@@ -84,6 +91,7 @@ DialogoPaso::DialogoPaso(SistemaLogicaDifusa *sld, wxWindow *parent)
 	sizerBloqueA->Add(canvasVarEntrada);
 	sizerBloqueA->Add(sizerChoices      , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
+	sizerBloqueB->Add(checkActivas    , 1, wxALIGN_LEFT|wxALL, 5);
 	sizerBloqueB->Add(gridTabla    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
 
 	sizerControles->Add(choiceSalidas    , 1, wxALIGN_CENTRE_HORIZONTAL|wxALL, 5);
@@ -138,6 +146,12 @@ void DialogoPaso::OnCambioSale(wxCommandEvent&   event)
 {
 	pintarSalida();
 	llenarSalida();
+}
+
+void DialogoPaso::OnCambioActivas(wxCommandEvent&   event)
+{
+	llenarTabla();
+	pintarRegla(-1);
 }
 
 void DialogoPaso::OnCambioSpinEntra(wxSpinDoubleEvent&   event)
@@ -199,7 +213,6 @@ void DialogoPaso::pintarRegla(int reglaInd)
 {
 	int numSalida =choiceSalidas->GetSelection();
 
-	Variable* var=SLD->salidas->variable(numSalida);
 	wxClientDC dc(this);
 	wxRect canvas=canvasVarRegla->GetRect();
 
@@ -228,7 +241,6 @@ void DialogoPaso::pintarSalida()
 {
 	int numSalida =choiceSalidas->GetSelection();
 
-	Variable* var=SLD->salidas->variable(numSalida);
 	wxClientDC dc(this);
 	wxRect canvas=canvasVarSalida->GetRect();
 
@@ -247,6 +259,7 @@ void DialogoPaso::pintarSalida()
 
 void DialogoPaso::llenarTabla()
 {
+	gridTabla->EnableEditing(false);
 	wxString celda="";
 	int offsetX=SLD->motor->entradas()->numeroVariables();
 
@@ -273,7 +286,7 @@ void DialogoPaso::llenarTabla()
 
 	for(int i=0;i<SLD->motor->numeroReglas();i++)
 	{
-		if(SLD->motor->activarRegla(i))
+		if(SLD->motor->activarRegla(i) || !checkActivas->GetValue())
 		{
 			reglasActivas.Add(i);
 			gridTabla->AppendRows();
@@ -320,5 +333,59 @@ void DialogoPaso::OnRegla(wxGridEvent& event)
 	if(row>=0)
 	{
 		pintarRegla(row);
+	}
+}
+
+void DialogoPaso::OnRightClick (wxMouseEvent& event)
+{
+	wxPoint tp(event.GetX(),event.GetY());
+	wxRect canvas;
+	canvas=canvasVarEntrada->GetRect();
+	if(canvas.Contains(tp))
+	{
+		copiarAlClipboard(1);
+    wxMessageBox(_("Image has been copied to clipboard"));
+	}
+	canvas=canvasVarRegla->GetRect();
+	if(canvas.Contains(tp))
+	{
+		copiarAlClipboard(2);
+    wxMessageBox(_("Image has been copied to clipboard"));
+	}
+	canvas=canvasVarSalida->GetRect();
+	if(canvas.Contains(tp))
+	{
+		copiarAlClipboard(3);
+    wxMessageBox(_("Image has been copied to clipboard"));
+	}
+}
+
+void DialogoPaso::copiarAlClipboard(int caso)
+{
+	wxRect canvas;
+	switch(caso)
+	{
+	  case 1 : canvas=canvasVarEntrada->GetRect(); break;
+	  case 2 : canvas=canvasVarRegla->GetRect(); break;
+	  case 3 : canvas=canvasVarSalida->GetRect(); break;
+	  default: return;
+	}
+	if (wxTheClipboard->Open())
+	{
+		wxTheClipboard->Clear();
+
+		wxClientDC dcLocal(this);
+		int x = canvas.GetTopLeft().x;
+		int y = canvas.GetTopLeft().y;
+		int w = canvas.GetWidth();
+		int h = canvas.GetHeight();
+
+		wxBitmap bitmap(w,h);
+		wxMemoryDC memory;
+		memory.SelectObject(bitmap);
+		memory.Blit(0,0, w, h, &dcLocal, x, y);
+
+		wxTheClipboard->SetData( new wxBitmapDataObject(bitmap) );
+		wxTheClipboard->Close();
 	}
 }

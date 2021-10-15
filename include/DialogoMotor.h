@@ -10,16 +10,18 @@ class DialogoMotor : public wxDialog
 		DialogoMotor(SistemaLogicaDifusa *SLD, wxWindow *parent);
 		virtual ~DialogoMotor();
 
-		void OnClose       (wxCloseEvent&   event);
-		void OnOK          (wxCommandEvent&   event);
-		void OnImplicacion (wxCommandEvent& event);
-		void OnComposicion (wxCommandEvent& event);
-		void OnAnd         (wxCommandEvent& event);
-		void OnConjuncion  (wxCommandEvent& event);
-		void nuevaImplicacion ();
-		void nuevaComposicion ();
-		void nuevaAnd         ();
-		void nuevaConjuncion  ();
+		void OnClose          (wxCloseEvent&   event);
+		void OnOK             (wxCommandEvent&   event);
+		void OnImplicacion    (wxCommandEvent& event);
+		void OnMinComposicion (wxCommandEvent& event);
+		void OnMaxComposicion (wxCommandEvent& event);
+		void OnAnd            (wxCommandEvent& event);
+		void OnConjuncion     (wxCommandEvent& event);
+		void nuevaImplicacion    ();
+		void nuevaMinComposicion ();
+		void nuevaMaxComposicion ();
+		void nuevaAnd            ();
+		void nuevaConjuncion     ();
 		Norma *nuevaSNorma(int caso);
 		Norma *nuevaTNorma(int caso);
 		void getParametro(double *par,double minimo=0,double maximo=10.0);
@@ -33,11 +35,13 @@ class DialogoMotor : public wxDialog
 		BloqueConcrecion *Concreto;
 
 		wxStaticText *staticImplicacion;
-		wxStaticText *staticComposicion;
+		wxStaticText *staticMinComposicion;
+		wxStaticText *staticMaxComposicion;
 		wxStaticText *staticAnd;
 		wxStaticText *staticConjuncion;
 		wxComboBox *comboImplicacion;
-		wxComboBox *comboComposicion;
+		wxComboBox *comboMinComposicion;
+		wxComboBox *comboMaxComposicion;
 		wxComboBox *comboAnd;
 		wxComboBox *comboConjuncion;
 
@@ -52,7 +56,8 @@ class DialogoMotor : public wxDialog
 enum
 {
 	DLG_MOTOR_IMPLICACION = 1,
-	DLG_MOTOR_COMPOSICION,
+	DLG_MOTOR_MINCOMPOSICION,
+	DLG_MOTOR_MAXCOMPOSICION,
 	DLG_MOTOR_AND,
 	DLG_MOTOR_CONJUNCION
 };
