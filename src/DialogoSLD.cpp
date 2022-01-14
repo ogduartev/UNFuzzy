@@ -69,7 +69,7 @@ DialogoSLD::DialogoSLD(wxWindow* parent, SistemaLogicaDifusa* sld,bool flagStand
 			MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
 			MiLocale->AddCatalogLookupPathPrefix(strLocale);
 			MiLocale->AddCatalog("es");
-			setlocale (LC_NUMERIC,"C");
+//			setlocale (LC_NUMERIC,"C");
 		}else
 		{
 			buttonIdioma->Show(false);
@@ -344,7 +344,7 @@ void DialogoSLD::OnIdioma    (wxCommandEvent& event)
 								MiLocale->AddCatalog("es");
 								break;
 		}
-		setlocale (LC_NUMERIC,"C");
+//		setlocale (LC_NUMERIC,"C");
 		llenarTexto();
 	}
 }

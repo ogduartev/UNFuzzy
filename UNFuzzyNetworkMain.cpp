@@ -58,7 +58,7 @@ UNFuzzyNetworkFrame::UNFuzzyNetworkFrame(wxFrame *frame, const wxString& title)
   MiLocale =new wxLocale(wxLANGUAGE_SPANISH);
 	MiLocale->AddCatalogLookupPathPrefix(strLocale);
 	MiLocale->AddCatalog("es");
-	setlocale (LC_NUMERIC,"C");
+//	setlocale (LC_NUMERIC,"C");
 
 	Red.crearRedMinima();
 	wxFlexGridSizer*  sizerGrafico;
@@ -271,7 +271,7 @@ void UNFuzzyNetworkFrame::OnIdioma    (wxCommandEvent& event)
 								MiLocale->AddCatalog("es");
 								break;
 		}
-		setlocale (LC_NUMERIC,"C");
+//		setlocale (LC_NUMERIC,"C");
 		paintNow();
     SetStatusText(_("Networks of Fuzzy Logic Systems"),0);
 		this->SetLabel (_("UNFuzzyNetwork - Design of Networks of Fuzzy Logic Systems"));
